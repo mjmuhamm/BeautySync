@@ -132,10 +132,10 @@
 		201910E02CD28BAE006BEE4D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				201910B92CD28807006BEE4D /* Assets.xcassets */,
 				201910BB2CD28807006BEE4D /* LaunchScreen.storyboard */,
 				201910B22CD28805006BEE4D /* SceneDelegate.swift */,
 				201910B02CD28805006BEE4D /* AppDelegate.swift */,
-				201910B92CD28807006BEE4D /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -168,7 +168,8 @@
 		201910E42CD29934006BEE4D /* beautician */ = {
 			isa = PBXGroup;
 			children = (
-				201910E62CD29B7D006BEE4D /* beauticianLoginViewController.swift */,
+				201910EC2CD2F11A006BEE4D /* banking */,
+				201910EA2CD2F10A006BEE4D /* login */,
 			);
 			path = beautician;
 			sourceTree = "<group>";
@@ -179,6 +180,21 @@
 				201910B42CD28805006BEE4D /* ViewController.swift */,
 			);
 			path = start;
+			sourceTree = "<group>";
+		};
+		201910EA2CD2F10A006BEE4D /* login */ = {
+			isa = PBXGroup;
+			children = (
+				201910E62CD29B7D006BEE4D /* beauticianLoginViewController.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		201910EC2CD2F11A006BEE4D /* banking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = banking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
