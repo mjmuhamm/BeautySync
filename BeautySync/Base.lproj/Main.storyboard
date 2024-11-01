@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="StartViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,6 +52,9 @@
                                         <color key="tintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="User"/>
+                                        <connections>
+                                            <action selector="userButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Eny-sj-Wdc"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2IG-8L-dGa" customClass="MDCButton">
                                         <rect key="frame" x="0.0" y="53" width="293" height="45"/>
@@ -63,6 +66,9 @@
                                         <color key="tintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Beautician"/>
+                                        <connections>
+                                            <action selector="beauticianButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GbE-9m-d22"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -73,6 +79,9 @@
                                     <constraint firstAttribute="height" constant="38" id="kbq-LB-1jt"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="termsOfServiceButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IBR-Cb-TfR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WPr-yr-78U">
                                 <rect key="frame" x="242" y="483" width="111" height="38"/>
@@ -81,6 +90,9 @@
                                     <constraint firstAttribute="width" constant="111" id="X6Y-Ag-Wwu"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="privacyPolicyButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xdA-Ot-qjP"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please review our Terms of Service and Privacy Policy before continuing." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqC-S7-gti">
                                 <rect key="frame" x="3" y="489" width="387" height="31.333333333333371"/>
@@ -110,15 +122,19 @@
                             <constraint firstItem="Itw-he-NyZ" firstAttribute="top" secondItem="zKM-65-zXb" secondAttribute="bottom" constant="8" symbolic="YES" id="xjq-5G-RSi"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="beauticianButton" destination="2IG-8L-dGa" id="3dO-Ff-qUf"/>
+                        <outlet property="userButton" destination="jHA-63-qLV" id="YP1-as-gTf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="21" y="13"/>
+            <point key="canvasLocation" x="20.610687022900763" y="12.67605633802817"/>
         </scene>
         <!--User Login View Controller-->
         <scene sceneID="xVF-7Y-QpO">
             <objects>
-                <viewController id="j31-sm-fjs" customClass="userLoginViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserLogin" id="j31-sm-fjs" customClass="UserLoginViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y20-hl-Wpa">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -171,6 +187,9 @@
                                 <color key="tintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="j31-sm-fjs" eventType="touchUpInside" id="k3r-qq-I3R"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you've forgotten your password, please enter your email in the space above and click here." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xZ-Nl-iWH">
                                 <rect key="frame" x="20" y="480" width="353" height="31.333333333333314"/>
@@ -181,6 +200,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4O-sO-kco">
                                 <rect key="frame" x="20" y="480" width="353" height="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="forgotPasswordButtonPressed:" destination="j31-sm-fjs" eventType="touchUpInside" id="gfL-iT-CWc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9N-QE-sCy" customClass="MDCButton">
                                 <rect key="frame" x="20" y="759.33333333333337" width="353" height="45"/>
@@ -194,12 +216,18 @@
                                 <state key="normal" title="NEED AN ACCOUNT? SIGN UP HERE">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUpButtonPressed:" destination="j31-sm-fjs" eventType="touchUpInside" id="ALa-3M-tpZ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ck-DA-edr">
                                 <rect key="frame" x="16" y="59" width="51" height="34.333333333333343"/>
                                 <color key="tintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrowshape.left.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="j31-sm-fjs" eventType="touchUpInside" id="Eb6-Qr-YWw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7mm-Fu-dFE"/>
@@ -228,6 +256,11 @@
                             <constraint firstItem="CYW-jp-cMf" firstAttribute="top" secondItem="3T2-Zx-Odz" secondAttribute="bottom" constant="26" id="ykj-5t-uoX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="email" destination="a5S-YI-dJU" id="rIe-NT-W5u"/>
+                        <outlet property="loginButton" destination="CYW-jp-cMf" id="iCQ-UJ-fMd"/>
+                        <outlet property="password" destination="ZP7-nz-N8t" id="rvd-la-8rS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sB2-Kl-k0N" sceneMemberID="firstResponder"/>
             </objects>
@@ -236,7 +269,7 @@
         <!--Beautician Login View Controller-->
         <scene sceneID="aqO-Q2-r1N">
             <objects>
-                <viewController id="7dE-a1-wMi" customClass="beauticianLoginViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BeauticianLogin" id="7dE-a1-wMi" customClass="BeauticianLoginViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ahM-yR-Ul0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -292,6 +325,9 @@
                                 <color key="tintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="7dE-a1-wMi" eventType="touchUpInside" id="0Dd-DR-ehb"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you've forgotten your password, please enter your email in the space above and click here." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubx-yx-vAq">
                                 <rect key="frame" x="11" y="493" width="371" height="31.333333333333371"/>
@@ -302,6 +338,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdu-cz-9bn">
                                 <rect key="frame" x="11" y="495" width="371" height="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="forgotPasswordButtonPressed:" destination="7dE-a1-wMi" eventType="touchUpInside" id="pOm-5L-YR5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bf-UX-6pn" customClass="MDCButton">
                                 <rect key="frame" x="20" y="773" width="353" height="45"/>
@@ -315,12 +354,18 @@
                                 <state key="normal" title="ARE YOU A BEAUTICIAN? SIGN UP HERE">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUpButtonPressed:" destination="7dE-a1-wMi" eventType="touchUpInside" id="lWQ-nZ-nAm"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YsA-D9-ZEF">
                                 <rect key="frame" x="16" y="59" width="51" height="34.333333333333343"/>
                                 <color key="tintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrowshape.left.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="7dE-a1-wMi" eventType="touchUpInside" id="nrK-Mc-hxY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5bM-BL-ogw"/>
@@ -349,15 +394,20 @@
                             <constraint firstItem="YsA-D9-ZEF" firstAttribute="leading" secondItem="ahM-yR-Ul0" secondAttribute="leading" constant="16" id="zhL-zC-fXM"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="email" destination="g1G-74-bwC" id="73a-Ci-qaj"/>
+                        <outlet property="loginButton" destination="xT7-Qv-gCL" id="W7w-J4-SmT"/>
+                        <outlet property="password" destination="MUc-Fl-Rim" id="4H3-5n-2wp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUa-6L-WXK" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="943" y="-345"/>
         </scene>
-        <!--View Controller-->
+        <!--User Personal View Controller-->
         <scene sceneID="YDg-C2-7RL">
             <objects>
-                <viewController id="xIJ-rL-HWd" customClass="ViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserPersonal" id="xIJ-rL-HWd" customClass="UserPersonalViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8tB-uH-wjH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -370,6 +420,9 @@
                                 <color key="tintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrowshape.left.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="RI0-T9-OBq"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2g-oR-NUE">
                                 <rect key="frame" x="162" y="59" width="67.666666666666686" height="34"/>
@@ -536,6 +589,9 @@
                                                         <state key="selected">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="localButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="i73-pq-hew"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3V1-Xy-c2p" customClass="MDCButton">
                                                         <rect key="frame" x="51" y="0.0" width="42" height="28"/>
@@ -550,6 +606,9 @@
                                                         <state key="selected">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="regionButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="SPm-hJ-ksE"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pw4-wI-ibn" customClass="MDCButton">
                                                         <rect key="frame" x="111" y="0.0" width="40" height="28"/>
@@ -564,6 +623,9 @@
                                                         <state key="selected">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="nationButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="Oeb-Nm-IHz"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -578,6 +640,31 @@
                                                 <state key="normal" image="camera.fill" catalog="system">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="userImageButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="xgX-tM-qjx"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vQ-Fb-ZzH" customClass="MDCButton">
+                                                <rect key="frame" x="163" y="499" width="72" height="39"/>
+                                                <color key="backgroundColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="39" id="5I4-aQ-Pmq"/>
+                                                    <constraint firstAttribute="width" constant="72" id="cG7-6T-293"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="tintColor" red="0.62745098040000002" green="0.63529411759999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Save">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <state key="selected">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="localButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="HUS-By-uJh"/>
+                                                    <action selector="saveButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="pRw-PT-m0U"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -586,11 +673,11 @@
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JT2-rp-sCA" secondAttribute="trailing" constant="20" symbolic="YES" id="0aH-5a-czP"/>
                                             <constraint firstItem="TJM-F8-gnB" firstAttribute="top" secondItem="JT2-rp-sCA" secondAttribute="bottom" constant="7.3300000000000001" id="3NC-a1-pqq"/>
                                             <constraint firstAttribute="height" constant="710" id="4eN-mf-G1U"/>
+                                            <constraint firstItem="1vQ-Fb-ZzH" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="163" id="6XZ-tg-O5h"/>
                                             <constraint firstItem="9q1-kf-9JV" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="9K8-ql-a9C"/>
                                             <constraint firstItem="1gz-ae-e40" firstAttribute="top" secondItem="75R-gk-ovr" secondAttribute="bottom" constant="135.66999999999999" id="9jx-PQ-SHN"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TNi-WG-hFv" secondAttribute="trailing" constant="20" symbolic="YES" id="AYq-ef-c4i"/>
                                             <constraint firstItem="TJM-F8-gnB" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="BQ5-iZ-c9X"/>
-                                            <constraint firstItem="TNi-WG-hFv" firstAttribute="leading" secondItem="sPx-4Z-CLY" secondAttribute="trailing" constant="8" symbolic="YES" id="CnC-Uf-LdF"/>
                                             <constraint firstItem="1gz-ae-e40" firstAttribute="leading" secondItem="SY5-96-gky" secondAttribute="trailing" constant="20" id="DAk-Ag-7lE"/>
                                             <constraint firstAttribute="trailing" secondItem="1gz-ae-e40" secondAttribute="trailing" constant="6.5" id="Gtq-8h-wJK"/>
                                             <constraint firstItem="iBa-1T-Brb" firstAttribute="top" secondItem="SY5-96-gky" secondAttribute="bottom" constant="20.329999999999998" id="Kqo-AI-7ao"/>
@@ -605,6 +692,7 @@
                                             <constraint firstItem="TNi-WG-hFv" firstAttribute="top" secondItem="9q1-kf-9JV" secondAttribute="bottom" constant="15" id="a3X-vI-oMK"/>
                                             <constraint firstItem="fC5-Th-8hf" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="ajV-gO-1cO"/>
                                             <constraint firstItem="w0i-RW-BGg" firstAttribute="leading" secondItem="bfp-Lk-Unk" secondAttribute="trailing" constant="19" id="bFI-B8-YFy"/>
+                                            <constraint firstItem="TNi-WG-hFv" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="142" id="c7D-nK-9Cr"/>
                                             <constraint firstItem="JT2-rp-sCA" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="cjf-XI-50M"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TJM-F8-gnB" secondAttribute="trailing" constant="20" symbolic="YES" id="eEI-JH-Z12"/>
                                             <constraint firstAttribute="trailing" secondItem="75R-gk-ovr" secondAttribute="trailing" constant="128" id="fgG-fL-Lh6"/>
@@ -612,6 +700,7 @@
                                             <constraint firstItem="bfp-Lk-Unk" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="gGv-QR-C4n"/>
                                             <constraint firstItem="LCS-Mc-Jo3" firstAttribute="top" secondItem="ZdZ-m6-o3h" secondAttribute="top" constant="26" id="gVM-qb-XpZ"/>
                                             <constraint firstItem="fC5-Th-8hf" firstAttribute="top" secondItem="b3C-ko-ThR" secondAttribute="bottom" constant="7" id="hgj-xx-k7K"/>
+                                            <constraint firstItem="1vQ-Fb-ZzH" firstAttribute="top" secondItem="9q1-kf-9JV" secondAttribute="bottom" constant="68" id="hoX-v6-MQ3"/>
                                             <constraint firstItem="iBa-1T-Brb" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="iDk-hJ-vqv"/>
                                             <constraint firstItem="sPx-4Z-CLY" firstAttribute="top" secondItem="9q1-kf-9JV" secondAttribute="bottom" constant="15" id="kS6-EK-OUI"/>
                                             <constraint firstItem="sPx-4Z-CLY" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="sbb-gu-Gg9"/>
@@ -644,15 +733,31 @@
                             <constraint firstItem="R2g-oR-NUE" firstAttribute="leading" secondItem="0N8-y3-a9w" secondAttribute="trailing" constant="95" id="zV3-3W-hwI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="city" destination="sPx-4Z-CLY" id="dap-Uz-2Fv"/>
+                        <outlet property="confirmPassword" destination="Eit-lx-cpS" id="eRG-03-FAC"/>
+                        <outlet property="email" destination="TJM-F8-gnB" id="1vN-cZ-dUd"/>
+                        <outlet property="fullName" destination="2o6-LL-JiZ" id="s9b-DN-MRb"/>
+                        <outlet property="localButton" destination="vt1-jX-Zm7" id="sv7-5S-P1H"/>
+                        <outlet property="nationButton" destination="pw4-wI-ibn" id="4Eu-ng-dYr"/>
+                        <outlet property="password" destination="Cqv-36-tyN" id="a3W-8d-rDa"/>
+                        <outlet property="regionButton" destination="3V1-Xy-c2p" id="sT4-jT-s9U"/>
+                        <outlet property="saveButton" destination="1vQ-Fb-ZzH" id="XwJ-ev-ub9"/>
+                        <outlet property="saveButtonConstraint" destination="hoX-v6-MQ3" id="cMD-er-LY8"/>
+                        <outlet property="state" destination="TNi-WG-hFv" id="oE4-BL-SNl"/>
+                        <outlet property="stateConstraint" destination="c7D-nK-9Cr" id="drO-Jm-T6i"/>
+                        <outlet property="userImage" destination="bfp-Lk-Unk" id="D0D-oB-xj4"/>
+                        <outlet property="userName" destination="fC5-Th-8hf" id="nNa-Dd-fwN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFl-7o-vh8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2676" y="389"/>
+            <point key="canvasLocation" x="2675.5725190839694" y="388.73239436619718"/>
         </scene>
-        <!--View Controller-->
+        <!--Personal View Controller-->
         <scene sceneID="Ogu-BB-dp7">
             <objects>
-                <viewController id="Fuf-qF-uAN" customClass="ViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BeauticianPersonal" id="Fuf-qF-uAN" customClass="PersonalViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TXv-7h-3S6">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -911,10 +1016,10 @@
             </objects>
             <point key="canvasLocation" x="3018" y="-2260"/>
         </scene>
-        <!--View Controller-->
+        <!--Business View Controller-->
         <scene sceneID="fy4-Sd-frT">
             <objects>
-                <viewController id="vly-q1-23A" customClass="ViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vly-q1-23A" customClass="BusinessViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tf5-kE-S1c">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1105,16 +1210,16 @@
             </objects>
             <point key="canvasLocation" x="3469" y="-345"/>
         </scene>
-        <!--View Controller-->
+        <!--Banking View Controller-->
         <scene sceneID="AWQ-t4-Z7L">
             <objects>
-                <viewController id="MZY-Iy-Qgd" customClass="ViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="MZY-Iy-Qgd" customClass="BankingViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pNg-ZS-83k">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGn-nl-ajr">
-                                <rect key="frame" x="16.000000000000004" y="59" width="53.333333333333343" height="34.333333333333343"/>
+                                <rect key="frame" x="16" y="59" width="54" height="34.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34.329999999999998" id="MiN-tK-Uv8"/>
                                 </constraints>
@@ -1122,8 +1227,8 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrowshape.left.fill" catalog="system"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kU-Ed-4sO">
-                                <rect key="frame" x="164.33333333333334" y="59" width="64.666666666666657" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Banking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kU-Ed-4sO">
+                                <rect key="frame" x="165" y="59" width="63" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="W8k-QX-wKK"/>
                                 </constraints>
@@ -2070,10 +2175,10 @@
             </objects>
             <point key="canvasLocation" x="4223.6641221374048" y="-345.07042253521126"/>
         </scene>
-        <!--View Controller-->
+        <!--Account Info View Controller-->
         <scene sceneID="cPg-HP-C0H">
             <objects>
-                <viewController id="xmg-Wk-1em" sceneMemberID="viewController">
+                <viewController id="xmg-Wk-1em" customClass="AccountInfoViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l8c-jU-GRP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2084,7 +2189,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrowshape.left.fill" catalog="system"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Banking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLA-6Z-XPR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLA-6Z-XPR">
                                 <rect key="frame" x="71.666666666666686" y="59" width="250" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="XJx-Wb-zHQ"/>
@@ -2200,10 +2305,10 @@
             </objects>
             <point key="canvasLocation" x="4224" y="339"/>
         </scene>
-        <!--View Controller-->
+        <!--Owners View Controller-->
         <scene sceneID="i3z-9G-Ga4">
             <objects>
-                <viewController id="SJx-Ub-ACR" sceneMemberID="viewController">
+                <viewController id="SJx-Ub-ACR" customClass="OwnersViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VYx-08-8tF">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2355,10 +2460,10 @@
             </objects>
             <point key="canvasLocation" x="4994.6564885496182" y="338.73239436619718"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Person View Controller-->
         <scene sceneID="1vz-9b-LXB">
             <objects>
-                <viewController id="qdq-Zc-TSp" sceneMemberID="viewController">
+                <viewController id="qdq-Zc-TSp" customClass="AddPersonViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YLS-Ff-RTo">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2774,7 +2879,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4g-Dt-On3">
-                                <rect key="frame" x="0.0" y="101" width="393" height="1"/>
+                                <rect key="frame" x="0.0" y="101" width="393" height="0.6666666666666714"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="NIz-q7-j1w"/>
@@ -2807,10 +2912,10 @@
             </objects>
             <point key="canvasLocation" x="4996.1832061068699" y="-345.07042253521126"/>
         </scene>
-        <!--View Controller-->
+        <!--Stripe Terms View Controller-->
         <scene sceneID="qpi-bF-bVE">
             <objects>
-                <viewController id="VPO-sL-ZIk" sceneMemberID="viewController">
+                <viewController id="VPO-sL-ZIk" customClass="StripeTermsViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ynd-hm-yBL">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

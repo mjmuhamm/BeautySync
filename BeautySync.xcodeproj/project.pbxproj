@@ -9,15 +9,27 @@
 /* Begin PBXBuildFile section */
 		201910B12CD28805006BEE4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910B02CD28805006BEE4D /* AppDelegate.swift */; };
 		201910B32CD28805006BEE4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910B22CD28805006BEE4D /* SceneDelegate.swift */; };
-		201910B52CD28805006BEE4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910B42CD28805006BEE4D /* ViewController.swift */; };
+		201910B52CD28805006BEE4D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910B42CD28805006BEE4D /* StartViewController.swift */; };
 		201910B82CD28805006BEE4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201910B62CD28805006BEE4D /* Main.storyboard */; };
 		201910BA2CD28807006BEE4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 201910B92CD28807006BEE4D /* Assets.xcassets */; };
 		201910BD2CD28807006BEE4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201910BB2CD28807006BEE4D /* LaunchScreen.storyboard */; };
 		201910C82CD28807006BEE4D /* BeautySyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910C72CD28807006BEE4D /* BeautySyncTests.swift */; };
 		201910D22CD28807006BEE4D /* BeautySyncUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910D12CD28807006BEE4D /* BeautySyncUITests.swift */; };
 		201910D42CD28807006BEE4D /* BeautySyncUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910D32CD28807006BEE4D /* BeautySyncUITestsLaunchTests.swift */; };
-		201910E72CD29B7D006BEE4D /* beauticianLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910E62CD29B7D006BEE4D /* beauticianLoginViewController.swift */; };
-		201910E92CD29B8D006BEE4D /* userLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910E82CD29B8D006BEE4D /* userLoginViewController.swift */; };
+		201910E72CD29B7D006BEE4D /* BeauticianLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910E62CD29B7D006BEE4D /* BeauticianLoginViewController.swift */; };
+		201910E92CD29B8D006BEE4D /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910E82CD29B8D006BEE4D /* UserLoginViewController.swift */; };
+		201910F02CD404DB006BEE4D /* BeauticianPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910EF2CD404DB006BEE4D /* BeauticianPersonalViewController.swift */; };
+		201910F22CD404FB006BEE4D /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910F12CD404FB006BEE4D /* BusinessViewController.swift */; };
+		201910F42CD40523006BEE4D /* BankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910F32CD40523006BEE4D /* BankingViewController.swift */; };
+		201910F72CD40597006BEE4D /* UserPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910F62CD40597006BEE4D /* UserPersonalViewController.swift */; };
+		201910F92CD405EA006BEE4D /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910F82CD405EA006BEE4D /* AddPersonViewController.swift */; };
+		201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FA2CD4061E006BEE4D /* OwnersViewController.swift */; };
+		201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */; };
+		201910FF2CD40695006BEE4D /* StripeTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */; };
+		201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 201911002CD40A4D006BEE4D /* GoogleService-Info.plist */; };
+		7CC7C7AE1BDDCEE398E22845 /* Pods_BeautySync_BeautySyncUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9DBD966C615D97959A4D69 /* Pods_BeautySync_BeautySyncUITests.framework */; };
+		C6BD8BD85EBB2B0A47A8508B /* Pods_BeautySync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91E8995FC62A32DD2664A22 /* Pods_BeautySync.framework */; };
+		C6C6445E783FC46401DE7056 /* Pods_BeautySyncTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E553705F9608D23155BBCF6F /* Pods_BeautySyncTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,10 +50,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000E5F7600424750F55344F0 /* Pods-BeautySync-BeautySyncUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync-BeautySyncUITests.release.xcconfig"; path = "Target Support Files/Pods-BeautySync-BeautySyncUITests/Pods-BeautySync-BeautySyncUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1D9DBD966C615D97959A4D69 /* Pods_BeautySync_BeautySyncUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeautySync_BeautySyncUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		201910AD2CD28805006BEE4D /* BeautySync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeautySync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		201910B02CD28805006BEE4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		201910B22CD28805006BEE4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		201910B42CD28805006BEE4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		201910B42CD28805006BEE4D /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		201910B72CD28805006BEE4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		201910B92CD28807006BEE4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		201910BC2CD28807006BEE4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,8 +65,24 @@
 		201910CD2CD28807006BEE4D /* BeautySyncUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeautySyncUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		201910D12CD28807006BEE4D /* BeautySyncUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautySyncUITests.swift; sourceTree = "<group>"; };
 		201910D32CD28807006BEE4D /* BeautySyncUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautySyncUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		201910E62CD29B7D006BEE4D /* beauticianLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beauticianLoginViewController.swift; sourceTree = "<group>"; };
-		201910E82CD29B8D006BEE4D /* userLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userLoginViewController.swift; sourceTree = "<group>"; };
+		201910E62CD29B7D006BEE4D /* BeauticianLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianLoginViewController.swift; sourceTree = "<group>"; };
+		201910E82CD29B8D006BEE4D /* UserLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
+		201910EF2CD404DB006BEE4D /* BeauticianPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianPersonalViewController.swift; sourceTree = "<group>"; };
+		201910F12CD404FB006BEE4D /* BusinessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
+		201910F32CD40523006BEE4D /* BankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankingViewController.swift; sourceTree = "<group>"; };
+		201910F62CD40597006BEE4D /* UserPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersonalViewController.swift; sourceTree = "<group>"; };
+		201910F82CD405EA006BEE4D /* AddPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewController.swift; sourceTree = "<group>"; };
+		201910FA2CD4061E006BEE4D /* OwnersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnersViewController.swift; sourceTree = "<group>"; };
+		201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
+		201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTermsViewController.swift; sourceTree = "<group>"; };
+		201911002CD40A4D006BEE4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9755A0EEB4BA757D9CD62E3A /* Pods-BeautySyncTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySyncTests.release.xcconfig"; path = "Target Support Files/Pods-BeautySyncTests/Pods-BeautySyncTests.release.xcconfig"; sourceTree = "<group>"; };
+		CE2BF5A4A5F13DD3A1BCFBB7 /* Pods-BeautySyncTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySyncTests.debug.xcconfig"; path = "Target Support Files/Pods-BeautySyncTests/Pods-BeautySyncTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D91E8995FC62A32DD2664A22 /* Pods_BeautySync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeautySync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E216E840328356F6C075A205 /* Pods-BeautySync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync.release.xcconfig"; path = "Target Support Files/Pods-BeautySync/Pods-BeautySync.release.xcconfig"; sourceTree = "<group>"; };
+		E553705F9608D23155BBCF6F /* Pods_BeautySyncTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeautySyncTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB6053B5C74571859E564A58 /* Pods-BeautySync-BeautySyncUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync-BeautySyncUITests.debug.xcconfig"; path = "Target Support Files/Pods-BeautySync-BeautySyncUITests/Pods-BeautySync-BeautySyncUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA7D8A136875974819AA00BC /* Pods-BeautySync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync.debug.xcconfig"; path = "Target Support Files/Pods-BeautySync/Pods-BeautySync.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6BD8BD85EBB2B0A47A8508B /* Pods_BeautySync.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6C6445E783FC46401DE7056 /* Pods_BeautySyncTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC7C7AE1BDDCEE398E22845 /* Pods_BeautySync_BeautySyncUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +120,8 @@
 				201910C62CD28807006BEE4D /* BeautySyncTests */,
 				201910D02CD28807006BEE4D /* BeautySyncUITests */,
 				201910AE2CD28805006BEE4D /* Products */,
+				5C8977B7B19019AA36AAB978 /* Pods */,
+				92A16B6E70F7356F315EA2C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +140,7 @@
 			children = (
 				201910B62CD28805006BEE4D /* Main.storyboard */,
 				201910BE2CD28807006BEE4D /* Info.plist */,
+				201911002CD40A4D006BEE4D /* GoogleService-Info.plist */,
 				201910E02CD28BAE006BEE4D /* Resources */,
 				201910E12CD28BB4006BEE4D /* Cells */,
 				201910E22CD28BB9006BEE4D /* Controllers */,
@@ -160,7 +196,8 @@
 		201910E32CD29930006BEE4D /* user */ = {
 			isa = PBXGroup;
 			children = (
-				201910E82CD29B8D006BEE4D /* userLoginViewController.swift */,
+				201910ED2CD3F90F006BEE4D /* login */,
+				201910F52CD40588006BEE4D /* info */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -168,8 +205,8 @@
 		201910E42CD29934006BEE4D /* beautician */ = {
 			isa = PBXGroup;
 			children = (
-				201910EC2CD2F11A006BEE4D /* banking */,
 				201910EA2CD2F10A006BEE4D /* login */,
+				201910EE2CD404C1006BEE4D /* info */,
 			);
 			path = beautician;
 			sourceTree = "<group>";
@@ -177,7 +214,7 @@
 		201910E52CD2993D006BEE4D /* start */ = {
 			isa = PBXGroup;
 			children = (
-				201910B42CD28805006BEE4D /* ViewController.swift */,
+				201910B42CD28805006BEE4D /* StartViewController.swift */,
 			);
 			path = start;
 			sourceTree = "<group>";
@@ -185,7 +222,7 @@
 		201910EA2CD2F10A006BEE4D /* login */ = {
 			isa = PBXGroup;
 			children = (
-				201910E62CD29B7D006BEE4D /* beauticianLoginViewController.swift */,
+				201910E62CD29B7D006BEE4D /* BeauticianLoginViewController.swift */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -193,8 +230,62 @@
 		201910EC2CD2F11A006BEE4D /* banking */ = {
 			isa = PBXGroup;
 			children = (
+				201910F32CD40523006BEE4D /* BankingViewController.swift */,
+				201910F82CD405EA006BEE4D /* AddPersonViewController.swift */,
+				201910FA2CD4061E006BEE4D /* OwnersViewController.swift */,
+				201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */,
+				201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */,
 			);
 			path = banking;
+			sourceTree = "<group>";
+		};
+		201910ED2CD3F90F006BEE4D /* login */ = {
+			isa = PBXGroup;
+			children = (
+				201910E82CD29B8D006BEE4D /* UserLoginViewController.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		201910EE2CD404C1006BEE4D /* info */ = {
+			isa = PBXGroup;
+			children = (
+				201910EF2CD404DB006BEE4D /* BeauticianPersonalViewController.swift */,
+				201910F12CD404FB006BEE4D /* BusinessViewController.swift */,
+				201910EC2CD2F11A006BEE4D /* banking */,
+			);
+			path = info;
+			sourceTree = "<group>";
+		};
+		201910F52CD40588006BEE4D /* info */ = {
+			isa = PBXGroup;
+			children = (
+				201910F62CD40597006BEE4D /* UserPersonalViewController.swift */,
+			);
+			path = info;
+			sourceTree = "<group>";
+		};
+		5C8977B7B19019AA36AAB978 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FA7D8A136875974819AA00BC /* Pods-BeautySync.debug.xcconfig */,
+				E216E840328356F6C075A205 /* Pods-BeautySync.release.xcconfig */,
+				EB6053B5C74571859E564A58 /* Pods-BeautySync-BeautySyncUITests.debug.xcconfig */,
+				000E5F7600424750F55344F0 /* Pods-BeautySync-BeautySyncUITests.release.xcconfig */,
+				CE2BF5A4A5F13DD3A1BCFBB7 /* Pods-BeautySyncTests.debug.xcconfig */,
+				9755A0EEB4BA757D9CD62E3A /* Pods-BeautySyncTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		92A16B6E70F7356F315EA2C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D91E8995FC62A32DD2664A22 /* Pods_BeautySync.framework */,
+				1D9DBD966C615D97959A4D69 /* Pods_BeautySync_BeautySyncUITests.framework */,
+				E553705F9608D23155BBCF6F /* Pods_BeautySyncTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,9 +295,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 201910D72CD28807006BEE4D /* Build configuration list for PBXNativeTarget "BeautySync" */;
 			buildPhases = (
+				46D9BA3CDA0C608EF93F298B /* [CP] Check Pods Manifest.lock */,
 				201910A92CD28805006BEE4D /* Sources */,
 				201910AA2CD28805006BEE4D /* Frameworks */,
 				201910AB2CD28805006BEE4D /* Resources */,
+				0E173A8059434037459EAF23 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -221,6 +314,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 201910DA2CD28807006BEE4D /* Build configuration list for PBXNativeTarget "BeautySyncTests" */;
 			buildPhases = (
+				1E0FB9A9384142BC5D512A9D /* [CP] Check Pods Manifest.lock */,
 				201910BF2CD28807006BEE4D /* Sources */,
 				201910C02CD28807006BEE4D /* Frameworks */,
 				201910C12CD28807006BEE4D /* Resources */,
@@ -239,9 +333,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 201910DD2CD28807006BEE4D /* Build configuration list for PBXNativeTarget "BeautySyncUITests" */;
 			buildPhases = (
+				B7E0AB93CB2DC56E1A12F481 /* [CP] Check Pods Manifest.lock */,
 				201910C92CD28807006BEE4D /* Sources */,
 				201910CA2CD28807006BEE4D /* Frameworks */,
 				201910CB2CD28807006BEE4D /* Resources */,
+				E63E7654E0EB15923D7B2BAD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				201910BD2CD28807006BEE4D /* LaunchScreen.storyboard in Resources */,
+				201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */,
 				201910BA2CD28807006BEE4D /* Assets.xcassets in Resources */,
 				201910B82CD28805006BEE4D /* Main.storyboard in Resources */,
 			);
@@ -323,16 +420,127 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0E173A8059434037459EAF23 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeautySync/Pods-BeautySync-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeautySync/Pods-BeautySync-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeautySync/Pods-BeautySync-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E0FB9A9384142BC5D512A9D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeautySyncTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		46D9BA3CDA0C608EF93F298B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeautySync-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7E0AB93CB2DC56E1A12F481 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeautySync-BeautySyncUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E63E7654E0EB15923D7B2BAD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeautySync-BeautySyncUITests/Pods-BeautySync-BeautySyncUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeautySync-BeautySyncUITests/Pods-BeautySync-BeautySyncUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeautySync-BeautySyncUITests/Pods-BeautySync-BeautySyncUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		201910A92CD28805006BEE4D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				201910B52CD28805006BEE4D /* ViewController.swift in Sources */,
-				201910E92CD29B8D006BEE4D /* userLoginViewController.swift in Sources */,
+				201910F22CD404FB006BEE4D /* BusinessViewController.swift in Sources */,
+				201910B52CD28805006BEE4D /* StartViewController.swift in Sources */,
+				201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */,
+				201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */,
+				201910F42CD40523006BEE4D /* BankingViewController.swift in Sources */,
+				201910E92CD29B8D006BEE4D /* UserLoginViewController.swift in Sources */,
 				201910B12CD28805006BEE4D /* AppDelegate.swift in Sources */,
+				201910F72CD40597006BEE4D /* UserPersonalViewController.swift in Sources */,
 				201910B32CD28805006BEE4D /* SceneDelegate.swift in Sources */,
-				201910E72CD29B7D006BEE4D /* beauticianLoginViewController.swift in Sources */,
+				201910F02CD404DB006BEE4D /* BeauticianPersonalViewController.swift in Sources */,
+				201910E72CD29B7D006BEE4D /* BeauticianLoginViewController.swift in Sources */,
+				201910F92CD405EA006BEE4D /* AddPersonViewController.swift in Sources */,
+				201910FF2CD40695006BEE4D /* StripeTermsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +717,7 @@
 		};
 		201910D82CD28807006BEE4D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA7D8A136875974819AA00BC /* Pods-BeautySync.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -536,6 +745,7 @@
 		};
 		201910D92CD28807006BEE4D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E216E840328356F6C075A205 /* Pods-BeautySync.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -563,6 +773,7 @@
 		};
 		201910DB2CD28807006BEE4D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE2BF5A4A5F13DD3A1BCFBB7 /* Pods-BeautySyncTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -582,6 +793,7 @@
 		};
 		201910DC2CD28807006BEE4D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9755A0EEB4BA757D9CD62E3A /* Pods-BeautySyncTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -601,6 +813,7 @@
 		};
 		201910DE2CD28807006BEE4D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB6053B5C74571859E564A58 /* Pods-BeautySync-BeautySyncUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -618,6 +831,7 @@
 		};
 		201910DF2CD28807006BEE4D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 000E5F7600424750F55344F0 /* Pods-BeautySync-BeautySyncUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
