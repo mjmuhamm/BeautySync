@@ -666,11 +666,54 @@
                                                     <action selector="saveButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="pRw-PT-m0U"/>
                                                 </connections>
                                             </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJA-xE-0O7">
+                                                <rect key="frame" x="83" y="85.000000000000014" width="66.666666666666686" height="34.333333333333329"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34.329999999999998" id="sk3-Ro-3ZE"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Change">
+                                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="11"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="usernameChangeButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="6nH-0i-1j3"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Onv-CY-wFo">
+                                                <rect key="frame" x="55.000000000000007" y="158.66666666666669" width="66.666666666666686" height="34.333333333333343"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34.329999999999998" id="Eza-hc-k0Z"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Change">
+                                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="11"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="emailChangeButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="36q-T2-GGr"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPU-RZ-xKT">
+                                                <rect key="frame" x="77" y="233.66666666666669" width="66.666666666666686" height="34.333333333333314"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34.329999999999998" id="OPC-Z8-xa4"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Change">
+                                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="11"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="passwordChangeButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="gIM-nl-mQZ"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="JT2-rp-sCA" firstAttribute="top" secondItem="fC5-Th-8hf" secondAttribute="bottom" constant="17.329999999999998" id="0Da-Xy-CFs"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JT2-rp-sCA" secondAttribute="trailing" constant="20" symbolic="YES" id="0aH-5a-czP"/>
+                                            <constraint firstItem="Onv-CY-wFo" firstAttribute="top" secondItem="fC5-Th-8hf" secondAttribute="bottom" constant="8" id="0pB-e5-zAT"/>
                                             <constraint firstItem="TJM-F8-gnB" firstAttribute="top" secondItem="JT2-rp-sCA" secondAttribute="bottom" constant="7.3300000000000001" id="3NC-a1-pqq"/>
                                             <constraint firstAttribute="height" constant="710" id="4eN-mf-G1U"/>
                                             <constraint firstItem="1vQ-Fb-ZzH" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="163" id="6XZ-tg-O5h"/>
@@ -680,12 +723,14 @@
                                             <constraint firstItem="TJM-F8-gnB" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="BQ5-iZ-c9X"/>
                                             <constraint firstItem="1gz-ae-e40" firstAttribute="leading" secondItem="SY5-96-gky" secondAttribute="trailing" constant="20" id="DAk-Ag-7lE"/>
                                             <constraint firstAttribute="trailing" secondItem="1gz-ae-e40" secondAttribute="trailing" constant="6.5" id="Gtq-8h-wJK"/>
+                                            <constraint firstItem="kJA-xE-0O7" firstAttribute="top" secondItem="w0i-RW-BGg" secondAttribute="bottom" constant="17.329999999999998" id="JsR-9f-5PC"/>
                                             <constraint firstItem="iBa-1T-Brb" firstAttribute="top" secondItem="SY5-96-gky" secondAttribute="bottom" constant="20.329999999999998" id="Kqo-AI-7ao"/>
                                             <constraint firstItem="SY5-96-gky" firstAttribute="top" secondItem="TJM-F8-gnB" secondAttribute="bottom" constant="17" id="MJw-Ud-Le9"/>
                                             <constraint firstItem="w0i-RW-BGg" firstAttribute="top" secondItem="ZdZ-m6-o3h" secondAttribute="top" constant="11" id="QgK-sW-vLW"/>
                                             <constraint firstItem="bfp-Lk-Unk" firstAttribute="top" secondItem="ZdZ-m6-o3h" secondAttribute="top" constant="8" id="Sr0-UZ-7ZH"/>
                                             <constraint firstItem="75R-gk-ovr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fC5-Th-8hf" secondAttribute="trailing" constant="8" symbolic="YES" id="Tp7-y0-GCG"/>
                                             <constraint firstItem="9q1-kf-9JV" firstAttribute="top" secondItem="iBa-1T-Brb" secondAttribute="bottom" constant="12.67" id="Vrk-fg-qbp"/>
+                                            <constraint firstItem="JPU-RZ-xKT" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="77" id="Wl4-Do-ag7"/>
                                             <constraint firstItem="SY5-96-gky" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="Xky-c0-i8v"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iBa-1T-Brb" secondAttribute="trailing" symbolic="YES" id="YBa-IH-Aro"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="b3C-ko-ThR" secondAttribute="trailing" constant="20" symbolic="YES" id="ZFQ-gd-q4M"/>
@@ -701,8 +746,11 @@
                                             <constraint firstItem="LCS-Mc-Jo3" firstAttribute="top" secondItem="ZdZ-m6-o3h" secondAttribute="top" constant="26" id="gVM-qb-XpZ"/>
                                             <constraint firstItem="fC5-Th-8hf" firstAttribute="top" secondItem="b3C-ko-ThR" secondAttribute="bottom" constant="7" id="hgj-xx-k7K"/>
                                             <constraint firstItem="1vQ-Fb-ZzH" firstAttribute="top" secondItem="9q1-kf-9JV" secondAttribute="bottom" constant="68" id="hoX-v6-MQ3"/>
+                                            <constraint firstItem="Onv-CY-wFo" firstAttribute="leading" secondItem="JT2-rp-sCA" secondAttribute="trailing" constant="12.33" id="i1h-gW-5H1"/>
                                             <constraint firstItem="iBa-1T-Brb" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="iDk-hJ-vqv"/>
+                                            <constraint firstItem="kJA-xE-0O7" firstAttribute="leading" secondItem="b3C-ko-ThR" secondAttribute="trailing" constant="11" id="kBP-zH-7WI"/>
                                             <constraint firstItem="sPx-4Z-CLY" firstAttribute="top" secondItem="9q1-kf-9JV" secondAttribute="bottom" constant="15" id="kS6-EK-OUI"/>
+                                            <constraint firstItem="JPU-RZ-xKT" firstAttribute="top" secondItem="TJM-F8-gnB" secondAttribute="bottom" constant="8.6699999999999999" id="mW1-Yi-1aB"/>
                                             <constraint firstItem="sPx-4Z-CLY" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="sbb-gu-Gg9"/>
                                             <constraint firstItem="75R-gk-ovr" firstAttribute="top" secondItem="w0i-RW-BGg" secondAttribute="bottom" constant="59.329999999999998" id="tgb-0z-5yd"/>
                                             <constraint firstItem="b3C-ko-ThR" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="uHL-Yc-Ege"/>
@@ -737,10 +785,12 @@
                         <outlet property="city" destination="sPx-4Z-CLY" id="dap-Uz-2Fv"/>
                         <outlet property="confirmPassword" destination="Eit-lx-cpS" id="eRG-03-FAC"/>
                         <outlet property="email" destination="TJM-F8-gnB" id="1vN-cZ-dUd"/>
+                        <outlet property="emailChangeButton" destination="Onv-CY-wFo" id="ALQ-sA-VtF"/>
                         <outlet property="fullName" destination="2o6-LL-JiZ" id="s9b-DN-MRb"/>
                         <outlet property="localButton" destination="vt1-jX-Zm7" id="sv7-5S-P1H"/>
                         <outlet property="nationButton" destination="pw4-wI-ibn" id="4Eu-ng-dYr"/>
                         <outlet property="password" destination="Cqv-36-tyN" id="a3W-8d-rDa"/>
+                        <outlet property="passwordChangeButton" destination="JPU-RZ-xKT" id="1g7-f4-CGH"/>
                         <outlet property="regionButton" destination="3V1-Xy-c2p" id="sT4-jT-s9U"/>
                         <outlet property="saveButton" destination="1vQ-Fb-ZzH" id="XwJ-ev-ub9"/>
                         <outlet property="saveButtonConstraint" destination="hoX-v6-MQ3" id="cMD-er-LY8"/>
@@ -748,6 +798,7 @@
                         <outlet property="stateConstraint" destination="c7D-nK-9Cr" id="drO-Jm-T6i"/>
                         <outlet property="userImage" destination="bfp-Lk-Unk" id="D0D-oB-xj4"/>
                         <outlet property="userName" destination="fC5-Th-8hf" id="nNa-Dd-fwN"/>
+                        <outlet property="usernameChangeButton" destination="kJA-xE-0O7" id="Va9-gH-pmE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFl-7o-vh8" sceneMemberID="firstResponder"/>
@@ -976,7 +1027,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="zHa-CN-bb6">
             <objects>
-                <tabBarController id="zpv-YM-bx0" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="UserTab" id="zpv-YM-bx0" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tjr-Ov-MRq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -41,8 +41,9 @@ class UserPersonalViewController: UIViewController {
     private var region = 0
     private var nation = 0
     
-    var newOrEdit = "new"
-    var newBeautician = ""
+    private var newOrEdit = "new"
+    private var newBeautician = ""
+    private var profilePic = ""
     
     private var userImage1 : UIImage?
     private var userImageData : Data?
@@ -53,9 +54,31 @@ class UserPersonalViewController: UIViewController {
     @IBOutlet weak var saveButton: MDCButton!
     
     
+    @IBOutlet weak var usernameChangeButton: UIButton!
+    @IBOutlet weak var emailChangeButton: UIButton!
+    @IBOutlet weak var passwordChangeButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if newOrEdit == "edit" {
+            usernameChangeButton.isHidden = false
+            emailChangeButton.isHidden = false
+            passwordChangeButton.isHidden = false
+            userName.isEnabled = false
+            email.isEnabled = false
+            password.isEnabled = false
+            confirmPassword.isEnabled = false
+        } else {
+            usernameChangeButton.isHidden = true
+            emailChangeButton.isHidden = true
+            passwordChangeButton.isHidden = true
+            userName.isEnabled = true
+            email.isEnabled = true
+            password.isEnabled = true
+            confirmPassword.isEnabled = true
+        }
 
         
     }
@@ -93,6 +116,22 @@ class UserPersonalViewController: UIViewController {
         }))
         present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func usernameChangeButtonPressed(_ sender: Any) {
+        userName.isEnabled = true
+    }
+    
+    @IBAction func emailChangeButtonPressed(_ sender: Any) {
+        email.isEnabled = true
+    }
+    
+    @IBAction func passwordChangeButtonPressed(_ sender: Any) {
+        password.isEnabled = true
+        confirmPassword.isEnabled = true
+    }
+    
+    
+    
     
     
     @IBAction func localButtonPressed(_ sender: Any) {
@@ -150,11 +189,11 @@ class UserPersonalViewController: UIViewController {
     }
     
     
+    
+    
     @IBAction func saveButtonPressed(_ sender: Any) {
         
         
-        
-        if newBeautician == "yes" {
             if fullName.text == "" {
                 self.showToast(message: "Please enter your full name in the alloted field.", font: .systemFont(ofSize: 12))
             } else if userName.text == "" || "\(userName.text!)".contains(" ") == true || searchForSpecialChar(search: userName.text!) == true || userName.text!.count < 4 {
@@ -163,12 +202,52 @@ class UserPersonalViewController: UIViewController {
                 self.showToast(message: "Please enter your city and the abbreviation for your state", font: .systemFont(ofSize: 12))
             } else if region == 1 && state.text == "" {
                 self.showToast(message: "Please enter the abbreviation for your state.", font: .systemFont(ofSize: 12))
+            } else if password.text == "" || password.text! != self.confirmPassword.text! || isPasswordValid(password: password.text!) {
+                self.showToast(message: "Please make sure password has 1 uppercase letter, 1 special character, 1 number, 1 lowercase letter, and is atleast 8 characters long.", font: .systemFont(ofSize: 12))
             } else {
-                let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "city": self.city.text!, "state" : self.state.text!, "beauticianOrUser" : "User"]
-            }
-        } else {
-            
+                
+                if newOrEdit == "new" {
+                
+                let storageRef = storage.reference()
+                Auth.auth().createUser(withEmail: email.text!, password: password.text!) { authResult, error in
+                    
+                    if error == nil {
+                        if self.userImage1 != nil {
+                            if self.userImageData != nil {
+                                self.profilePic = "yes"
+                                
+                                storageRef.child("users/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(self.userImageData!)
+                                
+                                if self.userImageData == nil {
+                                    self.profilePic = "no"
+                                    let image = UIImage(named: "default_image")!.pngData()
+                                    storageRef.child("users/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(image!)
+                                }
+                                
+                                let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "city": self.city.text!, "state" : self.state.text!, "beauticianOrUser" : "User"]
+                                let data1: [String: Any] = ["username" : self.userName.text!, "email": self.email.text!, "beauticianOrUser" : "User", "fullName" : self.fullName.text!]
+                                let data2: [String: Any] = ["beauticianOrUser" : "User", "privatizeData" : "no", "notificationToken" : "", "profilePic" : self.profilePic]
+                                
+                                self.db.collection("User").document(authResult!.user.uid).collection("PersonalInfo").document().setData(data)
+                                self.db.collection("Usernames").document(authResult!.user.uid).setData(data2)
+                                
+                                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                                changeRequest?.displayName = "User"
+                                changeRequest?.commitChanges()
+                                
+                                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserTab") as? UITabBarController {
+                                    
+                                    self.present(vc, animated: true, completion: nil)
+                                }
+                            }
+                        }
+                    }
+                }
+                } else {
+                    
+                }
         }
+        
             
     }
     

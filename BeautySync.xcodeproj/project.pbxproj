@@ -198,6 +198,7 @@
 			children = (
 				201910ED2CD3F90F006BEE4D /* login */,
 				201910F52CD40588006BEE4D /* info */,
+				20E1083E2CD51B7900E3ACF4 /* tab */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -263,6 +264,13 @@
 				201910F62CD40597006BEE4D /* UserPersonalViewController.swift */,
 			);
 			path = info;
+			sourceTree = "<group>";
+		};
+		20E1083E2CD51B7900E3ACF4 /* tab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tab;
 			sourceTree = "<group>";
 		};
 		5C8977B7B19019AA36AAB978 /* Pods */ = {

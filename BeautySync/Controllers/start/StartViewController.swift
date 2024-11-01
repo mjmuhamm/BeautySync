@@ -105,3 +105,10 @@ func stateFilter(state: String) -> String {
   
     
 }
+
+func isPasswordValid(password: String) -> Bool {
+    let passRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}"
+    let passwordTest = NSPredicate(format: "SELF MATCHES %@", passRegEx)
+    print("password \(passwordTest.evaluate(with: password))")
+    return passwordTest.evaluate(with: password)
+}
