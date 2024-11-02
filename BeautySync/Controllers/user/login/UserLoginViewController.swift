@@ -64,7 +64,10 @@ class UserLoginViewController: UIViewController {
     }
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
-        
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserPersonalInfo") as? UserPersonalViewController {
+            
+            self.present(vc, animated: true, completion: nil)
+        }
     }
 
 

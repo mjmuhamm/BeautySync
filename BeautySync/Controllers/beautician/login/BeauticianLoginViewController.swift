@@ -63,7 +63,7 @@ class BeauticianLoginViewController: UIViewController {
     
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
-        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "BeauticianPersonal") as? BeauticianPersonalViewController {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "BeauticianPersonalInfo") as? BeauticianPersonalViewController {
             
             self.present(vc, animated: true, completion: nil)
         }

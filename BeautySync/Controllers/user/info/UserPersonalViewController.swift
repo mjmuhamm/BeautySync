@@ -37,13 +37,14 @@ class UserPersonalViewController: UIViewController {
     //142
     //10
     
-    private var local = 0
+    private var local = 1
     private var region = 0
     private var nation = 0
     
     private var newOrEdit = "new"
     private var newBeautician = ""
     private var profilePic = ""
+    private var documentId = ""
     
     private var userImage1 : UIImage?
     private var userImageData : Data?
@@ -58,6 +59,9 @@ class UserPersonalViewController: UIViewController {
     @IBOutlet weak var emailChangeButton: UIButton!
     @IBOutlet weak var passwordChangeButton: UIButton!
     
+    var originalUsername = ""
+    var originalEmail = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +74,8 @@ class UserPersonalViewController: UIViewController {
             email.isEnabled = false
             password.isEnabled = false
             confirmPassword.isEnabled = false
+            loadInfo()
+            
         } else {
             usernameChangeButton.isHidden = true
             emailChangeButton.isHidden = true
@@ -81,6 +87,74 @@ class UserPersonalViewController: UIViewController {
         }
 
         
+    }
+    
+    private func loadInfo() {
+        db.collection("User").document(Auth.auth().currentUser!.uid).collection("PersonalInfo").getDocuments { documents, error in
+            if error == nil {
+                if documents?.documents != nil {
+                    for doc in documents!.documents {
+                        let data = doc.data()
+                        
+                        if let fullName = data["fullName"] as? String, let userName = data["userName"] as? String, let email = data["email"] as? String, let local = data["local"] as? Int, let region = data["region"] as? Int, let nation = data["nation"] as? Int, let city = data["city"] as? String, let state = data["state"] as? String {
+                            self.fullName.text = fullName
+                            self.email.text = email
+                            self.originalEmail = email
+                            self.userName.text = userName
+                            self.originalUsername = userName
+                            self.password.text = "********"
+                            self.confirmPassword.text = "********"
+                            self.city.text = city
+                            self.state.text = state
+                            self.local = local
+                            self.region = region
+                            self.nation = nation
+                            self.documentId = doc.documentID
+                            
+                            if local == 1 {
+                                self.localButton.setTitleColor(UIColor.white, for: .normal)
+                                self.localButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+                                self.regionButton.backgroundColor = UIColor.white
+                                self.regionButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+                                self.nationButton.backgroundColor = UIColor.white
+                                self.nationButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+                                
+                                self.city.isHidden = false
+                                self.state.isHidden = false
+                                self.stateConstraint.constant = 142
+                                self.saveButtonConstraint.constant = 68
+                            }
+                            if region == 1 {
+                                self.localButton.backgroundColor = UIColor.white
+                                self.localButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+                                self.regionButton.setTitleColor(UIColor.white, for: .normal)
+                                self.regionButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+                                self.nationButton.backgroundColor = UIColor.white
+                                self.nationButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+                                
+                                self.city.isHidden = true
+                                self.state.isHidden = false
+                                self.stateConstraint.constant = 10
+                                self.saveButtonConstraint.constant = 67
+                            }
+                            
+                            if nation == 1 {
+                                self.localButton.backgroundColor = UIColor.white
+                                self.localButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+                                self.regionButton.backgroundColor = UIColor.white
+                                self.regionButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+                                self.nationButton.setTitleColor(UIColor.white, for: .normal)
+                                self.nationButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+                                
+                                self.city.isHidden = true
+                                self.state.isHidden = true
+                                self.saveButtonConstraint.constant = 27
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -193,57 +267,89 @@ class UserPersonalViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         
-        
             if fullName.text == "" {
                 self.showToast(message: "Please enter your full name in the alloted field.", font: .systemFont(ofSize: 12))
             } else if userName.text == "" || "\(userName.text!)".contains(" ") == true || searchForSpecialChar(search: userName.text!) == true || userName.text!.count < 4 {
                 self.showToast(message: "Please enter a username with no spaces, no special characters, and longer than 3 characters in the alloted field.", font: .systemFont(ofSize: 12))
+            } else if self.email.text == "" || !isValidEmail(self.email.text!) {
+                self.showToast(message: "Please enter your valid email address.", font: .systemFont(ofSize: 12))
             } else if local == 1 && (city.text == "" || state.text == "") {
                 self.showToast(message: "Please enter your city and the abbreviation for your state", font: .systemFont(ofSize: 12))
             } else if region == 1 && state.text == "" {
                 self.showToast(message: "Please enter the abbreviation for your state.", font: .systemFont(ofSize: 12))
-            } else if password.text == "" || password.text! != self.confirmPassword.text! || isPasswordValid(password: password.text!) {
-                self.showToast(message: "Please make sure password has 1 uppercase letter, 1 special character, 1 number, 1 lowercase letter, and is atleast 8 characters long.", font: .systemFont(ofSize: 12))
             } else {
                 
                 if newOrEdit == "new" {
-                
-                let storageRef = storage.reference()
-                Auth.auth().createUser(withEmail: email.text!, password: password.text!) { authResult, error in
-                    
-                    if error == nil {
-                        if self.userImage1 != nil {
-                            if self.userImageData != nil {
-                                self.profilePic = "yes"
-                                
-                                storageRef.child("users/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(self.userImageData!)
-                                
-                                if self.userImageData == nil {
-                                    self.profilePic = "no"
-                                    let image = UIImage(named: "default_image")!.pngData()
-                                    storageRef.child("users/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(image!)
-                                }
-                                
-                                let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "city": self.city.text!, "state" : self.state.text!, "beauticianOrUser" : "User"]
-                                let data1: [String: Any] = ["username" : self.userName.text!, "email": self.email.text!, "beauticianOrUser" : "User", "fullName" : self.fullName.text!]
-                                let data2: [String: Any] = ["beauticianOrUser" : "User", "privatizeData" : "no", "notificationToken" : "", "profilePic" : self.profilePic]
-                                
-                                self.db.collection("User").document(authResult!.user.uid).collection("PersonalInfo").document().setData(data)
-                                self.db.collection("Usernames").document(authResult!.user.uid).setData(data2)
-                                
-                                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                                changeRequest?.displayName = "User"
-                                changeRequest?.commitChanges()
-                                
-                                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserTab") as? UITabBarController {
-                                    
-                                    self.present(vc, animated: true, completion: nil)
+                    if password.text == "" || password.text! != self.confirmPassword.text! || !isPasswordValid(password: password.text!) {
+                        self.showToast(message: "Please make sure your password has 1 uppercase letter, 1 special character, 1 number, 1 lowercase letter, and is atleast 8 characters long.", font: .systemFont(ofSize: 12))
+                    } else {
+                        let storageRef = storage.reference()
+                        Auth.auth().createUser(withEmail: email.text!, password: password.text!) { authResult, error in
+                            
+                            if error == nil {
+                                if self.userImage1 != nil {
+                                    if self.userImageData != nil {
+                                        self.profilePic = "yes"
+                                        
+                                        storageRef.child("users/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(self.userImageData!)
+                                        
+                                        if self.userImageData == nil {
+                                            self.profilePic = "no"
+                                            let image = UIImage(named: "default_image")!.pngData()
+                                            storageRef.child("users/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(image!)
+                                        }
+                                        
+                                        let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "local" : self.local, "region" : self.region, "nation" : self.nation, "city": self.city.text!, "state" : self.state.text!, "beauticianOrUser" : "User"]
+                                        let data1: [String: Any] = ["userName" : self.userName.text!, "email": self.email.text!, "beauticianOrUser" : "User", "fullName" : self.fullName.text!]
+                                        let data2: [String: Any] = ["beauticianOrUser" : "User", "privatizeData" : "no", "notificationToken" : "", "profilePic" : self.profilePic]
+                                        
+                                        self.db.collection("User").document(authResult!.user.uid).collection("PersonalInfo").document().setData(data)
+                                        self.db.collection("Usernames").document(authResult!.user.uid).setData(data1)
+                                        self.db.collection("User").document(authResult!.user.uid).setData(data2)
+                                        
+                                        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                                        changeRequest?.displayName = "User"
+                                        changeRequest?.commitChanges()
+                                        
+                                        self.showToastCompletion(message: "Profile Updated.", font: .systemFont(ofSize: 12))
+                                    }
                                 }
                             }
                         }
                     }
-                }
                 } else {
+                    if originalEmail != email.text {
+                        if !isValidEmail(self.email!.text!) {
+                            self.showToast(message: "Please enter your valid email address.", font: .systemFont(ofSize: 12))
+                        } else {
+                            Auth.auth().currentUser?.email = self.email.text!
+                            let data: [String: Any] = ["email" : self.email.text!]
+                            self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("PersonalInfo").document(self.documentId).updateData(data)
+                            self.db.collection("Usernames").document(Auth.auth().currentUser!.uid).updateData(data)
+                            self.showToast(message: "Email Updated.", font: .systemFont(ofSize: 12))
+                        }
+                    }
+                    if originalUsername != self.userName.text {
+                        let data : [String : Any] = ["userName" : self.userName.text!]
+                        self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("PersonalInfo").document(self.documentId).updateData(data)
+                        self.db.collection("Usernames").document(Auth.auth().currentUser!.uid).updateData(data)
+                        self.showToast(message: "Username Updated", font: .systemFont(ofSize: 12))
+                    }
+                    if self.password.text != "" && self.password.isEnabled == true {
+                        if self.password.text! != self.confirmPassword.text! {
+                            self.showToast(message: "Please make sure your password matches in the confirm password field.", font: .systemFont(ofSize: 12))
+                        } else if !isPasswordValid(password: self.password.text!) {
+                            self.showToast(message: "Please make sure password has 1 uppercase letter, 1 special character, 1 number, 1 lowercase letter, and matches with the second insert.", font: .systemFont(ofSize: 12))
+                        } else {
+                            Auth.auth().currentUser?.updatePassword(to: self.password.text!)
+                            self.showToast(message: "Password Updated.", font: .systemFont(ofSize: 12))
+                           
+                        }
+                    }
+                    let data : [String: Any] = ["local" : self.local, "region" : self.region, "nation" : self.nation, "city": self.city.text!, "state" : self.state.text!]
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("PersonalInfo").document(self.documentId).updateData(data)
+                    self.showToast(message: "Location Preference Updated.", font: .systemFont(ofSize: 12))
+                   
                     
                 }
         }
@@ -271,6 +377,28 @@ class UserPersonalViewController: UIViewController {
         })
     }
     
+    func showToastCompletion(message : String, font: UIFont) {
+        
+        let toastLabel = UILabel(frame: CGRect(x: 0, y: self.view.frame.size.height-180, width: (self.view.frame.width), height: 70))
+        toastLabel.backgroundColor = UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1)
+        toastLabel.textColor = UIColor.white
+        toastLabel.font = font
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.numberOfLines = 4
+        toastLabel.layer.cornerRadius = 1;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+             toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserTab") as? UITabBarController {
+                self.present(vc, animated: true, completion: nil)
+            }
+            toastLabel.removeFromSuperview()
+        })
+    }
    
     
    

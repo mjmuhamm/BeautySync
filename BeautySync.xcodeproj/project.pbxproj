@@ -19,14 +19,15 @@
 		201910E72CD29B7D006BEE4D /* BeauticianLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910E62CD29B7D006BEE4D /* BeauticianLoginViewController.swift */; };
 		201910E92CD29B8D006BEE4D /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910E82CD29B8D006BEE4D /* UserLoginViewController.swift */; };
 		201910F02CD404DB006BEE4D /* BeauticianPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910EF2CD404DB006BEE4D /* BeauticianPersonalViewController.swift */; };
-		201910F22CD404FB006BEE4D /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910F12CD404FB006BEE4D /* BusinessViewController.swift */; };
-		201910F42CD40523006BEE4D /* BankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910F32CD40523006BEE4D /* BankingViewController.swift */; };
+		201910F22CD404FB006BEE4D /* BeauticianBusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910F12CD404FB006BEE4D /* BeauticianBusinessViewController.swift */; };
+		201910F42CD40523006BEE4D /* BeauticianBankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910F32CD40523006BEE4D /* BeauticianBankingViewController.swift */; };
 		201910F72CD40597006BEE4D /* UserPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910F62CD40597006BEE4D /* UserPersonalViewController.swift */; };
 		201910F92CD405EA006BEE4D /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910F82CD405EA006BEE4D /* AddPersonViewController.swift */; };
 		201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FA2CD4061E006BEE4D /* OwnersViewController.swift */; };
 		201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */; };
 		201910FF2CD40695006BEE4D /* StripeTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */; };
 		201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 201911002CD40A4D006BEE4D /* GoogleService-Info.plist */; };
+		208C3CED2CD69E6800222A37 /* Banking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C3CEC2CD69E6800222A37 /* Banking.swift */; };
 		7CC7C7AE1BDDCEE398E22845 /* Pods_BeautySync_BeautySyncUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9DBD966C615D97959A4D69 /* Pods_BeautySync_BeautySyncUITests.framework */; };
 		C6BD8BD85EBB2B0A47A8508B /* Pods_BeautySync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91E8995FC62A32DD2664A22 /* Pods_BeautySync.framework */; };
 		C6C6445E783FC46401DE7056 /* Pods_BeautySyncTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E553705F9608D23155BBCF6F /* Pods_BeautySyncTests.framework */; };
@@ -68,14 +69,15 @@
 		201910E62CD29B7D006BEE4D /* BeauticianLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianLoginViewController.swift; sourceTree = "<group>"; };
 		201910E82CD29B8D006BEE4D /* UserLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		201910EF2CD404DB006BEE4D /* BeauticianPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianPersonalViewController.swift; sourceTree = "<group>"; };
-		201910F12CD404FB006BEE4D /* BusinessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
-		201910F32CD40523006BEE4D /* BankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankingViewController.swift; sourceTree = "<group>"; };
+		201910F12CD404FB006BEE4D /* BeauticianBusinessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianBusinessViewController.swift; sourceTree = "<group>"; };
+		201910F32CD40523006BEE4D /* BeauticianBankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianBankingViewController.swift; sourceTree = "<group>"; };
 		201910F62CD40597006BEE4D /* UserPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersonalViewController.swift; sourceTree = "<group>"; };
 		201910F82CD405EA006BEE4D /* AddPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewController.swift; sourceTree = "<group>"; };
 		201910FA2CD4061E006BEE4D /* OwnersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnersViewController.swift; sourceTree = "<group>"; };
 		201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
 		201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTermsViewController.swift; sourceTree = "<group>"; };
 		201911002CD40A4D006BEE4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		208C3CEC2CD69E6800222A37 /* Banking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking.swift; sourceTree = "<group>"; };
 		9755A0EEB4BA757D9CD62E3A /* Pods-BeautySyncTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySyncTests.release.xcconfig"; path = "Target Support Files/Pods-BeautySyncTests/Pods-BeautySyncTests.release.xcconfig"; sourceTree = "<group>"; };
 		CE2BF5A4A5F13DD3A1BCFBB7 /* Pods-BeautySyncTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySyncTests.debug.xcconfig"; path = "Target Support Files/Pods-BeautySyncTests/Pods-BeautySyncTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D91E8995FC62A32DD2664A22 /* Pods_BeautySync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeautySync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,7 @@
 			children = (
 				201910EA2CD2F10A006BEE4D /* login */,
 				201910EE2CD404C1006BEE4D /* info */,
+				208C3CEB2CD69E3F00222A37 /* models */,
 			);
 			path = beautician;
 			sourceTree = "<group>";
@@ -231,7 +234,7 @@
 		201910EC2CD2F11A006BEE4D /* banking */ = {
 			isa = PBXGroup;
 			children = (
-				201910F32CD40523006BEE4D /* BankingViewController.swift */,
+				201910F32CD40523006BEE4D /* BeauticianBankingViewController.swift */,
 				201910F82CD405EA006BEE4D /* AddPersonViewController.swift */,
 				201910FA2CD4061E006BEE4D /* OwnersViewController.swift */,
 				201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */,
@@ -252,7 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				201910EF2CD404DB006BEE4D /* BeauticianPersonalViewController.swift */,
-				201910F12CD404FB006BEE4D /* BusinessViewController.swift */,
+				201910F12CD404FB006BEE4D /* BeauticianBusinessViewController.swift */,
 				201910EC2CD2F11A006BEE4D /* banking */,
 			);
 			path = info;
@@ -264,6 +267,14 @@
 				201910F62CD40597006BEE4D /* UserPersonalViewController.swift */,
 			);
 			path = info;
+			sourceTree = "<group>";
+		};
+		208C3CEB2CD69E3F00222A37 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				208C3CEC2CD69E6800222A37 /* Banking.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		20E1083E2CD51B7900E3ACF4 /* tab */ = {
@@ -536,11 +547,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				201910F22CD404FB006BEE4D /* BusinessViewController.swift in Sources */,
+				208C3CED2CD69E6800222A37 /* Banking.swift in Sources */,
+				201910F22CD404FB006BEE4D /* BeauticianBusinessViewController.swift in Sources */,
 				201910B52CD28805006BEE4D /* StartViewController.swift in Sources */,
 				201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */,
 				201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */,
-				201910F42CD40523006BEE4D /* BankingViewController.swift in Sources */,
+				201910F42CD40523006BEE4D /* BeauticianBankingViewController.swift in Sources */,
 				201910E92CD29B8D006BEE4D /* UserLoginViewController.swift in Sources */,
 				201910B12CD28805006BEE4D /* AppDelegate.swift in Sources */,
 				201910F72CD40597006BEE4D /* UserPersonalViewController.swift in Sources */,
