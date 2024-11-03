@@ -64,6 +64,7 @@ class BeauticianBankingViewController: UIViewController {
     
     var newOrEdit = "new"
     var individualBankingInfo : IndividualBankingInfo?
+    var businessBankingInfo : BusinessBankingInfo?
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -83,34 +84,72 @@ class BeauticianBankingViewController: UIViewController {
             businessButton.backgroundColor = UIColor.white
             businessButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
             
+            self.iMccCode.text = self.individualBankingInfo!.mccCode
+            self.iBusinessUrl.text = self.individualBankingInfo!.businessUrl
+            self.iFirstName.text = self.individualBankingInfo!.firstName
+            self.iLastName.text = self.individualBankingInfo!.lastName
+            self.iMonth.text = self.individualBankingInfo!.dobMonth
+            self.iDay.text = self.individualBankingInfo!.dobDay
+            self.iYear.text = self.individualBankingInfo!.dobYear
+            self.iPhoneNumber.text = self.individualBankingInfo!.phone
+            self.iEmail.text = self.individualBankingInfo!.email
+            self.iStreetAddress.text = self.individualBankingInfo!.streetAddress
+            self.iCity.text = self.individualBankingInfo!.city
+            self.iState.text = self.individualBankingInfo!.state
+            self.iZipCode.text = self.individualBankingInfo!.zipCode
+            self.iLast4Ssn.text = self.individualBankingInfo!.ssn
+            
+            if individualBankingInfo!.acceptTermsOfService == "yes" {
+                self.iAcceptButton.isEnabled = true
+                self.iAcceptCircle.image = UIImage(systemName: "circle.fill")
+            } else {
+                self.iAcceptButton.isEnabled = false
+                self.iAcceptCircle.image = UIImage(systemName: "circle")
+            }
+            
             if individualBankingInfo!.externalAccount != nil {
                 if individualBankingInfo!.externalAccount!.go == "go" {
-                    if individualBankingInfo!.acceptTermsOfService == "yes" {
-                        self.iAcceptButton.isEnabled = true
-                        self.iAcceptCircle.image = UIImage(systemName: "circle.fill")
-                    } else {
-                        self.iAcceptButton.isEnabled = false
-                        self.iAcceptCircle.image = UIImage(systemName: "circle")
-                    }
-                    self.iMccCode.text = self.individualBankingInfo!.mccCode
-                    self.iBusinessUrl.text = self.individualBankingInfo!.businessUrl
-                    self.iFirstName.text = self.individualBankingInfo!.firstName
-                    self.iLastName.text = self.individualBankingInfo!.lastName
-                    self.iMonth.text = self.individualBankingInfo!.dobMonth
-                    self.iDay.text = self.individualBankingInfo!.dobDay
-                    self.iYear.text = self.individualBankingInfo!.dobYear
-                    self.iPhoneNumber.text = self.individualBankingInfo!.phone
-                    self.iEmail.text = self.individualBankingInfo!.email
-                    self.iStreetAddress.text = self.individualBankingInfo!.streetAddress
-                    self.iCity.text = self.individualBankingInfo!.city
-                    self.iState.text = self.individualBankingInfo!.state
-                    self.iZipCode.text = self.individualBankingInfo!.zipCode
-                    self.iLast4Ssn.text = self.individualBankingInfo!.ssn
-                    self.iExternalAccountLabel.text = "\(self.individualBankingInfo!.externalAccount!.accountNumber.suffix(4))"
+                    self.iExternalAccountLabel.text = "*****\(self.individualBankingInfo!.externalAccount!.accountNumber.suffix(4))"
                 }
             }
         } else {
             //Business Info Refresh
+            self.individualView.isHidden = true
+            self.businessView.isHidden = false
+            individualButton.backgroundColor = UIColor.white
+            individualButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+            businessButton.setTitleColor(UIColor.white, for: .normal)
+            businessButton.backgroundColor = UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1)
+            
+            if businessBankingInfo != nil {
+                
+                self.bMccCode.text = businessBankingInfo!.mccCode
+                self.bBusinessUrl.text = businessBankingInfo!.url
+                self.bCompanyName.text = businessBankingInfo!.companyName
+                self.bCompanyStreetAddress.text = businessBankingInfo!.companyStreetAddress
+                self.bCompanyCity.text = businessBankingInfo!.companyStreetAddress
+                self.bCompanyState.text = businessBankingInfo!.companyState
+                self.bCompanyZipCode.text = businessBankingInfo!.companyZipCode
+                self.bCompanyPhone.text = businessBankingInfo!.companyPhone
+                self.bCompanyTaxId.text = businessBankingInfo!.companyTaxId
+                
+                if businessBankingInfo!.externalAccount != nil {
+                    if businessBankingInfo!.externalAccount!.go == "go" {
+                        self.bExternalAccountLabel.text = "*****\(businessBankingInfo!.externalAccount!.accountNumber.suffix(4))"
+                    }
+                }
+                
+//                @IBOutlet weak var bRepresentativeLabel: UILabel!
+                if businessBankingInfo!.representative != nil {
+                    if businessBankingInfo!.representative != nil {
+                        if businessBankingInfo!.representative!.go == "go" {
+                            self.bRepresentativeLabel.text = "\(businessBankingInfo!.representative!.firstName) \(businessBankingInfo!.representative!.lastName)"
+                        }
+                    }
+                   
+                }
+                
+            }
         }
     }
     
@@ -119,6 +158,25 @@ class BeauticianBankingViewController: UIViewController {
     }
     
     @IBAction func skipForNowButtonPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Are you sure you want to continue. You would have to complete this section before posting any beautician services?", message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (handler) in
+            
+            let data : [String: Any] = ["accountType" : "", "stripeAccountId" : "", "externalAccountId" : ""]
+            self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("BankingInfo").document().setData(data)
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "BeauticianTab") as? UITabBarController {
+                
+                self.present(vc, animated: true, completion: nil)
+            }
+                    
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (handler) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true, completion: nil)
         
     }
     
@@ -130,15 +188,27 @@ class BeauticianBankingViewController: UIViewController {
     }
     
     @IBAction func businessButtonPressed(_ sender: Any) {
-        individualView.isHidden = true
-        businessView.isHidden = false
+        self.showToast(message: "This option is not yet available.", font: .systemFont(ofSize: 12))
+
     }
     
     //Individual
     @IBAction func iClickToViewButtonPressed(_ sender: Any) {
+        iAcceptButton.isEnabled = true
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "StripesTermsOfService") as? StripeTermsViewController {
+            
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     @IBAction func iAcceptButtonPressed(_ sender: Any) {
+        if iAcceptButton.title(for: .normal) == "I accept" {
+            iAcceptButton.setTitle("Don't accept", for: .normal)
+            self.iAcceptCircle.image = UIImage(systemName: "circle.fill")
+        } else {
+            iAcceptButton.setTitle("I accept", for: .normal)
+            self.iAcceptCircle.image = UIImage(systemName: "circle")
+        }
     }
     
     
@@ -167,7 +237,7 @@ class BeauticianBankingViewController: UIViewController {
     }
     
     @IBAction func iSaveButtonPressed(_ sender: Any) {
-        if newOrEdit == "new" {
+        
             
             if iMccCode.text == "" {
                 self.showToast(message: "Please enter a MCC Code in the alloted field.", font: .systemFont(ofSize: 12))
@@ -188,13 +258,17 @@ class BeauticianBankingViewController: UIViewController {
             } else if individualBankingInfo != nil && individualBankingInfo!.externalAccount == nil  {
                 self.showToast(message: "Please add an external account by clicking the edit in the External Account allotment.", font: .systemFont(ofSize: 12))
             } else {
+                if newOrEdit == "new" {
                 createIndividualAccount()
+                activityIndicator.isHidden = false
+                activityIndicator.startAnimating()
+            } else {
+                //Edit
+                updateIndividualAccount()
                 activityIndicator.isHidden = false
                 activityIndicator.startAnimating()
             }
             
-        } else {
-            //Edit
         }
     }
     
@@ -207,17 +281,61 @@ class BeauticianBankingViewController: UIViewController {
     }
     
     @IBAction func bExternalAccountButtonPressed(_ sender: Any) {
+        saveInfoForTransfer()
+        
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "AccountInfo") as? AccountInfoViewController {
+            vc.newOrEdit = self.newOrEdit
+            vc.businessBankingInfo = self.businessBankingInfo
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     @IBAction func bRepresentativeButtonPressed(_ sender: Any) {
+        saveInfoForTransfer()
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddPerson") as? AddPersonViewController {
+            vc.newOrEdit = self.newOrEdit
+            vc.businessBankingInfo = self.businessBankingInfo
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     @IBAction func bOwnersButtonPressed(_ sender: Any) {
-        
+        saveInfoForTransfer()
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddPerson") as? AddPersonViewController {
+            vc.newOrEdit = self.newOrEdit
+            vc.businessBankingInfo = self.businessBankingInfo
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     @IBAction func bSaveButtonPressed(_ sender: Any) {
         
+    }
+    
+    private func saveInfoForTransfer() {
+        var acceptTermsOfService = ""
+        var externalAccount = ExternalAccount(accountType: "Business", stripeAccountId: "", externalAccountId: "", bankName: "", accountHolder: "", accountNumber: "", routingNumber: "", documentId: "", go: "")
+        
+        if iAcceptCircle == UIImage(systemName: "circle.fill") { acceptTermsOfService = "yes" } else { acceptTermsOfService = "no" }
+        if businessBankingInfo != nil {
+            if self.businessBankingInfo!.externalAccount != nil {
+                externalAccount = self.businessBankingInfo!.externalAccount!
+            }
+        }
+    
+        var owners : [Person] = []
+        var representative : Person = Person(stripeAccountId : "" ,  personId: "" , isPersonAnOwner: "", isPersonAnExectutive: "", firstName: "", lastName: "", month: "", day: "", year: "", streetAddress: "", city: "", state: "", zipCode: "", emailAddress: "", phoneNumber: "", taxId: "", go: "")
+        
+        if self.businessBankingInfo != nil {
+            if self.businessBankingInfo!.owners != nil {
+                owners = self.businessBankingInfo!.owners!
+            }
+            if self.businessBankingInfo!.representative != nil {
+                representative = self.businessBankingInfo!.representative!
+            }
+        }
+        
+        businessBankingInfo = BusinessBankingInfo(acceptTermsOfService: acceptTermsOfService, mccCode: bMccCode.text ?? "", ip: getWiFiAddress() ?? "", url: bBusinessUrl.text ?? "", date: "\(Int(Date().timeIntervalSince1970))", companyName: self.bCompanyName.text ?? "", companyStreetAddress: self.bCompanyStreetAddress.text ?? "", companyCity: self.bCompanyCity.text ?? "", companyState: self.bCompanyState.text ?? "", companyZipCode: self.bCompanyZipCode.text ?? "", companyPhone: self.bCompanyPhone.text ?? "", companyTaxId: self.bCompanyTaxId.text ?? "", externalAccount: externalAccount, representative: representative, owners: owners, documentId: "")
     }
     
     private func createIndividualAccount() {
@@ -258,6 +376,32 @@ class BeauticianBankingViewController: UIViewController {
         })
         task.resume()
         
+    }
+    
+    private func updateIndividualAccount() {
+        let json: [String: Any] = ["mcc": "\(iMccCode.text!)", "url" :"\(iBusinessUrl.text!)", "first_name" : "\(iFirstName.text!)", "last_name" : "\(iLastName.text!)", "dob_day" : "\(iDay.text!)", "dob_month" : "\(iMonth.text!)", "dob_year" : "\(iYear.text!)", "line_1" : "\(iStreetAddress.text!)", "line_2" : "", "postal_code" : "\(iZipCode.text!)", "city" : "\(iCity.text!)", "state" : "\(iState.text!)", "email" : "\(iEmail.text!)", "phone" : "\(iPhoneNumber.text!)"]
+        
+        
+        
+    
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        // MARK: Fetch the Intent client secret, Ephemeral Key secret, Customer ID, and publishable key
+        var request = URLRequest(url: URL(string: "https://beautysync-stripeserver.onrender.com/update-individual-account")!)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+            guard let data = data,
+                let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+                let self = self else {
+            // Handle error
+            return
+            }
+            DispatchQueue.main.async {
+                self.showToastCompletion(message: "Banking Info Updated.", font: .systemFont(ofSize: 12))
+            }
+        })
+        task.resume()
     }
     
     func getWiFiAddress() -> String? {
