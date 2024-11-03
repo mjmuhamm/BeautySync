@@ -1,6 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-BeautySync/Pods-BeautySync-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework
-${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/DGCharts/DGCharts.framework
 ${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
 ${BUILT_PRODUCTS_DIR}/Firebase/Firebase.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseAppCheckInterop/FirebaseAppCheckInterop.framework
@@ -30,7 +30,6 @@ ${BUILT_PRODUCTS_DIR}/StripePaymentSheet/StripePaymentSheet.framework
 ${BUILT_PRODUCTS_DIR}/StripePayments/StripePayments.framework
 ${BUILT_PRODUCTS_DIR}/StripePaymentsUI/StripePaymentsUI.framework
 ${BUILT_PRODUCTS_DIR}/StripeUICore/StripeUICore.framework
-${BUILT_PRODUCTS_DIR}/SwiftAlgorithms/Algorithms.framework
 ${BUILT_PRODUCTS_DIR}/abseil/absl.framework
 ${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework
 ${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework

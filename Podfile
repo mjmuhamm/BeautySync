@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
- platform :ios, '14.0'
+ # platform :ios, '14.0'
 
 target 'BeautySync' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -24,7 +24,7 @@ pod 'MaterialComponents/TextControls+OutlinedTextFieldsTheming'
 pod 'DropDown'
 pod 'Stripe'
 pod 'StripePaymentSheet'
-pod 'Charts'
+pod 'DGCharts'
 pod 'youtube-ios-player-helper'
 
   target 'BeautySyncTests' do
