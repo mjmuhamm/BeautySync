@@ -19,6 +19,7 @@ class BeauticianBusinessViewController: UIViewController {
 
     let db = Firestore.firestore()
     
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var education: UITextField!
     @IBOutlet weak var passion: UITextField!
     @IBOutlet weak var streetAddress: UITextField!
@@ -33,13 +34,16 @@ class BeauticianBusinessViewController: UIViewController {
     private var no = 0
     
     private var newOrEdit = "new"
-    private var documentId = ""
+    private var documentId = UUID().uuidString
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if newOrEdit == "edit" {
             loadInfo()
+            backButton.isHidden = false
+        } else {
+            backButton.isHidden = true
         }
         
     }
@@ -127,10 +131,10 @@ class BeauticianBusinessViewController: UIViewController {
             let data : [String: Any] = ["education" : self.education.text!,  "passion" : x, "streetAddress" : self.streetAddress.text!, "city" : self.city.text!, "state" : self.state.text!, "zipCode" : self.zipCode.text!, "openToTravel" : y]
             
             if newOrEdit == "new" {
-                self.db.collection("Beauticians").document(Auth.auth().currentUser!.uid).collection("BusinessInfo").document(self.documentId).setData(data)
+                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("BusinessInfo").document(self.documentId).setData(data)
                 self.showToastCompletion(message: "Business Info Updated.", font: .systemFont(ofSize: 12))
             } else {
-                self.db.collection("Beauticians").document(Auth.auth().currentUser!.uid).collection("BusinessInfo").document(self.documentId).updateData(data)
+                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("BusinessInfo").document(self.documentId).updateData(data)
                 self.showToastCompletion2(message: "Business Info Updated.", font: .systemFont(ofSize: 12))
             }
         }

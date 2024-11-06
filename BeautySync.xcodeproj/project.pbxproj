@@ -33,6 +33,7 @@
 		2081A27E2CDAEE98001C4D52 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A27D2CDAEE98001C4D52 /* FirebaseMessaging */; };
 		2081A2802CDAEE98001C4D52 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A27F2CDAEE98001C4D52 /* FirebaseStorage */; };
 		208C3CED2CD69E6800222A37 /* Banking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C3CEC2CD69E6800222A37 /* Banking.swift */; };
+		20D8D1F32CDBFCF500117EF4 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */; };
 		F4CAA3FE842FC1413E5794C2 /* Pods_BeautySync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C07360BDEF85D378B873D7 /* Pods_BeautySync.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTermsViewController.swift; sourceTree = "<group>"; };
 		201911002CD40A4D006BEE4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		208C3CEC2CD69E6800222A37 /* Banking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking.swift; sourceTree = "<group>"; };
+		20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		43C07360BDEF85D378B873D7 /* Pods_BeautySync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeautySync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81952A144631D8A7C36486BD /* Pods-BeautySync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync.release.xcconfig"; path = "Target Support Files/Pods-BeautySync/Pods-BeautySync.release.xcconfig"; sourceTree = "<group>"; };
 		DA0789203779BFCDD56FE2A4 /* Pods-BeautySync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync.debug.xcconfig"; path = "Target Support Files/Pods-BeautySync/Pods-BeautySync.debug.xcconfig"; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				201910EA2CD2F10A006BEE4D /* login */,
 				201910EE2CD404C1006BEE4D /* info */,
+				20D8D1F12CDBFCD700117EF4 /* tabs */,
 				208C3CEB2CD69E3F00222A37 /* models */,
 			);
 			path = beautician;
@@ -275,6 +278,14 @@
 				208C3CEC2CD69E6800222A37 /* Banking.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		20D8D1F12CDBFCD700117EF4 /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */,
+			);
+			path = tabs;
 			sourceTree = "<group>";
 		};
 		20E1083E2CD51B7900E3ACF4 /* tab */ = {
@@ -487,6 +498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20D8D1F32CDBFCF500117EF4 /* MeViewController.swift in Sources */,
 				208C3CED2CD69E6800222A37 /* Banking.swift in Sources */,
 				201910F22CD404FB006BEE4D /* BeauticianBusinessViewController.swift in Sources */,
 				201910B52CD28805006BEE4D /* StartViewController.swift in Sources */,

@@ -31,6 +31,7 @@ class AccountInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.activityIndicator.isHidden = true
         if individualBankingInfo != nil {
             //Individual
             self.accountType = "Individual"

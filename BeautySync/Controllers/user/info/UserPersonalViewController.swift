@@ -320,7 +320,8 @@ class UserPersonalViewController: UIViewController {
                         if !isValidEmail(self.email!.text!) {
                             self.showToast(message: "Please enter your valid email address.", font: .systemFont(ofSize: 12))
                         } else {
-                            Auth.auth().currentUser?.email = self.email.text!
+                            Auth.auth().currentUser!.sendEmailVerification(beforeUpdatingEmail: self.email.text!)
+                            self.showToast(message: "An email verification has been sent to the entered email.", font: .systemFont(ofSize: 12))
                             let data: [String: Any] = ["email" : self.email.text!]
                             self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("PersonalInfo").document(self.documentId).updateData(data)
                             self.db.collection("Usernames").document(Auth.auth().currentUser!.uid).updateData(data)

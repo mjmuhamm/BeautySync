@@ -63,7 +63,28 @@ class BeauticianPersonalViewController: UIViewController {
     }
     
     private func loadInfo() {
-        
+        if Auth.auth().currentUser != nil {
+            db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("PersonalInfo").getDocuments { documents, error in
+                if error == nil {
+                    if documents != nil {
+                        for doc in documents!.documents {
+                            let data = doc.data()
+                            if let fullName = data["fullName"] as? String, let userName = data["userName"] as? String, let email = data["email"] as? String {
+                                self.fullName.text = fullName
+                                self.userName.text = userName
+                                self.email.text = email
+                                
+                                self.userName.isEnabled = false
+                                self.email.isEnabled = false
+                                self.usernameChangeButton.isHidden = false
+                                self.emailChangeButton.isHidden = false
+                                self.passwordChangeButton.isHidden = false
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -145,6 +166,7 @@ class BeauticianPersonalViewController: UIViewController {
                                         let image = UIImage(named: "default_image")!.pngData()
                                         storageRef.child("beauticians/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(image!)
                                     }
+                                }}
                                     
                                     let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "beauticianOrUser" : "Beautician"]
                                     let data1: [String: Any] = ["userName" : self.userName.text!, "email": self.email.text!, "beauticianOrUser" : "Beautician", "fullName" : self.fullName.text!]
@@ -161,15 +183,15 @@ class BeauticianPersonalViewController: UIViewController {
                                     self.showToastCompletion(message: "Profile Updated.", font: .systemFont(ofSize: 12))
                                 }
                             }
-                        }
-                    }
                 }
             } else {
                 if originalEmail != email.text {
                     if !isValidEmail(self.email!.text!) {
                         self.showToast(message: "Please enter your valid email address.", font: .systemFont(ofSize: 12))
                     } else {
-                        Auth.auth().currentUser?.email = self.email.text!
+                        Auth.auth().currentUser!.sendEmailVerification(beforeUpdatingEmail: self.email.text!)
+                        
+                        self.showToast(message: "An email verification has been sent to the entered email.", font: .systemFont(ofSize: 12))
                         let data: [String: Any] = ["email" : self.email.text!]
                         self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("PersonalInfo").document(self.documentId).updateData(data)
                         self.db.collection("Usernames").document(Auth.auth().currentUser!.uid).updateData(data)

@@ -19,9 +19,9 @@ class BeauticianBankingViewController: UIViewController {
     
     let db = Firestore.firestore()
     
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var skipForNowButton: UIButton!
     @IBOutlet weak var individualView: UIView!
-    @IBOutlet weak var businessView: UIView!
     
     @IBOutlet weak var individualButton: MDCButton!
     @IBOutlet weak var businessButton: MDCButton!
@@ -72,13 +72,20 @@ class BeauticianBankingViewController: UIViewController {
         super.viewDidLoad()
 
         refreshNewAccountInfo()
+        self.activityIndicator.isHidden = true
+        
+        if newOrEdit == "new" {
+            backButton.isHidden = true
+        } else {
+            backButton.isHidden = false
+        }
+        
     }
     
     private func refreshNewAccountInfo() {
         if individualBankingInfo != nil {
             
             self.individualView.isHidden = false
-            self.businessView.isHidden = true
             individualButton.setTitleColor(UIColor.white, for: .normal)
             individualButton.backgroundColor = UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1)
             businessButton.backgroundColor = UIColor.white
@@ -113,15 +120,15 @@ class BeauticianBankingViewController: UIViewController {
                 }
             }
         } else {
-            //Business Info Refresh
-            self.individualView.isHidden = true
-            self.businessView.isHidden = false
-            individualButton.backgroundColor = UIColor.white
-            individualButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
-            businessButton.setTitleColor(UIColor.white, for: .normal)
-            businessButton.backgroundColor = UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1)
             
+            //Business Info Refresh
             if businessBankingInfo != nil {
+                
+                self.individualView.isHidden = true
+                individualButton.backgroundColor = UIColor.white
+                individualButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+                businessButton.setTitleColor(UIColor.white, for: .normal)
+                businessButton.backgroundColor = UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1)
                 
                 self.bMccCode.text = businessBankingInfo!.mccCode
                 self.bBusinessUrl.text = businessBankingInfo!.url
@@ -183,7 +190,6 @@ class BeauticianBankingViewController: UIViewController {
     
     @IBAction func individualButtonPressed(_ sender: Any) {
         individualView.isHidden = false
-        businessView.isHidden = true
         
     }
     
@@ -253,7 +259,7 @@ class BeauticianBankingViewController: UIViewController {
                 self.showToast(message: "Please enter your email in the alloted field.", font: .systemFont(ofSize: 12))
             } else if iStreetAddress.text == "" || iCity.text == "" || iState.text == "" || iZipCode.text == "" {
                 self.showToast(message: "Please enter your street address in the alloted fields.", font: .systemFont(ofSize: 12))
-            } else if iLast4Ssn.text == "" || iLast4Ssn.text!.count != 4 {
+            } else if iLast4Ssn.text == "" || iLast4Ssn.text!.count != 9 {
                 self.showToast(message: "Please enter the last 4 digits of your SSN in the alloted field.", font: .systemFont(ofSize: 12))
             } else if individualBankingInfo != nil && individualBankingInfo!.externalAccount == nil  {
                 self.showToast(message: "Please add an external account by clicking the edit in the External Account allotment.", font: .systemFont(ofSize: 12))
