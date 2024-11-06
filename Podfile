@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-  platform :ios, '17.2'
+  platform :ios, '13'
 
 target 'BeautySync' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -7,11 +7,12 @@ target 'BeautySync' do
 
   # Pods for BeautySync
 
+pod 'DropDown'
+pod 'Stripe'
+pod 'StripePaymentSheet'
+pod 'DGCharts'
+pod 'youtube-ios-player-helper'
 pod 'MaterialComponents/Buttons'
-pod 'FirebaseUI/Auth'
-pod 'FirebaseUI/Firestore'
-pod 'FirebaseUI/Storage'
-pod 'FirebaseUI/Core'
 pod 'MaterialComponents/Buttons+Theming'
 pod 'MaterialComponents/TextControls+FilledTextAreas'
 pod 'MaterialComponents/TextControls+FilledTextFields'
@@ -21,19 +22,16 @@ pod 'MaterialComponents/TextControls+FilledTextAreasTheming'
 pod 'MaterialComponents/TextControls+FilledTextFieldsTheming'
 pod 'MaterialComponents/TextControls+OutlinedTextAreasTheming'
 pod 'MaterialComponents/TextControls+OutlinedTextFieldsTheming'
-pod 'DropDown'
-pod 'Stripe'
-pod 'StripePaymentSheet'
-pod 'DGCharts'
-pod 'youtube-ios-player-helper'
 
-  target 'BeautySyncTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 
-  target 'BeautySyncUITests' do
-    # Pods for testing
-  end
+post_install do |installer|
+    installer.generated_projects.each do |project|
+        project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13'
+            end
+        end
+    end
+end
 
 end

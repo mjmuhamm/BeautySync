@@ -37,9 +37,9 @@ class UserPersonalViewController: UIViewController {
     //142
     //10
     
-    private var local = 1
-    private var region = 0
-    private var nation = 0
+    var local = 1
+    var region = 0
+    var nation = 0
     
     private var newOrEdit = "new"
     private var newBeautician = ""
@@ -266,7 +266,6 @@ class UserPersonalViewController: UIViewController {
     
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        
             if fullName.text == "" {
                 self.showToast(message: "Please enter your full name in the alloted field.", font: .systemFont(ofSize: 12))
             } else if userName.text == "" || "\(userName.text!)".contains(" ") == true || searchForSpecialChar(search: userName.text!) == true || userName.text!.count < 4 {
@@ -298,6 +297,7 @@ class UserPersonalViewController: UIViewController {
                                             let image = UIImage(named: "default_image")!.pngData()
                                             storageRef.child("users/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(image!)
                                         }
+                                    }}
                                         
                                         let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "local" : self.local, "region" : self.region, "nation" : self.nation, "city": self.city.text!, "state" : self.state.text!, "beauticianOrUser" : "User"]
                                         let data1: [String: Any] = ["userName" : self.userName.text!, "email": self.email.text!, "beauticianOrUser" : "User", "fullName" : self.fullName.text!]
@@ -314,8 +314,6 @@ class UserPersonalViewController: UIViewController {
                                         self.showToastCompletion(message: "Profile Updated.", font: .systemFont(ofSize: 12))
                                     }
                                 }
-                            }
-                        }
                     }
                 } else {
                     if originalEmail != email.text {

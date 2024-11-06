@@ -16,10 +16,11 @@ import MaterialComponents.MaterialTextControls_OutlinedTextAreasTheming
 import MaterialComponents.MaterialTextControls_OutlinedTextFieldsTheming
 
 
+
 class StartViewController: UIViewController {
 
-    @IBOutlet weak var userButton: MDCButton!
     
+    @IBOutlet weak var userButton: MDCButton!
     @IBOutlet weak var beauticianButton: MDCButton!
     
     override func viewDidLoad() {
