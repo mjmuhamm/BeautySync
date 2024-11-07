@@ -204,7 +204,7 @@ class BeauticianMeViewController: UIViewController {
     }
     
     @IBAction func lashesButtonPressed(_ sender: Any) {
-        itemType = "lashesItems"
+        itemType = "lashItems"
         loadItemInfo(item: itemType)
         hairButton.backgroundColor = UIColor.white
         hairButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
@@ -269,7 +269,7 @@ extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource
             item = hairItems[indexPath.row]
         } else if itemType == "makeupItems" {
             item = makeupItems[indexPath.row]
-        } else if itemType == "lashesItems" {
+        } else if itemType == "lashItems" {
             item = lashItems[indexPath.row]
         }
         
