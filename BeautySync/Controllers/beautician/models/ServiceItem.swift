@@ -20,7 +20,7 @@ struct ServiceItems {
     var itemImage: UIImage?
     let itemDescription: String
     let itemPrice: String
-    let imageCount: String
+    let imageCount: Int
     let beauticianUsername: String
     let beauticianPassion: String
     let beauticianCity: String
@@ -29,6 +29,7 @@ struct ServiceItems {
     let itemLikes: Int
     let itemOrders: Int
     let itemRating: Double
+    let hashtags: [String]
     let documentId: String
     
 }

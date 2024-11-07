@@ -211,11 +211,11 @@ class ServiceItemsViewController: UIViewController {
         
         var item = ""
         if self.itemType == "Hair Item" {
-            item = "hair"
+            item = "hairItems"
         } else if self.itemType == "Makeup Item" {
-            item = "makeup"
+            item = "makeupItems"
         } else if self.itemType == "Lash Item" {
-            item = "lashes"
+            item = "lashItems"
         }
         
         if itemTitle.text == "" {
@@ -224,10 +224,10 @@ class ServiceItemsViewController: UIViewController {
             self.showToast(message: "Please select at least one image.", font: .systemFont(ofSize: 12))
         } else if itemDescription.text == "" {
             self.showToast(message: "Please enter an item description.", font: .systemFont(ofSize: 12))
-        } else if itemPrice.text == "" || Int(itemPrice.text!) == nil {
+        } else if itemPrice.text == "" || (Int(itemPrice.text!) == nil && Double(itemPrice.text!) == nil) {
             self.showToast(message: "Please enter an item price like so: 54.51.", font: .systemFont(ofSize: 12))
         } else {
-            let data : [String: Any] = ["itemType" :  item, "itemTitle" : self.itemTitle.text!, "itemDescription" : self.itemDescription.text!, "itemPrice" : self.itemPrice.text!, "imageCount" : self.imgArr.count, "beauticianUsername" : "\(self.beauticianUsername)", "beauticianPassion" : self.beauticianPassion, "beauticianCity" : self.beauticianCity, "beauticianState": self.beauticianState, "beauticianImageId" : Auth.auth().currentUser!.uid, "itemLikes" : 0, "itemOrders" : 0, "itemRating" : 0]
+            let data : [String: Any] = ["itemType" :  item, "itemTitle" : self.itemTitle.text!, "itemDescription" : self.itemDescription.text!, "itemPrice" : self.itemPrice.text!, "imageCount" : self.imgArr.count, "beauticianUsername" : "\(self.beauticianUsername)", "beauticianPassion" : self.beauticianPassion, "beauticianCity" : self.beauticianCity, "beauticianState": self.beauticianState, "beauticianImageId" : Auth.auth().currentUser!.uid, "itemLikes" : 0, "itemOrders" : 0, "itemRating" : 0, "hashtags" : hashtags]
             
             if newOrEdit == "new" {
                 self.db.collection("Beautician").document("\(Auth.auth().currentUser!.uid)").collection(item).document(serviceItemId).setData(data)
@@ -245,7 +245,7 @@ class ServiceItemsViewController: UIViewController {
                 }
             } else {
                 self.db.collection("Beautician").document("\(itemType)").collection(itemType).document(serviceItemId).updateData(data)
-                self.db.collection("\(itemType)").document("\(serviceItemId)").updateData(data)
+                self.db.collection("\(item)").document("\(serviceItemId)").updateData(data)
             }
         }
     }

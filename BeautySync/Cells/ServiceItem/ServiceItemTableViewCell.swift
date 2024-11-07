@@ -21,6 +21,7 @@ class ServiceItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemOrders: UILabel!
     @IBOutlet weak var itemRating: UILabel!
     
+    var itemEditButtonTapped : (() -> ()) = {}
     var itemLikeButtonTapped : (() -> ()) = {}
     var orderButtonTapped : (() -> ()) = {}
     var itemDetailButtonTapped : (() -> ()) = {}
@@ -36,6 +37,10 @@ class ServiceItemTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func itemEditButtonPressed(_ sender: Any) {
+        itemEditButtonTapped()
     }
     
     @IBAction func itemOrderButtonPressed(_ sender: Any) {
