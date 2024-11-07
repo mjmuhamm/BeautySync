@@ -182,10 +182,10 @@ class ServiceItemsViewController: UIViewController {
             if hashtagLabel.text == "" {
                 hashtagLabel.text = "#\(hashtagText.text!)"
             } else {
-                hashtagLabel.text = ", #\(hashtagText.text!)"
+                hashtagLabel.text = "\(hashtagLabel.text!), #\(hashtagText.text!)"
             }
             hashtags.append("#\(hashtagText.text!)")
-            hashtagText.text = ""
+//            hashtagText.text = ""
             hashtagDeleteButton.isHidden = false
         }
     }
