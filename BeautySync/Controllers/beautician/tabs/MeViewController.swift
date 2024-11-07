@@ -41,7 +41,15 @@ class BeauticianMeViewController: UIViewController {
     
     @IBOutlet weak var serviceTableView: UITableView!
     
-    var itemType = "Hair"
+    var itemType = "hair"
+    var city = ""
+    var state = ""
+    
+    var hairItems : [ServiceItems] = []
+    var makeupItems : [ServiceItems] = []
+    var lashItems : [ServiceItems] = []
+    
+    var items : [ServiceItems] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,10 +64,10 @@ class BeauticianMeViewController: UIViewController {
         serviceTableView.delegate = self
         serviceTableView.dataSource = self
         
-        loadInfo()
+        loadHeadingInfo()
     }
     
-    private func loadInfo() {
+    private func loadHeadingInfo() {
         db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("PersonalInfo").getDocuments { documents, error in
             if error == nil {
                 if documents != nil {
@@ -81,6 +89,8 @@ class BeauticianMeViewController: UIViewController {
                         
                         if let passion = data["passion"] as? String, let city = data["city"] as? String, let state = data["state"] as? String {
                             self.passion.text = passion
+                            self.city = city
+                            self.state = state
                             self.location.text = "Location: \(city), \(state)"
                         }
                     }
@@ -106,9 +116,63 @@ class BeauticianMeViewController: UIViewController {
         }
     }
     
+    private func loadInfo(item: String) {
+        
+        db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection(item).getDocuments { documents, error in
+            if error == nil {
+                if documents != nil {
+                    for doc in documents!.documents {
+                        let data = doc.data()
+                        
+                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? String, let itemLikes = data["itemLikes"] as? Int, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double {
+                            
+                            let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: self.userName.text!, beauticianPassion: self.passion.text!, beauticianCity: self.city, beauticianState: self.state, beauticianImageId: Auth.auth().currentUser!.uid, itemLikes: itemLikes, itemOrders: itemOrders, itemRating: itemRating, documentId: doc.documentID)
+                            
+                            if item == "hair" {
+                                if self.hairItems.isEmpty {
+                                    self.hairItems.append(x)
+                                    self.serviceTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
+                                } else {
+                                    let index = self.hairItems.firstIndex { $0.documentId == doc.documentID }
+                                    if index == nil {
+                                        self.hairItems.append(x)
+                                        self.serviceTableView.insertRows(at: [IndexPath(item: self.hairItems.count - 1, section: 0)], with: .fade)
+                                    }
+                                }
+                            } else if item == "makeup" {
+                                if self.makeupItems.isEmpty {
+                                    self.makeupItems.append(x)
+                                    self.serviceTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
+                                } else {
+                                    let index = self.makeupItems.firstIndex { $0.documentId == doc.documentID }
+                                    if index == nil {
+                                        self.makeupItems.append(x)
+                                        self.serviceTableView.insertRows(at: [IndexPath(item: self.makeupItems.count - 1, section: 0)], with: .fade)
+                                    }
+                                }
+                            } else if item == "lashes" {
+                                if self.lashItems.isEmpty {
+                                    self.lashItems.append(x)
+                                    self.serviceTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
+                                } else {
+                                    let index = self.lashItems.firstIndex { $0.documentId == doc.documentID }
+                                    if index == nil {
+                                        self.lashItems.append(x)
+                                        self.serviceTableView.insertRows(at: [IndexPath(item: self.lashItems.count - 1, section: 0)], with: .fade)
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     
     @IBAction func hairButtonPressed(_ sender: Any) {
-        itemType = "Hair"
+        itemType = "hair"
         hairButton.setTitleColor(UIColor.white, for: .normal)
         hairButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
         makeupButton.backgroundColor = UIColor.white
@@ -120,7 +184,7 @@ class BeauticianMeViewController: UIViewController {
     }
     
     @IBAction func makeupButtonPressed(_ sender: Any) {
-        itemType = "Makeup"
+        itemType = "makeup"
         hairButton.backgroundColor = UIColor.white
         hairButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         makeupButton.setTitleColor(UIColor.white, for: .normal)
@@ -132,7 +196,7 @@ class BeauticianMeViewController: UIViewController {
     }
     
     @IBAction func lashesButtonPressed(_ sender: Any) {
-        itemType = "Lashes"
+        itemType = "lashes"
         hairButton.backgroundColor = UIColor.white
         hairButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         makeupButton.backgroundColor = UIColor.white
@@ -158,9 +222,14 @@ class BeauticianMeViewController: UIViewController {
     
     @IBAction func addButtonPressed(_ sender: Any) {
         var item = ""
-        if itemType == "Hair" { item = "Hair Item" } else if itemType == "Makeup" { item = "Makeup Item" } else if itemType == "Lashes" { item = "Lash Item" } else { item = "Content Item" }
+        if itemType == "hair" { item = "Hair Item" } else if itemType == "makeup" { item = "Makeup Item" } else if itemType == "lashes" { item = "Lash Item" } else { item = "Content Item" }
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ServiceItem") as? ServiceItemsViewController {
             vc.itemType = item
+            vc.beauticianUsername = self.userName.text!
+            vc.beauticianPassion = self.passion.text!
+            vc.beauticianCity = self.city
+            vc.beauticianState = self.state
+            
             self.present(vc, animated: true, completion: nil)
         }
     }
@@ -171,11 +240,49 @@ class BeauticianMeViewController: UIViewController {
 
 extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        if itemType == "hair" {
+            return hairItems.count
+        } else if itemType == "makeup" {
+            return makeupItems.count
+        } else if itemType == "lashes" {
+            return lashItems.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = serviceTableView.dequeueReusableCell(withIdentifier: "", for: indexPath) 
+        var cell = serviceTableView.dequeueReusableCell(withIdentifier: "ServiceItemReusableCell", for: indexPath) as! ServiceItemTableViewCell
+        
+        var item : ServiceItems?
+        
+        if itemType == "hair" {
+            item = hairItems[indexPath.row]
+        } else if itemType == "makeup" {
+            item = makeupItems[indexPath.row]
+        } else if itemType == "lashes" {
+            item = lashItems[indexPath.row]
+        }
+        
+        cell.itemTitle.text = item!.itemTitle
+        cell.itemDescription.text = item!.itemDescription
+        cell.itemPrice.text = item!.itemPrice
+        
+        let storageRef = storage.reference()
+        storageRef.child("\(item!.itemType)/\(item!.documentId)0.png").downloadURL { itemUrl, error in
+            if itemUrl != nil {
+                URLSession.shared.dataTask(with: itemUrl!) { (data, response, error) in
+                    // Error handling...
+                    guard let imageData = data else { return }
+                    
+                    print("happening itemdata")
+                    DispatchQueue.main.async {
+                        cell.itemImage.image = UIImage(data: imageData)!
+                        item!.itemImage = UIImage(data: imageData)!
+                    }
+                }.resume()
+            }
+        }
         
         return cell
     }

@@ -50,6 +50,13 @@ class ServiceItemsViewController: UIViewController {
     var imgArr : [ServiceImage] = []
     var imgArrData: [Data] = []
     var currentIndex = 0
+    
+    //Beautician Info
+    var beauticianUsername = ""
+    var beauticianPassion = ""
+    var beauticianCity = ""
+    var beauticianState = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
@@ -58,6 +65,7 @@ class ServiceItemsViewController: UIViewController {
         self.sliderCollectionView.delegate = self
         self.sliderCollectionView.dataSource = self
         self.pageControl.currentPage = 0
+        
         
     }
     
@@ -185,7 +193,7 @@ class ServiceItemsViewController: UIViewController {
                 hashtagLabel.text = "\(hashtagLabel.text!), #\(hashtagText.text!)"
             }
             hashtags.append("#\(hashtagText.text!)")
-//            hashtagText.text = ""
+            hashtagText.text = ""
             hashtagDeleteButton.isHidden = false
         }
     }
@@ -200,23 +208,33 @@ class ServiceItemsViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: Any) {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
+        
+        var item = ""
+        if self.itemType == "Hair Item" {
+            item = "hair"
+        } else if self.itemType == "Makeup Item" {
+            item = "makeup"
+        } else if self.itemType == "Lash Item" {
+            item = "lashes"
+        }
+        
         if itemTitle.text == "" {
             self.showToast(message: "Please enter an item title.", font: .systemFont(ofSize: 12))
         } else if imgArr.count == 0 {
             self.showToast(message: "Please select at least one image.", font: .systemFont(ofSize: 12))
         } else if itemDescription.text == "" {
             self.showToast(message: "Please enter an item description.", font: .systemFont(ofSize: 12))
-        } else if itemPrice.text == "" {
-            self.showToast(message: "Please enter an item price.", font: .systemFont(ofSize: 12))
+        } else if itemPrice.text == "" || Int(itemPrice.text!) == nil {
+            self.showToast(message: "Please enter an item price like so: 54.51.", font: .systemFont(ofSize: 12))
         } else {
-            let data : [String: Any] = ["itemTitle" : self.itemTitle.text!, "itemDescription" : self.itemDescription.text!, "itemPrice" : self.itemPrice.text!, "imageCount" : self.imgArr.count ]
+            let data : [String: Any] = ["itemType" :  item, "itemTitle" : self.itemTitle.text!, "itemDescription" : self.itemDescription.text!, "itemPrice" : self.itemPrice.text!, "imageCount" : self.imgArr.count, "beauticianUsername" : "\(self.beauticianUsername)", "beauticianPassion" : self.beauticianPassion, "beauticianCity" : self.beauticianCity, "beauticianState": self.beauticianState, "beauticianImageId" : Auth.auth().currentUser!.uid, "itemLikes" : 0, "itemOrders" : 0, "itemRating" : 0]
             
             if newOrEdit == "new" {
-                self.db.collection("Beautician").document("\(Auth.auth().currentUser!.uid)").collection(itemType).document(serviceItemId).setData(data)
-                self.db.collection("\(itemType)").document("\(serviceItemId)").setData(data)
+                self.db.collection("Beautician").document("\(Auth.auth().currentUser!.uid)").collection(item).document(serviceItemId).setData(data)
+                self.db.collection("\(item)").document("\(serviceItemId)").setData(data)
                 let storageRef = storage.reference()
                 for i in 0..<imgArr.count {
-                    storageRef.child("\(self.itemType)/\(self.serviceItemId)\(i).png").putData(self.imgArrData[i]) { data, error in
+                    storageRef.child("\(item)/\(self.serviceItemId)\(i).png").putData(self.imgArrData[i]) { data, error in
                         if error == nil {
                             if i == self.imgArr.count-1 {
                                 self.activityIndicator.isHidden = true

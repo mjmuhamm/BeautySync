@@ -36,6 +36,8 @@
 		20D8D1F32CDBFCF500117EF4 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */; };
 		20D8D1F62CDCEA0100117EF4 /* ServiceItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F52CDCEA0100117EF4 /* ServiceItemsViewController.swift */; };
 		20D8D1F82CDCF84400117EF4 /* ServiceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F72CDCF84400117EF4 /* ServiceItem.swift */; };
+		20D8D1FC2CDD379A00117EF4 /* ServiceItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1FA2CDD379A00117EF4 /* ServiceItemTableViewCell.swift */; };
+		20D8D1FD2CDD379A00117EF4 /* ServiceItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D8D1FB2CDD379A00117EF4 /* ServiceItemTableViewCell.xib */; };
 		F4CAA3FE842FC1413E5794C2 /* Pods_BeautySync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C07360BDEF85D378B873D7 /* Pods_BeautySync.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +87,8 @@
 		20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		20D8D1F52CDCEA0100117EF4 /* ServiceItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItemsViewController.swift; sourceTree = "<group>"; };
 		20D8D1F72CDCF84400117EF4 /* ServiceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItem.swift; sourceTree = "<group>"; };
+		20D8D1FA2CDD379A00117EF4 /* ServiceItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItemTableViewCell.swift; sourceTree = "<group>"; };
+		20D8D1FB2CDD379A00117EF4 /* ServiceItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceItemTableViewCell.xib; sourceTree = "<group>"; };
 		43C07360BDEF85D378B873D7 /* Pods_BeautySync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeautySync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81952A144631D8A7C36486BD /* Pods-BeautySync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync.release.xcconfig"; path = "Target Support Files/Pods-BeautySync/Pods-BeautySync.release.xcconfig"; sourceTree = "<group>"; };
 		DA0789203779BFCDD56FE2A4 /* Pods-BeautySync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync.debug.xcconfig"; path = "Target Support Files/Pods-BeautySync/Pods-BeautySync.debug.xcconfig"; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 		201910E12CD28BB4006BEE4D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				20D8D1F92CDD377500117EF4 /* ServiceItem */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -300,6 +305,15 @@
 				20D8D1F52CDCEA0100117EF4 /* ServiceItemsViewController.swift */,
 			);
 			path = "Service Items";
+			sourceTree = "<group>";
+		};
+		20D8D1F92CDD377500117EF4 /* ServiceItem */ = {
+			isa = PBXGroup;
+			children = (
+				20D8D1FA2CDD379A00117EF4 /* ServiceItemTableViewCell.swift */,
+				20D8D1FB2CDD379A00117EF4 /* ServiceItemTableViewCell.xib */,
+			);
+			path = ServiceItem;
 			sourceTree = "<group>";
 		};
 		20E1083E2CD51B7900E3ACF4 /* tab */ = {
@@ -444,6 +458,7 @@
 			files = (
 				201910BD2CD28807006BEE4D /* LaunchScreen.storyboard in Resources */,
 				201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */,
+				20D8D1FD2CDD379A00117EF4 /* ServiceItemTableViewCell.xib in Resources */,
 				201910BA2CD28807006BEE4D /* Assets.xcassets in Resources */,
 				201910B82CD28805006BEE4D /* Main.storyboard in Resources */,
 			);
@@ -516,6 +531,7 @@
 				208C3CED2CD69E6800222A37 /* Banking.swift in Sources */,
 				201910F22CD404FB006BEE4D /* BeauticianBusinessViewController.swift in Sources */,
 				201910B52CD28805006BEE4D /* StartViewController.swift in Sources */,
+				20D8D1FC2CDD379A00117EF4 /* ServiceItemTableViewCell.swift in Sources */,
 				201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */,
 				201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */,
 				20D8D1F82CDCF84400117EF4 /* ServiceItem.swift in Sources */,
