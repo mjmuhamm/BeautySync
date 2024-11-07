@@ -52,8 +52,12 @@ class ServiceItemsViewController: UIViewController {
     var currentIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        activityIndicator.isHidden = true
         self.serviceItemLabel.text = "\(itemType)"
+        
+        self.sliderCollectionView.delegate = self
+        self.sliderCollectionView.dataSource = self
+        self.pageControl.currentPage = 0
         
     }
     
@@ -181,6 +185,7 @@ class ServiceItemsViewController: UIViewController {
                 hashtagLabel.text = ", #\(hashtagText.text!)"
             }
             hashtags.append("#\(hashtagText.text!)")
+            hashtagText.text = ""
             hashtagDeleteButton.isHidden = false
         }
     }
@@ -189,6 +194,7 @@ class ServiceItemsViewController: UIViewController {
         hashtagDeleteButton.isHidden = true
         hashtags.removeAll()
         hashtagLabel.text = ""
+        hashtagText.text = ""
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
@@ -279,6 +285,14 @@ extension ServiceItemsViewController: UIImagePickerControllerDelegate, UINavigat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
+        var item = ""
+        if self.itemType == "Hair Item" {
+            item = "hair"
+        } else if self.itemType == "Makeup Item" {
+            item = "makeup"
+        } else if self.itemType == "Lash Item" {
+            item = "lashes"
+        }
         
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
@@ -287,7 +301,7 @@ extension ServiceItemsViewController: UIImagePickerControllerDelegate, UINavigat
         self.imgArrData.append(image.pngData()!)
         self.cancelButton.isHidden = false
         self.pageControl.numberOfPages = self.imgArr.count
-        var path = "chefs/\(Auth.auth().currentUser!.uid)/\(self.itemType)/\(self.serviceItemId)\(self.imgArr.count - 1).png"
+        var path = "\(item)/\(serviceItemId))\(self.imgArr.count - 1).png"
         if newOrEdit == "edit" {
             let storageRef = self.storage.reference()
             storageRef.child(path).putData(image.pngData()!)
@@ -303,5 +317,48 @@ extension ServiceItemsViewController: UIImagePickerControllerDelegate, UINavigat
         picker.dismiss(animated: true, completion: nil)
         
     }
+    
+}
+
+extension ServiceItemsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imgArr.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = sliderCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        if let vc = cell.viewWithTag(111) as? UIImageView {
+            vc.image = imgArr[indexPath.row].image
+            
+        }
+       
+        
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = sliderCollectionView.frame.size
+        return CGSize(width: size.width, height: size.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        currentIndex = Int(scrollView.contentOffset.x / sliderCollectionView.frame.size.width)
+        pageControl.currentPage = currentIndex
+        
+    }
+    
     
 }
