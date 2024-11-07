@@ -23,6 +23,8 @@ class StartViewController: UIViewController {
     @IBOutlet weak var userButton: MDCButton!
     @IBOutlet weak var beauticianButton: MDCButton!
     
+    @IBOutlet weak var termsOfServiceText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -30,6 +32,55 @@ class StartViewController: UIViewController {
         beauticianButton.applyOutlinedTheme(withScheme: globalContainerScheme())
         userButton.layer.cornerRadius = 2
         beauticianButton.layer.cornerRadius = 2
+        
+        var normalText = "Please review our "
+        var boldText  = "Terms of Service"
+        
+        var secondNormalText = " and "
+        var secondBoldText = "Privacy Policy"
+        var thirdNormalText = " before continuing."
+
+        var attributedString = NSMutableAttributedString(string:normalText)
+
+        var attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 13)]
+        
+        var boldString = NSMutableAttributedString(string: boldText, attributes:attrs)
+        
+        var secondAttributedString = NSMutableAttributedString(string:secondNormalText)
+        
+        var secondBoldString = NSMutableAttributedString(string: secondBoldText, attributes:attrs)
+        
+        var thirdAttributedString = NSMutableAttributedString(string:thirdNormalText)
+        
+
+        
+        attributedString.append(boldString)
+        attributedString.append(secondAttributedString)
+        attributedString.append(secondBoldString)
+        attributedString.append(thirdAttributedString)
+        
+        termsOfServiceText.attributedText = attributedString
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if Auth.auth().currentUser != nil {
+            if Auth.auth().currentUser!.displayName! == "User" {
+                //your view controller
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserTab") as? UITabBarController {
+                    
+                    self.present(vc, animated: true, completion: nil)
+                }
+            } else {
+                if Auth.auth().currentUser!.displayName! == "Beautician" {
+                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "BeauticianTab") as? UITabBarController {
+                        
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func userButtonPressed (_ sender: Any) {

@@ -32,6 +32,8 @@ class BeauticianMeViewController: UIViewController {
     @IBOutlet weak var passion: UILabel!
     @IBOutlet weak var location: UILabel!
     
+    @IBOutlet weak var addButton: UIButton!
+    
     @IBOutlet weak var hairButton: MDCButton!
     @IBOutlet weak var makeupButton: MDCButton!
     @IBOutlet weak var lashesButton: MDCButton!
@@ -39,6 +41,7 @@ class BeauticianMeViewController: UIViewController {
     
     @IBOutlet weak var serviceTableView: UITableView!
     
+    var itemType = "Hair"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,34 +108,63 @@ class BeauticianMeViewController: UIViewController {
     
     
     @IBAction func hairButtonPressed(_ sender: Any) {
+        itemType = "Hair"
         hairButton.setTitleColor(UIColor.white, for: .normal)
         hairButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
         makeupButton.backgroundColor = UIColor.white
         makeupButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         lashesButton.backgroundColor = UIColor.white
         lashesButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        contentButton.backgroundColor = UIColor.white
+        contentButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
     }
     
     @IBAction func makeupButtonPressed(_ sender: Any) {
+        itemType = "Makeup"
         hairButton.backgroundColor = UIColor.white
         hairButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         makeupButton.setTitleColor(UIColor.white, for: .normal)
         makeupButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
         lashesButton.backgroundColor = UIColor.white
         lashesButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        contentButton.backgroundColor = UIColor.white
+        contentButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
     }
     
     @IBAction func lashesButtonPressed(_ sender: Any) {
+        itemType = "Lashes"
         hairButton.backgroundColor = UIColor.white
         hairButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         makeupButton.backgroundColor = UIColor.white
         makeupButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         lashesButton.setTitleColor(UIColor.white, for: .normal)
         lashesButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+        contentButton.backgroundColor = UIColor.white
+        contentButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
     }
     
     @IBAction func contentButtonPressed(_ sender: Any) {
+        itemType = "Content"
+        hairButton.backgroundColor = UIColor.white
+        hairButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        makeupButton.backgroundColor = UIColor.white
+        makeupButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        lashesButton.backgroundColor = UIColor.white
+        lashesButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        contentButton.setTitleColor(UIColor.white, for: .normal)
+        contentButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+        
     }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        var item = ""
+        if itemType == "Hair" { item = "Hair Item" } else if itemType == "Makeup" { item = "Makeup Item" } else if itemType == "Lashes" { item = "Lash Item" } else { item = "Content Item" }
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ServiceItem") as? ServiceItemsViewController {
+            vc.itemType = item
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     
 
 }

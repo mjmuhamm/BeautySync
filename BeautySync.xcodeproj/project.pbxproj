@@ -34,6 +34,8 @@
 		2081A2802CDAEE98001C4D52 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A27F2CDAEE98001C4D52 /* FirebaseStorage */; };
 		208C3CED2CD69E6800222A37 /* Banking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C3CEC2CD69E6800222A37 /* Banking.swift */; };
 		20D8D1F32CDBFCF500117EF4 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */; };
+		20D8D1F62CDCEA0100117EF4 /* ServiceItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F52CDCEA0100117EF4 /* ServiceItemsViewController.swift */; };
+		20D8D1F82CDCF84400117EF4 /* ServiceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F72CDCF84400117EF4 /* ServiceItem.swift */; };
 		F4CAA3FE842FC1413E5794C2 /* Pods_BeautySync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C07360BDEF85D378B873D7 /* Pods_BeautySync.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,8 @@
 		201911002CD40A4D006BEE4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		208C3CEC2CD69E6800222A37 /* Banking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking.swift; sourceTree = "<group>"; };
 		20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		20D8D1F52CDCEA0100117EF4 /* ServiceItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItemsViewController.swift; sourceTree = "<group>"; };
+		20D8D1F72CDCF84400117EF4 /* ServiceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItem.swift; sourceTree = "<group>"; };
 		43C07360BDEF85D378B873D7 /* Pods_BeautySync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeautySync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81952A144631D8A7C36486BD /* Pods-BeautySync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync.release.xcconfig"; path = "Target Support Files/Pods-BeautySync/Pods-BeautySync.release.xcconfig"; sourceTree = "<group>"; };
 		DA0789203779BFCDD56FE2A4 /* Pods-BeautySync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync.debug.xcconfig"; path = "Target Support Files/Pods-BeautySync/Pods-BeautySync.debug.xcconfig"; sourceTree = "<group>"; };
@@ -276,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				208C3CEC2CD69E6800222A37 /* Banking.swift */,
+				20D8D1F72CDCF84400117EF4 /* ServiceItem.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -284,8 +289,17 @@
 			isa = PBXGroup;
 			children = (
 				20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */,
+				20D8D1F42CDCE9E100117EF4 /* Service Items */,
 			);
 			path = tabs;
+			sourceTree = "<group>";
+		};
+		20D8D1F42CDCE9E100117EF4 /* Service Items */ = {
+			isa = PBXGroup;
+			children = (
+				20D8D1F52CDCEA0100117EF4 /* ServiceItemsViewController.swift */,
+			);
+			path = "Service Items";
 			sourceTree = "<group>";
 		};
 		20E1083E2CD51B7900E3ACF4 /* tab */ = {
@@ -504,10 +518,12 @@
 				201910B52CD28805006BEE4D /* StartViewController.swift in Sources */,
 				201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */,
 				201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */,
+				20D8D1F82CDCF84400117EF4 /* ServiceItem.swift in Sources */,
 				201910F42CD40523006BEE4D /* BeauticianBankingViewController.swift in Sources */,
 				201910E92CD29B8D006BEE4D /* UserLoginViewController.swift in Sources */,
 				201910B12CD28805006BEE4D /* AppDelegate.swift in Sources */,
 				201910F72CD40597006BEE4D /* UserPersonalViewController.swift in Sources */,
+				20D8D1F62CDCEA0100117EF4 /* ServiceItemsViewController.swift in Sources */,
 				201910B32CD28805006BEE4D /* SceneDelegate.swift in Sources */,
 				201910F02CD404DB006BEE4D /* BeauticianPersonalViewController.swift in Sources */,
 				201910E72CD29B7D006BEE4D /* BeauticianLoginViewController.swift in Sources */,

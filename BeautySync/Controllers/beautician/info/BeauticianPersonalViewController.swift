@@ -159,14 +159,14 @@ class BeauticianPersonalViewController: UIViewController {
                                 if self.userImageData != nil {
                                     self.profilePic = "yes"
                                     
-                                    storageRef.child("beauticians/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(self.userImageData!)
+                                    storageRef.child("beauticians/\(authResult!.user.uid)/profileImage/\(authResult!.user.uid).png").putData(self.userImageData!)
                                     
-                                    if self.userImageData == nil {
+                                } else {
                                         self.profilePic = "no"
                                         let image = UIImage(named: "default_image")!.pngData()
-                                        storageRef.child("beauticians/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(image!)
+                                        storageRef.child("beauticians/\(authResult!.user.uid)/profileImage/\(authResult!.user.uid).png").putData(image!)
                                     }
-                                }}
+                                }
                                     
                                     let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "beauticianOrUser" : "Beautician"]
                                     let data1: [String: Any] = ["userName" : self.userName.text!, "email": self.email.text!, "beauticianOrUser" : "Beautician", "fullName" : self.fullName.text!]
@@ -305,7 +305,7 @@ extension BeauticianPersonalViewController: UIImagePickerControllerDelegate & UI
             let data : [String: Any] = ["profilePic" : "yes"]
             let storageRef = storage.reference()
             db.collection("Beautician").document(Auth.auth().currentUser!.uid).updateData(data)
-            storageRef.child("beauticians/\(Auth.auth().currentUser!.email!)/profileImage/\(Auth.auth().currentUser!.uid).png").putData(image.pngData()!)
+            storageRef.child("beauticians/\(Auth.auth().currentUser!.uid)/profileImage/\(Auth.auth().currentUser!.uid).png").putData(image.pngData()!)
             self.showToast(message: "Image Updated.", font: .systemFont(ofSize: 12))
         }
         self.userImageData = image.pngData()

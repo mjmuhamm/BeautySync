@@ -290,14 +290,14 @@ class UserPersonalViewController: UIViewController {
                                     if self.userImageData != nil {
                                         self.profilePic = "yes"
                                         
-                                        storageRef.child("users/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(self.userImageData!)
+                                        storageRef.child("users/\(authResult!.user.uid)/profileImage/\(authResult!.user.uid).png").putData(self.userImageData!)
                                         
-                                        if self.userImageData == nil {
+                                    } else {
                                             self.profilePic = "no"
                                             let image = UIImage(named: "default_image")!.pngData()
-                                            storageRef.child("users/\(self.email.text!)/profileImage/\(authResult!.user.uid).png").putData(image!)
+                                        storageRef.child("users/\(authResult!.user.uid)/profileImage/\(authResult!.user.uid).png").putData(image!)
                                         }
-                                    }}
+                                    }
                                         
                                         let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "local" : self.local, "region" : self.region, "nation" : self.nation, "city": self.city.text!, "state" : self.state.text!, "beauticianOrUser" : "User"]
                                         let data1: [String: Any] = ["userName" : self.userName.text!, "email": self.email.text!, "beauticianOrUser" : "User", "fullName" : self.fullName.text!]
@@ -422,7 +422,7 @@ extension UserPersonalViewController: UIImagePickerControllerDelegate & UINaviga
             let data : [String: Any] = ["profilePic" : "yes"]
             let storageRef = storage.reference()
             db.collection("User").document(Auth.auth().currentUser!.uid).updateData(data)
-            storageRef.child("users/\(Auth.auth().currentUser!.email!)/profileImage/\(Auth.auth().currentUser!.uid).png").putData(image.pngData()!)
+            storageRef.child("users/\(Auth.auth().currentUser!.uid)/profileImage/\(Auth.auth().currentUser!.uid).png").putData(image.pngData()!)
             self.showToast(message: "Image Updated.", font: .systemFont(ofSize: 12))
         }
         self.userImageData = image.pngData()
