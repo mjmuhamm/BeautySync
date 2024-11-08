@@ -280,7 +280,7 @@ extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource
         cell.itemPrice.text = "$\(item!.itemPrice)"
         
         let storageRef = storage.reference()
-        storageRef.child("\(item!.itemType)/\(item!.documentId)0.png").downloadURL { itemUrl, error in
+        storageRef.child("\(item!.itemType)/\(Auth.auth().currentUser!.uid)/\(item!.documentId)/\(item!.documentId)0.png").downloadURL { itemUrl, error in
             if itemUrl != nil {
                 URLSession.shared.dataTask(with: itemUrl!) { (data, response, error) in
                     // Error handling...
@@ -291,6 +291,25 @@ extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource
                         item!.itemImage = UIImage(data: imageData)!
                     }
                 }.resume()
+            }
+        }
+        
+        var item1 = ""
+        if itemType == "hairItems" { item1 = "Hair Item" } else if itemType == "makeupItems" { item1 = "Makeup Item" } else if itemType == "lashItems" { item1 = "Lash Item" } else { item1 = "Content Item" }
+        
+        cell.itemEditButtonTapped = {
+            
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ServiceItem") as? ServiceItemsViewController {
+                vc.itemType = item1
+                vc.beauticianUsername = self.userName.text!
+                vc.beauticianPassion = self.passion.text!
+                vc.beauticianCity = self.city
+                vc.beauticianState = self.state
+                vc.newOrEdit = "edit"
+                vc.serviceItemId = item!.documentId
+                vc.item = item!
+                
+                self.present(vc, animated: true, completion: nil)
             }
         }
         

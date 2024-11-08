@@ -42,6 +42,7 @@ class ServiceItemsViewController: UIViewController {
     @IBOutlet weak var hashtagDeleteButton: MDCButton!
     var hashtags : [String] = []
     
+    var item : ServiceItems?
     var itemType = ""
     var newOrEdit = "new"
     var serviceItemId = UUID().uuidString
@@ -66,8 +67,56 @@ class ServiceItemsViewController: UIViewController {
         self.sliderCollectionView.dataSource = self
         self.pageControl.currentPage = 0
         
+        if newOrEdit == "edit" {
+            self.deleteButton.isHidden = false
+            self.itemTitle.text = item!.itemTitle
+            self.itemDescription.text = item!.itemDescription
+            self.itemPrice.text = item!.itemPrice
+            self.hashtags = item!.hashtags
+            for i in 0..<item!.hashtags.count {
+                if i == 0 {
+                    self.hashtagLabel.text = item!.hashtags[0]
+                } else {
+                    self.hashtagLabel.text = "\(self.hashtagLabel.text!), \(self.item!.hashtags[i])"
+                }
+                if item!.hashtags.count > 0 {
+                    self.hashtagDeleteButton.isHidden = false
+                }
+                beauticianUsername = item!.beauticianUsername
+                beauticianPassion = item!.beauticianPassion
+                beauticianCity = item!.beauticianCity
+                beauticianState = item!.beauticianState
+                serviceItemId = item!.documentId
+            }
+            var item1 = ""
+            if itemType == "Hair Item" { item1 = "hairItems" } else if itemType == "Makeup Item" { item1 = "makeupItems" } else if itemType == "Lash Item" { item1 = "lashItems" }
+            for i in 0..<item!.imageCount {
+                print("path123456 \(item1)/\(Auth.auth().currentUser!.uid)/\(serviceItemId)/\(serviceItemId)\(i).png")
+                var path = "\(item1)/\(Auth.auth().currentUser!.uid)/\(serviceItemId)/\(serviceItemId)\(i).png"
+                storage.reference().child(path).downloadURL { url, error in
+                    if error == nil {
+                        if url != nil {
+                            URLSession.shared.dataTask(with: url!) { (data, response, error) in
+                                // Error handling...
+                                guard let imageData = data else { return }
+                                
+                                DispatchQueue.main.async {
+                                    self.imgArr.append(ServiceImage(image: UIImage(data: imageData)!, imgPath: path))
+                                    self.imgArrData.append(UIImage(data: imageData)!.pngData()!)
+                                    self.cancelButton.isHidden = false
+                                    self.pageControl.numberOfPages = self.imgArr.count
+                                    self.sliderCollectionView.reloadData()
+                                }
+                            }.resume()
+                        }
+                    }
+                }
+            }
+        }
         
     }
+    
+    
     
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: true)
@@ -75,16 +124,24 @@ class ServiceItemsViewController: UIViewController {
     
   
     @IBAction func deleteButtonPressed(_ sender: Any) {
+        var item1 = ""
+        if itemType == "Hair Item" { item1 = "hairItems" } else if itemType == "Makeup Item" { item1 = "makeupItems" } else if itemType == "Lash Item" { item1 = "lashItems" }
+        let storageRef = self.storage.reference()
+        
         let alert = UIAlertController(title: "Are you sure you want to delete this item?", message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (handler) in
             
-                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection(self.itemType).document(self.serviceItemId).delete()
-                self.db.collection(self.itemType).document(self.serviceItemId).delete()
-                let storageRef = self.storage.reference()
-                Task {
-                    try? await storageRef.child("beauticians/\(Auth.auth().currentUser!.uid)/\(self.itemType)/\(self.serviceItemId)").delete()
+                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection(item1).document(self.serviceItemId).delete()
+                self.db.collection(item1).document(self.serviceItemId).delete()
+                
+            for i in 0..<self.item!.imageCount {
+                storageRef.child("\(item1)/\(Auth.auth().currentUser!.uid)/\(self.serviceItemId)/\(self.serviceItemId)\(i).png").delete { error in
+                    
                 }
+            }
+                    
+                
                 if let vc = self.storyboard?.instantiateViewController(withIdentifier: "BeauticianTab") as? UITabBarController {
                     self.present(vc, animated: true, completion: nil)
                 }
@@ -100,6 +157,8 @@ class ServiceItemsViewController: UIViewController {
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
+        var item1 = ""
+        if itemType == "Hair Item" { item1 = "hairItems" } else if itemType == "Makeup Item" { item1 = "makeupItems" } else if itemType == "Lash Item" { item1 = "lashItems" }
         
         if imgArr.count > 0 {
             if newOrEdit == "edit" {
@@ -113,7 +172,7 @@ class ServiceItemsViewController: UIViewController {
                     
                     for i in 0..<self.imgArr.count {
                         Task {
-                            try? await storageRef.child(self.imgArr[i].imgPath).delete()
+                            try? await storageRef.child(path).delete()
                         }
                         
                     }
@@ -126,11 +185,11 @@ class ServiceItemsViewController: UIViewController {
                     self.sliderCollectionView.reloadData()
                     
                     for i in 0..<self.imgArr.count {
-                        renewRef.child("beauticians/\(Auth.auth().currentUser!.uid)/\(self.itemType)/\(self.serviceItemId)\(i).png").putData(self.imgArrData[i])
+                        renewRef.child("\(item1)/\(Auth.auth().currentUser!.uid)/\(self.serviceItemId)/\(self.serviceItemId)\(i).png").putData(self.imgArrData[i])
                     }
                     let data: [String: Any] = ["imageCount" : self.imgArr.count]
-                    self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection(self.itemType).document(self.serviceItemId).updateData(data)
-                    self.db.collection(self.itemType).document(self.serviceItemId).updateData(data)
+                    self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection(item1).document(self.serviceItemId).updateData(data)
+                    self.db.collection(item1).document(self.serviceItemId).updateData(data)
                     self.showToast(message: "Image deleted.", font: .systemFont(ofSize: 12))
                 }))
                 
@@ -234,7 +293,7 @@ class ServiceItemsViewController: UIViewController {
                 self.db.collection("\(item)").document("\(serviceItemId)").setData(data)
                 let storageRef = storage.reference()
                 for i in 0..<imgArr.count {
-                    storageRef.child("\(item)/\(self.serviceItemId)\(i).png").putData(self.imgArrData[i]) { data, error in
+                    storageRef.child("\(item)/\(Auth.auth().currentUser!.uid)/\(self.serviceItemId)/\(self.serviceItemId)\(i).png").putData(self.imgArrData[i]) { data, error in
                         if error == nil {
                             if i == self.imgArr.count-1 {
                                 self.activityIndicator.isHidden = true
@@ -244,8 +303,9 @@ class ServiceItemsViewController: UIViewController {
                     }
                 }
             } else {
-                self.db.collection("Beautician").document("\(itemType)").collection(itemType).document(serviceItemId).updateData(data)
+                self.db.collection("Beautician").document("\(Auth.auth().currentUser!.uid)").collection(item).document(serviceItemId).updateData(data)
                 self.db.collection("\(item)").document("\(serviceItemId)").updateData(data)
+                self.showToastCompletion(message: "Item Updated.", font: .systemFont(ofSize: 12))
             }
         }
     }
@@ -305,11 +365,11 @@ extension ServiceItemsViewController: UIImagePickerControllerDelegate, UINavigat
         
         var item = ""
         if self.itemType == "Hair Item" {
-            item = "hair"
+            item = "hairItems"
         } else if self.itemType == "Makeup Item" {
-            item = "makeup"
+            item = "makeupItems"
         } else if self.itemType == "Lash Item" {
-            item = "lashes"
+            item = "lashItems"
         }
         
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
@@ -319,14 +379,14 @@ extension ServiceItemsViewController: UIImagePickerControllerDelegate, UINavigat
         self.imgArrData.append(image.pngData()!)
         self.cancelButton.isHidden = false
         self.pageControl.numberOfPages = self.imgArr.count
-        var path = "\(item)/\(serviceItemId))\(self.imgArr.count - 1).png"
+        var path = "\(item)/\(Auth.auth().currentUser!.uid)/\(self.serviceItemId)/\(self.serviceItemId)\(self.imgArr.count - 1).png"
         if newOrEdit == "edit" {
             let storageRef = self.storage.reference()
             storageRef.child(path).putData(image.pngData()!)
             
             let data: [String: Any] = ["imageCount" : self.imgArr.count]
-            self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection(self.itemType).document(self.serviceItemId).updateData(data)
-            self.db.collection(self.itemType).document(self.serviceItemId).updateData(data)
+            self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection(item).document(self.serviceItemId).updateData(data)
+            self.db.collection(item).document(self.serviceItemId).updateData(data)
             self.showToast(message: "Image Added.", font: .systemFont(ofSize: 12))
         }
         self.sliderCollectionView.reloadData()
