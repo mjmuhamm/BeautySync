@@ -33,6 +33,10 @@
 		2081A27E2CDAEE98001C4D52 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A27D2CDAEE98001C4D52 /* FirebaseMessaging */; };
 		2081A2802CDAEE98001C4D52 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A27F2CDAEE98001C4D52 /* FirebaseStorage */; };
 		208C3CED2CD69E6800222A37 /* Banking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C3CEC2CD69E6800222A37 /* Banking.swift */; };
+		20B0F5AC2CDE95B100F3C0D8 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0F5AB2CDE95B100F3C0D8 /* ItemDetailViewController.swift */; };
+		20B0F5B02CDEAA7B00F3C0D8 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0F5AE2CDEAA7B00F3C0D8 /* HomeTableViewCell.swift */; };
+		20B0F5B12CDEAA7B00F3C0D8 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B0F5AF2CDEAA7B00F3C0D8 /* HomeTableViewCell.xib */; };
+		20B0F5B42CDEB86A00F3C0D8 /* ProfileAsUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0F5B32CDEB86A00F3C0D8 /* ProfileAsUserViewController.swift */; };
 		20D8D1F32CDBFCF500117EF4 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */; };
 		20D8D1F62CDCEA0100117EF4 /* ServiceItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F52CDCEA0100117EF4 /* ServiceItemsViewController.swift */; };
 		20D8D1F82CDCF84400117EF4 /* ServiceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F72CDCF84400117EF4 /* ServiceItem.swift */; };
@@ -85,6 +89,10 @@
 		201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTermsViewController.swift; sourceTree = "<group>"; };
 		201911002CD40A4D006BEE4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		208C3CEC2CD69E6800222A37 /* Banking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking.swift; sourceTree = "<group>"; };
+		20B0F5AB2CDE95B100F3C0D8 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		20B0F5AE2CDEAA7B00F3C0D8 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		20B0F5AF2CDEAA7B00F3C0D8 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
+		20B0F5B32CDEB86A00F3C0D8 /* ProfileAsUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAsUserViewController.swift; sourceTree = "<group>"; };
 		20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		20D8D1F52CDCEA0100117EF4 /* ServiceItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItemsViewController.swift; sourceTree = "<group>"; };
 		20D8D1F72CDCF84400117EF4 /* ServiceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItem.swift; sourceTree = "<group>"; };
@@ -193,6 +201,7 @@
 		201910E12CD28BB4006BEE4D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				20B0F5AD2CDEAA6300F3C0D8 /* Home */,
 				20D8D1F92CDD377500117EF4 /* ServiceItem */,
 			);
 			path = Cells;
@@ -204,6 +213,7 @@
 				201910E52CD2993D006BEE4D /* start */,
 				201910E42CD29934006BEE4D /* beautician */,
 				201910E32CD29930006BEE4D /* user */,
+				20B0F5AA2CDE958A00F3C0D8 /* both */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -213,7 +223,7 @@
 			children = (
 				201910ED2CD3F90F006BEE4D /* login */,
 				201910F52CD40588006BEE4D /* info */,
-				20E1083E2CD51B7900E3ACF4 /* tab */,
+				20E1083E2CD51B7900E3ACF4 /* tabs */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -292,6 +302,24 @@
 			path = models;
 			sourceTree = "<group>";
 		};
+		20B0F5AA2CDE958A00F3C0D8 /* both */ = {
+			isa = PBXGroup;
+			children = (
+				20B0F5AB2CDE95B100F3C0D8 /* ItemDetailViewController.swift */,
+				20B0F5B32CDEB86A00F3C0D8 /* ProfileAsUserViewController.swift */,
+			);
+			path = both;
+			sourceTree = "<group>";
+		};
+		20B0F5AD2CDEAA6300F3C0D8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				20B0F5AE2CDEAA7B00F3C0D8 /* HomeTableViewCell.swift */,
+				20B0F5AF2CDEAA7B00F3C0D8 /* HomeTableViewCell.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		20D8D1F12CDBFCD700117EF4 /* tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,12 +346,12 @@
 			path = ServiceItem;
 			sourceTree = "<group>";
 		};
-		20E1083E2CD51B7900E3ACF4 /* tab */ = {
+		20E1083E2CD51B7900E3ACF4 /* tabs */ = {
 			isa = PBXGroup;
 			children = (
 				20D8D1FE2CDE4C2B00117EF4 /* HomeViewController.swift */,
 			);
-			path = tab;
+			path = tabs;
 			sourceTree = "<group>";
 		};
 		FE9D323C3F2C63FE223DFA40 /* Pods */ = {
@@ -463,6 +491,7 @@
 				201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */,
 				20D8D1FD2CDD379A00117EF4 /* ServiceItemTableViewCell.xib in Resources */,
 				201910BA2CD28807006BEE4D /* Assets.xcassets in Resources */,
+				20B0F5B12CDEAA7B00F3C0D8 /* HomeTableViewCell.xib in Resources */,
 				201910B82CD28805006BEE4D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -539,12 +568,15 @@
 				201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */,
 				201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */,
 				20D8D1F82CDCF84400117EF4 /* ServiceItem.swift in Sources */,
+				20B0F5B02CDEAA7B00F3C0D8 /* HomeTableViewCell.swift in Sources */,
 				201910F42CD40523006BEE4D /* BeauticianBankingViewController.swift in Sources */,
+				20B0F5AC2CDE95B100F3C0D8 /* ItemDetailViewController.swift in Sources */,
 				201910E92CD29B8D006BEE4D /* UserLoginViewController.swift in Sources */,
 				201910B12CD28805006BEE4D /* AppDelegate.swift in Sources */,
 				201910F72CD40597006BEE4D /* UserPersonalViewController.swift in Sources */,
 				20D8D1F62CDCEA0100117EF4 /* ServiceItemsViewController.swift in Sources */,
 				201910B32CD28805006BEE4D /* SceneDelegate.swift in Sources */,
+				20B0F5B42CDEB86A00F3C0D8 /* ProfileAsUserViewController.swift in Sources */,
 				201910F02CD404DB006BEE4D /* BeauticianPersonalViewController.swift in Sources */,
 				201910E72CD29B7D006BEE4D /* BeauticianLoginViewController.swift in Sources */,
 				201910F92CD405EA006BEE4D /* AddPersonViewController.swift in Sources */,

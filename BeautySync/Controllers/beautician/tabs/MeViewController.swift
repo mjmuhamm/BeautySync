@@ -45,10 +45,6 @@ class BeauticianMeViewController: UIViewController {
     var city = ""
     var state = ""
     
-    var hairItems : [ServiceItems] = []
-    var makeupItems : [ServiceItems] = []
-    var lashItems : [ServiceItems] = []
-    
     var items : [ServiceItems] = []
     
     override func viewDidLoad() {
@@ -91,7 +87,7 @@ class BeauticianMeViewController: UIViewController {
                             self.passion.text = passion
                             self.city = city
                             self.state = state
-                            self.location.text = "\(city), \(state)"
+                            self.location.text = "Location: \(city), \(state)"
                         }
                     }
                 }
@@ -106,7 +102,6 @@ class BeauticianMeViewController: UIViewController {
                         // Error handling...
                         guard let imageData = data else { return }
                         
-                        print("happening itemdata")
                         DispatchQueue.main.async {
                             self.userImage.image = UIImage(data: imageData)!
                         }
@@ -119,9 +114,7 @@ class BeauticianMeViewController: UIViewController {
     private func loadItemInfo(item: String) {
         
         print("item type\(item)")
-        hairItems.removeAll()
-        makeupItems.removeAll()
-        lashItems.removeAll()
+        items.removeAll()
         serviceTableView.reloadData()
         
         db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection(item).getDocuments { documents, error in
@@ -134,41 +127,16 @@ class BeauticianMeViewController: UIViewController {
                             
                             let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: self.userName.text!, beauticianPassion: self.passion.text!, beauticianCity: self.city, beauticianState: self.state, beauticianImageId: Auth.auth().currentUser!.uid, itemLikes: itemLikes, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID)
                             
-                            if item == "hairItems" {
-                                if self.hairItems.isEmpty {
-                                    self.hairItems.append(x)
+                                if self.items.isEmpty {
+                                    self.items.append(x)
                                     self.serviceTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
                                 } else {
-                                    let index = self.hairItems.firstIndex { $0.documentId == doc.documentID }
+                                    let index = self.items.firstIndex { $0.documentId == doc.documentID }
                                     if index == nil {
-                                        self.hairItems.append(x)
-                                        self.serviceTableView.insertRows(at: [IndexPath(item: self.hairItems.count - 1, section: 0)], with: .fade)
+                                        self.items.append(x)
+                                        self.serviceTableView.insertRows(at: [IndexPath(item: self.items.count - 1, section: 0)], with: .fade)
                                     }
                                 }
-                            } else if item == "makeupItems" {
-                                if self.makeupItems.isEmpty {
-                                    self.makeupItems.append(x)
-                                    self.serviceTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
-                                } else {
-                                    let index = self.makeupItems.firstIndex { $0.documentId == doc.documentID }
-                                    if index == nil {
-                                        self.makeupItems.append(x)
-                                        self.serviceTableView.insertRows(at: [IndexPath(item: self.makeupItems.count - 1, section: 0)], with: .fade)
-                                    }
-                                }
-                            } else if item == "lashItems" {
-                                if self.lashItems.isEmpty {
-                                    self.lashItems.append(x)
-                                    self.serviceTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
-                                } else {
-                                    let index = self.lashItems.firstIndex { $0.documentId == doc.documentID }
-                                    if index == nil {
-                                        self.lashItems.append(x)
-                                        self.serviceTableView.insertRows(at: [IndexPath(item: self.lashItems.count - 1, section: 0)], with: .fade)
-                                    }
-                                }
-                            }
-                            
                         }
                     }
                 }
@@ -249,12 +217,8 @@ class BeauticianMeViewController: UIViewController {
 
 extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if itemType == "hairItems" {
-            return hairItems.count
-        } else if itemType == "makeupItems" {
-            return makeupItems.count
-        } else if itemType == "lashItems" {
-            return lashItems.count
+        if itemType != "contentItems" {
+            return items.count
         } else {
             return 0
         }
@@ -263,24 +227,14 @@ extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = serviceTableView.dequeueReusableCell(withIdentifier: "ServiceItemReusableCell", for: indexPath) as! ServiceItemTableViewCell
         
-        var item : ServiceItems?
+        var item = items[indexPath.row]
         
-        if itemType == "hairItems" {
-            item = hairItems[indexPath.row]
-        } else if itemType == "makeupItems" {
-            item = makeupItems[indexPath.row]
-        } else if itemType == "lashItems" {
-            item = lashItems[indexPath.row]
-        }
-        
-        print("item in full \(item!)")
-        
-        cell.itemTitle.text = item!.itemTitle
-        cell.itemDescription.text = item!.itemDescription
-        cell.itemPrice.text = "$\(item!.itemPrice)"
+        cell.itemTitle.text = item.itemTitle
+        cell.itemDescription.text = item.itemDescription
+        cell.itemPrice.text = "$\(item.itemPrice)"
         
         let storageRef = storage.reference()
-        storageRef.child("\(item!.itemType)/\(Auth.auth().currentUser!.uid)/\(item!.documentId)/\(item!.documentId)0.png").downloadURL { itemUrl, error in
+        storageRef.child("\(item.itemType)/\(Auth.auth().currentUser!.uid)/\(item.documentId)/\(item.documentId)0.png").downloadURL { itemUrl, error in
             if itemUrl != nil {
                 URLSession.shared.dataTask(with: itemUrl!) { (data, response, error) in
                     // Error handling...
@@ -288,7 +242,7 @@ extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource
                     
                     DispatchQueue.main.async {
                         cell.itemImage.image = UIImage(data: imageData)!
-                        item!.itemImage = UIImage(data: imageData)!
+                        item.itemImage = UIImage(data: imageData)!
                     }
                 }.resume()
             }
@@ -306,9 +260,16 @@ extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource
                 vc.beauticianCity = self.city
                 vc.beauticianState = self.state
                 vc.newOrEdit = "edit"
-                vc.serviceItemId = item!.documentId
-                vc.item = item!
+                vc.serviceItemId = item.documentId
+                vc.item = item
                 
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+        
+        cell.itemDetailButtonTapped = {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ItemDetail") as? ItemDetailViewController {
+                vc.item = item
                 self.present(vc, animated: true, completion: nil)
             }
         }

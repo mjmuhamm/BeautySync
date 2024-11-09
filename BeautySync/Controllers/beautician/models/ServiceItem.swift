@@ -22,6 +22,7 @@ struct ServiceItems {
     let itemPrice: String
     let imageCount: Int
     let beauticianUsername: String
+    var beauticianUserImage: UIImage?
     let beauticianPassion: String
     let beauticianCity: String
     let beauticianState: String
