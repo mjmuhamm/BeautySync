@@ -27,6 +27,13 @@
 		201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */; };
 		201910FF2CD40695006BEE4D /* StripeTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */; };
 		201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 201911002CD40A4D006BEE4D /* GoogleService-Info.plist */; };
+		2062FB7A2CE1551800065BC0 /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2062FB792CE1551800065BC0 /* OrderDetailsViewController.swift */; };
+		207ECAA32CE3C7C2008856D5 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207ECAA22CE3C7C2008856D5 /* CheckoutViewController.swift */; };
+		207ECAA72CE3CBBC008856D5 /* CheckoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207ECAA52CE3CBBC008856D5 /* CheckoutTableViewCell.swift */; };
+		207ECAA82CE3CBBC008856D5 /* CheckoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 207ECAA62CE3CBBC008856D5 /* CheckoutTableViewCell.xib */; };
+		207ECAAB2CE41AE5008856D5 /* CheckoutItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207ECAAA2CE41AE5008856D5 /* CheckoutItems.swift */; };
+		207ECAAF2CE544C6008856D5 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207ECAAD2CE544C6008856D5 /* OrdersTableViewCell.swift */; };
+		207ECAB02CE544C6008856D5 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 207ECAAE2CE544C6008856D5 /* OrdersTableViewCell.xib */; };
 		2081A2782CDAEE98001C4D52 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A2772CDAEE98001C4D52 /* FirebaseAuth */; };
 		2081A27A2CDAEE98001C4D52 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A2792CDAEE98001C4D52 /* FirebaseCore */; };
 		2081A27C2CDAEE98001C4D52 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A27B2CDAEE98001C4D52 /* FirebaseFirestore */; };
@@ -37,7 +44,10 @@
 		20B0F5B02CDEAA7B00F3C0D8 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0F5AE2CDEAA7B00F3C0D8 /* HomeTableViewCell.swift */; };
 		20B0F5B12CDEAA7B00F3C0D8 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B0F5AF2CDEAA7B00F3C0D8 /* HomeTableViewCell.xib */; };
 		20B0F5B42CDEB86A00F3C0D8 /* ProfileAsUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0F5B32CDEB86A00F3C0D8 /* ProfileAsUserViewController.swift */; };
-		20D8D1F32CDBFCF500117EF4 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */; };
+		20B4D3B22CDFC43300C26EEC /* BeauticianAccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4D3B12CDFC43300C26EEC /* BeauticianAccountSettingsViewController.swift */; };
+		20B4D3B52CDFC7CA00C26EEC /* UserAccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4D3B42CDFC7CA00C26EEC /* UserAccountSettingsViewController.swift */; };
+		20B4D3B72CDFCB7700C26EEC /* UserMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4D3B62CDFCB7700C26EEC /* UserMeViewController.swift */; };
+		20D8D1F32CDBFCF500117EF4 /* BeauticianMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F22CDBFCF500117EF4 /* BeauticianMeViewController.swift */; };
 		20D8D1F62CDCEA0100117EF4 /* ServiceItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F52CDCEA0100117EF4 /* ServiceItemsViewController.swift */; };
 		20D8D1F82CDCF84400117EF4 /* ServiceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1F72CDCF84400117EF4 /* ServiceItem.swift */; };
 		20D8D1FC2CDD379A00117EF4 /* ServiceItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8D1FA2CDD379A00117EF4 /* ServiceItemTableViewCell.swift */; };
@@ -88,17 +98,27 @@
 		201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
 		201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTermsViewController.swift; sourceTree = "<group>"; };
 		201911002CD40A4D006BEE4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2062FB792CE1551800065BC0 /* OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewController.swift; sourceTree = "<group>"; };
+		207ECAA22CE3C7C2008856D5 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		207ECAA52CE3CBBC008856D5 /* CheckoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutTableViewCell.swift; sourceTree = "<group>"; };
+		207ECAA62CE3CBBC008856D5 /* CheckoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckoutTableViewCell.xib; sourceTree = "<group>"; };
+		207ECAAA2CE41AE5008856D5 /* CheckoutItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutItems.swift; sourceTree = "<group>"; };
+		207ECAAD2CE544C6008856D5 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
+		207ECAAE2CE544C6008856D5 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		208C3CEC2CD69E6800222A37 /* Banking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking.swift; sourceTree = "<group>"; };
 		20B0F5AB2CDE95B100F3C0D8 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		20B0F5AE2CDEAA7B00F3C0D8 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		20B0F5AF2CDEAA7B00F3C0D8 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
 		20B0F5B32CDEB86A00F3C0D8 /* ProfileAsUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAsUserViewController.swift; sourceTree = "<group>"; };
-		20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		20B4D3B12CDFC43300C26EEC /* BeauticianAccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianAccountSettingsViewController.swift; sourceTree = "<group>"; };
+		20B4D3B42CDFC7CA00C26EEC /* UserAccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountSettingsViewController.swift; sourceTree = "<group>"; };
+		20B4D3B62CDFCB7700C26EEC /* UserMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMeViewController.swift; sourceTree = "<group>"; };
+		20D8D1F22CDBFCF500117EF4 /* BeauticianMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianMeViewController.swift; sourceTree = "<group>"; };
 		20D8D1F52CDCEA0100117EF4 /* ServiceItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItemsViewController.swift; sourceTree = "<group>"; };
 		20D8D1F72CDCF84400117EF4 /* ServiceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItem.swift; sourceTree = "<group>"; };
 		20D8D1FA2CDD379A00117EF4 /* ServiceItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceItemTableViewCell.swift; sourceTree = "<group>"; };
 		20D8D1FB2CDD379A00117EF4 /* ServiceItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceItemTableViewCell.xib; sourceTree = "<group>"; };
-		20D8D1FE2CDE4C2B00117EF4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = BeautySync/Cells/ServiceItem/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
+		20D8D1FE2CDE4C2B00117EF4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = BeautySync/Controllers/user/tabs/Home/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
 		43C07360BDEF85D378B873D7 /* Pods_BeautySync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeautySync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81952A144631D8A7C36486BD /* Pods-BeautySync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync.release.xcconfig"; path = "Target Support Files/Pods-BeautySync/Pods-BeautySync.release.xcconfig"; sourceTree = "<group>"; };
 		DA0789203779BFCDD56FE2A4 /* Pods-BeautySync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautySync.debug.xcconfig"; path = "Target Support Files/Pods-BeautySync/Pods-BeautySync.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +223,8 @@
 			children = (
 				20B0F5AD2CDEAA6300F3C0D8 /* Home */,
 				20D8D1F92CDD377500117EF4 /* ServiceItem */,
+				207ECAA42CE3CB90008856D5 /* Checkout */,
+				207ECAAC2CE5449F008856D5 /* Orders */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -224,6 +246,7 @@
 				201910ED2CD3F90F006BEE4D /* login */,
 				201910F52CD40588006BEE4D /* info */,
 				20E1083E2CD51B7900E3ACF4 /* tabs */,
+				207ECAA92CE41ACE008856D5 /* models */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -293,6 +316,42 @@
 			path = info;
 			sourceTree = "<group>";
 		};
+		2062FB782CE154FE00065BC0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				20D8D1FE2CDE4C2B00117EF4 /* HomeViewController.swift */,
+				2062FB792CE1551800065BC0 /* OrderDetailsViewController.swift */,
+				207ECAA22CE3C7C2008856D5 /* CheckoutViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		207ECAA42CE3CB90008856D5 /* Checkout */ = {
+			isa = PBXGroup;
+			children = (
+				207ECAA52CE3CBBC008856D5 /* CheckoutTableViewCell.swift */,
+				207ECAA62CE3CBBC008856D5 /* CheckoutTableViewCell.xib */,
+			);
+			path = Checkout;
+			sourceTree = "<group>";
+		};
+		207ECAA92CE41ACE008856D5 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				207ECAAA2CE41AE5008856D5 /* CheckoutItems.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		207ECAAC2CE5449F008856D5 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				207ECAAD2CE544C6008856D5 /* OrdersTableViewCell.swift */,
+				207ECAAE2CE544C6008856D5 /* OrdersTableViewCell.xib */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
 		208C3CEB2CD69E3F00222A37 /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,11 +379,28 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		20B4D3B02CDFC41900C26EEC /* Account Settings */ = {
+			isa = PBXGroup;
+			children = (
+				20B4D3B12CDFC43300C26EEC /* BeauticianAccountSettingsViewController.swift */,
+			);
+			path = "Account Settings";
+			sourceTree = "<group>";
+		};
+		20B4D3B32CDFC7BB00C26EEC /* Account Settings */ = {
+			isa = PBXGroup;
+			children = (
+				20B4D3B42CDFC7CA00C26EEC /* UserAccountSettingsViewController.swift */,
+			);
+			path = "Account Settings";
+			sourceTree = "<group>";
+		};
 		20D8D1F12CDBFCD700117EF4 /* tabs */ = {
 			isa = PBXGroup;
 			children = (
-				20D8D1F22CDBFCF500117EF4 /* MeViewController.swift */,
 				20D8D1F42CDCE9E100117EF4 /* Service Items */,
+				20B4D3B02CDFC41900C26EEC /* Account Settings */,
+				20D8D1F22CDBFCF500117EF4 /* BeauticianMeViewController.swift */,
 			);
 			path = tabs;
 			sourceTree = "<group>";
@@ -349,7 +425,9 @@
 		20E1083E2CD51B7900E3ACF4 /* tabs */ = {
 			isa = PBXGroup;
 			children = (
-				20D8D1FE2CDE4C2B00117EF4 /* HomeViewController.swift */,
+				2062FB782CE154FE00065BC0 /* Home */,
+				20B4D3B32CDFC7BB00C26EEC /* Account Settings */,
+				20B4D3B62CDFCB7700C26EEC /* UserMeViewController.swift */,
 			);
 			path = tabs;
 			sourceTree = "<group>";
@@ -489,6 +567,8 @@
 			files = (
 				201910BD2CD28807006BEE4D /* LaunchScreen.storyboard in Resources */,
 				201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */,
+				207ECAB02CE544C6008856D5 /* OrdersTableViewCell.xib in Resources */,
+				207ECAA82CE3CBBC008856D5 /* CheckoutTableViewCell.xib in Resources */,
 				20D8D1FD2CDD379A00117EF4 /* ServiceItemTableViewCell.xib in Resources */,
 				201910BA2CD28807006BEE4D /* Assets.xcassets in Resources */,
 				20B0F5B12CDEAA7B00F3C0D8 /* HomeTableViewCell.xib in Resources */,
@@ -559,7 +639,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20D8D1F32CDBFCF500117EF4 /* MeViewController.swift in Sources */,
+				20D8D1F32CDBFCF500117EF4 /* BeauticianMeViewController.swift in Sources */,
 				208C3CED2CD69E6800222A37 /* Banking.swift in Sources */,
 				20D8D1FF2CDE4C2B00117EF4 /* HomeViewController.swift in Sources */,
 				201910F22CD404FB006BEE4D /* BeauticianBusinessViewController.swift in Sources */,
@@ -569,17 +649,25 @@
 				201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */,
 				20D8D1F82CDCF84400117EF4 /* ServiceItem.swift in Sources */,
 				20B0F5B02CDEAA7B00F3C0D8 /* HomeTableViewCell.swift in Sources */,
+				2062FB7A2CE1551800065BC0 /* OrderDetailsViewController.swift in Sources */,
+				207ECAA72CE3CBBC008856D5 /* CheckoutTableViewCell.swift in Sources */,
 				201910F42CD40523006BEE4D /* BeauticianBankingViewController.swift in Sources */,
 				20B0F5AC2CDE95B100F3C0D8 /* ItemDetailViewController.swift in Sources */,
 				201910E92CD29B8D006BEE4D /* UserLoginViewController.swift in Sources */,
+				20B4D3B72CDFCB7700C26EEC /* UserMeViewController.swift in Sources */,
 				201910B12CD28805006BEE4D /* AppDelegate.swift in Sources */,
+				207ECAA32CE3C7C2008856D5 /* CheckoutViewController.swift in Sources */,
+				20B4D3B52CDFC7CA00C26EEC /* UserAccountSettingsViewController.swift in Sources */,
 				201910F72CD40597006BEE4D /* UserPersonalViewController.swift in Sources */,
+				207ECAAB2CE41AE5008856D5 /* CheckoutItems.swift in Sources */,
 				20D8D1F62CDCEA0100117EF4 /* ServiceItemsViewController.swift in Sources */,
 				201910B32CD28805006BEE4D /* SceneDelegate.swift in Sources */,
 				20B0F5B42CDEB86A00F3C0D8 /* ProfileAsUserViewController.swift in Sources */,
 				201910F02CD404DB006BEE4D /* BeauticianPersonalViewController.swift in Sources */,
+				20B4D3B22CDFC43300C26EEC /* BeauticianAccountSettingsViewController.swift in Sources */,
 				201910E72CD29B7D006BEE4D /* BeauticianLoginViewController.swift in Sources */,
 				201910F92CD405EA006BEE4D /* AddPersonViewController.swift in Sources */,
+				207ECAAF2CE544C6008856D5 /* OrdersTableViewCell.swift in Sources */,
 				201910FF2CD40695006BEE4D /* StripeTermsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -88,7 +88,7 @@ class ItemDetailViewController: UIViewController {
         self.itemTitle.text = item!.itemTitle
         self.itemDescription.text = item!.itemDescription
         self.itemPrice.text = "$\(item!.itemPrice)"
-        self.userName.text = "@\(item!.beauticianUsername)"
+        self.userName.text = "\(item!.beauticianUsername)"
     }
     
     private func loadImages() {

@@ -1,28 +1,22 @@
 //
-//  ServiceItem.swift
+//  CheckoutItems.swift
 //  BeautySync
 //
-//  Created by Malik Muhammad on 11/7/24.
+//  Created by Malik Muhammad on 11/12/24.
 //
 
 import Foundation
 import UIKit
 
-struct ServiceImage {
-    let image: UIImage
-    let imgPath: String
-}
 
-struct ServiceItems {
+struct CheckoutItems {
     
     let itemType: String
     let itemTitle: String
-    var itemImage: UIImage?
     let itemDescription: String
     let itemPrice: String
     let imageCount: Int
     let beauticianUsername: String
-    var beauticianUserImage: UIImage?
     let beauticianPassion: String
     let beauticianCity: String
     let beauticianState: String
@@ -32,5 +26,10 @@ struct ServiceItems {
     let itemRating: Double
     let hashtags: [String]
     let documentId: String
+    let eventDay: String
+    let eventTime: String
+    let streetAddress: String
+    let zipCode: String
+    let noteToBeautician: String
     
 }

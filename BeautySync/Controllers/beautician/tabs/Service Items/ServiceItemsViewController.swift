@@ -286,7 +286,8 @@ class ServiceItemsViewController: UIViewController {
         } else if itemPrice.text == "" || (Int(itemPrice.text!) == nil && Double(itemPrice.text!) == nil) {
             self.showToast(message: "Please enter an item price like so: 54.51.", font: .systemFont(ofSize: 12))
         } else {
-            let data : [String: Any] = ["itemType" :  item, "itemTitle" : self.itemTitle.text!, "itemDescription" : self.itemDescription.text!, "itemPrice" : self.itemPrice.text!, "imageCount" : self.imgArr.count, "beauticianUsername" : "\(self.beauticianUsername)", "beauticianPassion" : self.beauticianPassion, "beauticianCity" : self.beauticianCity, "beauticianState": self.beauticianState, "beauticianImageId" : Auth.auth().currentUser!.uid, "itemLikes" : 0, "itemOrders" : 0, "itemRating" : 0, "hashtags" : hashtags]
+            
+            let data : [String: Any] = ["itemType" :  item, "itemTitle" : self.itemTitle.text!, "itemDescription" : self.itemDescription.text!, "itemPrice" : itemPrice.text!, "imageCount" : self.imgArr.count, "beauticianUsername" : "\(self.beauticianUsername)", "beauticianPassion" : self.beauticianPassion, "beauticianCity" : self.beauticianCity, "beauticianState": self.beauticianState, "beauticianImageId" : Auth.auth().currentUser!.uid, "liked" : [], "itemOrders" : 0, "itemRating" : 0, "hashtags" : hashtags]
             
             if newOrEdit == "new" {
                 self.db.collection("Beautician").document("\(Auth.auth().currentUser!.uid)").collection(item).document(serviceItemId).setData(data)

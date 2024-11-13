@@ -161,12 +161,8 @@ class BeauticianPersonalViewController: UIViewController {
                                     
                                     storageRef.child("beauticians/\(authResult!.user.uid)/profileImage/\(authResult!.user.uid).png").putData(self.userImageData!)
                                     
-                                } else {
-                                        self.profilePic = "no"
-                                        let image = UIImage(named: "default_image")!.pngData()
-                                        storageRef.child("beauticians/\(authResult!.user.uid)/profileImage/\(authResult!.user.uid).png").putData(image!)
-                                    }
                                 }
+                                } 
                                     
                                     let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "beauticianOrUser" : "Beautician"]
                                     let data1: [String: Any] = ["userName" : self.userName.text!, "email": self.email.text!, "beauticianOrUser" : "Beautician", "fullName" : self.fullName.text!]

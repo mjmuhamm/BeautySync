@@ -18,15 +18,11 @@ import MaterialComponents.MaterialTextControls_OutlinedTextFieldsTheming
 
 class BeauticianMeViewController: UIViewController {
     
-    
-    
-    
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
     @IBOutlet weak var notificationBell: UIButton!
     @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var settings: UIButton!
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var passion: UILabel!
@@ -123,9 +119,9 @@ class BeauticianMeViewController: UIViewController {
                     for doc in documents!.documents {
                         let data = doc.data()
                         
-                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let itemLikes = data["itemLikes"] as? Int, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String] {
+                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let liked = data["liked"] as? [String], let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String] {
                             
-                            let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: self.userName.text!, beauticianPassion: self.passion.text!, beauticianCity: self.city, beauticianState: self.state, beauticianImageId: Auth.auth().currentUser!.uid, itemLikes: itemLikes, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID)
+                            let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: self.userName.text!, beauticianPassion: self.passion.text!, beauticianCity: self.city, beauticianState: self.state, beauticianImageId: Auth.auth().currentUser!.uid, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID)
                             
                                 if self.items.isEmpty {
                                     self.items.append(x)
@@ -144,6 +140,15 @@ class BeauticianMeViewController: UIViewController {
         }
     }
     
+    @IBAction func accountSettingsButtonPressed(_ sender: Any) {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "BeauticianAccountSettings") as? BeauticianAccountSettingsViewController {
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func notificationButtonPressed(_ sender: Any) {
+        
+    }
     
     @IBAction func hairButtonPressed(_ sender: Any) {
         itemType = "hairItems"

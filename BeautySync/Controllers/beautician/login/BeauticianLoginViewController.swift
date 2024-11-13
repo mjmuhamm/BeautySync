@@ -76,13 +76,9 @@ class BeauticianLoginViewController: UIViewController {
                                             }
                                         }
                                     }
-                                    
-                                    }
+                                }
                             }
-                        
-                        
                     }
-                    
                 }
         }
     }

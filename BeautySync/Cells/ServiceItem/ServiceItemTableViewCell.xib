@@ -36,7 +36,7 @@
                         </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7mR-Vn-nGk">
-                        <rect key="frame" x="0.0" y="46" width="393" height="334.33333333333331"/>
+                        <rect key="frame" x="6" y="46" width="381" height="334"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a item description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqd-4i-dJa">
                         <rect key="frame" x="5" y="385" width="383" height="17.666666666666686"/>
@@ -182,7 +182,7 @@
                     <constraint firstItem="ENh-Sp-2dn" firstAttribute="top" secondItem="sfb-8b-ywn" secondAttribute="bottom" constant="7.6699999999999999" id="ryH-Eh-XlX"/>
                     <constraint firstItem="8Sb-YU-CVC" firstAttribute="top" secondItem="fqd-4i-dJa" secondAttribute="bottom" constant="2" id="sQP-HC-PVD"/>
                     <constraint firstItem="fqd-4i-dJa" firstAttribute="top" secondItem="7mR-Vn-nGk" secondAttribute="bottom" constant="4.6699999999999999" id="tDE-dm-Lp4"/>
-                    <constraint firstItem="7mR-Vn-nGk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uex-Ha-yyx"/>
+                    <constraint firstItem="7mR-Vn-nGk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="uex-Ha-yyx"/>
                     <constraint firstAttribute="trailing" secondItem="tbt-Z6-1K2" secondAttribute="trailing" constant="5" id="wxW-Fp-umR"/>
                     <constraint firstItem="8Sb-YU-CVC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="ynX-l7-tQu"/>
                 </constraints>

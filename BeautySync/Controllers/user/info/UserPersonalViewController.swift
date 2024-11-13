@@ -292,12 +292,8 @@ class UserPersonalViewController: UIViewController {
                                         
                                         storageRef.child("users/\(authResult!.user.uid)/profileImage/\(authResult!.user.uid).png").putData(self.userImageData!)
                                         
-                                    } else {
-                                            self.profilePic = "no"
-                                            let image = UIImage(named: "default_image")!.pngData()
-                                        storageRef.child("users/\(authResult!.user.uid)/profileImage/\(authResult!.user.uid).png").putData(image!)
-                                        }
                                     }
+                                    } 
                                         
                                         let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "local" : self.local, "region" : self.region, "nation" : self.nation, "city": self.city.text!, "state" : self.state.text!, "beauticianOrUser" : "User"]
                                         let data1: [String: Any] = ["userName" : self.userName.text!, "email": self.email.text!, "beauticianOrUser" : "User", "fullName" : self.fullName.text!]

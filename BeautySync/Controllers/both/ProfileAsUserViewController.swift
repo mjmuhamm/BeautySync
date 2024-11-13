@@ -43,13 +43,16 @@ class ProfileAsUserViewController: UIViewController {
     private var items : [ServiceItems] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        serviceTableView.register(UINib(nibName: "ServiceItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceItemReusableCell")
+        serviceTableView.delegate = self
+        serviceTableView.dataSource = self
         if item != nil {
+            loadBeauticianInfo(userId: item!.beauticianImageId)
             loadBeauticianItems(itemType: itemType)
-            self.userImage.image = item!.beauticianUserImage
-            self.passionStatement.text = item!.beauticianPassion
-            self.location.text = "Location: \(item!.beauticianCity), \(item!.beauticianState)"
-            self.userName.text = "@\(item!.beauticianUsername)"
+            self.userName.text = "\(item!.beauticianUsername)"
+            if item!.beauticianUserImage != nil {
+                self.userImage.image = item!.beauticianUserImage
+            }
         }
 
         
@@ -120,6 +123,26 @@ class ProfileAsUserViewController: UIViewController {
     }
     
     
+    private func loadBeauticianInfo(userId: String) {
+        
+        
+        
+        db.collection("Beautician").document(userId).collection("BusinessInfo").getDocuments { documents, error in
+            if error == nil {
+                if documents != nil {
+                    for doc in documents!.documents {
+                        let data = doc.data()
+                        
+                        if let passionStatement = data["passion"] as? String, let city = data["city"] as? String, let state = data["state"] as? String {
+                            self.passionStatement.text = "\(passionStatement)"
+                            self.location.text = "Location: \(city), \(state)"
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     private func loadBeauticianItems(itemType: String) {
             
             items.removeAll()
@@ -131,9 +154,9 @@ class ProfileAsUserViewController: UIViewController {
                         for doc in documents!.documents {
                             let data = doc.data()
                             
-                            if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let itemLikes = data["itemLikes"] as? Int, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String], let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let beauticianPassion = data["beauticianPassion"] as? String {
+                            if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String], let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let liked = data["liked"] as? [String] {
                                 
-                                let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, itemLikes: itemLikes, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID)
+                                let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID )
                                 
                                     if self.items.isEmpty {
                                         self.items.append(x)
@@ -167,6 +190,7 @@ extension ProfileAsUserViewController: UITableViewDelegate, UITableViewDataSourc
         
         var item = items[indexPath.row]
         
+        cell.itemEditButton.isHidden = true
         cell.itemTitle.text = item.itemTitle
         cell.itemDescription.text = item.itemDescription
         cell.itemPrice.text = "$\(item.itemPrice)"

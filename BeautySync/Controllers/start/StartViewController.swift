@@ -66,17 +66,19 @@ class StartViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser != nil {
-            if Auth.auth().currentUser!.displayName! == "User" {
-                //your view controller
-                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserTab") as? UITabBarController {
-                    
-                    self.present(vc, animated: true, completion: nil)
-                }
-            } else {
-                if Auth.auth().currentUser!.displayName! == "Beautician" {
-                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "BeauticianTab") as? UITabBarController {
+            if Auth.auth().currentUser!.displayName != nil {
+                if Auth.auth().currentUser!.displayName! == "User" {
+                    //your view controller
+                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserTab") as? UITabBarController {
                         
                         self.present(vc, animated: true, completion: nil)
+                    }
+                } else {
+                    if Auth.auth().currentUser!.displayName! == "Beautician" {
+                        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "BeauticianTab") as? UITabBarController {
+                            
+                            self.present(vc, animated: true, completion: nil)
+                        }
                     }
                 }
             }
