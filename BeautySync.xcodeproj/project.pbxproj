@@ -28,6 +28,10 @@
 		201910FF2CD40695006BEE4D /* StripeTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */; };
 		201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 201911002CD40A4D006BEE4D /* GoogleService-Info.plist */; };
 		2062FB7A2CE1551800065BC0 /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2062FB792CE1551800065BC0 /* OrderDetailsViewController.swift */; };
+		207B3F3C2CE59DC20063C725 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B3F3B2CE59DC20063C725 /* OrdersViewController.swift */; };
+		207B3F3E2CE64E7F0063C725 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B3F3D2CE64E7F0063C725 /* Orders.swift */; };
+		207B3F422CE68D6D0063C725 /* BeauticianOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B3F412CE68D6D0063C725 /* BeauticianOrdersViewController.swift */; };
+		207B3F462CE6CF0C0063C725 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B3F452CE6CF0C0063C725 /* DashboardViewController.swift */; };
 		207ECAA32CE3C7C2008856D5 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207ECAA22CE3C7C2008856D5 /* CheckoutViewController.swift */; };
 		207ECAA72CE3CBBC008856D5 /* CheckoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207ECAA52CE3CBBC008856D5 /* CheckoutTableViewCell.swift */; };
 		207ECAA82CE3CBBC008856D5 /* CheckoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 207ECAA62CE3CBBC008856D5 /* CheckoutTableViewCell.xib */; };
@@ -99,6 +103,10 @@
 		201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTermsViewController.swift; sourceTree = "<group>"; };
 		201911002CD40A4D006BEE4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2062FB792CE1551800065BC0 /* OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewController.swift; sourceTree = "<group>"; };
+		207B3F3B2CE59DC20063C725 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		207B3F3D2CE64E7F0063C725 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
+		207B3F412CE68D6D0063C725 /* BeauticianOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianOrdersViewController.swift; sourceTree = "<group>"; };
+		207B3F452CE6CF0C0063C725 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		207ECAA22CE3C7C2008856D5 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		207ECAA52CE3CBBC008856D5 /* CheckoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutTableViewCell.swift; sourceTree = "<group>"; };
 		207ECAA62CE3CBBC008856D5 /* CheckoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckoutTableViewCell.xib; sourceTree = "<group>"; };
@@ -326,6 +334,49 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		207B3F3A2CE59DAF0063C725 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				207B3F3B2CE59DC20063C725 /* OrdersViewController.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		207B3F3F2CE68D440063C725 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				20D8D1F22CDBFCF500117EF4 /* BeauticianMeViewController.swift */,
+				20B4D3B02CDFC41900C26EEC /* Account Settings */,
+				20D8D1F42CDCE9E100117EF4 /* Service Items */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		207B3F402CE68D5E0063C725 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				207B3F412CE68D6D0063C725 /* BeauticianOrdersViewController.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		207B3F432CE6CEDF0063C725 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				207B3F452CE6CF0C0063C725 /* DashboardViewController.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		207B3F442CE6CEEF0063C725 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				20B4D3B62CDFCB7700C26EEC /* UserMeViewController.swift */,
+				20B4D3B32CDFC7BB00C26EEC /* Account Settings */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
 		207ECAA42CE3CB90008856D5 /* Checkout */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				207ECAAA2CE41AE5008856D5 /* CheckoutItems.swift */,
+				207B3F3D2CE64E7F0063C725 /* Orders.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -398,9 +450,9 @@
 		20D8D1F12CDBFCD700117EF4 /* tabs */ = {
 			isa = PBXGroup;
 			children = (
-				20D8D1F42CDCE9E100117EF4 /* Service Items */,
-				20B4D3B02CDFC41900C26EEC /* Account Settings */,
-				20D8D1F22CDBFCF500117EF4 /* BeauticianMeViewController.swift */,
+				207B3F432CE6CEDF0063C725 /* Dashboard */,
+				207B3F402CE68D5E0063C725 /* Orders */,
+				207B3F3F2CE68D440063C725 /* Me */,
 			);
 			path = tabs;
 			sourceTree = "<group>";
@@ -426,8 +478,8 @@
 			isa = PBXGroup;
 			children = (
 				2062FB782CE154FE00065BC0 /* Home */,
-				20B4D3B32CDFC7BB00C26EEC /* Account Settings */,
-				20B4D3B62CDFCB7700C26EEC /* UserMeViewController.swift */,
+				207B3F3A2CE59DAF0063C725 /* Orders */,
+				207B3F442CE6CEEF0063C725 /* Me */,
 			);
 			path = tabs;
 			sourceTree = "<group>";
@@ -661,14 +713,18 @@
 				201910F72CD40597006BEE4D /* UserPersonalViewController.swift in Sources */,
 				207ECAAB2CE41AE5008856D5 /* CheckoutItems.swift in Sources */,
 				20D8D1F62CDCEA0100117EF4 /* ServiceItemsViewController.swift in Sources */,
+				207B3F3E2CE64E7F0063C725 /* Orders.swift in Sources */,
 				201910B32CD28805006BEE4D /* SceneDelegate.swift in Sources */,
+				207B3F422CE68D6D0063C725 /* BeauticianOrdersViewController.swift in Sources */,
 				20B0F5B42CDEB86A00F3C0D8 /* ProfileAsUserViewController.swift in Sources */,
 				201910F02CD404DB006BEE4D /* BeauticianPersonalViewController.swift in Sources */,
 				20B4D3B22CDFC43300C26EEC /* BeauticianAccountSettingsViewController.swift in Sources */,
+				207B3F3C2CE59DC20063C725 /* OrdersViewController.swift in Sources */,
 				201910E72CD29B7D006BEE4D /* BeauticianLoginViewController.swift in Sources */,
 				201910F92CD405EA006BEE4D /* AddPersonViewController.swift in Sources */,
 				207ECAAF2CE544C6008856D5 /* OrdersTableViewCell.swift in Sources */,
 				201910FF2CD40695006BEE4D /* StripeTermsViewController.swift in Sources */,
+				207B3F462CE6CF0C0063C725 /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

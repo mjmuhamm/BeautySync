@@ -33,6 +33,7 @@ class UserAccountSettingsViewController: UIViewController {
         deleteButton.layer.cornerRadius = 7
         
         
+        
         logoutButton.setTitleColor(UIColor.white, for: .normal)
         logoutButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
 

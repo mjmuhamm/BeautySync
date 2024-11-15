@@ -25,7 +25,7 @@ class CheckoutViewController: UIViewController {
     
     var paymentSheet: PaymentSheet?
     private var paymentId = ""
-    let backendCheckoutUrl = URL(string: "http://beautysync-stripeserver.onrender.com/create-payment-intent")!
+    let backendCheckoutUrl = URL(string: "https://beautysync-stripeserver.onrender.com/create-payment-intent")!
     
 //    let backendCheckoutUrl = URL(string: "http://10.0.1.68:4242/create-payment-intent")!
     @IBOutlet weak var serviceTableView: UITableView!
@@ -196,13 +196,13 @@ class CheckoutViewController: UIViewController {
         for i in 0..<items.count {
             var documentId = UUID().uuidString
             
-            let data : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician]
+            let data : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending"]
             
-            let data1 : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "paymentId" : self.paymentId]
+            let data1 : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "paymentId" : self.paymentId, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending"]
             
-            db.collection("User").document(Auth.auth().currentUser!.uid).collection("PendingOrders").document(documentId).setData(data)
-            db.collection("PendingOrders").document(documentId).setData(data1)
-            db.collection("Beautician").document(items[i].beauticianImageId).collection("PendingOrders").document(documentId).setData(data)
+            db.collection("User").document(Auth.auth().currentUser!.uid).collection("Orders").document(documentId).setData(data)
+            db.collection("Orders").document(documentId).setData(data1)
+            db.collection("Beautician").document(items[i].beauticianImageId).collection("Orders").document(documentId).setData(data)
             
             self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Cart").document(items[i].documentId).delete()
             
@@ -272,6 +272,27 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
         cell.date.text = "Date of Service: \(item.eventDay) \(item.eventTime)"
         cell.noteToBeautician.text = "Note: \(item.noteToBeautician)"
         
+        cell.cancelButtonTapped = {
+            
+            let serviceTotal = self.serviceTotal.text!.suffix(self.serviceTotal.text!.count - 1)
+            let newTotal = Double(serviceTotal)! - Double(item.itemPrice)!
+            let taxes = Double(newTotal) * 0.125
+            let newFinalTotal = Double(newTotal) + Double(taxes)
+            
+            if let index = self.items.firstIndex(where: { $0.documentId == item.documentId }) {
+                self.items.remove(at: index)
+                self.serviceTableView.deleteRows(at: [IndexPath(item:index, section: 0)], with: .fade)
+                self.serviceTotal.text = "$\(String(format: "%.2f", newTotal))"
+                self.taxesAndFees.text = "$\(String(format: "%.2f", taxes))"
+                self.checkoutTotal.text = "$\(String(format: "%.2f", newFinalTotal))"
+                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Cart").document(item.documentId).delete()
+                self.fetchPaymentIntent(costOfEvent: newFinalTotal)
+                if newFinalTotal == 0 {
+                    self.payButton.isEnabled = false
+                }
+            }
+            
+        }
         
         return cell
     }

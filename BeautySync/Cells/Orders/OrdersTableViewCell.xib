@@ -11,62 +11,69 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="KGk-i7-Jjw" customClass="OrdersTableViewCell" customModule="BeautySync" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="150"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrdersReusableCell" rowHeight="215" id="KGk-i7-Jjw" customClass="OrdersTableViewCell" customModule="BeautySync" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="223"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="393" height="150"/>
+                <rect key="frame" x="0.0" y="0.0" width="393" height="223"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hair Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1b-Em-5aQ">
-                        <rect key="frame" x="11" y="13" width="71.333333333333329" height="17"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hair Items" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1b-Em-5aQ">
+                        <rect key="frame" x="11" y="13" width="372" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                         <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Date: 11-22-2027" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4H9-rz-umc">
-                        <rect key="frame" x="222" y="13" width="163" height="17"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <rect key="frame" x="11" y="49" width="159" height="15.666666666666671"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                        <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dp9-lv-AbU">
-                        <rect key="frame" x="0.0" y="38" width="393" height="0.6666666666666643"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dp9-lv-AbU">
+                        <rect key="frame" x="0.0" y="36.666666666666664" width="393" height="0.6666666666666643"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="0.5" id="W4S-oj-RYb"/>
+                            <constraint firstAttribute="height" constant="0.5" id="sU4-LF-R1e"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: 2412 Beatties Ford Road, Charlotte NC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1b4-nM-94h">
-                        <rect key="frame" x="10" y="48.666666666666664" width="373" height="15.999999999999993"/>
+                        <rect key="frame" x="10" y="74.666666666666671" width="373" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfC-ab-thU" customClass="MDCButton">
-                        <rect key="frame" x="11" y="106.66666666666667" width="39" height="36.000000000000014"/>
+                        <rect key="frame" x="11" y="170.33333333333334" width="39" height="36"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="4sx-sd-s5n"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                        <color key="tintColor" systemColor="systemRedColor"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" title="Cancel">
                             <color key="titleColor" systemColor="systemRedColor"/>
                         </state>
+                        <connections>
+                            <action selector="cancelButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="d3G-4h-L6t"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xB1-Zx-91e" customClass="MDCButton">
-                        <rect key="frame" x="328" y="106.66666666666667" width="57" height="36.000000000000014"/>
+                        <rect key="frame" x="236" y="170.33333333333334" width="146" height="36"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="ARb-Yj-otO"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                        <color key="tintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" title="Messages">
-                            <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
+                        <state key="normal" title="Messages For Scheduling"/>
+                        <connections>
+                            <action selector="messagesButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yzT-Et-3rc"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2XL-9r-AzY" customClass="MDCButton">
-                        <rect key="frame" x="11" y="73.666666666666671" width="146" height="31"/>
+                        <rect key="frame" x="11" y="129.33333333333334" width="146" height="31"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="31" id="EAb-dp-QWK"/>
                         </constraints>
@@ -75,28 +82,54 @@
                         <state key="normal" title="Messages For Scheduling">
                             <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="messagesForSchedulingButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zxd-w3-r4f"/>
+                        </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes: This is a sample note to beautician" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8OI-6v-ZL4">
+                        <rect key="frame" x="10" y="100.66666666666667" width="373" height="15.666666666666671"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="1b4-nM-94h" secondAttribute="trailing" constant="10" id="3ur-i9-sbv"/>
-                    <constraint firstItem="1b4-nM-94h" firstAttribute="top" secondItem="Dp9-lv-AbU" secondAttribute="bottom" constant="10" id="4PA-Vq-k6f"/>
                     <constraint firstItem="B1b-Em-5aQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="67D-E6-4TW"/>
-                    <constraint firstItem="Dp9-lv-AbU" firstAttribute="top" secondItem="B1b-Em-5aQ" secondAttribute="bottom" constant="8" symbolic="YES" id="6kL-Ce-bhm"/>
+                    <constraint firstAttribute="trailing" secondItem="B1b-Em-5aQ" secondAttribute="trailing" constant="10" id="6fh-Oh-UBk"/>
                     <constraint firstItem="2XL-9r-AzY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="8p9-AU-o1K"/>
-                    <constraint firstItem="OfC-ab-thU" firstAttribute="top" secondItem="2XL-9r-AzY" secondAttribute="bottom" constant="2.0000000000000142" id="Bkv-vD-Nkb"/>
+                    <constraint firstItem="8OI-6v-ZL4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="BbW-q1-uTw"/>
+                    <constraint firstAttribute="trailing" secondItem="Dp9-lv-AbU" secondAttribute="trailing" id="CVc-er-API"/>
                     <constraint firstItem="2XL-9r-AzY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="Hxd-JN-iuE"/>
                     <constraint firstItem="OfC-ab-thU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="MpW-rf-dex"/>
+                    <constraint firstAttribute="trailing" secondItem="8OI-6v-ZL4" secondAttribute="trailing" constant="10" id="Nmx-KT-PQt"/>
                     <constraint firstItem="B1b-Em-5aQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="PTy-D4-4kF"/>
-                    <constraint firstItem="2XL-9r-AzY" firstAttribute="top" secondItem="1b4-nM-94h" secondAttribute="bottom" constant="9" id="PvZ-nr-Ww1"/>
-                    <constraint firstItem="xB1-Zx-91e" firstAttribute="top" secondItem="2XL-9r-AzY" secondAttribute="bottom" constant="2.0000000000000142" id="R1x-ma-ZOa"/>
+                    <constraint firstItem="4H9-rz-umc" firstAttribute="top" secondItem="Dp9-lv-AbU" secondAttribute="bottom" constant="11.666666666666671" id="T5H-Ra-UYc"/>
                     <constraint firstItem="1b4-nM-94h" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WQv-aG-Of0"/>
-                    <constraint firstItem="4H9-rz-umc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="bYv-FX-ssf"/>
-                    <constraint firstAttribute="trailing" secondItem="4H9-rz-umc" secondAttribute="trailing" constant="8" id="g9K-zC-gx6"/>
-                    <constraint firstAttribute="trailing" secondItem="xB1-Zx-91e" secondAttribute="trailing" constant="8" id="r9R-mp-6ey"/>
+                    <constraint firstItem="8OI-6v-ZL4" firstAttribute="top" secondItem="1b4-nM-94h" secondAttribute="bottom" constant="10" id="djL-yI-jnc"/>
+                    <constraint firstItem="Dp9-lv-AbU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="fED-95-5b8"/>
+                    <constraint firstItem="OfC-ab-thU" firstAttribute="top" secondItem="8OI-6v-ZL4" secondAttribute="bottom" constant="54" id="lcc-RT-RHY"/>
+                    <constraint firstItem="1b4-nM-94h" firstAttribute="top" secondItem="4H9-rz-umc" secondAttribute="bottom" constant="10" id="n9A-8E-FNo"/>
+                    <constraint firstItem="Dp9-lv-AbU" firstAttribute="top" secondItem="B1b-Em-5aQ" secondAttribute="bottom" constant="6.6666666666666572" id="nQd-uP-X0x"/>
+                    <constraint firstItem="xB1-Zx-91e" firstAttribute="top" secondItem="8OI-6v-ZL4" secondAttribute="bottom" constant="54" id="qAd-J5-Cps"/>
+                    <constraint firstItem="2XL-9r-AzY" firstAttribute="top" secondItem="8OI-6v-ZL4" secondAttribute="bottom" constant="12.999999999999972" id="qIA-OF-ELW"/>
+                    <constraint firstAttribute="trailing" secondItem="xB1-Zx-91e" secondAttribute="trailing" constant="11" id="r9R-mp-6ey"/>
+                    <constraint firstItem="4H9-rz-umc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="u5W-h4-AuM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="194.6564885496183" y="57.04225352112676"/>
+            <connections>
+                <outlet property="cancelButton" destination="OfC-ab-thU" id="xma-r3-4Ik"/>
+                <outlet property="cancelButtonConstraint" destination="lcc-RT-RHY" id="k3U-dp-b0R"/>
+                <outlet property="itemType" destination="B1b-Em-5aQ" id="nU7-DI-aXm"/>
+                <outlet property="location" destination="1b4-nM-94h" id="DOW-9D-8hg"/>
+                <outlet property="messagesButton" destination="xB1-Zx-91e" id="e4v-n1-Zs4"/>
+                <outlet property="messagesButtonConstraint" destination="qAd-J5-Cps" id="kXB-Mh-UMk"/>
+                <outlet property="messagesForSchedulingButton" destination="2XL-9r-AzY" id="uVX-1F-kdx"/>
+                <outlet property="notesToBeautician" destination="8OI-6v-ZL4" id="iJ5-dt-yXS"/>
+                <outlet property="serviceDate" destination="4H9-rz-umc" id="57p-Zb-noP"/>
+            </connections>
+            <point key="canvasLocation" x="194.6564885496183" y="77.816901408450704"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -3408,10 +3408,10 @@
         <!--Orders-->
         <scene sceneID="SZA-x6-wjv">
             <objects>
-                <navigationController id="AiQ-lr-ua8" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="AiQ-lr-ua8" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Orders" image="orders" selectedImage="orders_filled" id="uay-fK-bLS"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JBi-wy-kee">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
@@ -3551,21 +3551,101 @@
             </objects>
             <point key="canvasLocation" x="13424" y="-2965"/>
         </scene>
-        <!--View Controller-->
+        <!--Orders View Controller-->
         <scene sceneID="Zxh-fs-5db">
             <objects>
-                <viewController id="SMt-rS-2kg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserOrders" id="SMt-rS-2kg" customClass="OrdersViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wKY-Xu-XBp">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="me6-G6-YME">
+                                <rect key="frame" x="96.666666666666686" y="63" width="200" height="42"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCw-31-r7d" customClass="MDCButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="42"/>
+                                        <color key="backgroundColor" red="0.62745098040000002" green="0.63529411759999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="TVZ-6S-mzE"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Pending">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pendingButtonPressed:" destination="SMt-rS-2kg" eventType="touchUpInside" id="jqE-K1-fYX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jt9-B9-TLC" customClass="MDCButton">
+                                        <rect key="frame" x="57.999999999999986" y="0.0" width="73.000000000000014" height="42"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="tmw-oR-ex1"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Scheduled">
+                                            <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="scheduledButtonPressed:" destination="SMt-rS-2kg" eventType="touchUpInside" id="j5r-jl-kxA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8P-i1-fpG" customClass="MDCButton">
+                                        <rect key="frame" x="133" y="0.0" width="67" height="42"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="7Fm-bS-e9P"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Complete">
+                                            <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="completeButtonPressed:" destination="SMt-rS-2kg" eventType="touchUpInside" id="UMm-qZ-BMr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="192" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eYL-dV-KaK">
+                                <rect key="frame" x="0.0" y="117" width="393" height="652"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="sRi-Kl-z9w"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eYL-dV-KaK" firstAttribute="top" secondItem="me6-G6-YME" secondAttribute="bottom" constant="12" id="4hz-I3-qki"/>
+                            <constraint firstItem="me6-G6-YME" firstAttribute="centerX" secondItem="wKY-Xu-XBp" secondAttribute="centerX" id="AIl-Nn-jBb"/>
+                            <constraint firstItem="me6-G6-YME" firstAttribute="top" secondItem="sRi-Kl-z9w" secondAttribute="top" constant="4" id="Ffw-UQ-HZw"/>
+                            <constraint firstItem="eYL-dV-KaK" firstAttribute="trailing" secondItem="sRi-Kl-z9w" secondAttribute="trailing" id="Jbc-MQ-beX"/>
+                            <constraint firstItem="sRi-Kl-z9w" firstAttribute="bottom" secondItem="eYL-dV-KaK" secondAttribute="bottom" id="OCN-Xb-G2k"/>
+                            <constraint firstItem="eYL-dV-KaK" firstAttribute="leading" secondItem="sRi-Kl-z9w" secondAttribute="leading" id="r4j-uL-e4G"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7FV-Qh-lAs"/>
+                    <connections>
+                        <outlet property="completeButton" destination="j8P-i1-fpG" id="xGK-RC-R98"/>
+                        <outlet property="pendingButton" destination="HCw-31-r7d" id="1JC-Yf-cip"/>
+                        <outlet property="scheduledButton" destination="Jt9-B9-TLC" id="Bfg-RU-x0c"/>
+                        <outlet property="serviceTableView" destination="eYL-dV-KaK" id="Nkc-Ow-cUj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJy-2S-jwb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5123" y="-2235"/>
+            <point key="canvasLocation" x="5121.3740458015263" y="-2235.211267605634"/>
         </scene>
         <!--User Me View Controller-->
         <scene sceneID="4cE-5f-CTn">
@@ -3607,7 +3687,6 @@
                                             <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="hairButtonPressed:" destination="SCz-mo-11r" eventType="touchUpInside" id="V52-et-uhV"/>
                                             <action selector="ordersButtonPressed:" destination="Xe6-ge-Mdn" eventType="touchUpInside" id="1o8-ID-SMa"/>
                                         </connections>
                                     </button>
@@ -3627,7 +3706,6 @@
                                         </state>
                                         <connections>
                                             <action selector="beauticiansButtonPressed:" destination="Xe6-ge-Mdn" eventType="touchUpInside" id="Cdj-Bw-T7L"/>
-                                            <action selector="makeupButtonPressed:" destination="SCz-mo-11r" eventType="touchUpInside" id="1xj-Gs-Dvq"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGw-s9-pP5" customClass="MDCButton">
@@ -3645,7 +3723,6 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="lashesButtonPressed:" destination="SCz-mo-11r" eventType="touchUpInside" id="XRP-aS-MMA"/>
                                             <action selector="likesButtonPressed:" destination="Xe6-ge-Mdn" eventType="touchUpInside" id="Zh4-n4-aRD"/>
                                         </connections>
                                     </button>
@@ -3664,7 +3741,6 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="contentButtonPressed:" destination="SCz-mo-11r" eventType="touchUpInside" id="RAu-wh-QCe"/>
                                             <action selector="reviewsButtonPressed:" destination="Xe6-ge-Mdn" eventType="touchUpInside" id="UyF-hk-jKu"/>
                                         </connections>
                                     </button>
@@ -3676,7 +3752,7 @@
                                 <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cPm-fQ-EiL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cPm-fQ-EiL">
                                 <rect key="frame" x="0.0" y="232" width="393" height="540"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -3750,33 +3826,230 @@
             </objects>
             <point key="canvasLocation" x="5971.7557251908393" y="-2235.211267605634"/>
         </scene>
-        <!--View Controller-->
+        <!--Dashboard View Controller-->
         <scene sceneID="YvO-ti-RTn">
             <objects>
-                <viewController id="CDk-eP-H9a" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Dashboard" id="CDk-eP-H9a" customClass="DashboardViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V76-kO-e6S">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AE4-D8-i8E" customClass="BarChartView" customModule="DGCharts">
+                                <rect key="frame" x="0.0" y="197" width="393" height="572"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="IEi-7g-9xi">
+                                <rect key="frame" x="124.66666666666669" y="145" width="144" height="42"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjE-jw-XyF" customClass="MDCButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="42"/>
+                                        <color key="backgroundColor" red="0.62745098040000002" green="0.63529411759999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="gho-TP-xcU"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Weekly">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="weeklyButtonPressed:" destination="CDk-eP-H9a" eventType="touchUpInside" id="eDv-Ap-gD1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGa-Dz-icB" customClass="MDCButton">
+                                        <rect key="frame" x="51.999999999999986" y="0.0" width="56" height="42"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="udZ-rp-MPy"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Monthly">
+                                            <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="monthlyButtonPressed:" destination="CDk-eP-H9a" eventType="touchUpInside" id="UXF-Oq-i7r"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXL-aN-6ra" customClass="MDCButton">
+                                        <rect key="frame" x="109.99999999999999" y="0.0" width="34.000000000000014" height="42"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="QNi-dr-Bqy"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Total">
+                                            <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="totalButtonPressed:" destination="CDk-eP-H9a" eventType="touchUpInside" id="k44-M1-e26"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Your Item Type Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oNw-6S-yFK" customClass="MDCOutlinedTextField">
+                                <rect key="frame" x="16" y="59" width="361" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Your Item Title Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WZ-Yt-oVL" customClass="MDCOutlinedTextField">
+                                <rect key="frame" x="16" y="102" width="361" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yAl-CS-bqa" customClass="BarChartView" customModule="DGCharts">
+                                <rect key="frame" x="0.0" y="197" width="393" height="572"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-vt-mYX" customClass="PieChartView" customModule="DGCharts">
+                                <rect key="frame" x="0.0" y="197" width="393" height="572"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="7NK-Ez-8p9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yAl-CS-bqa" firstAttribute="leading" secondItem="7NK-Ez-8p9" secondAttribute="leading" id="0LM-9Z-e0g"/>
+                            <constraint firstItem="7NK-Ez-8p9" firstAttribute="trailing" secondItem="oNw-6S-yFK" secondAttribute="trailing" constant="16" id="1ns-OA-JXO"/>
+                            <constraint firstItem="oNw-6S-yFK" firstAttribute="leading" secondItem="7NK-Ez-8p9" secondAttribute="leading" constant="16" id="5ps-O3-O6s"/>
+                            <constraint firstItem="yAl-CS-bqa" firstAttribute="top" secondItem="IEi-7g-9xi" secondAttribute="bottom" constant="10" id="6mb-IS-aM2"/>
+                            <constraint firstItem="IEi-7g-9xi" firstAttribute="centerX" secondItem="V76-kO-e6S" secondAttribute="centerX" id="G3f-1N-ILq"/>
+                            <constraint firstItem="5WZ-Yt-oVL" firstAttribute="leading" secondItem="7NK-Ez-8p9" secondAttribute="leading" constant="16" id="M92-cv-Uwp"/>
+                            <constraint firstItem="5WZ-Yt-oVL" firstAttribute="top" secondItem="oNw-6S-yFK" secondAttribute="bottom" constant="9" id="Pyw-AK-68L"/>
+                            <constraint firstItem="oNw-6S-yFK" firstAttribute="top" secondItem="7NK-Ez-8p9" secondAttribute="top" id="Q1N-pI-owq"/>
+                            <constraint firstItem="7NK-Ez-8p9" firstAttribute="trailing" secondItem="5WZ-Yt-oVL" secondAttribute="trailing" constant="16" id="QhY-7S-DdV"/>
+                            <constraint firstItem="zzb-vt-mYX" firstAttribute="top" secondItem="IEi-7g-9xi" secondAttribute="bottom" constant="10" id="RFN-rp-EXQ"/>
+                            <constraint firstItem="AE4-D8-i8E" firstAttribute="trailing" secondItem="7NK-Ez-8p9" secondAttribute="trailing" id="Tgr-iX-9gY"/>
+                            <constraint firstItem="AE4-D8-i8E" firstAttribute="leading" secondItem="7NK-Ez-8p9" secondAttribute="leading" id="Vvx-gp-5NN"/>
+                            <constraint firstItem="AE4-D8-i8E" firstAttribute="top" secondItem="IEi-7g-9xi" secondAttribute="bottom" constant="10" id="XmE-XE-8wj"/>
+                            <constraint firstItem="7NK-Ez-8p9" firstAttribute="bottom" secondItem="zzb-vt-mYX" secondAttribute="bottom" id="beS-CM-lEJ"/>
+                            <constraint firstItem="7NK-Ez-8p9" firstAttribute="bottom" secondItem="AE4-D8-i8E" secondAttribute="bottom" id="cb8-2U-B8e"/>
+                            <constraint firstItem="zzb-vt-mYX" firstAttribute="trailing" secondItem="7NK-Ez-8p9" secondAttribute="trailing" id="f3p-B8-kfO"/>
+                            <constraint firstItem="yAl-CS-bqa" firstAttribute="bottom" secondItem="7NK-Ez-8p9" secondAttribute="bottom" id="fpi-gH-YeR"/>
+                            <constraint firstItem="zzb-vt-mYX" firstAttribute="leading" secondItem="7NK-Ez-8p9" secondAttribute="leading" id="kSZ-xJ-1ZU"/>
+                            <constraint firstItem="IEi-7g-9xi" firstAttribute="top" secondItem="5WZ-Yt-oVL" secondAttribute="bottom" constant="9" id="ssM-D0-8ad"/>
+                            <constraint firstItem="yAl-CS-bqa" firstAttribute="trailing" secondItem="7NK-Ez-8p9" secondAttribute="trailing" id="wb4-7r-FJ4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EqM-UQ-GOI"/>
+                    <connections>
+                        <outlet property="itemTitle" destination="5WZ-Yt-oVL" id="GHG-uC-zl6"/>
+                        <outlet property="itemType" destination="oNw-6S-yFK" id="9PL-EG-ZmC"/>
+                        <outlet property="monthlyBarChart" destination="yAl-CS-bqa" id="YZZ-r4-bCJ"/>
+                        <outlet property="monthlyButton" destination="iGa-Dz-icB" id="qDy-ZH-DGm"/>
+                        <outlet property="totalButton" destination="qXL-aN-6ra" id="lSn-3j-PJi"/>
+                        <outlet property="totalPieChart" destination="zzb-vt-mYX" id="ZjB-0j-Vq2"/>
+                        <outlet property="weeklyBarChart" destination="AE4-D8-i8E" id="6z0-7d-s2J"/>
+                        <outlet property="weeklyButton" destination="TjE-jw-XyF" id="m3b-hZ-doO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DuP-8g-yyV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10094" y="-2235"/>
+            <point key="canvasLocation" x="10093.893129770991" y="-2235.211267605634"/>
         </scene>
-        <!--View Controller-->
+        <!--Beautician Orders View Controller-->
         <scene sceneID="Z33-zT-uvD">
             <objects>
-                <viewController id="Q3G-iP-Kx5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BeauticianOrders" id="Q3G-iP-Kx5" customClass="BeauticianOrdersViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yrC-cZ-G9e">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hOm-yM-G44">
+                                <rect key="frame" x="96.666666666666686" y="59" width="200" height="42"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44b-tK-nr5" customClass="MDCButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="42"/>
+                                        <color key="backgroundColor" red="0.62745098040000002" green="0.63529411759999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="t9v-QY-qKa"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Pending">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pendingButtonPressed:" destination="Q3G-iP-Kx5" eventType="touchUpInside" id="NRj-vG-8o0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkQ-gm-lxp" customClass="MDCButton">
+                                        <rect key="frame" x="57.999999999999986" y="0.0" width="73.000000000000014" height="42"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="wLU-Xj-BoQ"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Scheduled">
+                                            <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="scheduledButtonPressed:" destination="Q3G-iP-Kx5" eventType="touchUpInside" id="x2G-h2-N1a"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTi-dG-OxC" customClass="MDCButton">
+                                        <rect key="frame" x="133" y="0.0" width="67" height="42"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="bxS-CK-o0E"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Complete">
+                                            <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="completeButtonPressed:" destination="Q3G-iP-Kx5" eventType="touchUpInside" id="awd-dS-Rss"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="192" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5h3-DF-5WM">
+                                <rect key="frame" x="0.0" y="113" width="393" height="652"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="652" id="3bf-RR-vbg"/>
+                                </constraints>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="IF6-cO-rjc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5h3-DF-5WM" firstAttribute="top" secondItem="hOm-yM-G44" secondAttribute="bottom" constant="12" id="EnR-XL-eAB"/>
+                            <constraint firstItem="hOm-yM-G44" firstAttribute="top" secondItem="IF6-cO-rjc" secondAttribute="top" id="kZX-cJ-R4H"/>
+                            <constraint firstItem="5h3-DF-5WM" firstAttribute="trailing" secondItem="IF6-cO-rjc" secondAttribute="trailing" id="mhS-w9-VBr"/>
+                            <constraint firstItem="5h3-DF-5WM" firstAttribute="leading" secondItem="IF6-cO-rjc" secondAttribute="leading" id="rgm-Q9-Bc2"/>
+                            <constraint firstItem="hOm-yM-G44" firstAttribute="centerX" secondItem="yrC-cZ-G9e" secondAttribute="centerX" id="tzx-qR-z3P"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sq2-Vd-1cR"/>
+                    <connections>
+                        <outlet property="completeButton" destination="qTi-dG-OxC" id="UEn-gu-l8y"/>
+                        <outlet property="pendingButton" destination="44b-tK-nr5" id="z17-ma-IDr"/>
+                        <outlet property="scheduledButton" destination="DkQ-gm-lxp" id="Gia-Tt-Pnt"/>
+                        <outlet property="serviceTableView" destination="5h3-DF-5WM" id="3gS-6n-VF8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SxO-yp-bM7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -135,6 +135,7 @@ func secondGlobalContainerScheme() -> MDCContainerScheming {
   return containerScheme
 }
 
+
 func searchForSpecialChar(search: String) -> Bool {
     let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
     if search.rangeOfCharacter(from: characterset.inverted) != nil {

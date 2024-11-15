@@ -61,7 +61,7 @@ class OrderDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm a"
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm a"
 
         if item != nil {
             self.itemTitle.text = item!.itemTitle
