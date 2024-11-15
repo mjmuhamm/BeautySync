@@ -67,7 +67,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
             if self.time != "Yearly" {
                 self.loadItemTitles(item: item)
             } else {
-//            self.loadItemYearlyData(itemTitle: item)
+            self.loadItemYearlyData(itemTitle: item)
             }
         }
         itemMenu.anchorView = itemTitle
@@ -110,6 +110,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     }
     @IBAction func weeklyButtonPressed(_ sender: Any) {
         time = "Weekly"
+        itemTypeMenu.dataSource = ["Hair Items", "Makeup Items", "Lash Items"]
         self.itemTitle.text = ""
         self.itemType.text = ""
         weeklyBarChart.isHidden = false
@@ -132,6 +133,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     
     @IBAction func monthlyButtonPressed(_ sender: Any) {
         time = "Monthly"
+        itemTypeMenu.dataSource = ["Hair Items", "Makeup Items", "Lash Items"]
         self.itemTitle.text = ""
         self.itemType.text = ""
         weeklyBarChart.isHidden = true
@@ -151,6 +153,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     
     @IBAction func totalButtonPressed(_ sender: Any) {
         time = "Yearly"
+        itemTypeMenu.dataSource = ["All", "Hair Items", "Makeup Items", "Lash Items"]
         self.itemTitle.text = ""
         self.itemType.text = ""
         weeklyBarChart.isHidden = true
@@ -387,6 +390,84 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         
            
     
+    }
+    
+    
+    private func loadItemYearlyData(itemTitle: String) {
+        if Auth.auth().currentUser != nil {
+            var pieChartData : [PieChartDataEntry] = []
+            self.totalPieChart.clearValues()
+            self.totalPieChart.clear()
+            
+            var itemType = ""
+            if self.itemType.text == "Hair Items" { itemType = "hairItems" } else if self.itemType.text == "Makeup Items" { itemType = "makeupItems" } else if self.itemType.text == "Lash Items" { itemType = "lashItems" }
+            
+            
+            var array1 = ["hairItems", "makeupItems", "lashItems"]
+            var totalItems : [DashboardTotal] = []
+                if self.itemType.text == "All" {
+                    print("this is happening")
+                    for i in 0..<3 {
+                        db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(array1[i]).getDocument { document, error in
+                            
+                            if error == nil {
+                                if document != nil {
+                                    if let total = document!.get("totalPay") {
+                                        pieChartData.append(PieChartDataEntry(value: Double(String(format: "%2.f", Double("\(total)")!))!, label: array1[i]))
+                                        
+                                        let set = PieChartDataSet(entries: pieChartData)
+                                        set.colors = ChartColorTemplates.pastel()
+                                        self.totalPieChart.entryLabelColor = .clear
+                                        set.entryLabelFont = .systemFont(ofSize: 11)
+                                        let data = PieChartData(dataSet: set)
+                                        self.totalPieChart.data = data
+                                        self.totalPieChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInOutQuart)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                } else {
+                    db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection(itemType).getDocuments { documents, error in
+                        
+                        if error == nil {
+                            if documents?.documents != nil {
+                                for doc in documents!.documents {
+                                    let data = doc.data()
+                                    
+                                    if let itemTitle = data["itemTitle"] as? String {
+                                        
+                                        self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(itemType).collection(doc.documentID).document("Total").getDocument { document, error in
+                                            
+                                            if error == nil {
+                                                if document != nil {
+                                                    if let total = document?.get("totalPay") {
+                                                        print("total \(total)")
+                                                        print("item title \(itemTitle)")
+                                                        
+                                                        pieChartData.append(PieChartDataEntry(value: Double(String(format: "%2.f", Double("\(total)")!))!, label: itemTitle))
+                                                        self.totalPieChart.entryLabelColor = .clear
+                                                        
+                                                        let set = PieChartDataSet(entries: pieChartData)
+                                                        set.colors = ChartColorTemplates.pastel()
+                                                        set.entryLabelFont = .systemFont(ofSize: 11)
+                                                        let data = PieChartData(dataSet: set)
+                                                        self.totalPieChart.data = data
+                                                        self.totalPieChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInOutQuart)
+                                                        
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            
+                        }
+                    }
+                }
+            }
+        }
     }
     
     

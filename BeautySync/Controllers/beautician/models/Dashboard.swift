@@ -11,3 +11,8 @@ struct DashboardItems {
     let itemTitle: String
     let documentId: String
 }
+
+struct DashboardTotal {
+    let itemTitle: String
+    let totalPay: Double
+}
