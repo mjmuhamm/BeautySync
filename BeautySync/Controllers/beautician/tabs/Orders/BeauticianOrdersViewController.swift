@@ -195,6 +195,9 @@ extension BeauticianOrdersViewController: UITableViewDelegate, UITableViewDataSo
             
             let calendar = Calendar(identifier: .gregorian)
             var currentWeek = calendar.component(.weekOfMonth, from: Date())
+            if currentWeek == 5 {
+                currentWeek = 4
+            }
             print("currentWeek \(currentWeek)")
             if self.orderType == "pending" {
                 
