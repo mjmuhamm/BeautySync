@@ -31,5 +31,6 @@ struct CheckoutItems {
     let streetAddress: String
     let zipCode: String
     let noteToBeautician: String
+    let itemId: String
     
 }

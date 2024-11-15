@@ -32,5 +32,6 @@ struct Orders {
     let notesToBeautician: String
     let userImageId: String
     let status: String
+    let itemId: String
     
 }

@@ -121,7 +121,7 @@ class OrderDetailsViewController: UIViewController {
         var b = date1.suffix(2)
         var c = "\(a) \(b)"
         
-        let data : [String: Any] = ["itemType" :  item!.itemType, "itemTitle" : self.itemTitle.text!, "itemDescription" : self.itemDescription.text!, "itemPrice" : item!.itemPrice, "imageCount" : item!.imageCount, "beauticianUsername" : item!.beauticianUsername, "beauticianPassion" : item!.beauticianPassion, "beauticianCity" : city, "beauticianState": state, "beauticianImageId" : item!.beauticianImageId, "liked" : item!.liked, "itemOrders" : item!.itemOrders, "itemRating" : item!.itemRating, "hashtags" : item!.hashtags, "eventDay" : "\(date1)".prefix(10), "eventTime": c, "streetAddress" : streetAddress, "zipCode" : zipCode, "notesToBeautician" : notesToBeautician.text!]
+        let data : [String: Any] = ["itemType" :  item!.itemType, "itemTitle" : self.itemTitle.text!, "itemDescription" : self.itemDescription.text!, "itemPrice" : item!.itemPrice, "imageCount" : item!.imageCount, "beauticianUsername" : item!.beauticianUsername, "beauticianPassion" : item!.beauticianPassion, "beauticianCity" : city, "beauticianState": state, "beauticianImageId" : item!.beauticianImageId, "liked" : item!.liked, "itemOrders" : item!.itemOrders, "itemRating" : item!.itemRating, "hashtags" : item!.hashtags, "eventDay" : "\(date1)".prefix(10), "eventTime": c, "streetAddress" : streetAddress, "zipCode" : zipCode, "notesToBeautician" : notesToBeautician.text!, "itemId" : item!.documentId]
         
         self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Cart").document().setData(data) { error in
             if error == nil {

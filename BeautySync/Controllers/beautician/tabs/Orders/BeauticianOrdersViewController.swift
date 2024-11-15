@@ -90,10 +90,10 @@ class BeauticianOrdersViewController: UIViewController {
                         let data = doc.data()
                         
                         
-                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String], let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let notesToBeautician = data["notesToBeautician"] as? String, let userImageId = data["userImageId"] as? String, let status = data["status"] as? String {
+                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String], let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let notesToBeautician = data["notesToBeautician"] as? String, let userImageId = data["userImageId"] as? String, let status = data["status"] as? String, let itemId = data["itemId"] as? String {
                             
                             if status == orderType {
-                                let x = Orders(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID, eventDay: eventDay, eventTime: eventTime, streetAddress: streetAddress, zipCode: zipCode, notesToBeautician: notesToBeautician, userImageId: userImageId, status: status)
+                                let x = Orders(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID, eventDay: eventDay, eventTime: eventTime, streetAddress: streetAddress, zipCode: zipCode, notesToBeautician: notesToBeautician, userImageId: userImageId, status: status, itemId: itemId)
                                 
                                 if self.orders.isEmpty {
                                     self.orders.append(x)
@@ -197,33 +197,95 @@ extension BeauticianOrdersViewController: UITableViewDelegate, UITableViewDataSo
             var currentWeek = calendar.component(.weekOfMonth, from: Date())
             print("currentWeek \(currentWeek)")
             if self.orderType == "pending" {
-            self.db.collection("Orders").document(item.documentId).getDocument { document, error in
-                if error == nil {
-                    if document != nil {
-                        let data = document!.data()
-                        
-                        if let status = data!["status"] as? String {
-                            if status != "cancelled" {
-                                if let index = self.orders.firstIndex(where: { $0.documentId == item.documentId }) {
-                                    let data : [String: Any] = ["status" : "scheduled"]
-                                    self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Orders").document(item.documentId).updateData(data)
-                                    self.db.collection("User").document(item.userImageId).collection("Orders").document(item.documentId).updateData(data)
-                                    self.db.collection("Orders").document(item.documentId).updateData(data)
-                                    self.orders.remove(at: index)
-                                    self.serviceTableView.deleteRows(at: [IndexPath(item:index, section: 0)], with: .fade)
+                
+                let data : [String: Any] = ["totalPay" : Double(item.itemPrice)!]
+                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(item.itemType).collection(item.itemId).document("Month").collection(yearMonth).document("Week").collection("Week \(currentWeek)").document().setData(data)
+                
+                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(item.itemType).collection(item.itemId).document("Month").collection(yearMonth).document("Total").getDocument(completion: { document, error in
+                    if error == nil {
+                        if document != nil {
+                            if document!.exists {
+                                let data = document!.data()
+                                if data != nil {
+                                    if let total = data?["totalPay"] as? Double {
+                                        let data5 : [String : Any] = ["totalPay" : total + Double(item.itemPrice)!]
+                                        self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(item.itemType).collection(item.itemId).document("Month").collection(yearMonth).document("Total").updateData(data5)
+                                    }
                                 }
                             } else {
-                                
-                                if let index = self.orders.firstIndex(where: { $0.documentId == item.documentId }) {
-                                    self.showToast(message: "This item has been cancelled by the User.", font: .systemFont(ofSize: 12))
-                                    self.orders.remove(at: index)
-                                    self.serviceTableView.deleteRows(at: [IndexPath(item:index, section: 0)], with: .fade)
+                                let data5 : [String : Any] = ["totalPay" : Double(item.itemPrice)!]
+                                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(item.itemType).collection(item.itemId).document("Month").collection(yearMonth).document("Total").setData(data5)
+                            }
+                        }
+                    }
+                })
+                
+                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(item.itemType).getDocument { document, error in
+                    if error == nil {
+                        if document != nil {
+                            if document!.exists {
+                                let data = document!.data()
+                                if data != nil {
+                                    if let total = data?["totalPay"] as? Double {
+                                        let data5 : [String : Any] = ["totalPay" : total + Double(item.itemPrice)!]
+                                        self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(item.itemType).updateData(data5)
+                                    }
                                 }
+                            } else {
+                                let data5 : [String : Any] = ["totalPay" : Double(item.itemPrice)!]
+                                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(item.itemType).setData(data5)
+                            }
+                        }
+                    }
+                }
+                
+                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(item.itemType).collection(item.itemId).document("Total").getDocument { document, error in
+                    if error == nil {
+                        if document != nil {
+                            if document!.exists {
+                                let data = document!.data()
+                                
+                                if let total = data?["totalPay"] as? Double {
+                                    let data5 : [String : Any] = ["totalPay" : total + Double(item.itemPrice)!]
+                                    self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(item.itemType).collection(item.itemId).document("Total").updateData(data5)
+                                }
+                            } else {
+                                let data5 : [String : Any] = ["totalPay" : Double(item.itemPrice)!]
+                                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(item.itemType).collection(item.itemId).document("Total").setData(data5)
                             }
                         }
                     }
                     }
-                }
+                
+                self.db.collection("Orders").document(item.documentId).getDocument { document, error in
+                    if error == nil {
+                        if document != nil {
+                            let data = document!.data()
+                            
+                            if let status = data!["status"] as? String {
+                                if status != "cancelled" {
+                                    if let index = self.orders.firstIndex(where: { $0.documentId == item.documentId }) {
+                                        let data : [String: Any] = ["status" : "scheduled"]
+                                        self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Orders").document(item.documentId).updateData(data)
+                                        self.db.collection("User").document(item.userImageId).collection("Orders").document(item.documentId).updateData(data)
+                                        self.db.collection("Orders").document(item.documentId).updateData(data)
+                                        self.orders.remove(at: index)
+                                        self.serviceTableView.deleteRows(at: [IndexPath(item:index, section: 0)], with: .fade)
+                                    }
+                                } else {
+                                    
+                                    if let index = self.orders.firstIndex(where: { $0.documentId == item.documentId }) {
+                                        self.showToast(message: "This item has been cancelled by the User.", font: .systemFont(ofSize: 12))
+                                        self.orders.remove(at: index)
+                                        self.serviceTableView.deleteRows(at: [IndexPath(item:index, section: 0)], with: .fade)
+                                    }
+                                }
+                            }
+                        }
+                        }
+                    }
+            } else {
+                //messaging
             }
             
             
