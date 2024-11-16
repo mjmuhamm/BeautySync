@@ -26,11 +26,15 @@ class OrdersViewController: UIViewController {
     
     @IBOutlet weak var serviceTableView: UITableView!
     
+    let dateFormatter = DateFormatter()
+    
     private var orders: [Orders] = []
     private var orderType = "pending"
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm a"
 
         serviceTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersReusableCell")
         serviceTableView.delegate = self
@@ -110,6 +114,30 @@ class OrdersViewController: UIViewController {
         }
     }
     
+    private func compareDates(eventDay: String, eventTime: String) {
+       
+    }
+    
+    func showToast(message : String, font: UIFont) {
+        
+        let toastLabel = UILabel(frame: CGRect(x: 0, y: self.view.frame.size.height-180, width: (self.view.frame.width), height: 70))
+        toastLabel.backgroundColor = UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1)
+        toastLabel.textColor = UIColor.white
+        toastLabel.font = font
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.numberOfLines = 4
+        toastLabel.layer.cornerRadius = 1;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+             toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    }
+        
 }
 
 extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
@@ -160,6 +188,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.cancelButtonTapped = {
+           
             let alert = UIAlertController(title: "Are you sure you want to cancel this appointment?", message: nil, preferredStyle: .actionSheet)
             
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (handler) in
