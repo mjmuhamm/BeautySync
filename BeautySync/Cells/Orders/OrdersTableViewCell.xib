@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrdersReusableCell" rowHeight="215" id="KGk-i7-Jjw" customClass="OrdersTableViewCell" customModule="BeautySync" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="223"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrdersReusableCell" rowHeight="231" id="KGk-i7-Jjw" customClass="OrdersTableViewCell" customModule="BeautySync" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="239"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="393" height="223"/>
+                <rect key="frame" x="0.0" y="0.0" width="393" height="239"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hair Items" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1b-Em-5aQ">
@@ -25,7 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Date: 11-22-2027" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4H9-rz-umc">
-                        <rect key="frame" x="11" y="49" width="159" height="15.666666666666671"/>
+                        <rect key="frame" x="11" y="73" width="159" height="15.666666666666671"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                         <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -38,13 +38,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: 2412 Beatties Ford Road, Charlotte NC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1b4-nM-94h">
-                        <rect key="frame" x="10" y="74.666666666666671" width="373" height="16"/>
+                        <rect key="frame" x="10" y="98.666666666666671" width="373" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfC-ab-thU" customClass="MDCButton">
-                        <rect key="frame" x="11" y="170.33333333333334" width="39" height="36"/>
+                        <rect key="frame" x="11" y="194.33333333333334" width="39" height="36"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="4sx-sd-s5n"/>
@@ -60,7 +60,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xB1-Zx-91e" customClass="MDCButton">
-                        <rect key="frame" x="236" y="170.33333333333334" width="146" height="36"/>
+                        <rect key="frame" x="236" y="194.33333333333334" width="146" height="36"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="ARb-Yj-otO"/>
                         </constraints>
@@ -73,7 +73,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2XL-9r-AzY" customClass="MDCButton">
-                        <rect key="frame" x="11" y="129.33333333333334" width="146" height="31"/>
+                        <rect key="frame" x="11" y="153.33333333333334" width="146" height="31"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="31" id="EAb-dp-QWK"/>
                         </constraints>
@@ -87,9 +87,15 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes: This is a sample note to beautician" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8OI-6v-ZL4">
-                        <rect key="frame" x="10" y="100.66666666666667" width="373" height="15.666666666666671"/>
+                        <rect key="frame" x="10" y="124.66666666666667" width="373" height="15.666666666666671"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User: @mjmuhamm93" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x37-Sr-sUc">
+                        <rect key="frame" x="11" y="48" width="140" height="16"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                        <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -104,7 +110,7 @@
                     <constraint firstItem="OfC-ab-thU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="MpW-rf-dex"/>
                     <constraint firstAttribute="trailing" secondItem="8OI-6v-ZL4" secondAttribute="trailing" constant="10" id="Nmx-KT-PQt"/>
                     <constraint firstItem="B1b-Em-5aQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="PTy-D4-4kF"/>
-                    <constraint firstItem="4H9-rz-umc" firstAttribute="top" secondItem="Dp9-lv-AbU" secondAttribute="bottom" constant="11.666666666666671" id="T5H-Ra-UYc"/>
+                    <constraint firstItem="4H9-rz-umc" firstAttribute="top" secondItem="Dp9-lv-AbU" secondAttribute="bottom" constant="35.666666666666671" id="T5H-Ra-UYc"/>
                     <constraint firstItem="1b4-nM-94h" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WQv-aG-Of0"/>
                     <constraint firstItem="8OI-6v-ZL4" firstAttribute="top" secondItem="1b4-nM-94h" secondAttribute="bottom" constant="10" id="djL-yI-jnc"/>
                     <constraint firstItem="Dp9-lv-AbU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="fED-95-5b8"/>
@@ -115,6 +121,8 @@
                     <constraint firstItem="2XL-9r-AzY" firstAttribute="top" secondItem="8OI-6v-ZL4" secondAttribute="bottom" constant="12.999999999999972" id="qIA-OF-ELW"/>
                     <constraint firstAttribute="trailing" secondItem="xB1-Zx-91e" secondAttribute="trailing" constant="11" id="r9R-mp-6ey"/>
                     <constraint firstItem="4H9-rz-umc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="u5W-h4-AuM"/>
+                    <constraint firstItem="x37-Sr-sUc" firstAttribute="top" secondItem="Dp9-lv-AbU" secondAttribute="bottom" constant="10.67" id="vfr-Kr-N2i"/>
+                    <constraint firstItem="x37-Sr-sUc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="wgY-hF-s0L"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -128,8 +136,9 @@
                 <outlet property="messagesForSchedulingButton" destination="2XL-9r-AzY" id="uVX-1F-kdx"/>
                 <outlet property="notesToBeautician" destination="8OI-6v-ZL4" id="iJ5-dt-yXS"/>
                 <outlet property="serviceDate" destination="4H9-rz-umc" id="57p-Zb-noP"/>
+                <outlet property="userName" destination="x37-Sr-sUc" id="lk3-gP-dX9"/>
             </connections>
-            <point key="canvasLocation" x="194.6564885496183" y="77.816901408450704"/>
+            <point key="canvasLocation" x="194.6564885496183" y="83.450704225352112"/>
         </tableViewCell>
     </objects>
     <resources>

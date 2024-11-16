@@ -25,7 +25,7 @@ class CheckoutViewController: UIViewController {
     
     var paymentSheet: PaymentSheet?
     private var paymentId = ""
-    let backendCheckoutUrl = URL(string: "https://beautysync-stripeserver.onrender.com/create-payment-intent")!
+    let backendCheckoutUrl = URL(string: "http://beautysync-stripeserver.onrender.com/create-payment-intent")!
     
 //    let backendCheckoutUrl = URL(string: "http://10.0.1.68:4242/create-payment-intent")!
     @IBOutlet weak var serviceTableView: UITableView!
@@ -38,6 +38,8 @@ class CheckoutViewController: UIViewController {
     var totalPrice = 0.0
     
     @IBOutlet weak var payButton: MDCButton!
+    
+    var userName = ""
     
     var items : [CheckoutItems] = []
     override func viewDidLoad() {
@@ -54,6 +56,7 @@ class CheckoutViewController: UIViewController {
         payButton.layer.cornerRadius = 2
         
         loadItems()
+        loadUsername()
         
     }
     
@@ -62,6 +65,22 @@ class CheckoutViewController: UIViewController {
     }
     
     @IBAction func payButtonPressed(_ sender: Any) {
+    }
+    
+    private func loadUsername() {
+        db.collection("User").document(Auth.auth().currentUser!.uid).collection("PersonalInfo").getDocuments { documents, error in
+            if error == nil {
+                if documents != nil {
+                    for doc in documents!.documents {
+                        let data = doc.data()
+                        
+                        if let userName = data["userName"] as? String {
+                            self.userName = userName
+                        }
+                    }
+                }
+            }
+        }
     }
     
     private func loadItems() {
@@ -196,9 +215,9 @@ class CheckoutViewController: UIViewController {
         for i in 0..<items.count {
             var documentId = UUID().uuidString
             
-            let data : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId]
+            let data : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId, "userName" : self.userName]
             
-            let data1 : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "paymentId" : self.paymentId, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId]
+            let data1 : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "paymentId" : self.paymentId, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId, "userName" : self.userName]
             
             db.collection("User").document(Auth.auth().currentUser!.uid).collection("Orders").document(documentId).setData(data)
             db.collection("Orders").document(documentId).setData(data1)

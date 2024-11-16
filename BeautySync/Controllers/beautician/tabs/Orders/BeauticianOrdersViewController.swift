@@ -90,10 +90,10 @@ class BeauticianOrdersViewController: UIViewController {
                         let data = doc.data()
                         
                         
-                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String], let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let notesToBeautician = data["notesToBeautician"] as? String, let userImageId = data["userImageId"] as? String, let status = data["status"] as? String, let itemId = data["itemId"] as? String {
+                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String], let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let notesToBeautician = data["notesToBeautician"] as? String, let userImageId = data["userImageId"] as? String, let status = data["status"] as? String, let itemId = data["itemId"] as? String, let userName = data["userName"] as? String {
                             
                             if status == orderType {
-                                let x = Orders(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID, eventDay: eventDay, eventTime: eventTime, streetAddress: streetAddress, zipCode: zipCode, notesToBeautician: notesToBeautician, userImageId: userImageId, status: status, itemId: itemId)
+                                let x = Orders(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID, eventDay: eventDay, eventTime: eventTime, streetAddress: streetAddress, zipCode: zipCode, notesToBeautician: notesToBeautician, userImageId: userImageId, userName: userName, status: status, itemId: itemId)
                                 
                                 if self.orders.isEmpty {
                                     self.orders.append(x)
@@ -161,6 +161,7 @@ extension BeauticianOrdersViewController: UITableViewDelegate, UITableViewDataSo
         } else {
             note = "Note: \(item.notesToBeautician)"
         }
+        cell.userName.text = "User: @\(item.userName)"
         cell.notesToBeautician.text = "\(note)"
         
         if self.orderType == "pending" {
@@ -183,6 +184,7 @@ extension BeauticianOrdersViewController: UITableViewDelegate, UITableViewDataSo
             cell.messagesButton.isUppercaseTitle = false
         }
         
+       
         cell.messagesButtonTapped = {
             let month = "\(self.df.string(from: Date()))".prefix(2)
             let year = "\(self.df.string(from: Date()))".prefix(10).suffix(4)
@@ -289,11 +291,12 @@ extension BeauticianOrdersViewController: UITableViewDelegate, UITableViewDataSo
                     }
             } else {
                 //messaging
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Messages") as? MessagesViewController {
+                    vc.beauticianOrUser = "Beautician"
+                    vc.item = item
+                    self.present(vc, animated: true, completion: nil)
+                }
             }
-            
-            
-            
-            
         }
         
         cell.cancelButtonTapped = {
@@ -309,6 +312,14 @@ extension BeauticianOrdersViewController: UITableViewDelegate, UITableViewDataSo
             }))
             
             self.present(alert, animated: true, completion: nil)
+        }
+        
+        cell.messagesForSchedulingButtonTapped = {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Messages") as? MessagesViewController {
+                vc.beauticianOrUser = "Beautician"
+                vc.item = item
+                self.present(vc, animated: true, completion: nil)
+            }
         }
         
         return cell

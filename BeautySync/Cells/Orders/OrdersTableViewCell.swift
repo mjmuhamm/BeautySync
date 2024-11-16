@@ -19,6 +19,7 @@ class OrdersTableViewCell: UITableViewCell {
     @IBOutlet weak var serviceDate: UILabel!
     @IBOutlet weak var location: UILabel!
     
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var notesToBeautician: UILabel!
     
     @IBOutlet weak var messagesForSchedulingButton: MDCButton!
