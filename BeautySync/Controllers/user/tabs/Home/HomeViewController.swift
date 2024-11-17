@@ -22,16 +22,16 @@ class HomeViewController: UIViewController {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
-    @IBOutlet weak var hairButton: MDCButton!
-    @IBOutlet weak var makeupButton: MDCButton!
-    @IBOutlet weak var lashButton: MDCButton!
+    @IBOutlet weak var hairCareButton: MDCButton!
+    @IBOutlet weak var skinCareButton: MDCButton!
+    @IBOutlet weak var nailCareButton: MDCButton!
     
     @IBOutlet weak var checkoutPrice: UILabel!
     @IBOutlet weak var itemTableView: UITableView!
     
     var items: [ServiceItems] = []
     
-    var itemType = "hairItems"
+    var itemType = "hairCareItems"
     private var totalPrice = 0.0
     private var cart : [String] = []
     
@@ -46,37 +46,37 @@ class HomeViewController: UIViewController {
         loadCart()
     }
     
-    @IBAction func hairButtonPressed(_ sender: Any) {
-        itemType = "hairItems"
+    @IBAction func hairCareButtonPressed(_ sender: Any) {
+        itemType = "hairCareItems"
         loadItems(itemType: itemType)
-        hairButton.setTitleColor(UIColor.white, for: .normal)
-        hairButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
-        makeupButton.backgroundColor = UIColor.white
-        makeupButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
-        lashButton.backgroundColor = UIColor.white
-        lashButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        hairCareButton.setTitleColor(UIColor.white, for: .normal)
+        hairCareButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+        skinCareButton.backgroundColor = UIColor.white
+        skinCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        nailCareButton.backgroundColor = UIColor.white
+        nailCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
     }
     
-    @IBAction func makeupButtonPressed(_ sender: Any) {
-        itemType = "makeupItems"
+    @IBAction func skinCareButtonPressed(_ sender: Any) {
+        itemType = "skinCareItems"
         loadItems(itemType: itemType)
-        hairButton.backgroundColor = UIColor.white
-        hairButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
-        makeupButton.setTitleColor(UIColor.white, for: .normal)
-        makeupButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
-        lashButton.backgroundColor = UIColor.white
-        lashButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        hairCareButton.backgroundColor = UIColor.white
+        hairCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        skinCareButton.setTitleColor(UIColor.white, for: .normal)
+        skinCareButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+        nailCareButton.backgroundColor = UIColor.white
+        nailCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
     }
     
-    @IBAction func lashButtonPressed(_ sender: Any) {
-        itemType = "lashItems"
+    @IBAction func nailCareButtonPressed(_ sender: Any) {
+        itemType = "nailCareItems"
         loadItems(itemType: itemType)
-        hairButton.backgroundColor = UIColor.white
-        hairButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
-        makeupButton.backgroundColor = UIColor.white
-        makeupButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
-        lashButton.setTitleColor(UIColor.white, for: .normal)
-        lashButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+        hairCareButton.backgroundColor = UIColor.white
+        hairCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        skinCareButton.backgroundColor = UIColor.white
+        skinCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        nailCareButton.setTitleColor(UIColor.white, for: .normal)
+        nailCareButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
     }
     
     
@@ -243,12 +243,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.itemLikeImage.image = UIImage(systemName: "heart.fill")
                 cell.itemLikes.text = "\(Int(cell.itemLikes.text!)! + 1)"
                 self.db.collection(item.itemType).document(item.documentId).updateData(["liked" : FieldValue.arrayUnion(["\(Auth.auth().currentUser!.uid)"])])
-                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("UserLikes").document(item.documentId).setData(data)
+                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Likes").document(item.documentId).setData(data)
             } else {
                 cell.itemLikeImage.image = UIImage(systemName: "heart")
                 self.db.collection(item.itemType).document(item.documentId).updateData(["liked" : FieldValue.arrayRemove(["\(Auth.auth().currentUser!.uid)"])])
                 cell.itemLikes.text = "\(Int(cell.itemLikes.text!)! - 1)"
-                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("UserLikes").document(item.documentId).delete()
+                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Likes").document(item.documentId).delete()
             }
         }
         

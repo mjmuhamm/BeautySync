@@ -89,9 +89,8 @@ class ServiceItemsViewController: UIViewController {
                 serviceItemId = item!.documentId
             }
             var item1 = ""
-            if itemType == "Hair Item" { item1 = "hairItems" } else if itemType == "Makeup Item" { item1 = "makeupItems" } else if itemType == "Lash Item" { item1 = "lashItems" }
+            if itemType == "Hair Care Item" { item1 = "hairCareItems" } else if itemType == "Skin Care Item" { item1 = "skinCareItems" } else if itemType == "Nail Care Item" { item1 = "nailCareItems" }
             for i in 0..<item!.imageCount {
-                print("path123456 \(item1)/\(Auth.auth().currentUser!.uid)/\(serviceItemId)/\(serviceItemId)\(i).png")
                 var path = "\(item1)/\(Auth.auth().currentUser!.uid)/\(serviceItemId)/\(serviceItemId)\(i).png"
                 storage.reference().child(path).downloadURL { url, error in
                     if error == nil {
@@ -125,7 +124,7 @@ class ServiceItemsViewController: UIViewController {
   
     @IBAction func deleteButtonPressed(_ sender: Any) {
         var item1 = ""
-        if itemType == "Hair Item" { item1 = "hairItems" } else if itemType == "Makeup Item" { item1 = "makeupItems" } else if itemType == "Lash Item" { item1 = "lashItems" }
+        if itemType == "Hair Care Item" { item1 = "hairCareItems" } else if itemType == "Skin Care Item" { item1 = "skinCareItems" } else if itemType == "Nail Care Item" { item1 = "nailCareItems" }
         let storageRef = self.storage.reference()
         
         let alert = UIAlertController(title: "Are you sure you want to delete this item?", message: nil, preferredStyle: .actionSheet)
@@ -158,7 +157,7 @@ class ServiceItemsViewController: UIViewController {
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
         var item1 = ""
-        if itemType == "Hair Item" { item1 = "hairItems" } else if itemType == "Makeup Item" { item1 = "makeupItems" } else if itemType == "Lash Item" { item1 = "lashItems" }
+        if itemType == "Hair Care Item" { item1 = "hairCareItems" } else if itemType == "Skin Care Item" { item1 = "skinCareItems" } else if itemType == "Nail Care Item" { item1 = "nailCareItems" }
         
         if imgArr.count > 0 {
             if newOrEdit == "edit" {
@@ -269,12 +268,12 @@ class ServiceItemsViewController: UIViewController {
         activityIndicator.startAnimating()
         
         var item = ""
-        if self.itemType == "Hair Item" {
-            item = "hairItems"
-        } else if self.itemType == "Makeup Item" {
-            item = "makeupItems"
-        } else if self.itemType == "Lash Item" {
-            item = "lashItems"
+        if self.itemType == "Hair Care Item" {
+            item = "hairCareItems"
+        } else if self.itemType == "Skin Care Item" {
+            item = "skinCareItems"
+        } else if self.itemType == "Nail Care Item" {
+            item = "nailCareItems"
         }
         
         if itemTitle.text == "" {
@@ -365,12 +364,12 @@ extension ServiceItemsViewController: UIImagePickerControllerDelegate, UINavigat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         var item = ""
-        if self.itemType == "Hair Item" {
-            item = "hairItems"
-        } else if self.itemType == "Makeup Item" {
-            item = "makeupItems"
-        } else if self.itemType == "Lash Item" {
-            item = "lashItems"
+        if self.itemType == "Hair Care Item" {
+            item = "hairCareItems"
+        } else if self.itemType == "Skin Care Item" {
+            item = "skinCareItems"
+        } else if self.itemType == "Nail Care Item" {
+            item = "nailCareItems"
         }
         
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {

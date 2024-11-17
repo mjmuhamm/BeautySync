@@ -27,6 +27,12 @@
 		201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */; };
 		201910FF2CD40695006BEE4D /* StripeTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */; };
 		201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 201911002CD40A4D006BEE4D /* GoogleService-Info.plist */; };
+		204F45392CEA76BF00E2D449 /* UserItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F45372CEA76BF00E2D449 /* UserItemTableViewCell.swift */; };
+		204F453A2CEA76BF00E2D449 /* UserItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204F45382CEA76BF00E2D449 /* UserItemTableViewCell.xib */; };
+		204F453F2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F453D2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift */; };
+		204F45402CEA7C1600E2D449 /* UserBeauticiansTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204F453E2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.xib */; };
+		204F45432CEA80CB00E2D449 /* UserReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F45412CEA80CB00E2D449 /* UserReviewsTableViewCell.swift */; };
+		204F45442CEA80CB00E2D449 /* UserReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204F45422CEA80CB00E2D449 /* UserReviewsTableViewCell.xib */; };
 		2062FB7A2CE1551800065BC0 /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2062FB792CE1551800065BC0 /* OrderDetailsViewController.swift */; };
 		206C62E42CE7FCAA00159481 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C62E32CE7FCAA00159481 /* MessagesViewController.swift */; };
 		206C62E72CE8FAE800159481 /* SchedulingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C62E62CE8FAE800159481 /* SchedulingViewController.swift */; };
@@ -108,6 +114,12 @@
 		201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
 		201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTermsViewController.swift; sourceTree = "<group>"; };
 		201911002CD40A4D006BEE4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		204F45372CEA76BF00E2D449 /* UserItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemTableViewCell.swift; sourceTree = "<group>"; };
+		204F45382CEA76BF00E2D449 /* UserItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserItemTableViewCell.xib; sourceTree = "<group>"; };
+		204F453D2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBeauticiansTableViewCell.swift; sourceTree = "<group>"; };
+		204F453E2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserBeauticiansTableViewCell.xib; sourceTree = "<group>"; };
+		204F45412CEA80CB00E2D449 /* UserReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewsTableViewCell.swift; sourceTree = "<group>"; };
+		204F45422CEA80CB00E2D449 /* UserReviewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserReviewsTableViewCell.xib; sourceTree = "<group>"; };
 		2062FB792CE1551800065BC0 /* OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewController.swift; sourceTree = "<group>"; };
 		206C62E32CE7FCAA00159481 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		206C62E62CE8FAE800159481 /* SchedulingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +258,7 @@
 				207ECAA42CE3CB90008856D5 /* Checkout */,
 				207ECAAC2CE5449F008856D5 /* Orders */,
 				206C62E82CE8FEC700159481 /* Messages */,
+				204F45362CEA769400E2D449 /* User */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -335,6 +348,19 @@
 				201910F62CD40597006BEE4D /* UserPersonalViewController.swift */,
 			);
 			path = info;
+			sourceTree = "<group>";
+		};
+		204F45362CEA769400E2D449 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				204F45372CEA76BF00E2D449 /* UserItemTableViewCell.swift */,
+				204F45382CEA76BF00E2D449 /* UserItemTableViewCell.xib */,
+				204F453D2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift */,
+				204F453E2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.xib */,
+				204F45412CEA80CB00E2D449 /* UserReviewsTableViewCell.swift */,
+				204F45422CEA80CB00E2D449 /* UserReviewsTableViewCell.xib */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		2062FB782CE154FE00065BC0 /* Home */ = {
@@ -663,11 +689,14 @@
 				201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */,
 				207ECAB02CE544C6008856D5 /* OrdersTableViewCell.xib in Resources */,
 				207ECAA82CE3CBBC008856D5 /* CheckoutTableViewCell.xib in Resources */,
+				204F45442CEA80CB00E2D449 /* UserReviewsTableViewCell.xib in Resources */,
+				204F45402CEA7C1600E2D449 /* UserBeauticiansTableViewCell.xib in Resources */,
 				20D8D1FD2CDD379A00117EF4 /* ServiceItemTableViewCell.xib in Resources */,
 				201910BA2CD28807006BEE4D /* Assets.xcassets in Resources */,
 				20B0F5B12CDEAA7B00F3C0D8 /* HomeTableViewCell.xib in Resources */,
 				201910B82CD28805006BEE4D /* Main.storyboard in Resources */,
 				206C62EC2CE8FEE500159481 /* MessagesTableViewCell.xib in Resources */,
+				204F453A2CEA76BF00E2D449 /* UserItemTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,10 +770,12 @@
 				201910F22CD404FB006BEE4D /* BeauticianBusinessViewController.swift in Sources */,
 				201910B52CD28805006BEE4D /* StartViewController.swift in Sources */,
 				20D8D1FC2CDD379A00117EF4 /* ServiceItemTableViewCell.swift in Sources */,
+				204F45392CEA76BF00E2D449 /* UserItemTableViewCell.swift in Sources */,
 				201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */,
 				201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */,
 				20D8D1F82CDCF84400117EF4 /* ServiceItem.swift in Sources */,
 				20B0F5B02CDEAA7B00F3C0D8 /* HomeTableViewCell.swift in Sources */,
+				204F453F2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift in Sources */,
 				2062FB7A2CE1551800065BC0 /* OrderDetailsViewController.swift in Sources */,
 				207ECAA72CE3CBBC008856D5 /* CheckoutTableViewCell.swift in Sources */,
 				207B3F482CE785880063C725 /* Dashboard.swift in Sources */,
@@ -768,6 +799,7 @@
 				20B4D3B22CDFC43300C26EEC /* BeauticianAccountSettingsViewController.swift in Sources */,
 				207B3F3C2CE59DC20063C725 /* OrdersViewController.swift in Sources */,
 				206C62E42CE7FCAA00159481 /* MessagesViewController.swift in Sources */,
+				204F45432CEA80CB00E2D449 /* UserReviewsTableViewCell.swift in Sources */,
 				201910E72CD29B7D006BEE4D /* BeauticianLoginViewController.swift in Sources */,
 				201910F92CD405EA006BEE4D /* AddPersonViewController.swift in Sources */,
 				207ECAAF2CE544C6008856D5 /* OrdersTableViewCell.swift in Sources */,

@@ -30,14 +30,14 @@ class BeauticianMeViewController: UIViewController {
     
     @IBOutlet weak var addButton: UIButton!
     
-    @IBOutlet weak var hairButton: MDCButton!
-    @IBOutlet weak var makeupButton: MDCButton!
-    @IBOutlet weak var lashesButton: MDCButton!
+    @IBOutlet weak var hairCareButton: MDCButton!
+    @IBOutlet weak var skinCareButton: MDCButton!
+    @IBOutlet weak var nailCareButton: MDCButton!
     @IBOutlet weak var contentButton: MDCButton!
     
     @IBOutlet weak var serviceTableView: UITableView!
     
-    var itemType = "hairItems"
+    var itemType = "hairCareItems"
     var city = ""
     var state = ""
     
@@ -150,53 +150,53 @@ class BeauticianMeViewController: UIViewController {
         
     }
     
-    @IBAction func hairButtonPressed(_ sender: Any) {
-        itemType = "hairItems"
+    @IBAction func hairCareButtonPressed(_ sender: Any) {
+        itemType = "hairCareItems"
         loadItemInfo(item: itemType)
-        hairButton.setTitleColor(UIColor.white, for: .normal)
-        hairButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
-        makeupButton.backgroundColor = UIColor.white
-        makeupButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
-        lashesButton.backgroundColor = UIColor.white
-        lashesButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        hairCareButton.setTitleColor(UIColor.white, for: .normal)
+        hairCareButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+        skinCareButton.backgroundColor = UIColor.white
+        skinCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        nailCareButton.backgroundColor = UIColor.white
+        nailCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         contentButton.backgroundColor = UIColor.white
         contentButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
     }
     
-    @IBAction func makeupButtonPressed(_ sender: Any) {
-        itemType = "makeupItems"
+    @IBAction func skinCareButtonPressed(_ sender: Any) {
+        itemType = "skinCareItems"
         loadItemInfo(item: itemType)
-        hairButton.backgroundColor = UIColor.white
-        hairButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
-        makeupButton.setTitleColor(UIColor.white, for: .normal)
-        makeupButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
-        lashesButton.backgroundColor = UIColor.white
-        lashesButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        hairCareButton.backgroundColor = UIColor.white
+        hairCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        skinCareButton.setTitleColor(UIColor.white, for: .normal)
+        skinCareButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+        nailCareButton.backgroundColor = UIColor.white
+        nailCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         contentButton.backgroundColor = UIColor.white
         contentButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
     }
     
-    @IBAction func lashesButtonPressed(_ sender: Any) {
-        itemType = "lashItems"
+    @IBAction func nailCareButtonPressed(_ sender: Any) {
+        itemType = "nailCareItems"
         loadItemInfo(item: itemType)
-        hairButton.backgroundColor = UIColor.white
-        hairButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
-        makeupButton.backgroundColor = UIColor.white
-        makeupButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
-        lashesButton.setTitleColor(UIColor.white, for: .normal)
-        lashesButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+        hairCareButton.backgroundColor = UIColor.white
+        hairCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        skinCareButton.backgroundColor = UIColor.white
+        skinCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        nailCareButton.setTitleColor(UIColor.white, for: .normal)
+        nailCareButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
         contentButton.backgroundColor = UIColor.white
         contentButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
     }
     
     @IBAction func contentButtonPressed(_ sender: Any) {
         itemType = "contentItems"
-        hairButton.backgroundColor = UIColor.white
-        hairButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
-        makeupButton.backgroundColor = UIColor.white
-        makeupButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
-        lashesButton.backgroundColor = UIColor.white
-        lashesButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        hairCareButton.backgroundColor = UIColor.white
+        hairCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        skinCareButton.backgroundColor = UIColor.white
+        skinCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        nailCareButton.backgroundColor = UIColor.white
+        nailCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         contentButton.setTitleColor(UIColor.white, for: .normal)
         contentButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
         
@@ -204,7 +204,7 @@ class BeauticianMeViewController: UIViewController {
     
     @IBAction func addButtonPressed(_ sender: Any) {
         var item = ""
-        if itemType == "hairItems" { item = "Hair Item" } else if itemType == "makeupItems" { item = "Makeup Item" } else if itemType == "lashItems" { item = "Lash Item" } else { item = "Content Item" }
+        if itemType == "hairCareItems" { item = "Hair Care Item" } else if itemType == "skinCareItems" { item = "Skin Care Item" } else if itemType == "nailCareItems" { item = "Nail Care Item" } else { item = "Content Item" }
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ServiceItem") as? ServiceItemsViewController {
             vc.itemType = item
             vc.beauticianUsername = self.userName.text!
@@ -230,7 +230,7 @@ extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = serviceTableView.dequeueReusableCell(withIdentifier: "ServiceItemReusableCell", for: indexPath) as! ServiceItemTableViewCell
+        let cell = serviceTableView.dequeueReusableCell(withIdentifier: "ServiceItemReusableCell", for: indexPath) as! ServiceItemTableViewCell
         
         var item = items[indexPath.row]
         
@@ -254,7 +254,7 @@ extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource
         }
         
         var item1 = ""
-        if itemType == "hairItems" { item1 = "Hair Item" } else if itemType == "makeupItems" { item1 = "Makeup Item" } else if itemType == "lashItems" { item1 = "Lash Item" } else { item1 = "Content Item" }
+        if itemType == "hairCareItems" { item1 = "Hair Care Item" } else if itemType == "skinCareItems" { item1 = "Skin Care Item" } else if itemType == "nailCareItems" { item1 = "Nail Care Item" } else { item1 = "Content Item" }
         
         cell.itemEditButtonTapped = {
             

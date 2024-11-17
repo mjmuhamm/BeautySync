@@ -456,8 +456,8 @@
                                                 <rect key="frame" x="10" y="241.99999999999997" width="180" height="96.666666666666657"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBE-0n-Zhd">
-                                                        <rect key="frame" x="0.0" y="0.0" width="58.333333333333336" height="15.666666666666666"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="63" height="15.666666666666666"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                         <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -493,8 +493,8 @@
                                                 <rect key="frame" x="96" y="10.999999999999996" width="180" height="56.666666666666657"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQC-0J-MLW">
-                                                        <rect key="frame" x="0.0" y="0.0" width="60.333333333333336" height="15.666666666666666"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="15.666666666666666"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                         <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -513,14 +513,14 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you hope to find local, regional, or national beauticans?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBa-1T-Brb">
-                                                <rect key="frame" x="10" y="359" width="299" height="31.333333333333314"/>
+                                                <rect key="frame" x="10" y="435.00000000000006" width="299" height="31.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3C-ko-ThR">
-                                                <rect key="frame" x="10" y="94.000000000000014" width="62" height="15.666666666666671"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <rect key="frame" x="10" y="94.000000000000014" width="66" height="15.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -534,7 +534,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sPx-4Z-CLY">
-                                                <rect key="frame" x="10" y="446.00000000000006" width="124" height="34"/>
+                                                <rect key="frame" x="10" y="522" width="124" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="124" id="y3t-Xk-nZM"/>
                                                 </constraints>
@@ -566,13 +566,13 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JT2-rp-sCA">
-                                                <rect key="frame" x="10" y="168" width="32.666666666666664" height="15.666666666666657"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <rect key="frame" x="10" y="168" width="35.333333333333336" height="15.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TNi-WG-hFv">
-                                                <rect key="frame" x="142" y="446.00000000000006" width="62" height="34"/>
+                                                <rect key="frame" x="142" y="522" width="62" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="gLh-cX-KO2"/>
                                                 </constraints>
@@ -581,7 +581,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no"/>
                                             </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="9q1-kf-9JV">
-                                                <rect key="frame" x="10" y="403" width="151" height="28"/>
+                                                <rect key="frame" x="10" y="479.00000000000006" width="151" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vt1-jX-Zm7" customClass="MDCButton">
                                                         <rect key="frame" x="0.0" y="0.0" width="33" height="28"/>
@@ -652,7 +652,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vQ-Fb-ZzH" customClass="MDCButton">
-                                                <rect key="frame" x="163" y="499" width="72" height="39"/>
+                                                <rect key="frame" x="163" y="575" width="72" height="39"/>
                                                 <color key="backgroundColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="39" id="5I4-aQ-Pmq"/>
@@ -673,7 +673,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJA-xE-0O7">
-                                                <rect key="frame" x="83" y="85.000000000000014" width="66.666666666666686" height="34.333333333333329"/>
+                                                <rect key="frame" x="87" y="85.000000000000014" width="66.666666666666686" height="34.333333333333329"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34.329999999999998" id="sk3-Ro-3ZE"/>
                                                 </constraints>
@@ -687,7 +687,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Onv-CY-wFo">
-                                                <rect key="frame" x="55.000000000000007" y="158.66666666666669" width="66.666666666666686" height="34.333333333333343"/>
+                                                <rect key="frame" x="57.666666666666664" y="158.66666666666669" width="66.666666666666686" height="34.333333333333343"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34.329999999999998" id="Eza-hc-k0Z"/>
                                                 </constraints>
@@ -714,6 +714,21 @@
                                                     <action selector="passwordChangeButtonPressed:" destination="xIJ-rL-HWd" eventType="touchUpInside" id="gIM-nl-mQZ"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What do you hope to find in a beautician?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFD-Lo-WRE">
+                                                <rect key="frame" x="10" y="355.66666666666669" width="265" height="15.666666666666686"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What do you hope to find in a beautician?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDQ-hu-TeP">
+                                                <rect key="frame" x="10" y="384" width="373" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="O0v-Vq-D21"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -721,7 +736,10 @@
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JT2-rp-sCA" secondAttribute="trailing" constant="20" symbolic="YES" id="0aH-5a-czP"/>
                                             <constraint firstItem="Onv-CY-wFo" firstAttribute="top" secondItem="fC5-Th-8hf" secondAttribute="bottom" constant="8" id="0pB-e5-zAT"/>
                                             <constraint firstItem="TJM-F8-gnB" firstAttribute="top" secondItem="JT2-rp-sCA" secondAttribute="bottom" constant="7.3300000000000001" id="3NC-a1-pqq"/>
+                                            <constraint firstAttribute="trailing" secondItem="TDQ-hu-TeP" secondAttribute="trailing" constant="10" id="408-3y-xvz"/>
                                             <constraint firstAttribute="height" constant="710" id="4eN-mf-G1U"/>
+                                            <constraint firstItem="TDQ-hu-TeP" firstAttribute="top" secondItem="lFD-Lo-WRE" secondAttribute="bottom" constant="12.67" id="5hv-xa-3kB"/>
+                                            <constraint firstItem="TDQ-hu-TeP" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="5ua-wi-Kww"/>
                                             <constraint firstItem="1vQ-Fb-ZzH" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="163" id="6XZ-tg-O5h"/>
                                             <constraint firstItem="9q1-kf-9JV" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="9K8-ql-a9C"/>
                                             <constraint firstItem="1gz-ae-e40" firstAttribute="top" secondItem="75R-gk-ovr" secondAttribute="bottom" constant="135.66999999999999" id="9jx-PQ-SHN"/>
@@ -730,8 +748,8 @@
                                             <constraint firstItem="1gz-ae-e40" firstAttribute="leading" secondItem="SY5-96-gky" secondAttribute="trailing" constant="20" id="DAk-Ag-7lE"/>
                                             <constraint firstAttribute="trailing" secondItem="1gz-ae-e40" secondAttribute="trailing" constant="6.5" id="Gtq-8h-wJK"/>
                                             <constraint firstItem="kJA-xE-0O7" firstAttribute="top" secondItem="w0i-RW-BGg" secondAttribute="bottom" constant="17.329999999999998" id="JsR-9f-5PC"/>
-                                            <constraint firstItem="iBa-1T-Brb" firstAttribute="top" secondItem="SY5-96-gky" secondAttribute="bottom" constant="20.329999999999998" id="Kqo-AI-7ao"/>
                                             <constraint firstItem="SY5-96-gky" firstAttribute="top" secondItem="TJM-F8-gnB" secondAttribute="bottom" constant="17" id="MJw-Ud-Le9"/>
+                                            <constraint firstItem="iBa-1T-Brb" firstAttribute="top" secondItem="TDQ-hu-TeP" secondAttribute="bottom" constant="17" id="NK5-vt-xn5"/>
                                             <constraint firstItem="w0i-RW-BGg" firstAttribute="top" secondItem="ZdZ-m6-o3h" secondAttribute="top" constant="11" id="QgK-sW-vLW"/>
                                             <constraint firstItem="bfp-Lk-Unk" firstAttribute="top" secondItem="ZdZ-m6-o3h" secondAttribute="top" constant="8" id="Sr0-UZ-7ZH"/>
                                             <constraint firstItem="75R-gk-ovr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fC5-Th-8hf" secondAttribute="trailing" constant="8" symbolic="YES" id="Tp7-y0-GCG"/>
@@ -747,9 +765,11 @@
                                             <constraint firstItem="JT2-rp-sCA" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="cjf-XI-50M"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TJM-F8-gnB" secondAttribute="trailing" constant="20" symbolic="YES" id="eEI-JH-Z12"/>
                                             <constraint firstAttribute="trailing" secondItem="75R-gk-ovr" secondAttribute="trailing" constant="128" id="fgG-fL-Lh6"/>
+                                            <constraint firstItem="lFD-Lo-WRE" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="g3f-Ev-cEh"/>
                                             <constraint firstItem="LCS-Mc-Jo3" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="21" id="g4g-p3-MRN"/>
                                             <constraint firstItem="bfp-Lk-Unk" firstAttribute="leading" secondItem="ZdZ-m6-o3h" secondAttribute="leading" constant="10" id="gGv-QR-C4n"/>
                                             <constraint firstItem="LCS-Mc-Jo3" firstAttribute="top" secondItem="ZdZ-m6-o3h" secondAttribute="top" constant="26" id="gVM-qb-XpZ"/>
+                                            <constraint firstItem="lFD-Lo-WRE" firstAttribute="top" secondItem="SY5-96-gky" secondAttribute="bottom" constant="17" id="hTT-wG-vAC"/>
                                             <constraint firstItem="fC5-Th-8hf" firstAttribute="top" secondItem="b3C-ko-ThR" secondAttribute="bottom" constant="7" id="hgj-xx-k7K"/>
                                             <constraint firstItem="1vQ-Fb-ZzH" firstAttribute="top" secondItem="9q1-kf-9JV" secondAttribute="bottom" constant="68" id="hoX-v6-MQ3"/>
                                             <constraint firstItem="Onv-CY-wFo" firstAttribute="leading" secondItem="JT2-rp-sCA" secondAttribute="trailing" constant="12.33" id="i1h-gW-5H1"/>
@@ -804,6 +824,7 @@
                         <outlet property="userImage" destination="bfp-Lk-Unk" id="D0D-oB-xj4"/>
                         <outlet property="userName" destination="fC5-Th-8hf" id="nNa-Dd-fwN"/>
                         <outlet property="usernameChangeButton" destination="kJA-xE-0O7" id="Va9-gH-pmE"/>
+                        <outlet property="whatDoYouHopeToFind" destination="TDQ-hu-TeP" id="sjM-Hb-ufF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFl-7o-vh8" sceneMemberID="firstResponder"/>
@@ -1417,17 +1438,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="xZK-MD-k1g">
-                                <rect key="frame" x="99" y="174" width="195" height="42"/>
+                                <rect key="frame" x="69" y="174" width="255" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNy-fh-VLd" customClass="MDCButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="42"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="42"/>
                                         <color key="backgroundColor" red="0.62745098040000002" green="0.63529411759999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="hU1-mo-pAu"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Hair">
+                                        <state key="normal" title="Hair Care">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
@@ -1438,14 +1459,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qb-Yg-Kkt" customClass="MDCButton">
-                                        <rect key="frame" x="32" y="0.0" width="55" height="42"/>
+                                        <rect key="frame" x="67" y="0.0" width="66" height="42"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="srs-Dg-Pfc"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Makeup">
+                                        <state key="normal" title="Skin Care">
                                             <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <state key="selected">
@@ -1456,14 +1477,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49S-Op-rfr" customClass="MDCButton">
-                                        <rect key="frame" x="89" y="0.0" width="49" height="42"/>
+                                        <rect key="frame" x="135" y="0.0" width="63" height="42"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="Xfm-0r-sFj"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Lashes">
+                                        <state key="normal" title="Nail Care">
                                             <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <state key="selected">
@@ -1474,7 +1495,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCV-kc-hm9" customClass="MDCButton">
-                                        <rect key="frame" x="140" y="0.0" width="55" height="42"/>
+                                        <rect key="frame" x="200" y="0.0" width="55" height="42"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="X8Z-Gv-W1k"/>
@@ -3251,60 +3272,60 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xS-0Z-LeG">
-                                <rect key="frame" x="129.66666666666666" y="59" width="133.99999999999997" height="42"/>
+                                <rect key="frame" x="99.666666666666686" y="59" width="194" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJ6-rL-VZb" customClass="MDCButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="42"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="42"/>
                                         <color key="backgroundColor" red="0.62745098040000002" green="0.63529411759999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="zu9-qE-aCm"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Hair">
+                                        <state key="normal" title="Hair Care">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
                                             <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="hairButtonPressed:" destination="bCz-ZV-Ogb" eventType="touchUpInside" id="fuA-Oj-4TI"/>
+                                            <action selector="hairCareButtonPressed:" destination="bCz-ZV-Ogb" eventType="touchUpInside" id="dXl-Rr-7Tr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l10-S4-j8E" customClass="MDCButton">
-                                        <rect key="frame" x="30" y="0.0" width="55" height="42"/>
+                                        <rect key="frame" x="64.999999999999986" y="0.0" width="66.000000000000014" height="42"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="9He-Z4-LDw"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Makeup">
+                                        <state key="normal" title="Skin Care">
                                             <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <state key="selected">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="makeupButtonPressed:" destination="bCz-ZV-Ogb" eventType="touchUpInside" id="7ad-eM-IDX"/>
+                                            <action selector="skinCareButtonPressed:" destination="bCz-ZV-Ogb" eventType="touchUpInside" id="CPh-Z1-zqn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUQ-la-jv4" customClass="MDCButton">
-                                        <rect key="frame" x="85" y="0.0" width="49" height="42"/>
+                                        <rect key="frame" x="131" y="0.0" width="63" height="42"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="2Ov-8i-6GF"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Lashes">
+                                        <state key="normal" title="Nail Care">
                                             <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <state key="selected">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="lashButtonPressed:" destination="bCz-ZV-Ogb" eventType="touchUpInside" id="a5G-3a-nyj"/>
+                                            <action selector="nailCareButtonPressed:" destination="bCz-ZV-Ogb" eventType="touchUpInside" id="AjG-H5-0p4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -3378,10 +3399,10 @@
                     <navigationItem key="navigationItem" id="cBj-zV-HuP"/>
                     <connections>
                         <outlet property="checkoutPrice" destination="sUV-c0-ZNI" id="fYP-W3-Oq2"/>
-                        <outlet property="hairButton" destination="aJ6-rL-VZb" id="pnv-cm-a1y"/>
+                        <outlet property="hairCareButton" destination="aJ6-rL-VZb" id="dk9-xz-zHc"/>
                         <outlet property="itemTableView" destination="ia4-mo-Zvu" id="KwA-7o-H61"/>
-                        <outlet property="lashButton" destination="iUQ-la-jv4" id="rtr-Qg-Nwx"/>
-                        <outlet property="makeupButton" destination="l10-S4-j8E" id="vaj-Ff-Zy4"/>
+                        <outlet property="nailCareButton" destination="iUQ-la-jv4" id="FHr-Zz-5uW"/>
+                        <outlet property="skinCareButton" destination="l10-S4-j8E" id="hzy-p3-oOw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lzQ-RB-OVs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3672,8 +3693,8 @@
                                     <constraint firstAttribute="height" constant="59" id="QVM-5n-CWV"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Atlanta, Georgia" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsh-6u-zoC">
-                                <rect key="frame" x="77" y="124.99999999999999" width="300" height="14.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsh-6u-zoC">
+                                <rect key="frame" x="77" y="110.66666666666667" width="300" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3755,8 +3776,8 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a sample text." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h16-BE-MSw">
-                                <rect key="frame" x="77" y="107" width="300" height="14.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h16-BE-MSw">
+                                <rect key="frame" x="77" y="107" width="300" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3828,7 +3849,7 @@
                         <outlet property="userImage" destination="Nfm-bv-zTS" id="BN7-SL-Fr9"/>
                         <outlet property="userName" destination="e94-jC-P65" id="9Tb-nK-FQb"/>
                         <outlet property="userTableView" destination="cPm-fQ-EiL" id="asW-xr-aFu"/>
-                        <outlet property="whatUserIsLookingFor" destination="h16-BE-MSw" id="sQ1-Bb-ju2"/>
+                        <outlet property="whatDoYouHopeToFind" destination="h16-BE-MSw" id="3wv-yT-2Ca"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ir-yy-4lp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4261,64 +4282,64 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hl2-2P-1Vh">
-                                <rect key="frame" x="99" y="172" width="195" height="42"/>
+                                <rect key="frame" x="69" y="172" width="255" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cM-H4-h1X" customClass="MDCButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="42"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="42"/>
                                         <color key="backgroundColor" red="0.62745098040000002" green="0.63529411759999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="7gH-gb-pZI"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Hair">
+                                        <state key="normal" title="Hair Care">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
                                             <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="hairButtonPressed:" destination="SCz-mo-11r" eventType="touchUpInside" id="i4s-mN-T84"/>
+                                            <action selector="hairCareButtonPressed:" destination="SCz-mo-11r" eventType="touchUpInside" id="O60-uO-qEi"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5Z-YF-zBH" customClass="MDCButton">
-                                        <rect key="frame" x="32" y="0.0" width="55" height="42"/>
+                                        <rect key="frame" x="67" y="0.0" width="66" height="42"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="7Cf-P8-OB0"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Makeup">
+                                        <state key="normal" title="Skin Care">
                                             <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <state key="selected">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="makeupButtonPressed:" destination="SCz-mo-11r" eventType="touchUpInside" id="oFO-7c-Z10"/>
+                                            <action selector="skinCareButtonPressed:" destination="SCz-mo-11r" eventType="touchUpInside" id="SAe-sO-Ul2"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apj-oq-zB8" customClass="MDCButton">
-                                        <rect key="frame" x="89" y="0.0" width="49" height="42"/>
+                                        <rect key="frame" x="135" y="0.0" width="63" height="42"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="Gh0-TI-ISk"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Lashes">
+                                        <state key="normal" title="Nail Care">
                                             <color key="titleColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <state key="selected">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="lashesButtonPressed:" destination="SCz-mo-11r" eventType="touchUpInside" id="xi3-mE-sTt"/>
+                                            <action selector="nailCareButtonPressed:" destination="SCz-mo-11r" eventType="touchUpInside" id="YTI-V6-3fY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yn3-fU-aJt" customClass="MDCButton">
-                                        <rect key="frame" x="140" y="0.0" width="55" height="42"/>
+                                        <rect key="frame" x="200" y="0.0" width="55" height="42"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="OsJ-UP-jNX"/>
@@ -4422,13 +4443,13 @@
                     <connections>
                         <outlet property="addButton" destination="6oc-qe-wJQ" id="Lb6-Wl-Bdy"/>
                         <outlet property="contentButton" destination="yn3-fU-aJt" id="VDQ-zy-8vP"/>
-                        <outlet property="hairButton" destination="1cM-H4-h1X" id="npr-Rm-hYl"/>
-                        <outlet property="lashesButton" destination="apj-oq-zB8" id="Xzf-NH-mzs"/>
+                        <outlet property="hairCareButton" destination="1cM-H4-h1X" id="9ab-w8-BwU"/>
                         <outlet property="location" destination="0gM-47-KbA" id="icM-d5-Srw"/>
-                        <outlet property="makeupButton" destination="g5Z-YF-zBH" id="Y5x-Eq-Mk4"/>
+                        <outlet property="nailCareButton" destination="apj-oq-zB8" id="dha-hJ-kv4"/>
                         <outlet property="notificationBell" destination="Uvs-Y0-7aF" id="SUn-2T-5CT"/>
                         <outlet property="passion" destination="HgP-TJ-zPf" id="52a-ai-qYF"/>
                         <outlet property="serviceTableView" destination="kpB-ER-VnB" id="dka-PW-Y6m"/>
+                        <outlet property="skinCareButton" destination="g5Z-YF-zBH" id="LkG-5l-aO8"/>
                         <outlet property="userImage" destination="16F-uK-H9p" id="ubu-Gf-SuN"/>
                         <outlet property="userName" destination="WLa-Hn-10Y" id="m6c-Wm-Ftg"/>
                     </connections>

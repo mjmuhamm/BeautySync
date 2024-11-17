@@ -37,7 +37,7 @@ class ProfileAsUserViewController: UIViewController {
     var userId = ""
     
     var item: ServiceItems?
-    var itemType = "hairItems"
+    var itemType = "hairCareItems"
     
     //Beautician
     private var items : [ServiceItems] = []
@@ -64,7 +64,7 @@ class ProfileAsUserViewController: UIViewController {
     
     @IBAction func button1Pressed(_ sender: Any) {
         if beauticianOrUser == "Beautician" {
-            itemType = "hairItems"
+            itemType = "hairCareItems"
             loadBeauticianItems(itemType: itemType)
         }
         button1.setTitleColor(UIColor.white, for: .normal)
@@ -79,7 +79,7 @@ class ProfileAsUserViewController: UIViewController {
     
     @IBAction func button2Pressed(_ sender: Any) {
         if beauticianOrUser == "Beautician" {
-            itemType = "makeupItems"
+            itemType = "skinCareItems"
             loadBeauticianItems(itemType: itemType)
         }
         button1.backgroundColor = UIColor.white
@@ -94,7 +94,7 @@ class ProfileAsUserViewController: UIViewController {
     
     @IBAction func button3Pressed(_ sender: Any) {
         if beauticianOrUser == "Beautician" {
-            itemType = "lashItems"
+            itemType = "nailCareItems"
             loadBeauticianItems(itemType: itemType)
         }
         button1.backgroundColor = UIColor.white

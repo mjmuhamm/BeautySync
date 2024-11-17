@@ -27,6 +27,7 @@ class UserPersonalViewController: UIViewController {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
+    @IBOutlet weak var whatDoYouHopeToFind: UITextField!
     @IBOutlet weak var localButton: MDCButton!
     @IBOutlet weak var regionButton: MDCButton!
     @IBOutlet weak var nationButton: MDCButton!
@@ -276,6 +277,8 @@ class UserPersonalViewController: UIViewController {
                 self.showToast(message: "Please enter your city and the abbreviation for your state", font: .systemFont(ofSize: 12))
             } else if region == 1 && state.text == "" {
                 self.showToast(message: "Please enter the abbreviation for your state.", font: .systemFont(ofSize: 12))
+            } else if whatDoYouHopeToFind.text == "" {
+                self.showToast(message: "Please enter what you hope to find in a beautician, in the alloted field.", font: .systemFont(ofSize: 12))
             } else {
                 
                 if newOrEdit == "new" {
@@ -297,7 +300,7 @@ class UserPersonalViewController: UIViewController {
                                         
                                         let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "local" : self.local, "region" : self.region, "nation" : self.nation, "city": self.city.text!, "state" : self.state.text!, "beauticianOrUser" : "User"]
                                         let data1: [String: Any] = ["userName" : self.userName.text!, "email": self.email.text!, "beauticianOrUser" : "User", "fullName" : self.fullName.text!]
-                                        let data2: [String: Any] = ["beauticianOrUser" : "User", "privatizeData" : "no", "notificationToken" : "", "profilePic" : self.profilePic]
+                                let data2: [String: Any] = ["beauticianOrUser" : "User", "privatizeData" : "no", "notificationToken" : "", "profilePic" : self.profilePic, "whatDoYouHopeToFind": self.whatDoYouHopeToFind.text!]
                                         
                                         self.db.collection("User").document(authResult!.user.uid).collection("PersonalInfo").document().setData(data)
                                         self.db.collection("Usernames").document(authResult!.user.uid).setData(data1)
@@ -341,7 +344,7 @@ class UserPersonalViewController: UIViewController {
                            
                         }
                     }
-                    let data : [String: Any] = ["local" : self.local, "region" : self.region, "nation" : self.nation, "city": self.city.text!, "state" : self.state.text!]
+                    let data : [String: Any] = ["local" : self.local, "region" : self.region, "nation" : self.nation, "city": self.city.text!, "state" : self.state.text!, "whatDoYouHopeToFind" : self.whatDoYouHopeToFind.text!]
                     self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("PersonalInfo").document(self.documentId).updateData(data)
                     self.showToast(message: "Location Preference Updated.", font: .systemFont(ofSize: 12))
                    
