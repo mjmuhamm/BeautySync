@@ -113,10 +113,82 @@ class OrdersViewController: UIViewController {
             }
         }
     }
-    
-    private func compareDates(eventDay: String, eventTime: String) {
-       
+    private func showOptions() {
+        let alert = UIAlertController(title: "Are you sure you want to cancel this appointment?", message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (handler) in
+            let uid = Auth.auth().currentUser!.uid
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (handler) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
+    private func compareDates(eventDay: String, eventTime: String) {
+        
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm a"
+        let year = "\(dateFormatter.string(from: Date()))".prefix(10).suffix(4)
+        let month = "\(dateFormatter.string(from: Date()))".prefix(2)
+        let day = "\(dateFormatter.string(from: Date()))".prefix(5).suffix(2)
+        var hour = "\(dateFormatter.string(from: Date()))".prefix(13).suffix(2)
+        let min = "\(dateFormatter.string(from: Date()))".prefix(16).suffix(2)
+        
+        if Int(hour)! < 10 {
+            hour = "0\(hour)"
+        } else if Int(hour)! > 12 {
+            hour = "\(Int(hour)! - 12)"
+            if Int(hour)! < 10 {
+                hour = "0\(hour)"
+            }
+        }
+        print("year \(year)")
+        print("month \(month)")
+        print("day \(day)")
+        print("hour \(hour)")
+        print("min \(min)")
+        
+        let year1 = "\(eventDay) \(eventTime)".prefix(10).suffix(4)
+        let month1 = "\(eventDay) \(eventTime)".prefix(2)
+        let day1 = "\(eventDay) \(eventTime)".prefix(5).suffix(2)
+        var hour1 = "\(eventDay) \(eventTime)".prefix(13).suffix(2)
+        let min1 = "\(eventDay) \(eventTime)".prefix(16).suffix(2)
+        
+        print("year1 \(year1)")
+        print("month1 \(month1)")
+        print("day1 \(day1)")
+        print("hour1 \(hour1)")
+        print("min1 \(min1)")
+        print("hour subtract \(Int(hour)! - Int(hour1)!)")
+        if year == year1 {
+            if month == month1 {
+                if day == day1 {
+                    if Int(hour1)! - Int(hour)! == 2 {
+                        if Int(min)! >= Int(min1)! {
+                            self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                        } else {
+                            //clear
+                            showOptions()
+                        }
+                    } else if Int(hour1)! - Int(hour)! < 2 {
+                        self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                    } else {
+                        //clear
+                        showOptions()
+                    }
+                } else {
+                    showOptions()
+                }
+            } else {
+                showOptions()
+            }
+        } else {
+            showOptions()
+        }
+    }
+    
     
     func showToast(message : String, font: UIFont) {
         
@@ -188,19 +260,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.cancelButtonTapped = {
-           
-            let alert = UIAlertController(title: "Are you sure you want to cancel this appointment?", message: nil, preferredStyle: .actionSheet)
-            
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (handler) in
-                let uid = Auth.auth().currentUser!.uid
-                
-            }))
-            
-            alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (handler) in
-                alert.dismiss(animated: true, completion: nil)
-            }))
-            
-            self.present(alert, animated: true, completion: nil)
+            self.compareDates(eventDay: item.eventDay, eventTime: item.eventTime)
         }
         
         

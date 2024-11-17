@@ -25,7 +25,7 @@ class CheckoutViewController: UIViewController {
     
     var paymentSheet: PaymentSheet?
     private var paymentId = ""
-    let backendCheckoutUrl = URL(string: "http://beautysync-stripeserver.onrender.com/create-payment-intent")!
+    let backendCheckoutUrl = URL(string: "https://beautysync-stripeserver.onrender.com/create-payment-intent")!
     
 //    let backendCheckoutUrl = URL(string: "http://10.0.1.68:4242/create-payment-intent")!
     @IBOutlet weak var serviceTableView: UITableView!
@@ -219,12 +219,24 @@ class CheckoutViewController: UIViewController {
             
             let data1 : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "paymentId" : self.paymentId, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId, "userName" : self.userName]
             
+            
+            
             db.collection("User").document(Auth.auth().currentUser!.uid).collection("Orders").document(documentId).setData(data)
             db.collection("Orders").document(documentId).setData(data1)
             db.collection("Beautician").document(items[i].beauticianImageId).collection("Orders").document(documentId).setData(data)
-            
+            self.db.collection(items[i].itemType).document(items[i].itemId).getDocument { [self] document, error in
+                if error == nil {
+                    if document != nil {
+                        let data = document!.data()
+                        if let itemOrders = data!["itemOrders"] as? Int {
+                            let data2 : [String: Any] = ["itemOrders" : itemOrders + 1]
+                            self.db.collection("Beautician").document(items[i].beauticianImageId).collection(items[i].itemType).document(items[i].itemId).updateData(data2)
+                            self.db.collection(items[i].itemType).document(items[i].itemId).updateData(data2)
+                        }
+                    }
+                }
+            }
             self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Cart").document(items[i].documentId).delete()
-            
         }
         
         self.showToastCompletion(message: "Order Processed! Please view your Orders Tab for updates.", font: .systemFont(ofSize: 12))

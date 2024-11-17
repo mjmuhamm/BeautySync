@@ -172,6 +172,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.itemDescription.text = item.itemDescription
         cell.itemPrice.text = "$\(item.itemPrice)"
         cell.itemLikes.text = "\(item.liked.count)"
+        cell.itemOrders.text = "\(item.itemOrders)"
         
         if item.liked.firstIndex(of: Auth.auth().currentUser!.uid) != nil {
             cell.itemLikeImage.image = UIImage(systemName: "heart.fill")
