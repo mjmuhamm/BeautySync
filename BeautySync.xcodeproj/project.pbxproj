@@ -33,6 +33,7 @@
 		204F45402CEA7C1600E2D449 /* UserBeauticiansTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204F453E2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.xib */; };
 		204F45432CEA80CB00E2D449 /* UserReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F45412CEA80CB00E2D449 /* UserReviewsTableViewCell.swift */; };
 		204F45442CEA80CB00E2D449 /* UserReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204F45422CEA80CB00E2D449 /* UserReviewsTableViewCell.xib */; };
+		204F45462CEABC8F00E2D449 /* UserMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F45452CEABC8F00E2D449 /* UserMe.swift */; };
 		2062FB7A2CE1551800065BC0 /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2062FB792CE1551800065BC0 /* OrderDetailsViewController.swift */; };
 		206C62E42CE7FCAA00159481 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C62E32CE7FCAA00159481 /* MessagesViewController.swift */; };
 		206C62E72CE8FAE800159481 /* SchedulingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C62E62CE8FAE800159481 /* SchedulingViewController.swift */; };
@@ -120,6 +121,7 @@
 		204F453E2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserBeauticiansTableViewCell.xib; sourceTree = "<group>"; };
 		204F45412CEA80CB00E2D449 /* UserReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		204F45422CEA80CB00E2D449 /* UserReviewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserReviewsTableViewCell.xib; sourceTree = "<group>"; };
+		204F45452CEABC8F00E2D449 /* UserMe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMe.swift; sourceTree = "<group>"; };
 		2062FB792CE1551800065BC0 /* OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewController.swift; sourceTree = "<group>"; };
 		206C62E32CE7FCAA00159481 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		206C62E62CE8FAE800159481 /* SchedulingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingViewController.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 			children = (
 				207ECAAA2CE41AE5008856D5 /* CheckoutItems.swift */,
 				207B3F3D2CE64E7F0063C725 /* Orders.swift */,
+				204F45452CEABC8F00E2D449 /* UserMe.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 			files = (
 				20D8D1F32CDBFCF500117EF4 /* BeauticianMeViewController.swift in Sources */,
 				208C3CED2CD69E6800222A37 /* Banking.swift in Sources */,
+				204F45462CEABC8F00E2D449 /* UserMe.swift in Sources */,
 				20D8D1FF2CDE4C2B00117EF4 /* HomeViewController.swift in Sources */,
 				206C62EB2CE8FEE500159481 /* MessagesTableViewCell.swift in Sources */,
 				201910F22CD404FB006BEE4D /* BeauticianBusinessViewController.swift in Sources */,

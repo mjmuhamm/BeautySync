@@ -42,9 +42,12 @@ class CheckoutViewController: UIViewController {
     var userName = ""
     
     var items : [CheckoutItems] = []
+    
+    let dateFormatter = DateFormatter()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        dateFormatter.dateFormat = "MM-dd-yyyy"
         serviceTableView.register(UINib(nibName: "CheckoutTableViewCell", bundle: nil), forCellReuseIdentifier: "CheckoutReusableCell")
         serviceTableView.delegate = self
         serviceTableView.dataSource = self
@@ -215,9 +218,9 @@ class CheckoutViewController: UIViewController {
         for i in 0..<items.count {
             var documentId = UUID().uuidString
             
-            let data : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId, "userName" : self.userName]
+            let data : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId, "userName" : self.userName, "date" : dateFormatter.string(from: Date())]
             
-            let data1 : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "paymentId" : self.paymentId, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId, "userName" : self.userName]
+            let data1 : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "paymentId" : self.paymentId, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId, "userName" : self.userName, "date" : dateFormatter.string(from: Date())]
             
             
             
@@ -236,6 +239,27 @@ class CheckoutViewController: UIViewController {
                     }
                 }
             }
+            self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(items[i].beauticianImageId).getDocument { document, error in
+                if error == nil {
+                    if document != nil {
+                        let data = document!.data()
+                        
+                        if data != nil {
+                            
+                            if let itemCount = data!["itemCount"] as? Int {
+                                
+                                let data1: [String : Any] = ["itemCount" : itemCount + 1]
+                                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(self.items[i].beauticianImageId).updateData(data1)
+                            }
+                        } else {
+                            let data1: [String : Any] = ["itemCount" : 1, "beauticianImageId" : self.items[i].beauticianImageId, "beauticianUsername" : self.items[i].beauticianUsername, "beauticianPassion" : self.items[i].beauticianPassion, "beauticianCity" : self.items[i].beauticianCity, "beauticianState" : self.items[i].beauticianState]
+                            
+                            self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(self.items[i].beauticianImageId).setData(data1)
+                        }
+                    }
+                }
+            }
+            
             self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Cart").document(items[i].documentId).delete()
         }
         

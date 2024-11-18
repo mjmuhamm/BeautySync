@@ -40,7 +40,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var totalPieChart: PieChartView!
     
     var items: [DashboardItems] = []
-    var yearlyItems : [String] = ["All", "Hair Items", "Makeup Items", "Lash Items"]
+    var yearlyItems : [String] = ["All", "Hair Care Items", "Skin Care Items", "Nail Care Items"]
     private var time = "Weekly"
     
     let date = Date()
@@ -59,7 +59,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         super.viewDidLoad()
         self.monthlyBarChart.isHidden = true
         self.totalPieChart.isHidden = true
-        itemTypeMenu.dataSource = ["Hair Items", "Makeup Items", "Lash Items"]
+        itemTypeMenu.dataSource = ["Hair Care Items", "Skin Care Items", "Nail Care Items"]
         itemTypeMenu.anchorView = itemType
         
         itemTypeMenu.selectionAction = { index, item in
@@ -110,7 +110,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     }
     @IBAction func weeklyButtonPressed(_ sender: Any) {
         time = "Weekly"
-        itemTypeMenu.dataSource = ["Hair Items", "Makeup Items", "Lash Items"]
+        itemTypeMenu.dataSource = ["Hair Care Items", "Skin Care Items", "Nail Care Items"]
         self.itemTitle.text = ""
         self.itemType.text = ""
         weeklyBarChart.isHidden = false
@@ -133,7 +133,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     
     @IBAction func monthlyButtonPressed(_ sender: Any) {
         time = "Monthly"
-        itemTypeMenu.dataSource = ["Hair Items", "Makeup Items", "Lash Items"]
+        itemTypeMenu.dataSource = ["Hair Care Items", "Skin Care Items", "Nail Care Items"]
         self.itemTitle.text = ""
         self.itemType.text = ""
         weeklyBarChart.isHidden = true
@@ -153,7 +153,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     
     @IBAction func totalButtonPressed(_ sender: Any) {
         time = "Yearly"
-        itemTypeMenu.dataSource = ["All", "Hair Items", "Makeup Items", "Lash Items"]
+        itemTypeMenu.dataSource = ["All", "Hair Care Items", "Skin Care Items", "Nail Care Items"]
         self.itemTitle.text = ""
         self.itemType.text = ""
         weeklyBarChart.isHidden = true
@@ -186,7 +186,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         self.itemMenu.dataSource.removeAll()
         self.itemTitle.text = ""
         
-        if item == "Hair Items" { itemType = "hairItems" } else if item == "Makeup Items" { itemType = "makeupItems" } else if item == "Lash Items" { itemType = "lashItems" }
+        if item == "Hair Care Items" { itemType = "hairCareItems" } else if item == "Skin Care Items" { itemType = "skinCareItems" } else if item == "Nail Care Items" { itemType = "nailCareItems" }
         db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection(itemType).getDocuments { documents, error in
             if error == nil {
                 if documents != nil {
@@ -211,7 +211,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     
     private func loadItemWeeklyData(itemTitle: String) {
         var itemType = ""
-        if self.itemType.text == "Hair Items" { itemType = "hairItems" } else if self.itemType.text == "Makeup Items" { itemType = "makeupItems" } else if self.itemType.text == "Lash Items" { itemType = "lashItems" }
+        if self.itemType.text == "Hair Care Items" { itemType = "hairCareItems" } else if self.itemType.text == "Skin Care Items" { itemType = "skinCareItems" } else if self.itemType.text == "Nail Care Items" { itemType = "nailCareItems" }
         if Auth.auth().currentUser != nil {
             let month = "\(df.string(from: date))".prefix(7).suffix(2)
             let year = "\(df.string(from: date))".prefix(4)
@@ -299,7 +299,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     
     private func loadItemMonthlyData(itemTitle: String) {
         var itemType = ""
-        if self.itemType.text == "Hair Items" { itemType = "hairItems" } else if self.itemType.text == "Makeup Items" { itemType = "makeupItems" } else if self.itemType.text == "Lash Items" { itemType = "lashItems" }
+        if self.itemType.text == "Hair Care Items" { itemType = "hairCareItems" } else if self.itemType.text == "Skin Care Items" { itemType = "skinCareItems" } else if self.itemType.text == "Nail Care Items" { itemType = "nailCareItems" }
         if Auth.auth().currentUser != nil {
             var itemId = ""
             let year = "\(df.string(from: date))".prefix(4)
@@ -400,10 +400,10 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
             self.totalPieChart.clear()
             
             var itemType = ""
-            if self.itemType.text == "Hair Items" { itemType = "hairItems" } else if self.itemType.text == "Makeup Items" { itemType = "makeupItems" } else if self.itemType.text == "Lash Items" { itemType = "lashItems" }
+            if self.itemType.text == "Hair Care Items" { itemType = "hairCareItems" } else if self.itemType.text == "Skin Care Items" { itemType = "skinCareItems" } else if self.itemType.text == "Nail Care Items" { itemType = "nailCareItems" }
             
             
-            var array1 = ["hairItems", "makeupItems", "lashItems"]
+            var array1 = ["hairCareItems", "skinCareItems", "nailCareItems"]
             var totalItems : [DashboardTotal] = []
                 if self.itemType.text == "All" {
                     print("this is happening")

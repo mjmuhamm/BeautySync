@@ -126,7 +126,7 @@ class BeauticianOrdersViewController: UIViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
-    private func compareDates(eventDay: String, eventTime: String) {
+    private func compareDates(eventDay: String, eventTime: String, status: String) {
         
         df.dateFormat = "MM-dd-yyyy HH:mm a"
         let year = "\(df.string(from: Date()))".prefix(10).suffix(4)
@@ -166,13 +166,21 @@ class BeauticianOrdersViewController: UIViewController {
                 if day == day1 {
                     if Int(hour1)! - Int(hour)! == 2 {
                         if Int(min)! >= Int(min1)! {
-                            self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                            if status != "pending" {
+                                self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                            } else {
+                                showOptions()
+                            }
                         } else {
                             //clear
                             showOptions()
                         }
                     } else if Int(hour1)! - Int(hour)! < 2 {
-                        self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                        if status != "pending" {
+                            self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                        } else {
+                            showOptions()
+                        }
                     } else {
                         //clear
                         showOptions()
@@ -220,12 +228,12 @@ extension BeauticianOrdersViewController: UITableViewDelegate, UITableViewDataSo
         var item = orders[indexPath.row]
         
         var serviceType = ""
-        if item.itemType == "hairItems" {
-            serviceType = "Hair"
-        } else if item.itemType == "makeupItems" {
-            serviceType = "Makeup"
-        } else if item.itemType == "lashItems" {
-            serviceType = "Lash"
+        if item.itemType == "hairCareItems" {
+            serviceType = "Hair Care"
+        } else if item.itemType == "skinCareItems" {
+            serviceType = "Skin Care"
+        } else if item.itemType == "nailCareItems" {
+            serviceType = "Nail Care"
         }
         cell.itemType.text = "\(serviceType) | \(item.itemTitle)"
         cell.serviceDate.text = "Service Date: \(item.eventDay) \(item.eventTime)"
@@ -375,7 +383,7 @@ extension BeauticianOrdersViewController: UITableViewDelegate, UITableViewDataSo
         }
         
         cell.cancelButtonTapped = {
-            self.compareDates(eventDay: item.eventDay, eventTime: item.eventTime)
+            self.compareDates(eventDay: item.eventDay, eventTime: item.eventTime, status: item.status)
         }
         
         cell.messagesForSchedulingButtonTapped = {

@@ -14,6 +14,7 @@ class UserItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var itemDescription: UILabel!
     
+    @IBOutlet weak var itemLikeImage: UIImageView!
     @IBOutlet weak var itemLikes: UILabel!
     @IBOutlet weak var itemOrders: UILabel!
     @IBOutlet weak var itemRating: UILabel!

@@ -239,16 +239,57 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.userLikeButtonTapped = {
             let data : [String: Any] = ["itemType" :  item.itemType, "itemTitle" : item.itemTitle, "itemDescription" : item.itemDescription, "itemPrice" : item.itemPrice, "imageCount" : item.imageCount, "beauticianUsername" : item.beauticianUsername, "beauticianPassion" : item.beauticianPassion, "beauticianCity" : item.beauticianCity, "beauticianState": item.beauticianState, "beauticianImageId" : item.beauticianImageId, "liked" : item.liked, "itemOrders" : item.itemOrders, "itemRating" : item.itemRating, "hashtags" : item.hashtags]
             
+            
             if cell.itemLikeImage.image == UIImage(systemName: "heart") {
                 cell.itemLikeImage.image = UIImage(systemName: "heart.fill")
                 cell.itemLikes.text = "\(Int(cell.itemLikes.text!)! + 1)"
                 self.db.collection(item.itemType).document(item.documentId).updateData(["liked" : FieldValue.arrayUnion(["\(Auth.auth().currentUser!.uid)"])])
                 self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Likes").document(item.documentId).setData(data)
+                
+                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).getDocument { document, error in
+                    if error == nil {
+                        if document != nil {
+                            let data = document!.data()
+                            
+                            if data != nil {
+                                
+                                if let itemCount = data!["itemCount"] as? Int {
+                                    
+                                    let data1: [String : Any] = ["itemCount" : itemCount + 1]
+                                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).updateData(data1)
+                                }
+                            } else {
+                                let data1: [String : Any] = ["itemCount" : 1, "beauticianImageId" : item.beauticianImageId, "beauticianUsername" : item.beauticianUsername, "beauticianPassion" : item.beauticianPassion, "beauticianCity" : item.beauticianCity, "beauticianState" : item.beauticianState]
+                                
+                                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).setData(data1)
+                            }
+                        }
+                    }
+                }
+                
             } else {
                 cell.itemLikeImage.image = UIImage(systemName: "heart")
                 self.db.collection(item.itemType).document(item.documentId).updateData(["liked" : FieldValue.arrayRemove(["\(Auth.auth().currentUser!.uid)"])])
                 cell.itemLikes.text = "\(Int(cell.itemLikes.text!)! - 1)"
                 self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Likes").document(item.documentId).delete()
+                
+                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).getDocument { document, error in
+                    if error == nil {
+                        if document != nil {
+                            let data = document!.data()
+                            if data != nil {
+                                if let itemCount = data!["itemCount"] as? Int {
+                                    if itemCount == 1 {
+                                        self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).delete()
+                                    } else {
+                                        let data1: [String : Any] = ["itemCount" : itemCount - 1]
+                                        self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).updateData(data1)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         

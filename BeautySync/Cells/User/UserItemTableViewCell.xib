@@ -186,6 +186,7 @@
             <connections>
                 <outlet property="itemDescription" destination="9qb-bb-ZvL" id="Ubc-ew-HxT"/>
                 <outlet property="itemImage" destination="b5S-gj-IuK" id="kC7-xG-cSp"/>
+                <outlet property="itemLikeImage" destination="bGh-l2-cKM" id="S7i-Tw-l1v"/>
                 <outlet property="itemLikes" destination="erk-uX-9oL" id="KPc-EN-C4a"/>
                 <outlet property="itemOrders" destination="clb-g8-F93" id="9hr-Mw-FzE"/>
                 <outlet property="itemPrice" destination="Ydo-Xa-bEM" id="Rzi-KU-Lt2"/>
@@ -193,7 +194,7 @@
                 <outlet property="itemTitle" destination="WnA-Nt-42R" id="6sE-gX-rFt"/>
                 <outlet property="userImage" destination="6qM-zb-l9Z" id="EXQ-Bt-PsX"/>
             </connections>
-            <point key="canvasLocation" x="194.6564885496183" y="176.05633802816902"/>
+            <point key="canvasLocation" x="-158" y="181"/>
         </tableViewCell>
     </objects>
     <resources>

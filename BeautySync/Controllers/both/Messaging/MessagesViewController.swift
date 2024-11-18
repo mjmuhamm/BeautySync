@@ -55,9 +55,9 @@ class MessagesViewController: UIViewController {
         
         if beauticianOrUser == "User" {
             changeDateButton.isHidden = true
-            self.userName.text = "Beautician: \(item!.userName)"
+            self.userName.text = "Beautician: @\(item!.beauticianUsername)"
         } else {
-            self.userName.text = "User: \(item!.beauticianUsername)"
+            self.userName.text = "User: @\(item!.userName)"
         }
         loadEventInfo()
         loadInfo()

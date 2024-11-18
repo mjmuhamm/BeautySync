@@ -37,16 +37,14 @@ class UserMeViewController: UIViewController {
     
     var itemType = "orders"
     var items : [ServiceItems] = []
-    
-    
-    
-    
+    var reviews : [Reviews] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         userTableView.register(UINib(nibName: "UserItemTableViewCell", bundle: nil), forCellReuseIdentifier: "UserItemReusableCell")
         userTableView.register(UINib(nibName: "UserBeauticiansTableViewCell", bundle: nil), forCellReuseIdentifier: "UserBeauticiansReusableCell")
+        userTableView.register(UINib(nibName: "UserReviewsTableViewCell", bundle: nil), forCellReuseIdentifier: "UserReviewsReusableCell")
         
         userTableView.delegate = self
         userTableView.dataSource = self
@@ -219,7 +217,7 @@ extension UserMeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if itemType == "orders" {
-            var cell = userTableView.dequeueReusableCell(withIdentifier: "ServiceItemReusableCell", for: indexPath) as! ServiceItemTableViewCell
+            var cell = userTableView.dequeueReusableCell(withIdentifier: "UserItemReusableCell", for: indexPath) as! UserItemTableViewCell
             
             var item = items[indexPath.row]
             
@@ -230,24 +228,13 @@ extension UserMeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.itemLikes.text = "\(item.liked.count)"
             cell.itemOrders.text = "\(item.itemOrders)"
             cell.itemRating.text = "\(item.itemRating)"
-            cell.itemEditButton.isHidden = true
             
             if item.liked.firstIndex(of: Auth.auth().currentUser!.uid) != nil {
                 cell.itemLikeImage.image = UIImage(systemName: "heart.fill")
             } else {
                 cell.itemLikeImage.image = UIImage(systemName: "heart")
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
             
             return cell
         } else {
