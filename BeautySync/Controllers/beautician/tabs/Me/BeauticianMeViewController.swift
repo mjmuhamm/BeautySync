@@ -119,7 +119,16 @@ class BeauticianMeViewController: UIViewController {
                     for doc in documents!.documents {
                         let data = doc.data()
                         
-                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let liked = data["liked"] as? [String], let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String] {
+                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let hashtags = data["hashtags"] as? [String] {
+                            
+                            self.db.collection(itemType).document(doc.documentID).getDocument { document, error in
+                                if error == nil {
+                                    if document != nil {
+                                        let data = document!.data()
+                                        
+                                        if let liked = data!["liked"] as? [String], let itemOrders = data!["itemOrders"] as? Int, let itemRating = data!["itemRating"] as? Double {
+                                            
+                                   
                             
                             let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: self.userName.text!, beauticianPassion: self.passion.text!, beauticianCity: self.city, beauticianState: self.state, beauticianImageId: Auth.auth().currentUser!.uid, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID)
                             
@@ -133,6 +142,10 @@ class BeauticianMeViewController: UIViewController {
                                         self.serviceTableView.insertRows(at: [IndexPath(item: self.items.count - 1, section: 0)], with: .fade)
                                     }
                                 }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -237,6 +250,9 @@ extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource
         cell.itemTitle.text = item.itemTitle
         cell.itemDescription.text = item.itemDescription
         cell.itemPrice.text = "$\(item.itemPrice)"
+        cell.itemLikes.text = "\(item.liked.count)"
+        cell.itemOrders.text = "\(item.itemOrders)"
+        cell.itemRating.text = "\(item.itemRating)"
         
         let storageRef = storage.reference()
         storageRef.child("\(item.itemType)/\(Auth.auth().currentUser!.uid)/\(item.documentId)/\(item.documentId)0.png").downloadURL { itemUrl, error in

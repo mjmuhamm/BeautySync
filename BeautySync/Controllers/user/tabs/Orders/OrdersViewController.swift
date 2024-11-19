@@ -19,7 +19,7 @@ import MaterialComponents.MaterialTextControls_OutlinedTextFieldsTheming
 class OrdersViewController: UIViewController {
     
     let db = Firestore.firestore()
-
+    
     @IBOutlet weak var pendingButton: MDCButton!
     @IBOutlet weak var scheduledButton: MDCButton!
     @IBOutlet weak var completeButton: MDCButton!
@@ -35,7 +35,7 @@ class OrdersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm a"
-
+        
         serviceTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersReusableCell")
         serviceTableView.delegate = self
         serviceTableView.dataSource = self
@@ -93,6 +93,9 @@ class OrdersViewController: UIViewController {
                         
                         if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String], let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let notesToBeautician = data["notesToBeautician"] as? String, let userImageId = data["userImageId"] as? String, let status = data["status"] as? String, let itemId = data["itemId"] as? String, let userName = data["userName"] as? String {
                             
+                            if status == "scheduled" {
+                                self.moveToComplete(eventDay: eventDay, eventTime: eventTime, documentId: doc.documentID, beauticianId: beauticianImageId, userId: Auth.auth().currentUser!.uid)
+                            }
                             if status == orderType {
                                 let x = Orders(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID, eventDay: eventDay, eventTime: eventTime, streetAddress: streetAddress, zipCode: zipCode, notesToBeautician: notesToBeautician, userImageId: userImageId, userName: userName, status: status, itemId: itemId)
                                 
@@ -127,7 +130,7 @@ class OrdersViewController: UIViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
-    private func compareDates(eventDay: String, eventTime: String) {
+    private func compareDates(eventDay: String, eventTime: String, status: String) {
         
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm a"
         let year = "\(dateFormatter.string(from: Date()))".prefix(10).suffix(4)
@@ -167,13 +170,21 @@ class OrdersViewController: UIViewController {
                 if day == day1 {
                     if Int(hour1)! - Int(hour)! == 2 {
                         if Int(min)! >= Int(min1)! {
-                            self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                            if status != "pending" {
+                                self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                            } else {
+                                showOptions()
+                            }
                         } else {
                             //clear
                             showOptions()
                         }
                     } else if Int(hour1)! - Int(hour)! < 2 {
-                        self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                        if status != "pending" {
+                            self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                        } else {
+                            showOptions()
+                        }
                     } else {
                         //clear
                         showOptions()
@@ -188,6 +199,64 @@ class OrdersViewController: UIViewController {
             showOptions()
         }
     }
+    
+    private func moveToComplete(eventDay: String, eventTime: String, documentId: String, beauticianId: String, userId: String) {
+        
+        let data : [String : Any] = ["status" : "complete"]
+        
+        let date1 = dateFormatter.string(from: Date())
+        let year1 = date1.prefix(10).suffix(4)
+        let day1 = date1.prefix(5).suffix(2)
+        let month1 = date1.prefix(2)
+        var hour1 = date1.prefix(13).suffix(2)
+        let min1 = date1.prefix(16).suffix(2)
+        let amOrPm1 = date1.suffix(2)
+        //        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm a"
+        
+        print("date1 \(date1)")
+        
+        if Int(hour1)! == 12 {
+            hour1 = "\(1)"
+        } else {
+            hour1 = "\(Int(hour1)! + 1)"
+        }
+        
+        let date2 = "\(eventDay) \(eventTime)"
+        let year2 = date2.prefix(10).suffix(4)
+        let day2 = date2.prefix(5).suffix(2)
+        let month2 = date2.prefix(2)
+        var hour2 = date2.prefix(13).suffix(2)
+        let min2 = date2.prefix(16).suffix(2)
+        let amOrPm2 = date2.suffix(2)
+        
+        print("date2 \(date2)")
+        if year1 == year2 && month1 == month2 && day1 == day2 && amOrPm1 == amOrPm2 {
+            if Int(hour1)! >= Int(hour2)! && Int(min1)! >= Int(min2)!  {
+                //passed event
+                self.db.collection("Orders").document(documentId).updateData(data)
+                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Orders").document(documentId).updateData(data)
+                self.db.collection("Beautician").document(beauticianId).collection("Orders").document(documentId).updateData(data)
+            }
+        } else if year1 == year2 && month1 == month2 && day1 == day2 {
+            if amOrPm1 == "PM" && amOrPm2 == "AM" {
+                if Int(min1)! >= Int(min2)! {
+                    //passed event
+                    self.db.collection("Orders").document(documentId).updateData(data)
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Orders").document(documentId).updateData(data)
+                    self.db.collection("Beautician").document(beauticianId).collection("Orders").document(documentId).updateData(data)
+                }
+            }
+        } else if year1 > year2 || year1 == year2 && month1 > month2 || year1 == year2 && month1 == month2 && day1 > day2 {
+            //passed event
+            self.db.collection("Orders").document(documentId).updateData(data)
+            self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Orders").document(documentId).updateData(data)
+            self.db.collection("Beautician").document(beauticianId).collection("Orders").document(documentId).updateData(data)
+        }
+    }
+    
+
+        
+    
     
     
     func showToast(message : String, font: UIFont) {
@@ -260,7 +329,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.cancelButtonTapped = {
-            self.compareDates(eventDay: item.eventDay, eventTime: item.eventTime)
+            self.compareDates(eventDay: item.eventDay, eventTime: item.eventTime, status: item.status)
         }
         
         

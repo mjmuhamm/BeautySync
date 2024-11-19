@@ -222,7 +222,6 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
                     itemId = items[i].documentId
                 }
             }
-            //        var entries = [BarChartDataEntry]()
             var weeklyData : [BarChartDataEntry] = [BarChartDataEntry(x: 0, y: 0), BarChartDataEntry(x: 1, y: 0), BarChartDataEntry(x: 2, y: 0), BarChartDataEntry(x: 3, y: 0)]
             let labels = ["Week 1", "Week 2", "Week 3", "Week 4"]
             weeklyBarChart.xAxis.valueFormatter = IndexAxisValueFormatter(values:labels)
@@ -308,7 +307,6 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
             var monthlyData : [BarChartDataEntry] = [BarChartDataEntry(x: 0, y: 0), BarChartDataEntry(x: 1, y: 0), BarChartDataEntry(x: 2, y: 0), BarChartDataEntry(x: 3, y: 0), BarChartDataEntry(x: 4, y: 0), BarChartDataEntry(x: 5, y: 0)]
             var labels = ["January", "February", "March", "April", "May", "June"]
             
-            print("date \(year), \(month)")
             if Int(month)! > 6 {
                 labels = ["July", "August", "September", "October", "November", "December"]
             }
@@ -323,7 +321,6 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
             
             for i in Int(monthStart)!-1..<Int(monthEnd)!-1 {
                 
-                print("month number statr \(newMonth)")
                 if i != 1 || i != 7 {
                     newMonth = "\(i + 1)"
                     if Int(newMonth)! < 10 {
@@ -331,7 +328,6 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
                     }
                 }
                 yearMonth = "\(year), \(newMonth)"
-                print("path Beautician/\(Auth.auth().currentUser!.uid)/Dashboard/\(itemType)/\(itemId)/Month/\(yearMonth)")
                
                 db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document("\(itemType)").collection(itemId).document("Month").collection(yearMonth).document("Total").getDocument { document, error in
                     
@@ -403,17 +399,24 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
             if self.itemType.text == "Hair Care Items" { itemType = "hairCareItems" } else if self.itemType.text == "Skin Care Items" { itemType = "skinCareItems" } else if self.itemType.text == "Nail Care Items" { itemType = "nailCareItems" }
             
             
-            var array1 = ["hairCareItems", "skinCareItems", "nailCareItems"]
-            var totalItems : [DashboardTotal] = []
+            let array1 = ["hairCareItems", "skinCareItems", "nailCareItems"]
+            let totalItems : [DashboardTotal] = []
                 if self.itemType.text == "All" {
-                    print("this is happening")
                     for i in 0..<3 {
                         db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Dashboard").document(array1[i]).getDocument { document, error in
                             
                             if error == nil {
                                 if document != nil {
                                     if let total = document!.get("totalPay") {
-                                        pieChartData.append(PieChartDataEntry(value: Double(String(format: "%2.f", Double("\(total)")!))!, label: array1[i]))
+                                        var label = ""
+                                        if array1[i] == "hairCareItems" {
+                                            label = "Hair Care Items"
+                                        } else if array1[i] == "skinCareItems" {
+                                            label = "Skin Care Items"
+                                        } else if array1[i] == "nailCareItems" {
+                                            label = "Nail Care Items"
+                                        }
+                                        pieChartData.append(PieChartDataEntry(value: Double(String(format: "%2.f", Double("\(total)")!))!, label: label))
                                         
                                         let set = PieChartDataSet(entries: pieChartData)
                                         set.colors = ChartColorTemplates.pastel()

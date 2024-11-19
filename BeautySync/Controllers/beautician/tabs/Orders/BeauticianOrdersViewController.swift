@@ -30,11 +30,12 @@ class BeauticianOrdersViewController: UIViewController {
     private var orderType = "pending"
     
     let df = DateFormatter()
-    
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         df.dateFormat = "MM-dd-yyyy HH:mm a"
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm a"
 
         serviceTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersReusableCell")
         serviceTableView.delegate = self
@@ -90,6 +91,10 @@ class BeauticianOrdersViewController: UIViewController {
                         
                         
                         if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String], let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let notesToBeautician = data["notesToBeautician"] as? String, let userImageId = data["userImageId"] as? String, let status = data["status"] as? String, let itemId = data["itemId"] as? String, let userName = data["userName"] as? String {
+                            
+                            if status == "scheduled" {
+                                self.moveToComplete(eventDay: eventDay, eventTime: eventTime, documentId: doc.documentID, beauticianId: Auth.auth().currentUser!.uid, userId: userImageId)
+                            }
                             
                             if status == orderType {
                                 let x = Orders(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID, eventDay: eventDay, eventTime: eventTime, streetAddress: streetAddress, zipCode: zipCode, notesToBeautician: notesToBeautician, userImageId: userImageId, userName: userName, status: status, itemId: itemId)
@@ -196,6 +201,167 @@ class BeauticianOrdersViewController: UIViewController {
         }
     }
     
+    
+    private func moveToComplete(eventDay: String, eventTime: String, documentId: String, beauticianId: String, userId: String) {
+        
+        let data : [String : Any] = ["status" : "complete"]
+        
+        let date1 = dateFormatter.string(from: Date())
+        let year1 = date1.prefix(10).suffix(4)
+        let day1 = date1.prefix(5).suffix(2)
+        let month1 = date1.prefix(2)
+        var hour1 = date1.prefix(13).suffix(2)
+        let min1 = date1.prefix(16).suffix(2)
+        let amOrPm1 = date1.suffix(2)
+        //        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm a"
+        
+        if Int(hour1)! > 12 {
+            hour1 = "\(Int(hour1)! - 12)"
+        }
+           
+       
+        print("date1 \(date1)")
+        print("hour1 \(hour1)")
+        print("min1 \(min1)")
+        
+        let date2 = "\(eventDay) \(eventTime)"
+        let year2 = date2.prefix(10).suffix(4)
+        let day2 = date2.prefix(5).suffix(2)
+        let month2 = date2.prefix(2)
+        var hour2 = date2.prefix(13).suffix(2)
+        let min2 = date2.prefix(16).suffix(2)
+        var amOrPm2 = date2.suffix(2)
+        
+        if Int(hour2)! == 12 {
+            hour2 = "\(1)"
+        } else {
+            hour2 = "\(Int(hour2)! + 1)"
+        }
+        
+        print("date2 \(date2)")
+        print("hour2 \(hour2)")
+        print("min2 \(min2)")
+        
+        if year1 == year2 && month1 == month2 && day1 == day2 && amOrPm1 == amOrPm2 {
+            if Int(hour1)! >= Int(hour2)! && Int(min1)! >= Int(min2)!  {
+                //passed event
+                print("happened 1")
+                self.db.collection("Orders").document(documentId).getDocument { document, error in
+                    if error == nil {
+                        if document != nil {
+                            let data1 = document!.data()
+                            print("documentId \(documentId)")
+                            if let status = data1!["status"] as? String, let itemPrice = data1!["itemPrice"] as? String, let eventDay = data1!["eventDay"] as? String, let eventTime = data1!["eventTime"] as? String {
+                                if status == "scheduled" {
+                                    self.db.collection("Orders").document(documentId).updateData(data)
+                                    self.db.collection("User").document(userId).collection("Orders").document(documentId).updateData(data)
+                                    self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Orders").document(documentId).updateData(data)
+                                    self.transfer(transferAmount: Double(itemPrice)!, orderId: documentId, userImageId: userId, beauticianImageId: beauticianId, eventDate: "\(eventDay) \(eventTime)")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else if year1 == year2 && month1 == month2 && day1 == day2 {
+            if amOrPm1 == "PM" && amOrPm2 == "AM" {
+                if Int(min1)! >= Int(min2)! {
+                    //passed event
+                    print("happened 2")
+                    self.db.collection("Orders").document(documentId).getDocument { document, error in
+                        if error == nil {
+                            if document != nil {
+                                let data1 = document!.data()
+                                
+                                if let status = data1!["status"] as? String, let itemPrice = data1!["itemPrice"] as? String, let eventDay = data1!["eventDay"] as? String, let eventTime = data1!["eventTime"] as? String {
+                                    if status == "scheduled" {
+                                        self.db.collection("Orders").document(documentId).updateData(data)
+                                        self.db.collection("User").document(userId).collection("Orders").document(documentId).updateData(data)
+                                        self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Orders").document(documentId).updateData(data)
+                                        self.transfer(transferAmount: Double(itemPrice)!, orderId: documentId, userImageId: userId, beauticianImageId: beauticianId, eventDate: "\(eventDay) \(eventTime)")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else if year1 > year2 || year1 == year2 && month1 > month2 || year1 == year2 && month1 == month2 && day1 > day2 {
+            //passed event
+            print("happened 3")
+            self.db.collection("Orders").document(documentId).getDocument { document, error in
+                if error == nil {
+                    if document != nil {
+                        let data1 = document!.data()
+                        
+                        if let status = data1!["status"] as? String, let itemPrice = data1!["itemPrice"] as? String, let eventDay = data1!["eventDay"] as? String, let eventTime = data1!["eventTime"] as? String {
+                            if status == "scheduled" {
+                                self.db.collection("Orders").document(documentId).updateData(data)
+                                self.db.collection("User").document(userId).collection("Orders").document(documentId).updateData(data)
+                                self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Orders").document(documentId).updateData(data)
+                                self.transfer(transferAmount: Double(itemPrice)!, orderId: documentId, userImageId: userId, beauticianImageId: beauticianId, eventDate: "\(eventDay) \(eventTime)")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    private func transfer(transferAmount: Double, orderId: String, userImageId: String, beauticianImageId: String, eventDate: String) {
+        let date = Date()
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let df1 = DateFormatter()
+        df1.dateFormat = "MM-dd-yyyy hh:mm a"
+                            
+        self.db.collection("Beautician").document(beauticianImageId).collection("BankingInfo").getDocuments { documents, error in
+                if error == nil {
+                    if documents != nil {
+                        for doc in documents!.documents {
+                            let data = doc.data()
+                            
+                            if let stripeAccountId = data["stripeAccountId"] as? String {
+                                let a = (transferAmount * 0.95) * 100
+                                
+                                let amount = String(format: "%.0f", a)
+                                
+                                let json: [String: Any] = ["amount": amount, "stripeAccountId" : stripeAccountId]
+                                
+                                let jsonData = try? JSONSerialization.data(withJSONObject: json)
+                                // MARK: Fetch the Intent client secret, Ephemeral Key secret, Customer ID, and publishable key
+                                var request = URLRequest(url: URL(string: "https://beautysync-stripeserver.onrender.com/transfer")!)
+                                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                                request.httpMethod = "POST"
+                                request.httpBody = jsonData
+                                let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data,response, error) in
+                                    guard let data = data,
+                                          let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+                                          let transferId = json["transferId"], let self = self else {
+                                        // Handle error
+                                        return
+                                    }
+                                    
+                                    DispatchQueue.main.async {
+                                        
+                                        let data : [String: Any] = ["transferId" : transferId, "orderId" : orderId, "date" : df.string(from: Date()), "userImageId" : userImageId, "beauticianImageId" : beauticianImageId, "eventDate" : eventDate]
+                                        self.db.collection("Transfers").document(orderId).setData(data)
+                                        
+                                        self.showToast(message: "$\(String(format: "%.2f", transferAmount * 0.95)) payout on the way.", font: .systemFont(ofSize: 12))
+                                    }
+                                })
+                                task.resume()
+                            }
+                            
+                        }
+                    }
+                    }
+                }
+                
+            }
+        
+    
     func showToast(message : String, font: UIFont) {
         
         let toastLabel = UILabel(frame: CGRect(x: 0, y: self.view.frame.size.height-180, width: (self.view.frame.width), height: 70))
@@ -267,6 +433,9 @@ extension BeauticianOrdersViewController: UITableViewDelegate, UITableViewDataSo
             cell.messagesButton.isUppercaseTitle = false
         }
         
+        if self.orderType == "complete" {
+            cell.cancelButton.isHidden = true
+        }
        
         cell.messagesButtonTapped = {
             let month = "\(self.df.string(from: Date()))".prefix(2)

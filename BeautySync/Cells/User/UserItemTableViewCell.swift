@@ -22,11 +22,14 @@ class UserItemTableViewCell: UITableViewCell {
     
     
     var userImageButtonTapped : (() -> ()) = {}
-    var itemImageButtonTapped : (() -> ()) = {}
+    var itemDetailButtonTapped : (() -> ()) = {}
     var itemOrderButtonTapped : (() -> ()) = {}
+    var itemLikeButtonTapped : (() -> ()) = {}
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        itemImage.layer.cornerRadius = 4
         // Initialization code
     }
 
@@ -41,11 +44,14 @@ class UserItemTableViewCell: UITableViewCell {
     }
     
     @IBAction func itemDetailButtonPressed(_ sender: Any) {
-        itemImageButtonTapped()
+        itemDetailButtonTapped()
     }
     
     @IBAction func itemOrderButtonPressed(_ sender: Any) {
         itemOrderButtonTapped()
     }
     
+    @IBAction func itemLikeButtonPressed(_ sender: Any) {
+        itemLikeButtonTapped()
+    }
 }

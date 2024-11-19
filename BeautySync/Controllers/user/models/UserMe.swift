@@ -21,3 +21,15 @@ struct Reviews {
     let userLikes: [String]
     
 }
+
+struct Beauticians {
+    
+    let beauticianCity: String
+    let beauticianImageId: String
+    let beauticianPassion: String
+    let beauticianState: String
+    let beauticianUsername: String
+    let itemCount: Int
+    let documentId: String
+    
+}

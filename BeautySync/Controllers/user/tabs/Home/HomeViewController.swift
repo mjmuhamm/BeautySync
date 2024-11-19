@@ -124,7 +124,7 @@ class HomeViewController: UIViewController {
     }
     
     private func loadCart() {
-        db.collection("User").document(Auth.auth().currentUser!.uid).collection("Cart").getDocuments { documents, error in
+        db.collection("User").document(Auth.auth().currentUser!.uid).collection("Cart").addSnapshotListener { documents, error in
             if error == nil {
                 if documents != nil {
                     for doc in documents!.documents {
