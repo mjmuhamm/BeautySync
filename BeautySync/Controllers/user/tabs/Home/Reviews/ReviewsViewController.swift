@@ -42,9 +42,10 @@ class ReviewsViewController: UIViewController {
                     for doc in documents!.documents {
                         let data = doc.data()
                         
-                        if let date = data["date"] as? String, let expectations = data["expectations"] as? Int, let itemDescription = data["itemDescription"] as? String, let itemId = data["itemId"] as? String, let itemTitle = data["itemTitle"] as? String, let itemType = data["itemType"] as? String, let liked = data["liked"] as? [String], let quality = data["quality"] as? Int, let rating = data["rating"] as? Int, let recommend = data["recommend"] as? Int, let thoughts = data["thoughts"] as? String, let userImageId = data["userImageId"] as? String, let userName = data["userName"] as? String {
+                        if let date = data["date"] as? String, let expectations = data["expectations"] as? Int, let itemDescription = data["itemDescription"] as? String, let itemId = data["itemId"] as? String, let itemTitle = data["itemTitle"] as? String, let itemType = data["itemType"] as? String, let liked = data["liked"] as? [String], let quality = data["quality"] as? Int, let rating = data["rating"] as? Int, let recommend = data["recommend"] as? Int, let thoughts = data["thoughts"] as? String, let userImageId = data["userImageId"] as? String, let userName = data["userName"] as? String, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let orderDate = data["orderDate"] as? String {
                             
-                            let x = UserReview(date: date, expectations: expectations, quality: quality, rating: rating, recommend: recommend, thoughts: thoughts, itemDescription: itemDescription, itemId: itemId, itemTitle: itemTitle, itemType: itemType, userImageId: userImageId, userName: userName, liked: liked, documentId: doc.documentID)
+                            let x = UserReview(date: date, expectations: expectations, quality: quality, rating: rating, recommend: recommend, thoughts: thoughts, itemDescription: itemDescription, itemId: itemId, itemTitle: itemTitle, itemType: itemType, userImageId: userImageId, userName: userName, liked: liked, beauticianUsername: beauticianUsername, beauticianImageId: beauticianImageId, orderDate: orderDate, documentId: doc.documentID)
+                            
                             if self.reviews.isEmpty {
                                 self.reviews.append(x)
                                 self.reviewTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
@@ -130,6 +131,7 @@ extension ReviewsViewController :  UITableViewDelegate, UITableViewDataSource  {
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileAsUser") as? ProfileAsUserViewController {
                 vc.beauticianOrUser = "user"
                 vc.userId = review.userImageId
+                vc.itemType = "Beauticians"
                 self.present(vc, animated: true, completion: nil)
             }
         }

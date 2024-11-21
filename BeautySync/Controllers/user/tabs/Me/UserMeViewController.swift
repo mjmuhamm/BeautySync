@@ -38,7 +38,7 @@ class UserMeViewController: UIViewController {
     var itemType = "orders"
     var items : [ServiceItems] = []
     var beauticians : [Beauticians] = []
-    var reviews : [Reviews] = []
+    var reviews : [UserReview] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -188,7 +188,7 @@ class UserMeViewController: UIViewController {
                                             
                                             if self.items.isEmpty {
                                                 self.items.append(x)
-                                                self.userTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
+                                                self.userTableView.reloadData()
                                             } else {
                                                 let index = self.items.firstIndex { $0.documentId == doc.documentID }
                                                 if index == nil {
@@ -211,6 +211,7 @@ class UserMeViewController: UIViewController {
         
         self.items.removeAll()
         self.beauticians.removeAll()
+        self.reviews.removeAll()
         self.userTableView.reloadData()
         
         db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").getDocuments { documents, error in
@@ -226,7 +227,7 @@ class UserMeViewController: UIViewController {
                             
                             if self.beauticians.isEmpty {
                                 self.beauticians.append(x)
-                                self.userTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
+                                self.userTableView.reloadData()
                             } else {
                                 let index = self.beauticians.firstIndex { $0.documentId == doc.documentID }
                                 if index == nil {
@@ -246,6 +247,7 @@ class UserMeViewController: UIViewController {
     private func loadLikes() {
         self.items.removeAll()
         self.beauticians.removeAll()
+        self.reviews.removeAll()
         self.userTableView.reloadData()
         
         db.collection("User").document(Auth.auth().currentUser!.uid).collection("Likes").getDocuments { documents, error in
@@ -267,7 +269,7 @@ class UserMeViewController: UIViewController {
                                             
                                             if self.items.isEmpty {
                                                 self.items.append(x)
-                                                self.userTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
+                                                self.userTableView.reloadData()
                                             } else {
                                                 let index = self.items.firstIndex { $0.documentId == doc.documentID }
                                                 if index == nil {
@@ -290,7 +292,36 @@ class UserMeViewController: UIViewController {
     }
     
     private func loadReviews() {
+        self.items.removeAll()
+        self.beauticians.removeAll()
+        self.reviews.removeAll()
+        self.userTableView.reloadData()
         
+        db.collection("User").document(Auth.auth().currentUser!.uid).collection("Reviews").getDocuments { documents, error in
+            if error == nil {
+                if documents != nil {
+                    for doc in documents!.documents {
+                        let data = doc.data()
+                        
+                        if let date = data["date"] as? String, let expectations = data["expectations"] as? Int, let itemDescription = data["itemDescription"] as? String, let itemId = data["itemId"] as? String, let itemTitle = data["itemTitle"] as? String, let itemType = data["itemType"] as? String, let liked = data["liked"] as? [String], let quality = data["quality"] as? Int, let rating = data["rating"] as? Int, let recommend = data["recommend"] as? Int, let thoughts = data["thoughts"] as? String, let userImageId = data["userImageId"] as? String, let userName = data["userName"] as? String, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let orderDate = data["orderDate"] as? String {
+                            
+                            let x = UserReview(date: date, expectations: expectations, quality: quality, rating: rating, recommend: recommend, thoughts: thoughts, itemDescription: itemDescription, itemId: itemId, itemTitle: itemTitle, itemType: itemType, userImageId: userImageId, userName: userName, liked: liked, beauticianUsername: beauticianUsername, beauticianImageId: beauticianImageId, orderDate: orderDate, documentId: doc.documentID)
+                            
+                            if self.reviews.isEmpty {
+                                self.reviews.append(x)
+                                self.userTableView.reloadData()
+                            } else {
+                                let index = self.reviews.firstIndex { $0.documentId == doc.documentID }
+                                if index == nil {
+                                    self.reviews.append(x)
+                                    self.userTableView.insertRows(at: [IndexPath(item: self.reviews.count - 1, section: 0)], with: .fade)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     
@@ -303,6 +334,8 @@ extension UserMeViewController: UITableViewDelegate, UITableViewDataSource {
             return items.count
         }  else if itemType == "beauticians" {
             return beauticians.count
+        } else if itemType == "reviews" {
+            return reviews.count
         } else {
             return 1
         }
@@ -595,6 +628,88 @@ extension UserMeViewController: UITableViewDelegate, UITableViewDataSource {
             
             
             return cell
+        } else if itemType == "reviews" {
+            let cell = userTableView.dequeueReusableCell(withIdentifier: "UserReviewsReusableCell", for: indexPath) as! UserReviewsTableViewCell
+            var review = reviews[indexPath.row]
+            
+            var thoughts = ""
+            if review.thoughts == "" {
+                thoughts = "\(review.userName) has not disclosed any external thoughts in this review."
+            } else {
+                thoughts = review.thoughts
+            }
+            
+            var itemType1 = ""
+            if review.itemType == "hairCareItems" {
+                itemType1 = "Hair Care"
+            } else if review.itemType == "skinCareItem" {
+                itemType1 = "Skin Care"
+            } else if review.itemType == "nailCareItem" {
+                itemType1 = "Nail Care"
+            }
+            cell.itemTypeAndTitle.text = "\(itemType1) | \(review.itemTitle)"
+            cell.beautician.text = "Beautician: \(review.beauticianUsername)"
+            cell.userThoughts.text = thoughts
+            cell.orderDate.text = "Ordered: \(review.orderDate)"
+            cell.expectations.text = "\(review.expectations)"
+            cell.quality.text = "\(review.quality)"
+            cell.beauticianRating.text = "\(review.rating)"
+            
+            userTableView.rowHeight = 161
+            let beauticianRef = storage.reference()
+            
+            DispatchQueue.main.async {
+                beauticianRef.child("users/\(review.userImageId)/profileImage/\(review.userImageId).png").getData(maxSize: 15 * 1024 * 1024) { data, error in
+                    if error == nil {
+                        cell.userImage.image = UIImage(data: data!)!
+                    }}
+                
+            }
+            
+            if review.recommend == 1 {
+                cell.doesTheUserRecommend.text = "Yes"
+            } else {
+                cell.doesTheUserRecommend.text = "No"
+            }
+            cell.userLikes.text = "\(review.liked.count)"
+            if let index = review.liked.firstIndex(where: { $0 == Auth.auth().currentUser!.uid }) {
+                cell.userLikeImage.image = UIImage(systemName: "heart.fill")
+            }
+            
+            cell.userLikeButtonTapped = {
+                
+                if cell.userLikeImage.image == UIImage(systemName: "heart") {
+                    cell.userLikeImage.image = UIImage(systemName: "heart.fill")
+                    cell.userLikes.text = "\(Int(cell.userLikes.text!)! + 1)"
+                    self.db.collection(review.itemType).document(review.itemId).collection("Reviews").document(review.documentId).updateData(["liked" : FieldValue.arrayUnion(["\(Auth.auth().currentUser!.uid)"])])
+                    
+                    
+                    
+                } else {
+                    cell.userLikeImage.image = UIImage(systemName: "heart")
+                    self.db.collection(review.itemType).document(review.itemId).collection("Reviews").document(review.documentId).updateData(["liked" : FieldValue.arrayRemove(["\(Auth.auth().currentUser!.uid)"])])
+                    cell.userLikes.text = "\(Int(cell.userLikes.text!)! - 1)"
+                    
+                }
+                
+                
+            }
+            
+            cell.userImageButtonTapped = {
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileAsUser") as? ProfileAsUserViewController {
+                    vc.userId = review.beauticianImageId
+                    vc.beauticianOrUser = "Beautician"
+                    vc.item = ServiceItems(itemType: review.itemType, itemTitle: review.itemTitle, itemDescription: review.itemDescription, itemPrice: "", imageCount: 0, beauticianUsername: review.beauticianUsername, beauticianPassion: "", beauticianCity: "", beauticianState: "", beauticianImageId: review.beauticianImageId, liked: [], itemOrders: 0, itemRating: [], hashtags: [], documentId: review.itemId)
+                    self.present(vc, animated: true, completion: nil)
+                }
+            }
+            
+            
+            
+            
+            
+            return cell
+            
         } else {
             return UITableViewCell()
         }

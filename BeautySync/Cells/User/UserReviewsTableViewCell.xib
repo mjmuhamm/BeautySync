@@ -140,7 +140,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hair Item | Cornrows" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eem-Hc-LdA">
-                        <rect key="frame" x="6" y="8" width="283" height="14.333333333333336"/>
+                        <rect key="frame" x="6" y="8" width="219" height="14"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -179,7 +179,7 @@
                     <constraint firstItem="I2x-vM-Pr4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="FOs-k2-9Wu"/>
                     <constraint firstItem="NGh-Ba-td0" firstAttribute="leading" secondItem="ZRt-He-qft" secondAttribute="trailing" constant="7" id="NEI-rD-D3X"/>
                     <constraint firstItem="s69-Kl-1kS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PzI-UY-EXn"/>
-                    <constraint firstAttribute="trailing" secondItem="Eem-Hc-LdA" secondAttribute="trailing" constant="104" id="Uea-w6-PDm"/>
+                    <constraint firstAttribute="trailing" secondItem="Eem-Hc-LdA" secondAttribute="trailing" constant="168" id="Uea-w6-PDm"/>
                     <constraint firstItem="mrg-aT-AL5" firstAttribute="leading" secondItem="ZRt-He-qft" secondAttribute="trailing" constant="7" id="Vmx-aS-t1u"/>
                     <constraint firstItem="ZRt-He-qft" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="XlB-5h-Uib"/>
                     <constraint firstItem="Eem-Hc-LdA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="as9-d0-kQ8"/>

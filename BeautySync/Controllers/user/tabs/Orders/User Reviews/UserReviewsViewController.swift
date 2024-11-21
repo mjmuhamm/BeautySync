@@ -241,12 +241,14 @@ class UserReviewsViewController: UIViewController {
         } else if beauticianRatingNum == 0 {
             self.showToast(message: "Please rate the beautician in the alloted field", font: .systemFont(ofSize: 12))
         } else {
-            let data1: [String: Any] = ["expectations" : expectationsNum, "quality" : qualityNum, "rating" : beauticianRatingNum, "recommend" : recommend, "thoughts" : thoughts, "itemType" : item!.itemType, "itemId" : item!.itemId, "itemDescription" : item!.itemDescription, "itemTitle" : item!.itemTitle, "date" : dateFormatter.string(from: Date()), "userImageId" : Auth.auth().currentUser!.uid, "liked" : [], "userName" : self.userName]
+            let data1: [String: Any] = ["expectations" : expectationsNum, "quality" : qualityNum, "rating" : beauticianRatingNum, "recommend" : recommend, "thoughts" : thoughts, "itemType" : item!.itemType, "itemId" : item!.itemId, "itemDescription" : item!.itemDescription, "itemTitle" : item!.itemTitle, "date" : dateFormatter.string(from: Date()), "userImageId" : Auth.auth().currentUser!.uid, "liked" : [], "userName" : self.userName, "beauticianUsername" : item!.beauticianUsername, "beauticianImageId" : item!.beauticianImageId, "orderDate" : item!.eventDay]
             
             let data2: [String: Any] = ["itemRating" : beauticianRatingNum]
             let data3: [String: Any] = ["status" : "reviewed"]
+            let documentId = UUID().uuidString
             db.collection(item!.itemType).document(item!.itemId).updateData(["itemRating" : FieldValue.arrayUnion([beauticianRatingNum])])
-            db.collection(item!.itemType).document(item!.itemId).collection("Reviews").document().setData(data1)
+            db.collection(item!.itemType).document(item!.itemId).collection("Reviews").document(documentId).setData(data1)
+            db.collection("User").document(Auth.auth().currentUser!.uid).collection("Reviews").document(documentId).setData(data1)
             db.collection("User").document(Auth.auth().currentUser!.uid).collection("Orders").document(item!.documentId).updateData(data3)
             self.showToastCompletion(message: "Review Added. Thank You!", font: .systemFont(ofSize: 12))
         }

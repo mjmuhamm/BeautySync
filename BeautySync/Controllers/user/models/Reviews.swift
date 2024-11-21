@@ -21,5 +21,8 @@ struct UserReview {
     let userImageId: String
     let userName: String
     let liked: [String]
+    let beauticianUsername: String
+    let beauticianImageId: String
+    let orderDate: String
     let documentId: String
 }

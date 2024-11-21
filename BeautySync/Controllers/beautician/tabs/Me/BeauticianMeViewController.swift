@@ -146,7 +146,7 @@ class BeauticianMeViewController: UIViewController {
                             
                                 if self.items.isEmpty {
                                     self.items.append(x)
-                                    self.serviceTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
+                                    self.serviceTableView.reloadData()
                                 } else {
                                     let index = self.items.firstIndex { $0.documentId == doc.documentID }
                                     if index == nil {

@@ -116,7 +116,7 @@ class CheckoutViewController: UIViewController {
                                     print("happened once 1")
                                     self.fetchPaymentIntent(costOfEvent: finalTotal)
                                 }
-                                self.serviceTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
+                                self.serviceTableView.reloadData()
                             } else {
                                 let index = self.items.firstIndex { $0.documentId == doc.documentID }
                                 
