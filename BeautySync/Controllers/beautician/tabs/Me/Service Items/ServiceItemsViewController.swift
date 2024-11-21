@@ -379,7 +379,7 @@ extension ServiceItemsViewController: UIImagePickerControllerDelegate, UINavigat
         self.imgArrData.append(image.pngData()!)
         self.cancelButton.isHidden = false
         self.pageControl.numberOfPages = self.imgArr.count
-        var path = "\(item)/\(Auth.auth().currentUser!.uid)/\(self.serviceItemId)/\(self.serviceItemId)\(self.imgArr.count - 1).png"
+        let path = "\(item)/\(Auth.auth().currentUser!.uid)/\(self.serviceItemId)/\(self.serviceItemId)\(self.imgArr.count - 1).png"
         if newOrEdit == "edit" {
             let storageRef = self.storage.reference()
             storageRef.child(path).putData(image.pngData()!)

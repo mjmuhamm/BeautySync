@@ -218,17 +218,23 @@ class BeauticianMeViewController: UIViewController {
     @IBAction func addButtonPressed(_ sender: Any) {
         var item = ""
         if itemType == "hairCareItems" { item = "Hair Care Item" } else if itemType == "skinCareItems" { item = "Skin Care Item" } else if itemType == "nailCareItems" { item = "Nail Care Item" } else { item = "Content Item" }
-        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ServiceItem") as? ServiceItemsViewController {
-            vc.itemType = item
-            vc.beauticianUsername = self.userName.text!
-            vc.beauticianPassion = self.passion.text!
-            vc.beauticianCity = self.city
-            vc.beauticianState = self.state
-            
-            self.present(vc, animated: true, completion: nil)
+        if item != "Content Item" {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ServiceItem") as? ServiceItemsViewController {
+                vc.itemType = item
+                vc.beauticianUsername = self.userName.text!
+                vc.beauticianPassion = self.passion.text!
+                vc.beauticianCity = self.city
+                vc.beauticianState = self.state
+                
+                self.present(vc, animated: true, completion: nil)
+            }
+        } else {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddContent") as? AddContentViewController {
+                vc.beauticianUsername = self.userName.text!
+                self.present(vc, animated: true, completion: nil)
+            }
         }
     }
-    
     
 
 }

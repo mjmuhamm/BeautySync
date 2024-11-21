@@ -57,6 +57,11 @@
 		2081A27E2CDAEE98001C4D52 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A27D2CDAEE98001C4D52 /* FirebaseMessaging */; };
 		2081A2802CDAEE98001C4D52 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A27F2CDAEE98001C4D52 /* FirebaseStorage */; };
 		208C3CED2CD69E6800222A37 /* Banking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C3CEC2CD69E6800222A37 /* Banking.swift */; };
+		208EF4ED2CEE22BA00572C73 /* AddContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208EF4EC2CEE22BA00572C73 /* AddContentViewController.swift */; };
+		208EF4F12CEEB33200572C73 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208EF4EF2CEEB33200572C73 /* FeedCollectionViewCell.swift */; };
+		208EF4F22CEEB33200572C73 /* FeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 208EF4F02CEEB33200572C73 /* FeedCollectionViewCell.xib */; };
+		208EF4F42CEEB76300572C73 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208EF4F32CEEB76300572C73 /* Video.swift */; };
+		208EF4F72CEEB88000572C73 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208EF4F62CEEB88000572C73 /* FeedViewController.swift */; };
 		20B0F5AC2CDE95B100F3C0D8 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0F5AB2CDE95B100F3C0D8 /* ItemDetailViewController.swift */; };
 		20B0F5B02CDEAA7B00F3C0D8 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0F5AE2CDEAA7B00F3C0D8 /* HomeTableViewCell.swift */; };
 		20B0F5B12CDEAA7B00F3C0D8 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B0F5AF2CDEAA7B00F3C0D8 /* HomeTableViewCell.xib */; };
@@ -140,6 +145,11 @@
 		207ECAAD2CE544C6008856D5 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		207ECAAE2CE544C6008856D5 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		208C3CEC2CD69E6800222A37 /* Banking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking.swift; sourceTree = "<group>"; };
+		208EF4EC2CEE22BA00572C73 /* AddContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContentViewController.swift; sourceTree = "<group>"; };
+		208EF4EF2CEEB33200572C73 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		208EF4F02CEEB33200572C73 /* FeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCollectionViewCell.xib; sourceTree = "<group>"; };
+		208EF4F32CEEB76300572C73 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		208EF4F62CEEB88000572C73 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		20B0F5AB2CDE95B100F3C0D8 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		20B0F5AE2CDEAA7B00F3C0D8 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		20B0F5AF2CDEAA7B00F3C0D8 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
@@ -255,6 +265,7 @@
 		201910E12CD28BB4006BEE4D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				208EF4EE2CEEB31C00572C73 /* Feed */,
 				20B0F5AD2CDEAA6300F3C0D8 /* Home */,
 				20D8D1F92CDD377500117EF4 /* ServiceItem */,
 				207ECAA42CE3CB90008856D5 /* Checkout */,
@@ -397,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				206C62EE2CE9048200159481 /* Messages.swift */,
+				208EF4F32CEEB76300572C73 /* Video.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -482,9 +494,27 @@
 			path = models;
 			sourceTree = "<group>";
 		};
+		208EF4EE2CEEB31C00572C73 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				208EF4EF2CEEB33200572C73 /* FeedCollectionViewCell.swift */,
+				208EF4F02CEEB33200572C73 /* FeedCollectionViewCell.xib */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		208EF4F52CEEB86C00572C73 /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				208EF4F62CEEB88000572C73 /* FeedViewController.swift */,
+			);
+			path = tabs;
+			sourceTree = "<group>";
+		};
 		20B0F5AA2CDE958A00F3C0D8 /* both */ = {
 			isa = PBXGroup;
 			children = (
+				208EF4F52CEEB86C00572C73 /* tabs */,
 				206C62ED2CE9047300159481 /* models */,
 				206C62E52CE8FAD200159481 /* Messaging */,
 				20B0F5AB2CDE95B100F3C0D8 /* ItemDetailViewController.swift */,
@@ -532,6 +562,7 @@
 			isa = PBXGroup;
 			children = (
 				20D8D1F52CDCEA0100117EF4 /* ServiceItemsViewController.swift */,
+				208EF4EC2CEE22BA00572C73 /* AddContentViewController.swift */,
 			);
 			path = "Service Items";
 			sourceTree = "<group>";
@@ -698,6 +729,7 @@
 				201910BA2CD28807006BEE4D /* Assets.xcassets in Resources */,
 				20B0F5B12CDEAA7B00F3C0D8 /* HomeTableViewCell.xib in Resources */,
 				201910B82CD28805006BEE4D /* Main.storyboard in Resources */,
+				208EF4F22CEEB33200572C73 /* FeedCollectionViewCell.xib in Resources */,
 				206C62EC2CE8FEE500159481 /* MessagesTableViewCell.xib in Resources */,
 				204F453A2CEA76BF00E2D449 /* UserItemTableViewCell.xib in Resources */,
 			);
@@ -798,10 +830,14 @@
 				207B3F3E2CE64E7F0063C725 /* Orders.swift in Sources */,
 				201910B32CD28805006BEE4D /* SceneDelegate.swift in Sources */,
 				207B3F422CE68D6D0063C725 /* BeauticianOrdersViewController.swift in Sources */,
+				208EF4F12CEEB33200572C73 /* FeedCollectionViewCell.swift in Sources */,
 				20B0F5B42CDEB86A00F3C0D8 /* ProfileAsUserViewController.swift in Sources */,
 				201910F02CD404DB006BEE4D /* BeauticianPersonalViewController.swift in Sources */,
+				208EF4F42CEEB76300572C73 /* Video.swift in Sources */,
 				20B4D3B22CDFC43300C26EEC /* BeauticianAccountSettingsViewController.swift in Sources */,
 				207B3F3C2CE59DC20063C725 /* OrdersViewController.swift in Sources */,
+				208EF4F72CEEB88000572C73 /* FeedViewController.swift in Sources */,
+				208EF4ED2CEE22BA00572C73 /* AddContentViewController.swift in Sources */,
 				206C62E42CE7FCAA00159481 /* MessagesViewController.swift in Sources */,
 				204F45432CEA80CB00E2D449 /* UserReviewsTableViewCell.swift in Sources */,
 				201910E72CD29B7D006BEE4D /* BeauticianLoginViewController.swift in Sources */,
