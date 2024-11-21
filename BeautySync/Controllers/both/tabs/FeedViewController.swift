@@ -140,7 +140,7 @@ extension FeedViewController : UICollectionViewDelegate, UICollectionViewDataSou
         cell.commentText.text = "\(model.comments)"
         cell.shareText.text = "\(model.shared)"
         cell.userName.text = model.user
-        cell.videoDescription.text = "\(model.description) \(model.description) \(model.description)"
+        cell.videoDescription.text = "\(model.description)"
         
         if (model.liked.contains(Auth.auth().currentUser!.uid)) {
             cell.likeImage.image = UIImage(systemName: "heart.fill")

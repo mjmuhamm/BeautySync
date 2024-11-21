@@ -321,6 +321,10 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
         cell.messagesButtonConstraint.constant = 19
         serviceTableView.rowHeight = 231
         
+        if orderType == "complete" {
+            cell.cancelButton.setTitle("Review", for: .normal)
+            cell.cancelButton.isUppercaseTitle = false
+        }
         
         cell.messagesForSchedulingButton.isHidden = true
         cell.messagesButton.setTitle("Messages For Scheduling", for: .normal)
@@ -335,7 +339,14 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.cancelButtonTapped = {
-            self.compareDates(eventDay: item.eventDay, eventTime: item.eventTime, status: item.status)
+            if self.orderType != "complete" {
+                self.compareDates(eventDay: item.eventDay, eventTime: item.eventTime, status: item.status)
+            } else {
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserReview") as? UserReviewsViewController {
+                    vc.item = item
+                    self.present(vc, animated: true, completion: nil)
+                }
+            }
         }
         
         

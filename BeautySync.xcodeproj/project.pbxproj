@@ -40,6 +40,7 @@
 		206C62EB2CE8FEE500159481 /* MessagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C62E92CE8FEE500159481 /* MessagesTableViewCell.swift */; };
 		206C62EC2CE8FEE500159481 /* MessagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206C62EA2CE8FEE500159481 /* MessagesTableViewCell.xib */; };
 		206C62EF2CE9048200159481 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C62EE2CE9048200159481 /* Messages.swift */; };
+		20747AEB2CEFA98100EBD62A /* UserReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20747AEA2CEFA98100EBD62A /* UserReviewsViewController.swift */; };
 		207B3F3C2CE59DC20063C725 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B3F3B2CE59DC20063C725 /* OrdersViewController.swift */; };
 		207B3F3E2CE64E7F0063C725 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B3F3D2CE64E7F0063C725 /* Orders.swift */; };
 		207B3F422CE68D6D0063C725 /* BeauticianOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B3F412CE68D6D0063C725 /* BeauticianOrdersViewController.swift */; };
@@ -135,6 +136,7 @@
 		206C62E92CE8FEE500159481 /* MessagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTableViewCell.swift; sourceTree = "<group>"; };
 		206C62EA2CE8FEE500159481 /* MessagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesTableViewCell.xib; sourceTree = "<group>"; };
 		206C62EE2CE9048200159481 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		20747AEA2CEFA98100EBD62A /* UserReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewsViewController.swift; sourceTree = "<group>"; };
 		207B3F3B2CE59DC20063C725 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		207B3F3D2CE64E7F0063C725 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
 		207B3F412CE68D6D0063C725 /* BeauticianOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianOrdersViewController.swift; sourceTree = "<group>"; };
@@ -417,9 +419,18 @@
 			path = models;
 			sourceTree = "<group>";
 		};
+		20747AE92CEFA96F00EBD62A /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				20747AEA2CEFA98100EBD62A /* UserReviewsViewController.swift */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
 		207B3F3A2CE59DAF0063C725 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
+				20747AE92CEFA96F00EBD62A /* Reviews */,
 				207B3F3B2CE59DC20063C725 /* OrdersViewController.swift */,
 			);
 			path = Orders;
@@ -858,6 +869,7 @@
 				204F45432CEA80CB00E2D449 /* UserReviewsTableViewCell.swift in Sources */,
 				201910E72CD29B7D006BEE4D /* BeauticianLoginViewController.swift in Sources */,
 				201910F92CD405EA006BEE4D /* AddPersonViewController.swift in Sources */,
+				20747AEB2CEFA98100EBD62A /* UserReviewsViewController.swift in Sources */,
 				207ECAAF2CE544C6008856D5 /* OrdersTableViewCell.swift in Sources */,
 				201910FF2CD40695006BEE4D /* StripeTermsViewController.swift in Sources */,
 				207B3F462CE6CF0C0063C725 /* DashboardViewController.swift in Sources */,
