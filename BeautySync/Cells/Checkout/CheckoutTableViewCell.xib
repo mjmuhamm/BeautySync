@@ -39,6 +39,9 @@
                             <constraint firstAttribute="height" constant="50" id="MCE-qh-8Xq"/>
                         </constraints>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <connections>
+                            <action selector="userImageButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="dnk-vB-AgK"/>
+                        </connections>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="94N-VC-gi2">
                         <rect key="frame" x="9.9999999999999964" y="67" width="50.666666666666657" height="34.666666666666657"/>
@@ -119,6 +122,7 @@
                 <outlet property="location" destination="x35-ED-MRU" id="oLO-aN-tI6"/>
                 <outlet property="noteToBeautician" destination="cMK-Uo-570" id="lAL-fR-kB8"/>
                 <outlet property="serviceCost" destination="R4n-Ak-Mrf" id="mdK-To-ZXT"/>
+                <outlet property="userImage" destination="jEK-Js-9wm" id="yT6-g9-9qE"/>
             </connections>
             <point key="canvasLocation" x="107.63358778625954" y="57.04225352112676"/>
         </tableViewCell>

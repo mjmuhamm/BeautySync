@@ -138,7 +138,7 @@ class BeauticianMeViewController: UIViewController {
                                     if document != nil {
                                         let data = document!.data()
                                         
-                                        if let liked = data!["liked"] as? [String], let itemOrders = data!["itemOrders"] as? Int, let itemRating = data!["itemRating"] as? Double {
+                                        if let liked = data!["liked"] as? [String], let itemOrders = data!["itemOrders"] as? Int, let itemRating = data!["itemRating"] as? [Int] {
                                             
                                    
                             

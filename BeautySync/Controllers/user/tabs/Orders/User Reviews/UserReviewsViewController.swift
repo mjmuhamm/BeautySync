@@ -17,6 +17,8 @@ import MaterialComponents.MaterialTextControls_OutlinedTextAreasTheming
 import MaterialComponents.MaterialTextControls_OutlinedTextFieldsTheming
 
 class UserReviewsViewController: UIViewController {
+    
+    let db = Firestore.firestore()
 
     @IBOutlet weak var itemTitle: UILabel!
     @IBOutlet weak var itemDescription: UILabel!
@@ -50,15 +52,21 @@ class UserReviewsViewController: UIViewController {
     private var recommend = 1
     
     var item : Orders?
+    let dateFormatter = DateFormatter()
     
+    var userName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateFormatter.dateFormat = "MM-dd-yyyy"
 
         if item != nil {
             itemTitle.text = item!.itemTitle
             itemDescription.text = item!.itemDescription
         }
+        
+        loadUsername()
         // Do any additional setup after loading the view.
     }
     
@@ -222,6 +230,86 @@ class UserReviewsViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        var thoughts = ""
+        if thoughtsText.text != "" {
+            thoughts = thoughtsText.text!
+        }
+        if expectationsNum == 0 {
+            self.showToast(message: "Please rate your experience in the alloted area.", font: .systemFont(ofSize: 12))
+        } else if qualityNum == 0 {
+            self.showToast(message: "Please rate the quality of service in the alloted area.", font: .systemFont(ofSize: 12))
+        } else if beauticianRatingNum == 0 {
+            self.showToast(message: "Please rate the beautician in the alloted field", font: .systemFont(ofSize: 12))
+        } else {
+            let data1: [String: Any] = ["expectations" : expectationsNum, "quality" : qualityNum, "rating" : beauticianRatingNum, "recommend" : recommend, "thoughts" : thoughts, "itemType" : item!.itemType, "itemId" : item!.itemId, "itemDescription" : item!.itemDescription, "itemTitle" : item!.itemTitle, "date" : dateFormatter.string(from: Date()), "userImageId" : Auth.auth().currentUser!.uid, "liked" : [], "userName" : self.userName]
+            
+            let data2: [String: Any] = ["itemRating" : beauticianRatingNum]
+            let data3: [String: Any] = ["status" : "reviewed"]
+            db.collection(item!.itemType).document(item!.itemId).updateData(["itemRating" : FieldValue.arrayUnion([beauticianRatingNum])])
+            db.collection(item!.itemType).document(item!.itemId).collection("Reviews").document().setData(data1)
+            db.collection("User").document(Auth.auth().currentUser!.uid).collection("Orders").document(item!.documentId).updateData(data3)
+            self.showToastCompletion(message: "Review Added. Thank You!", font: .systemFont(ofSize: 12))
+        }
+        
+    }
+    
+    private func loadUsername() {
+        db.collection("User").document(Auth.auth().currentUser!.uid).collection("PersonalInfo").getDocuments { documents, error in
+            if error == nil {
+                if documents != nil {
+                    for doc in documents!.documents {
+                        let data = doc.data()
+                        
+                        if let userName = data["userName"] as? String {
+                            self.userName = "@\(userName)"
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func showToast(message : String, font: UIFont) {
+        
+        let toastLabel = UILabel(frame: CGRect(x: 0, y: self.view.frame.size.height-180, width: (self.view.frame.width), height: 70))
+        toastLabel.backgroundColor = UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1)
+        toastLabel.textColor = UIColor.white
+        toastLabel.font = font
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.numberOfLines = 4
+        toastLabel.layer.cornerRadius = 1;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+             toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    }
+    
+    func showToastCompletion(message : String, font: UIFont) {
+        
+        let toastLabel = UILabel(frame: CGRect(x: 0, y: self.view.frame.size.height-180, width: (self.view.frame.width), height: 70))
+        toastLabel.backgroundColor = UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1)
+        toastLabel.textColor = UIColor.white
+        toastLabel.font = font
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.numberOfLines = 4
+        toastLabel.layer.cornerRadius = 1;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+             toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserTab") as? UITabBarController {
+                self.present(vc, animated: true, completion: nil)
+            }
+            toastLabel.removeFromSuperview()
+        })
     }
     
     

@@ -96,7 +96,7 @@ class CheckoutViewController: UIViewController {
                     for doc in documents!.documents {
                         let data = doc.data()
                         
-                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let liked = data["liked"] as? [String], let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String], let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let noteToBeautician = data["notesToBeautician"] as? String, let itemId = data["itemId"] as? String {
+                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let liked = data["liked"] as? [String], let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? [Int], let hashtags = data["hashtags"] as? [String], let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let noteToBeautician = data["notesToBeautician"] as? String, let itemId = data["itemId"] as? String {
                             
                             let x = CheckoutItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID, eventDay: eventDay, eventTime: eventTime, streetAddress: streetAddress, zipCode: zipCode, noteToBeautician: noteToBeautician, itemId: itemId)
                             
@@ -326,6 +326,15 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
         cell.location.text = "Location: \(item.streetAddress) \(item.beauticianCity), \(item.beauticianState) \(item.zipCode)"
         cell.date.text = "Date of Service: \(item.eventDay) \(item.eventTime)"
         cell.noteToBeautician.text = "Note: \(item.noteToBeautician)"
+        
+        cell.userImageButtonTapped = {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileAsUser") as? ProfileAsUserViewController {
+                vc.userId = item.beauticianImageId
+                vc.beauticianOrUser = "Beautician"
+                vc.item = ServiceItems(itemType: item.itemType, itemTitle: item.itemTitle, itemImage: UIImage(), itemDescription: item.itemDescription, itemPrice: item.itemPrice, imageCount: item.imageCount, beauticianUsername: item.beauticianUsername, beauticianUserImage: UIImage(), beauticianPassion: item.beauticianPassion, beauticianCity: item.beauticianCity, beauticianState: item.beauticianState, beauticianImageId: item.beauticianImageId, liked: item.liked, itemOrders: item.itemOrders, itemRating: item.itemRating, hashtags: item.hashtags, documentId: item.itemId)
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
         
         cell.cancelButtonTapped = {
             

@@ -107,7 +107,7 @@ class HomeViewController: UIViewController {
                         let data = doc.data()
                         
                         
-                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? Double, let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String] {
+                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? [Int], let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String] {
                             
                             let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID)
                             
@@ -187,6 +187,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
        
+       
         
         let storageRef = storage.reference()
         storageRef.child("beauticians/\(item.beauticianImageId)/profileImage/\(item.beauticianImageId).png").downloadURL { itemUrl, error in
@@ -202,21 +203,29 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 }.resume()
             }
         }
-       
+        
         let itemRef = storage.reference()
-        itemRef.child("\(item.itemType)/\(item.beauticianImageId)/\(item.documentId)/\(item.documentId)0.png").downloadURL { itemUrl, error in
-            if itemUrl != nil {
-                URLSession.shared.dataTask(with: itemUrl!) { (data, response, error) in
-                    // Error handling...
-                    guard let imageData = data else { return }
-                    
-                    DispatchQueue.main.async {
-                        cell.itemImage.image = UIImage(data: imageData)!
-                        item.itemImage = UIImage(data: imageData)!
-                    }
-                }.resume()
-            }
-        }
+        itemRef.child("\(item.itemType)/\(item.beauticianImageId)/\(item.documentId)/\(item.documentId)0.png").getData(maxSize: 15 * 1024 * 1024) { data, error in
+            if error == nil {
+                cell.itemImage.image = UIImage(data: data!)!
+                item.itemImage = UIImage(data: data!)!
+            }}
+        
+       
+//        let itemRef = storage.reference()
+//        itemRef.child("\(item.itemType)/\(item.beauticianImageId)/\(item.documentId)/\(item.documentId)0.png").downloadURL { itemUrl, error in
+//            if itemUrl != nil {
+//                URLSession.shared.dataTask(with: itemUrl!) { (data, response, error) in
+//                    // Error handling...
+//                    guard let imageData = data else { return }
+//                    
+//                    DispatchQueue.main.async {
+//                        cell.itemImage.image = UIImage(data: imageData)!
+//                        item.itemImage = UIImage(data: imageData)!
+//                    }
+//                }.resume()
+//            }
+//        }
         
         
         cell.orderButtonTapped = {

@@ -182,7 +182,7 @@ class UserMeViewController: UIViewController {
                                     if document != nil {
                                         let data = document!.data()
                                         
-                                        if let liked = data!["liked"] as? [String], let itemOrders = data!["itemOrders"] as? Int, let itemRating = data!["itemRating"] as? Double {
+                                        if let liked = data!["liked"] as? [String], let itemOrders = data!["itemOrders"] as? Int, let itemRating = data!["itemRating"] as? [Int] {
                                             
                                             let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: itemId)
                                             
@@ -261,7 +261,7 @@ class UserMeViewController: UIViewController {
                                     if document != nil {
                                         let data = document!.data()
                                         
-                                        if let liked = data!["liked"] as? [String], let itemOrders = data!["itemOrders"] as? Int, let itemRating = data!["itemRating"] as? Double {
+                                        if let liked = data!["liked"] as? [String], let itemOrders = data!["itemOrders"] as? Int, let itemRating = data!["itemRating"] as? [Int] {
                                             
                                             let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID)
                                             
@@ -472,7 +472,7 @@ extension UserMeViewController: UITableViewDelegate, UITableViewDataSource {
                 if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileAsUser") as? ProfileAsUserViewController {
                     vc.userId = item.beauticianImageId
                     vc.beauticianOrUser = "Beautician"
-                    vc.item = ServiceItems(itemType: "", itemTitle: "", itemDescription: "", itemPrice: "", imageCount: 0, beauticianUsername: item.beauticianUsername, beauticianPassion: item.beauticianPassion, beauticianCity: item.beauticianCity, beauticianState: item.beauticianState, beauticianImageId: item.beauticianImageId, liked: [], itemOrders: 0, itemRating: 0, hashtags: [], documentId: item.documentId)
+                    vc.item = ServiceItems(itemType: "", itemTitle: "", itemDescription: "", itemPrice: "", imageCount: 0, beauticianUsername: item.beauticianUsername, beauticianPassion: item.beauticianPassion, beauticianCity: item.beauticianCity, beauticianState: item.beauticianState, beauticianImageId: item.beauticianImageId, liked: [], itemOrders: 0, itemRating: [], hashtags: [], documentId: item.documentId)
                     self.present(vc, animated: true, completion: nil)
                 }
             }

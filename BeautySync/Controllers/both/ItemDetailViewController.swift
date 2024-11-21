@@ -76,7 +76,10 @@ class ItemDetailViewController: UIViewController {
     }
     
     @IBAction func reviewsButtonPressed(_ sender: Any) {
-        
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Reviews") as? ReviewsViewController {
+            vc.item = item
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     @IBAction func orderButtonPressed(_ sender: Any) {

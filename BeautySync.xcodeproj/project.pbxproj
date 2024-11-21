@@ -41,6 +41,10 @@
 		206C62EC2CE8FEE500159481 /* MessagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206C62EA2CE8FEE500159481 /* MessagesTableViewCell.xib */; };
 		206C62EF2CE9048200159481 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C62EE2CE9048200159481 /* Messages.swift */; };
 		20747AEB2CEFA98100EBD62A /* UserReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20747AEA2CEFA98100EBD62A /* UserReviewsViewController.swift */; };
+		20747AEE2CEFCEAA00EBD62A /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20747AED2CEFCEAA00EBD62A /* ReviewsViewController.swift */; };
+		20747AF02CEFCFB900EBD62A /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20747AEF2CEFCFB900EBD62A /* Reviews.swift */; };
+		20747AF42CEFD0D100EBD62A /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20747AF22CEFD0D100EBD62A /* ReviewsTableViewCell.swift */; };
+		20747AF52CEFD0D100EBD62A /* ReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20747AF32CEFD0D100EBD62A /* ReviewsTableViewCell.xib */; };
 		207B3F3C2CE59DC20063C725 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B3F3B2CE59DC20063C725 /* OrdersViewController.swift */; };
 		207B3F3E2CE64E7F0063C725 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B3F3D2CE64E7F0063C725 /* Orders.swift */; };
 		207B3F422CE68D6D0063C725 /* BeauticianOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B3F412CE68D6D0063C725 /* BeauticianOrdersViewController.swift */; };
@@ -137,6 +141,10 @@
 		206C62EA2CE8FEE500159481 /* MessagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesTableViewCell.xib; sourceTree = "<group>"; };
 		206C62EE2CE9048200159481 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		20747AEA2CEFA98100EBD62A /* UserReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewsViewController.swift; sourceTree = "<group>"; };
+		20747AED2CEFCEAA00EBD62A /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
+		20747AEF2CEFCFB900EBD62A /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
+		20747AF22CEFD0D100EBD62A /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
+		20747AF32CEFD0D100EBD62A /* ReviewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsTableViewCell.xib; sourceTree = "<group>"; };
 		207B3F3B2CE59DC20063C725 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		207B3F3D2CE64E7F0063C725 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
 		207B3F412CE68D6D0063C725 /* BeauticianOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianOrdersViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +286,7 @@
 				207ECAAC2CE5449F008856D5 /* Orders */,
 				206C62E82CE8FEC700159481 /* Messages */,
 				204F45362CEA769400E2D449 /* User */,
+				20747AF12CEFD0AD00EBD62A /* Reviews */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -385,6 +394,7 @@
 		2062FB782CE154FE00065BC0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				20747AEC2CEFCE9100EBD62A /* Reviews */,
 				20D8D1FE2CDE4C2B00117EF4 /* HomeViewController.swift */,
 				2062FB792CE1551800065BC0 /* OrderDetailsViewController.swift */,
 				207ECAA22CE3C7C2008856D5 /* CheckoutViewController.swift */,
@@ -419,10 +429,27 @@
 			path = models;
 			sourceTree = "<group>";
 		};
-		20747AE92CEFA96F00EBD62A /* Reviews */ = {
+		20747AE92CEFA96F00EBD62A /* User Reviews */ = {
 			isa = PBXGroup;
 			children = (
 				20747AEA2CEFA98100EBD62A /* UserReviewsViewController.swift */,
+			);
+			path = "User Reviews";
+			sourceTree = "<group>";
+		};
+		20747AEC2CEFCE9100EBD62A /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				20747AED2CEFCEAA00EBD62A /* ReviewsViewController.swift */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		20747AF12CEFD0AD00EBD62A /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				20747AF22CEFD0D100EBD62A /* ReviewsTableViewCell.swift */,
+				20747AF32CEFD0D100EBD62A /* ReviewsTableViewCell.xib */,
 			);
 			path = Reviews;
 			sourceTree = "<group>";
@@ -430,7 +457,7 @@
 		207B3F3A2CE59DAF0063C725 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
-				20747AE92CEFA96F00EBD62A /* Reviews */,
+				20747AE92CEFA96F00EBD62A /* User Reviews */,
 				207B3F3B2CE59DC20063C725 /* OrdersViewController.swift */,
 			);
 			path = Orders;
@@ -486,6 +513,7 @@
 				207ECAAA2CE41AE5008856D5 /* CheckoutItems.swift */,
 				207B3F3D2CE64E7F0063C725 /* Orders.swift */,
 				204F45452CEABC8F00E2D449 /* UserMe.swift */,
+				20747AEF2CEFCFB900EBD62A /* Reviews.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -745,6 +773,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				201910BD2CD28807006BEE4D /* LaunchScreen.storyboard in Resources */,
+				20747AF52CEFD0D100EBD62A /* ReviewsTableViewCell.xib in Resources */,
 				201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */,
 				207ECAB02CE544C6008856D5 /* OrdersTableViewCell.xib in Resources */,
 				207ECAA82CE3CBBC008856D5 /* CheckoutTableViewCell.xib in Resources */,
@@ -840,6 +869,8 @@
 				204F453F2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift in Sources */,
 				2062FB7A2CE1551800065BC0 /* OrderDetailsViewController.swift in Sources */,
 				207ECAA72CE3CBBC008856D5 /* CheckoutTableViewCell.swift in Sources */,
+				20747AEE2CEFCEAA00EBD62A /* ReviewsViewController.swift in Sources */,
+				20747AF42CEFD0D100EBD62A /* ReviewsTableViewCell.swift in Sources */,
 				207B3F482CE785880063C725 /* Dashboard.swift in Sources */,
 				201910F42CD40523006BEE4D /* BeauticianBankingViewController.swift in Sources */,
 				20B0F5AC2CDE95B100F3C0D8 /* ItemDetailViewController.swift in Sources */,
@@ -868,6 +899,7 @@
 				206C62E42CE7FCAA00159481 /* MessagesViewController.swift in Sources */,
 				204F45432CEA80CB00E2D449 /* UserReviewsTableViewCell.swift in Sources */,
 				201910E72CD29B7D006BEE4D /* BeauticianLoginViewController.swift in Sources */,
+				20747AF02CEFCFB900EBD62A /* Reviews.swift in Sources */,
 				201910F92CD405EA006BEE4D /* AddPersonViewController.swift in Sources */,
 				20747AEB2CEFA98100EBD62A /* UserReviewsViewController.swift in Sources */,
 				207ECAAF2CE544C6008856D5 /* OrdersTableViewCell.swift in Sources */,
