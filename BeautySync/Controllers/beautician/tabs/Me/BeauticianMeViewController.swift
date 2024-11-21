@@ -36,12 +36,13 @@ class BeauticianMeViewController: UIViewController {
     @IBOutlet weak var contentButton: MDCButton!
     
     @IBOutlet weak var serviceTableView: UITableView!
-    
+    @IBOutlet weak var contentCollectionView: UICollectionView!
     var itemType = "hairCareItems"
     var city = ""
     var state = ""
     
     var items : [ServiceItems] = []
+    var content: [VideoModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +58,17 @@ class BeauticianMeViewController: UIViewController {
         
         loadHeadingInfo()
         loadItemInfo(item: itemType)
+        
+        contentCollectionView.register(UINib(nibName: "BeauticianContentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BeauticianContentCollectionViewReusableCell")
+        contentCollectionView.delegate = self
+        contentCollectionView.dataSource = self
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.tintColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+        self.tabBarController?.tabBar.barTintColor = UIColor.white
     }
     
     private func loadHeadingInfo() {
@@ -153,6 +165,48 @@ class BeauticianMeViewController: UIViewController {
         }
     }
     
+    private func loadContent() {
+        db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Content").getDocuments { documents, error in
+            if error == nil {
+                if documents != nil {
+                    for doc in documents!.documents {
+                        let data = doc.data()
+                        
+                        if let beauticianImageId = data["beauticianImageId"] as? String, let beauticianUsername = data["beauticianUsername"] as? String, let description = data["description"] as? String, let downloadUrl = data["downloadUrl"] as? String, let liked = data["liked"] as? [String] {
+                            
+                            self.db.collection("Content").document(doc.documentID).getDocument { document, error in
+                                if error == nil {
+                                    if document != nil {
+                                        let data1 = document!.data()
+                                        
+                                        if let views = data1?["views"] as? Int {
+                                         
+                            let x = VideoModel(dataUri: downloadUrl, documentId: doc.documentID, userImageId: beauticianImageId, user: beauticianUsername, description: description, views: views, liked: liked, comments: 0, shared: 0, thumbNailUrl: "")
+                            
+                            if self.content.isEmpty {
+                                self.content.append(x)
+                                self.contentCollectionView.reloadData()
+                                
+                            } else {
+                                let index = self.content.firstIndex { $0.documentId == doc.documentID as! String }
+                                if index == nil {
+                                    self.content.append(x)
+                                    self.contentCollectionView.reloadData()
+                                }
+                            }
+                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
     @IBAction func accountSettingsButtonPressed(_ sender: Any) {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "BeauticianAccountSettings") as? BeauticianAccountSettingsViewController {
             self.present(vc, animated: true, completion: nil)
@@ -174,6 +228,9 @@ class BeauticianMeViewController: UIViewController {
         nailCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         contentButton.backgroundColor = UIColor.white
         contentButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        
+        serviceTableView.isHidden = false
+        contentCollectionView.isHidden = true
     }
     
     @IBAction func skinCareButtonPressed(_ sender: Any) {
@@ -187,6 +244,9 @@ class BeauticianMeViewController: UIViewController {
         nailCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         contentButton.backgroundColor = UIColor.white
         contentButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        
+        serviceTableView.isHidden = false
+        contentCollectionView.isHidden = true
     }
     
     @IBAction func nailCareButtonPressed(_ sender: Any) {
@@ -200,10 +260,14 @@ class BeauticianMeViewController: UIViewController {
         nailCareButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
         contentButton.backgroundColor = UIColor.white
         contentButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
+        
+        serviceTableView.isHidden = false
+        contentCollectionView.isHidden = true
     }
     
     @IBAction func contentButtonPressed(_ sender: Any) {
         itemType = "contentItems"
+        loadContent()
         hairCareButton.backgroundColor = UIColor.white
         hairCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         skinCareButton.backgroundColor = UIColor.white
@@ -212,6 +276,9 @@ class BeauticianMeViewController: UIViewController {
         nailCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         contentButton.setTitleColor(UIColor.white, for: .normal)
         contentButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+        
+        serviceTableView.isHidden = true
+        contentCollectionView.isHidden = false
         
     }
     
@@ -303,4 +370,56 @@ extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource
         
         return cell
     }
+}
+
+extension BeauticianMeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return content.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = contentCollectionView.dequeueReusableCell(withReuseIdentifier: "BeauticianContentCollectionViewReusableCell", for: indexPath) as! BeauticianContentCollectionViewCell
+        
+        let content = content[indexPath.row]
+        print("views \(content.views)")
+        cell.viewText.text = "\(content.views)"
+            cell.configure(model: content)
+        
+        cell.videoViewButtonTapped = {
+            var cont : [VideoModel] = []
+            cont.append(content)
+            
+            for i in 0..<self.content.count {
+                if content.documentId != self.content[i].documentId {
+                    cont.append(self.content[i])
+                }
+            }
+            
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Feed") as? FeedViewController  {
+                vc.beauticianOrFeed = "beautician"
+                vc.content = cont
+                vc.yes = "Yes"
+                vc.index = indexPath.row
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+        
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (contentCollectionView.frame.size.width / 3) - 3, height: (contentCollectionView.frame.size.height / 3) - 3)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
+    }
+    
 }

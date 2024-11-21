@@ -115,7 +115,7 @@ class AddContentViewController: UIViewController {
             storageRef.downloadURL(completion: { url, error in
                 
                 if error == nil {
-                    let data: [String: Any] = ["downloadUrl" : url!.absoluteString, "beauticianImageId" : Auth.auth().currentUser!.uid, "beauticianUsername" : self.beauticianUsername, "liked" : [], "views" : 0, "description" : description]
+                    let data: [String: Any] = ["downloadUrl" : url!.absoluteString, "beauticianImageId" : Auth.auth().currentUser!.uid, "beauticianUsername" : self.beauticianUsername, "liked" : [], "views" : 0, "description" : description, "comments" : 0, "shared" : 0]
                     
                     self.db.collection("Content").document(self.videoId).setData(data)
                     self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Content").document(self.videoId).setData(data)

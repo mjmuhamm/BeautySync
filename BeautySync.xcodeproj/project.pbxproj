@@ -62,6 +62,8 @@
 		208EF4F22CEEB33200572C73 /* FeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 208EF4F02CEEB33200572C73 /* FeedCollectionViewCell.xib */; };
 		208EF4F42CEEB76300572C73 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208EF4F32CEEB76300572C73 /* Video.swift */; };
 		208EF4F72CEEB88000572C73 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208EF4F62CEEB88000572C73 /* FeedViewController.swift */; };
+		208EF4FB2CEF8B8000572C73 /* BeauticianContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208EF4F92CEF8B8000572C73 /* BeauticianContentCollectionViewCell.swift */; };
+		208EF4FC2CEF8B8000572C73 /* BeauticianContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 208EF4FA2CEF8B8000572C73 /* BeauticianContentCollectionViewCell.xib */; };
 		20B0F5AC2CDE95B100F3C0D8 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0F5AB2CDE95B100F3C0D8 /* ItemDetailViewController.swift */; };
 		20B0F5B02CDEAA7B00F3C0D8 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0F5AE2CDEAA7B00F3C0D8 /* HomeTableViewCell.swift */; };
 		20B0F5B12CDEAA7B00F3C0D8 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B0F5AF2CDEAA7B00F3C0D8 /* HomeTableViewCell.xib */; };
@@ -150,6 +152,8 @@
 		208EF4F02CEEB33200572C73 /* FeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCollectionViewCell.xib; sourceTree = "<group>"; };
 		208EF4F32CEEB76300572C73 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		208EF4F62CEEB88000572C73 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		208EF4F92CEF8B8000572C73 /* BeauticianContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeauticianContentCollectionViewCell.swift; sourceTree = "<group>"; };
+		208EF4FA2CEF8B8000572C73 /* BeauticianContentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeauticianContentCollectionViewCell.xib; sourceTree = "<group>"; };
 		20B0F5AB2CDE95B100F3C0D8 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		20B0F5AE2CDEAA7B00F3C0D8 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		20B0F5AF2CDEAA7B00F3C0D8 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
@@ -497,6 +501,7 @@
 		208EF4EE2CEEB31C00572C73 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				208EF4F82CEF8B6800572C73 /* BeauticianContent */,
 				208EF4EF2CEEB33200572C73 /* FeedCollectionViewCell.swift */,
 				208EF4F02CEEB33200572C73 /* FeedCollectionViewCell.xib */,
 			);
@@ -509,6 +514,15 @@
 				208EF4F62CEEB88000572C73 /* FeedViewController.swift */,
 			);
 			path = tabs;
+			sourceTree = "<group>";
+		};
+		208EF4F82CEF8B6800572C73 /* BeauticianContent */ = {
+			isa = PBXGroup;
+			children = (
+				208EF4F92CEF8B8000572C73 /* BeauticianContentCollectionViewCell.swift */,
+				208EF4FA2CEF8B8000572C73 /* BeauticianContentCollectionViewCell.xib */,
+			);
+			path = BeauticianContent;
 			sourceTree = "<group>";
 		};
 		20B0F5AA2CDE958A00F3C0D8 /* both */ = {
@@ -730,6 +744,7 @@
 				20B0F5B12CDEAA7B00F3C0D8 /* HomeTableViewCell.xib in Resources */,
 				201910B82CD28805006BEE4D /* Main.storyboard in Resources */,
 				208EF4F22CEEB33200572C73 /* FeedCollectionViewCell.xib in Resources */,
+				208EF4FC2CEF8B8000572C73 /* BeauticianContentCollectionViewCell.xib in Resources */,
 				206C62EC2CE8FEE500159481 /* MessagesTableViewCell.xib in Resources */,
 				204F453A2CEA76BF00E2D449 /* UserItemTableViewCell.xib in Resources */,
 			);
@@ -825,6 +840,7 @@
 				20B4D3B52CDFC7CA00C26EEC /* UserAccountSettingsViewController.swift in Sources */,
 				201910F72CD40597006BEE4D /* UserPersonalViewController.swift in Sources */,
 				207ECAAB2CE41AE5008856D5 /* CheckoutItems.swift in Sources */,
+				208EF4FB2CEF8B8000572C73 /* BeauticianContentCollectionViewCell.swift in Sources */,
 				20D8D1F62CDCEA0100117EF4 /* ServiceItemsViewController.swift in Sources */,
 				206C62E72CE8FAE800159481 /* SchedulingViewController.swift in Sources */,
 				207B3F3E2CE64E7F0063C725 /* Orders.swift in Sources */,

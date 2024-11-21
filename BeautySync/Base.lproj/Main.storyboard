@@ -4402,6 +4402,26 @@
                                     <action selector="addButtonPressed:" destination="SCz-mo-11r" eventType="touchUpInside" id="Qhf-Ag-Rgx"/>
                                 </connections>
                             </button>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EN7-Ut-l1g">
+                                <rect key="frame" x="0.0" y="222" width="393" height="547"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LPF-Qu-g0l">
+                                    <size key="itemSize" width="131" height="131"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xE1-Sv-mZ0">
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="131"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="QPb-Kp-TVw">
+                                            <rect key="frame" x="0.0" y="0.0" width="131" height="131"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EF7-44-i09"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -4410,10 +4430,12 @@
                             <constraint firstItem="16F-uK-H9p" firstAttribute="top" secondItem="WvN-Ld-6dY" secondAttribute="top" constant="100" id="21B-oZ-RxH"/>
                             <constraint firstItem="hl2-2P-1Vh" firstAttribute="top" secondItem="6oc-qe-wJQ" secondAttribute="bottom" constant="2" id="4Be-rQ-rPB"/>
                             <constraint firstItem="0gM-47-KbA" firstAttribute="leading" secondItem="16F-uK-H9p" secondAttribute="trailing" constant="8" symbolic="YES" id="4nz-64-d82"/>
+                            <constraint firstItem="EN7-Ut-l1g" firstAttribute="leading" secondItem="EF7-44-i09" secondAttribute="leading" id="8sD-9r-mgi"/>
                             <constraint firstItem="hl2-2P-1Vh" firstAttribute="top" secondItem="16F-uK-H9p" secondAttribute="bottom" constant="13" id="BeD-LS-cPd"/>
                             <constraint firstItem="HgP-TJ-zPf" firstAttribute="leading" secondItem="16F-uK-H9p" secondAttribute="trailing" constant="8" symbolic="YES" id="D4f-Hp-TB2"/>
                             <constraint firstItem="Uvs-Y0-7aF" firstAttribute="leading" secondItem="EF7-44-i09" secondAttribute="leading" constant="10" id="DbO-mE-eml"/>
                             <constraint firstItem="EF7-44-i09" firstAttribute="trailing" secondItem="6OY-6n-c7i" secondAttribute="trailing" constant="16" id="IN6-Rf-hlF"/>
+                            <constraint firstItem="EN7-Ut-l1g" firstAttribute="top" secondItem="hl2-2P-1Vh" secondAttribute="bottom" constant="8" id="JcD-rg-YqT"/>
                             <constraint firstItem="EF7-44-i09" firstAttribute="trailing" secondItem="kpB-ER-VnB" secondAttribute="trailing" id="KAy-pl-cTb"/>
                             <constraint firstItem="WLa-Hn-10Y" firstAttribute="centerX" secondItem="WvN-Ld-6dY" secondAttribute="centerX" id="NCg-ql-fEN"/>
                             <constraint firstItem="hl2-2P-1Vh" firstAttribute="centerX" secondItem="WvN-Ld-6dY" secondAttribute="centerX" id="TnH-hx-cCc"/>
@@ -4422,8 +4444,10 @@
                             <constraint firstItem="16F-uK-H9p" firstAttribute="leading" secondItem="EF7-44-i09" secondAttribute="leading" constant="10" id="cUp-nr-8AR"/>
                             <constraint firstItem="EF7-44-i09" firstAttribute="trailing" secondItem="0gM-47-KbA" secondAttribute="trailing" constant="16" id="fyU-h7-0Gt"/>
                             <constraint firstItem="0gM-47-KbA" firstAttribute="top" secondItem="HgP-TJ-zPf" secondAttribute="bottom" constant="7.0000000000001563" id="g62-iZ-9hl"/>
+                            <constraint firstItem="EN7-Ut-l1g" firstAttribute="trailing" secondItem="EF7-44-i09" secondAttribute="trailing" id="g6m-IX-nOJ"/>
                             <constraint firstItem="HgP-TJ-zPf" firstAttribute="top" secondItem="EF7-44-i09" secondAttribute="top" constant="41" id="iRo-JW-Bzf"/>
                             <constraint firstItem="EF7-44-i09" firstAttribute="bottom" secondItem="kpB-ER-VnB" secondAttribute="bottom" id="me3-Df-eZy"/>
+                            <constraint firstItem="EN7-Ut-l1g" firstAttribute="bottom" secondItem="EF7-44-i09" secondAttribute="bottom" id="rFE-tF-0Xx"/>
                             <constraint firstItem="kpB-ER-VnB" firstAttribute="leading" secondItem="EF7-44-i09" secondAttribute="leading" id="vWd-Tl-mUi"/>
                             <constraint firstItem="16F-uK-H9p" firstAttribute="top" secondItem="Uvs-Y0-7aF" secondAttribute="bottom" constant="21" id="vql-y4-y8p"/>
                             <constraint firstItem="WLa-Hn-10Y" firstAttribute="top" secondItem="EF7-44-i09" secondAttribute="top" id="y6G-CA-GSD"/>
@@ -4444,6 +4468,7 @@
                     <connections>
                         <outlet property="addButton" destination="6oc-qe-wJQ" id="Lb6-Wl-Bdy"/>
                         <outlet property="contentButton" destination="yn3-fU-aJt" id="VDQ-zy-8vP"/>
+                        <outlet property="contentCollectionView" destination="EN7-Ut-l1g" id="kiU-1a-KBW"/>
                         <outlet property="hairCareButton" destination="1cM-H4-h1X" id="9ab-w8-BwU"/>
                         <outlet property="location" destination="0gM-47-KbA" id="icM-d5-Srw"/>
                         <outlet property="nailCareButton" destination="apj-oq-zB8" id="dha-hJ-kv4"/>
@@ -4457,7 +4482,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wFB-80-aHQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="13424" y="-2234"/>
+            <point key="canvasLocation" x="13423.664122137405" y="-2234.5070422535214"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Igz-lK-Kbo">
@@ -4478,14 +4503,15 @@
         <!--Feed View Controller-->
         <scene sceneID="7Ep-QI-sL0">
             <objects>
-                <viewController id="kV6-Y9-0AG" customClass="FeedViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Feed" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="kV6-Y9-0AG" customClass="FeedViewController" customModule="BeautySync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VzZ-qR-QAj">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DDF-cC-Bym">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DDF-cC-Bym">
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Qs7-yW-guX">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -4505,7 +4531,8 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xVk-3L-daC"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xVk-3L-daC" firstAttribute="bottom" secondItem="DDF-cC-Bym" secondAttribute="bottom" id="Ywi-nk-Gbg"/>
                             <constraint firstItem="DDF-cC-Bym" firstAttribute="top" secondItem="xVk-3L-daC" secondAttribute="top" id="l5i-Zb-zfg"/>

@@ -46,6 +46,12 @@ class HomeViewController: UIViewController {
         loadCart()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.tintColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+        self.tabBarController?.tabBar.barTintColor = UIColor.white
+    }
+    
     @IBAction func hairCareButtonPressed(_ sender: Any) {
         itemType = "hairCareItems"
         loadItems(itemType: itemType)

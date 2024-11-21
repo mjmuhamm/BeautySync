@@ -23,18 +23,27 @@ class FeedViewController: UIViewController {
     var beauticianOrFeed = ""
     var yes = ""
     
+    var index = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collectionView.register(UINib(nibName: "FeedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FeedCollectionViewReusableCell")
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.tintColor = UIColor.white
+        self.tabBarController?.tabBar.barTintColor = UIColor.clear
         loadContent()
     }
     
 
     private func loadContent() {
-        db.collection("Cotent").getDocuments { documents, error in
+        db.collection("Content").getDocuments { documents, error in
             if error == nil {
                 if documents != nil {
                     for doc in documents!.documents {
@@ -62,8 +71,6 @@ class FeedViewController: UIViewController {
                 }
             }
         }
-        
-        
     }
     
     
@@ -133,24 +140,24 @@ extension FeedViewController : UICollectionViewDelegate, UICollectionViewDataSou
         cell.commentText.text = "\(model.comments)"
         cell.shareText.text = "\(model.shared)"
         cell.userName.text = model.user
-        cell.videoDescription.text = model.description
+        cell.videoDescription.text = "\(model.description) \(model.description) \(model.description)"
         
-        if (model.liked.contains(Auth.auth().currentUser!.email!)) {
+        if (model.liked.contains(Auth.auth().currentUser!.uid)) {
             cell.likeImage.image = UIImage(systemName: "heart.fill")
         } else {
             cell.likeImage.image = UIImage(systemName: "heart")
         }
         
         cell.likeButtonTapped = {
-            if !model.liked.contains(Auth.auth().currentUser!.email!) {
-                self.db.collection("Content").document(model.documentId).updateData(["liked" : FieldValue.arrayUnion(["\(Auth.auth().currentUser!.email!)"])])
-                model.liked.append(Auth.auth().currentUser!.email!)
+            if cell.likeImage.image == UIImage(systemName: "heart") {
+                self.db.collection("Content").document(model.documentId).updateData(["liked" : FieldValue.arrayUnion(["\(Auth.auth().currentUser!.uid)"])])
+                model.liked.append(Auth.auth().currentUser!.uid)
                 cell.likeText.text = "\(Int(cell.likeText.text!)! + 1)"
                 cell.likeImage.image = UIImage(systemName: "heart.fill")
                 
             } else {
-                self.db.collection("Content").document(model.documentId).updateData(["liked" : FieldValue.arrayRemove(["\(Auth.auth().currentUser!.email!)"])])
-                if let index = model.liked.firstIndex(where: { $0 == "\(Auth.auth().currentUser!.email!)" }) {
+                self.db.collection("Content").document(model.documentId).updateData(["liked" : FieldValue.arrayRemove(["\(Auth.auth().currentUser!.uid)"])])
+                if let index = model.liked.firstIndex(where: { $0 == "\(Auth.auth().currentUser!.uid)" }) {
                     model.liked.remove(at: index)
                 }
                 
