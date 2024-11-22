@@ -87,6 +87,9 @@ class HomeViewController: UIViewController {
     
     
     @IBAction func filterButtonPressed(_ sender: Any) {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Filter") as? FilterViewController {
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     @IBAction func checkoutButtonPressed(_ sender: Any) {
