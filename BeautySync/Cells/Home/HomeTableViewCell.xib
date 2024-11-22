@@ -187,8 +187,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chicago, IL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bny-EF-fF2">
-                        <rect key="frame" x="307.33333333333331" y="7.9999999999999991" width="67.666666666666686" height="15.666666666666664"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <rect key="frame" x="322.33333333333331" y="8" width="58.666666666666686" height="13.333333333333336"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -209,7 +209,7 @@
                     <constraint firstItem="ynz-0Q-kR5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="1.5000000000000284" id="d1Q-DY-rSz"/>
                     <constraint firstItem="hkE-5Y-MJY" firstAttribute="top" secondItem="Cwf-n2-Im3" secondAttribute="bottom" constant="2" id="dg3-ia-o3b"/>
                     <constraint firstAttribute="trailing" secondItem="7zB-rJ-q9T" secondAttribute="trailing" constant="5" id="fAa-bz-sEh"/>
-                    <constraint firstAttribute="trailing" secondItem="bny-EF-fF2" secondAttribute="trailing" constant="15" id="fdL-Ur-Ka1"/>
+                    <constraint firstAttribute="trailing" secondItem="bny-EF-fF2" secondAttribute="trailing" constant="9" id="fdL-Ur-Ka1"/>
                     <constraint firstItem="Z4C-yK-15B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="g5I-rB-YZY"/>
                     <constraint firstAttribute="bottom" secondItem="Nup-eL-fHB" secondAttribute="bottom" constant="14.33" id="hfz-vn-iYl"/>
                     <constraint firstItem="bny-EF-fF2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="iTc-Y1-B1a"/>
