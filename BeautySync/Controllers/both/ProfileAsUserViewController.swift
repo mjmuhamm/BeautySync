@@ -32,7 +32,8 @@ class ProfileAsUserViewController: UIViewController {
     @IBOutlet weak var button4: MDCButton!
 
     @IBOutlet weak var serviceTableView: UITableView!
-    
+    @IBOutlet weak var contentCollectionView: UICollectionView!
+
     var beauticianOrUser = ""
     var userId = ""
     
@@ -41,6 +42,7 @@ class ProfileAsUserViewController: UIViewController {
     
     //Beautician
     private var items : [ServiceItems] = []
+    var content: [VideoModel] = []
     
     // User
     var beauticians : [Beauticians] = []
@@ -56,7 +58,20 @@ class ProfileAsUserViewController: UIViewController {
         
         serviceTableView.delegate = self
         serviceTableView.dataSource = self
+        
+        contentCollectionView.register(UINib(nibName: "BeauticianContentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BeauticianContentCollectionViewReusableCell")
+        contentCollectionView.delegate = self
+        contentCollectionView.dataSource = self
+        
         if item != nil {
+            button1.isHidden = false
+            button2.setTitle("Skin Care", for: .normal)
+            button2.isUppercaseTitle = false
+            button3.setTitle("Nail Care", for: .normal)
+            button3.isUppercaseTitle = false
+            button4.setTitle("Content", for: .normal)
+            button4.isUppercaseTitle = false
+            
             loadBeauticianInfo(userId: item!.beauticianImageId)
             loadBeauticianItems(itemType: itemType)
             self.userName.text = "\(item!.beauticianUsername)"
@@ -64,6 +79,15 @@ class ProfileAsUserViewController: UIViewController {
                 self.userImage.image = item!.beauticianUserImage
             }
         } else {
+            button1.isHidden = true
+            button2.setTitleColor(UIColor.white, for: .normal)
+            button2.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
+            button2.setTitle("Beauticians", for: .normal)
+            button2.isUppercaseTitle = false
+            button3.setTitle("Likes", for: .normal)
+            button3.isUppercaseTitle = false
+            button4.setTitle("Reviews", for: .normal)
+            button4.isUppercaseTitle = false
             loadUserInfo()
             loadBeauticians()
         }
@@ -79,9 +103,9 @@ class ProfileAsUserViewController: UIViewController {
         if beauticianOrUser == "Beautician" {
             itemType = "hairCareItems"
             loadBeauticianItems(itemType: itemType)
-        } else {
-            button1.isHidden = true
         }
+        contentCollectionView.isHidden = true
+        serviceTableView.isHidden = false
         button1.setTitleColor(UIColor.white, for: .normal)
         button1.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
         button2.backgroundColor = UIColor.white
@@ -98,10 +122,10 @@ class ProfileAsUserViewController: UIViewController {
             loadBeauticianItems(itemType: itemType)
         } else {
             itemType = "Beauticians"
-            button2.setTitle("Beauticians", for: .normal)
-            button2.isUppercaseTitle = false
             loadBeauticians()
         }
+        contentCollectionView.isHidden = true
+        serviceTableView.isHidden = false
         button1.backgroundColor = UIColor.white
         button1.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         button2.setTitleColor(UIColor.white, for: .normal)
@@ -118,10 +142,10 @@ class ProfileAsUserViewController: UIViewController {
             loadBeauticianItems(itemType: itemType)
         } else {
             itemType = "Likes"
-            button3.setTitle("Likes", for: .normal)
-            button3.isUppercaseTitle = false
             loadLikes()
         }
+        contentCollectionView.isHidden = true
+        serviceTableView.isHidden = false
         button1.backgroundColor = UIColor.white
         button1.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         button2.backgroundColor = UIColor.white
@@ -135,11 +159,11 @@ class ProfileAsUserViewController: UIViewController {
     @IBAction func button4Pressed(_ sender: Any) {
         if beauticianOrUser == "Beautician" {
             itemType = "contentItems"
-            loadBeauticianItems(itemType: itemType)
+            contentCollectionView.isHidden = false
+            serviceTableView.isHidden = true
+            loadContent()
         } else {
             itemType = "Reviews"
-            button4.setTitle("Reviews", for: .normal)
-            button4.isUppercaseTitle = false
             loadReviews()
         }
         button1.backgroundColor = UIColor.white
@@ -217,6 +241,49 @@ class ProfileAsUserViewController: UIViewController {
                 }
             }
     }
+    
+    private func loadContent() {
+        print("userId \(userId)")
+        db.collection("Beautician").document(userId).collection("Content").getDocuments { documents, error in
+            if error == nil {
+                if documents != nil {
+                    for doc in documents!.documents {
+                        let data = doc.data()
+                        
+                        if let beauticianImageId = data["beauticianImageId"] as? String, let beauticianUsername = data["beauticianUsername"] as? String, let description = data["description"] as? String, let downloadUrl = data["downloadUrl"] as? String, let liked = data["liked"] as? [String] {
+                            
+                            self.db.collection("Content").document(doc.documentID).getDocument { document, error in
+                                if error == nil {
+                                    if document != nil {
+                                        let data1 = document!.data()
+                                        
+                                        if let views = data1?["views"] as? Int {
+                                         
+                            let x = VideoModel(dataUri: downloadUrl, documentId: doc.documentID, userImageId: beauticianImageId, user: beauticianUsername, description: description, views: views, liked: liked, comments: 0, shared: 0, thumbNailUrl: "")
+                            
+                            if self.content.isEmpty {
+                                self.content.append(x)
+                                self.contentCollectionView.reloadData()
+                                
+                            } else {
+                                let index = self.content.firstIndex { $0.documentId == doc.documentID as! String }
+                                if index == nil {
+                                    self.content.append(x)
+                                    self.contentCollectionView.reloadData()
+                                }
+                            }
+                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     
     //User
     private func loadUserInfo() {
@@ -316,19 +383,20 @@ class ProfileAsUserViewController: UIViewController {
                                 if error == nil {
                                     if document != nil {
                                         let data = document!.data()
+                                        print("going through yes")
                                         
                                         if let liked = data!["liked"] as? [String], let itemOrders = data!["itemOrders"] as? Int, let itemRating = data!["itemRating"] as? [Int] {
                                             
                                             let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID)
                                             
-                                            if self.items.isEmpty {
-                                                self.items.append(x)
+                                            if self.likes.isEmpty {
+                                                self.likes.append(x)
                                                 self.serviceTableView.reloadData()
                                             } else {
-                                                let index = self.items.firstIndex { $0.documentId == doc.documentID }
+                                                let index = self.likes.firstIndex { $0.documentId == doc.documentID }
                                                 if index == nil {
-                                                    self.items.append(x)
-                                                    self.serviceTableView.insertRows(at: [IndexPath(item: self.items.count - 1, section: 0)], with: .fade)
+                                                    self.likes.append(x)
+                                                    self.serviceTableView.insertRows(at: [IndexPath(item: self.likes.count - 1, section: 0)], with: .fade)
                                                 }
                                             }
                                         }
@@ -476,7 +544,7 @@ extension ProfileAsUserViewController: UITableViewDelegate, UITableViewDataSourc
             
             serviceTableView.rowHeight = 490
             
-            var item = items[indexPath.row]
+            var item = likes[indexPath.row]
             
             cell.itemTitle.text = item.itemTitle
             cell.itemDescription.text = item.itemDescription
@@ -662,4 +730,56 @@ extension ProfileAsUserViewController: UITableViewDelegate, UITableViewDataSourc
             return UITableViewCell()
         }
     }
+}
+
+extension ProfileAsUserViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return content.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = contentCollectionView.dequeueReusableCell(withReuseIdentifier: "BeauticianContentCollectionViewReusableCell", for: indexPath) as! BeauticianContentCollectionViewCell
+        
+        let content = content[indexPath.row]
+        print("views \(content.views)")
+        cell.viewText.text = "\(content.views)"
+            cell.configure(model: content)
+        
+        cell.videoViewButtonTapped = {
+            var cont : [VideoModel] = []
+            cont.append(content)
+            
+            for i in 0..<self.content.count {
+                if content.documentId != self.content[i].documentId {
+                    cont.append(self.content[i])
+                }
+            }
+            
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Feed") as? FeedViewController  {
+                vc.beauticianOrFeed = "user"
+                vc.content = cont
+                vc.yes = "Yes"
+                vc.index = indexPath.row
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+        
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (contentCollectionView.frame.size.width / 3) - 3, height: (contentCollectionView.frame.size.height / 3) - 3)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
+    }
+    
 }

@@ -170,7 +170,7 @@ extension FeedViewController : UICollectionViewDelegate, UICollectionViewDataSou
         
         if beauticianOrFeed != "" {
             cell.backButton.isHidden = false
-            if beauticianOrFeed == "chef" {
+            if beauticianOrFeed == "beautician" {
                 print("feed happening 212")
                 cell.deleteButton.isHidden = false
             }
