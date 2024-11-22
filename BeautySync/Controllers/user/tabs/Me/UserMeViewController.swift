@@ -190,7 +190,7 @@ class UserMeViewController: UIViewController {
                                                 self.items.append(x)
                                                 self.userTableView.reloadData()
                                             } else {
-                                                let index = self.items.firstIndex { $0.documentId == doc.documentID }
+                                                let index = self.items.firstIndex { $0.documentId == itemId }
                                                 if index == nil {
                                                     self.items.append(x)
                                                     self.userTableView.insertRows(at: [IndexPath(item: self.items.count - 1, section: 0)], with: .fade)
@@ -347,7 +347,7 @@ extension UserMeViewController: UITableViewDelegate, UITableViewDataSource {
         if itemType == "orders" {
             var cell = userTableView.dequeueReusableCell(withIdentifier: "UserItemReusableCell", for: indexPath) as! UserItemTableViewCell
             
-            userTableView.rowHeight = 490
+            userTableView.rowHeight = 495
             
             var item = items[indexPath.row]
             
@@ -356,7 +356,16 @@ extension UserMeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.itemPrice.text = "$\(item.itemPrice)"
             cell.itemLikes.text = "\(item.liked.count)"
             cell.itemOrders.text = "\(item.itemOrders)"
-            cell.itemRating.text = "\(item.itemRating)"
+            cell.location.text = "\(item.beauticianCity), \(item.beauticianState)"
+            var rating = 0
+            for i in 0..<item.itemRating.count {
+                rating += item.itemRating[i]
+                
+                if i == item.itemRating.count - 1 {
+                    rating = rating / item.itemRating.count
+                }
+            }
+            cell.itemRating.text = "\(rating)"
         
             let storageRef = storage.reference()
             storageRef.child("beauticians/\(item.beauticianImageId)/profileImage/\(item.beauticianImageId).png").downloadURL { itemUrl, error in
@@ -524,7 +533,7 @@ extension UserMeViewController: UITableViewDelegate, UITableViewDataSource {
         } else if itemType == "likes" { 
             var cell = userTableView.dequeueReusableCell(withIdentifier: "UserItemReusableCell", for: indexPath) as! UserItemTableViewCell
             
-            userTableView.rowHeight = 490
+            userTableView.rowHeight = 495
             
             var item = items[indexPath.row]
             
@@ -533,7 +542,17 @@ extension UserMeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.itemPrice.text = "$\(item.itemPrice)"
             cell.itemLikes.text = "\(item.liked.count)"
             cell.itemOrders.text = "\(item.itemOrders)"
-            cell.itemRating.text = "\(item.itemRating)"
+            cell.location.text = "\(item.beauticianCity), \(item.beauticianState)"
+            
+            var rating = 0
+            for i in 0..<item.itemRating.count {
+                rating += item.itemRating[i]
+                
+                if i == item.itemRating.count - 1 {
+                    rating = rating / item.itemRating.count
+                }
+            }
+            cell.itemRating.text = "\(rating)"
             
             let storageRef = storage.reference()
             storageRef.child("beauticians/\(item.beauticianImageId)/profileImage/\(item.beauticianImageId).png").downloadURL { itemUrl, error in

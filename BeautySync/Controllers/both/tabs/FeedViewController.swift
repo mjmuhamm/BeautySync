@@ -42,42 +42,142 @@ class FeedViewController: UIViewController {
     }
     
 
+    
+    private var createdAt = 0
     private func loadContent() {
-        db.collection("Content").getDocuments { documents, error in
-            if error == nil {
-                if documents != nil {
-                    for doc in documents!.documents {
-                        let data = doc.data()
+        let json: [String: Any] = ["created_at": "\(createdAt)"]
+        
+    
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        // MARK: Fetch the Intent client secret, Ephemeral Key secret, Customer ID, and publishable key
+        var request = URLRequest(url: URL(string: "https://beautysync-videoserver.onrender.com/get-videos")!)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+            guard let data = data,
+                  let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+                  let videos = json["videos"] as? [[String:Any]],
+                  let self = self else {
+                // Handle error
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                
+                if videos.count == 0 {
+                    
+                } else {
+                    for i in 0..<videos.count {
+                        if "\(videos[i]["name"]!)".suffix(1) == "b" {
+                        let id = videos[i]["id"]!
+                        let createdAtI = videos[i]["createdAt"]!
+                        if i == videos.count - 1 {
+                            self.createdAt = createdAtI as! Int
+                        }
+                        var views = 0
+                        var liked : [String] = []
+                        var comments = 0
+                        var shared = 0
+                        var beauticianImageId = ""
                         
-                        if let beauticianImageId = data["beauticianImageId"] as? String, let beauticianUsername = data["beauticianUsername"] as? String, let description = data["description"] as? String, let downloadUrl = data["downloadUrl"] as? String, let liked = data["liked"] as? [String], let views = data["views"] as? Int {
-                            
-                            let x = VideoModel(dataUri: downloadUrl, documentId: doc.documentID, userImageId: beauticianImageId, user: beauticianUsername, description: description, views: views, liked: liked, comments: 0, shared: 0, thumbNailUrl: "")
-                            
-                            if self.content.isEmpty {
-                                self.content.append(x)
-                                self.content.shuffle()
-                                self.collectionView.reloadData()
+                        
+                        
+                        var name = "\(videos[i]["name"]!)"
+                        if name == "malik@cheftesting.com" || name == "malik@cheftesting2.com" {
+                            name = "@chefTest"
+                        }
+                        print("name \(name)")
+                        if name != "sample" && name != "sample1" {
+                            var description = videos[i]["description"]! as! String
+                            if videos[i]["description"]! as! String == "no description" {
+                                description = ""
+                            }
+                            self.db.collection("Content").document("\(id)").getDocument { document, error in
+                                if error == nil {
+                                    
+                                    if document!.exists {
+                                        let data = document!.data()
+                                        
+                                        views = Int("\(data!["views"]!)")!
+                                        
+                                        if data!["liked"] != nil {
+                                            liked = data!["liked"] as! [String]
+                                        }
+                                        
+                                        if data!["shared"] != nil {
+                                            shared = data!["shared"] as! Int
+                                        }
+                                        
+                                        if data!["comments"] != nil {
+                                            comments = data!["comments"] as! Int
+                                        }
+                                        if data!["beauticianImageId"] != nil {
+                                            beauticianImageId = data!["beauticianImageId"] as! String
+                                        }
+                                        
+                                        
+                                    }
+                                }
+                                print("videos \(videos)")
+                                print("dataUri \(videos[i]["dataUrl"]! as! String)")
                                 
-                            } else {
-                                let index = self.content.firstIndex { $0.documentId == doc.documentID as! String }
-                                if index == nil {
-                                    self.content.append(x)
+                                
+                                let newVideo = VideoModel(dataUri: videos[i]["dataUrl"]! as! String, documentId: videos[i]["id"]! as! String, userImageId: beauticianImageId, user: String("\(name)".prefix(name.count - 1)), description: description, views: views, liked: liked, comments: comments, shared: shared, thumbNailUrl: videos[i]["thumbnailUrl"]! as! String)
+                                
+                                if self.content.isEmpty {
+                                    self.content.append(newVideo)
                                     self.content.shuffle()
                                     self.collectionView.reloadData()
+                                    
+                                } else {
+                                    let index = self.content.firstIndex { $0.documentId == id as! String
+                                    }
+                                    if index == nil {
+                                        self.content.append(newVideo)
+                                        self.content.shuffle()
+                                        self.collectionView.reloadData()
+                                    }
                                 }
                             }
                         }
                     }
+                    }
                 }
             }
-        }
+            })
+        
+            task.resume()
+        
     }
-    
     
     private func deleteContent(id: String) {
+        let json: [String: Any] = ["entryId": id]
         
-        
+    
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        // MARK: Fetch the Intent client secret, Ephemeral Key secret, Customer ID, and publishable key
+        var request = URLRequest(url: URL(string: "https://beautysync-videoserver.onrender.com/delete-video")!)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+          guard let data = data,
+                let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+                let self = self else {0
+            // Handle error
+            return
+          }
+            
+          DispatchQueue.main.async {
+              self.showToastCompletion(message: "Item Deleted", font: .systemFont(ofSize: 12))
+          }
+        })
+        task.resume()
     }
+    
+    
     
     func showToast(message : String, font: UIFont) {
         
@@ -115,7 +215,9 @@ class FeedViewController: UIViewController {
         UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
              toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
-            self.dismiss(animated: true)
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "BeauticianTab") as? UITabBarController {
+                self.present(vc, animated: true, completion: nil)
+            }
             toastLabel.removeFromSuperview()
         })
     }
@@ -171,7 +273,6 @@ extension FeedViewController : UICollectionViewDelegate, UICollectionViewDataSou
         if beauticianOrFeed != "" {
             cell.backButton.isHidden = false
             if beauticianOrFeed == "beautician" {
-                print("feed happening 212")
                 cell.deleteButton.isHidden = false
             }
         } else {

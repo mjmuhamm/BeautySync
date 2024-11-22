@@ -12,18 +12,18 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BeauticianContentCollectionViewReusableCell" id="gTV-IL-0wX" customClass="BeauticianContentCollectionViewCell" customModule="BeautySync" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="134" height="177"/>
+            <rect key="frame" x="0.0" y="0.0" width="131" height="199"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="134" height="177"/>
+                <rect key="frame" x="0.0" y="0.0" width="131" height="199"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pb5-O7-3Ix">
-                        <rect key="frame" x="0.0" y="0.0" width="134" height="177"/>
+                        <rect key="frame" x="0.0" y="0.0" width="131" height="199"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iQV-2C-xqx">
-                        <rect key="frame" x="9.0000000000000036" y="148" width="47.333333333333343" height="20.333333333333343"/>
+                        <rect key="frame" x="9.0000000000000036" y="170" width="47.333333333333343" height="20.333333333333343"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H6k-dx-FUG">
                                 <rect key="frame" x="0.0" y="3.6666666666666643" width="12" height="13.333333333333336"/>
@@ -39,7 +39,7 @@
                         </subviews>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABr-Zs-0pY">
-                        <rect key="frame" x="0.0" y="0.0" width="134" height="177"/>
+                        <rect key="frame" x="0.0" y="0.0" width="131" height="199"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <connections>
                             <action selector="videoViewButtonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="VIJ-uT-za9"/>
@@ -60,13 +60,13 @@
                 <constraint firstItem="ABr-Zs-0pY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="hh7-Ic-KYq"/>
                 <constraint firstAttribute="trailing" secondItem="ABr-Zs-0pY" secondAttribute="trailing" id="ikF-Pi-9SC"/>
             </constraints>
-            <size key="customSize" width="134" height="177"/>
+            <size key="customSize" width="134" height="199"/>
             <connections>
                 <outlet property="videoView" destination="pb5-O7-3Ix" id="CLE-8f-g3O"/>
                 <outlet property="videoViewButton" destination="ABr-Zs-0pY" id="xJa-iP-PYJ"/>
                 <outlet property="viewText" destination="BLc-du-Mab" id="HfD-i8-hN7"/>
             </connections>
-            <point key="canvasLocation" x="106.87022900763358" y="63.732394366197184"/>
+            <point key="canvasLocation" x="106.10687022900763" y="71.478873239436624"/>
         </collectionViewCell>
     </objects>
     <resources>

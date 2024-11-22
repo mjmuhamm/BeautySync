@@ -22,7 +22,7 @@ struct Orders {
     let beauticianImageId: String
     var liked: [String]
     let itemOrders: Int
-    let itemRating: Double
+    let itemRating: [Int]
     let hashtags: [String]
     let documentId: String
     let eventDay: String

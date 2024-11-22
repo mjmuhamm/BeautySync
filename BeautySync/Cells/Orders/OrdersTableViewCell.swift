@@ -26,6 +26,7 @@ class OrdersTableViewCell: UITableViewCell {
     @IBOutlet weak var cancelButton: MDCButton!
     @IBOutlet weak var messagesButton: MDCButton!
     
+    @IBOutlet weak var takeHome: UILabel!
     //62
     //19
     @IBOutlet weak var cancelButtonConstraint: NSLayoutConstraint!

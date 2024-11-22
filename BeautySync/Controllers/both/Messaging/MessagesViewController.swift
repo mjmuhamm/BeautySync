@@ -61,7 +61,7 @@ class MessagesViewController: UIViewController {
         }
         loadEventInfo()
         loadInfo()
-        self.compareDates(eventDay: item!.eventDay, eventTime: item!.eventTime)
+        self.compareDates(eventDay: item!.eventDay, eventTime: item!.eventTime, status: item!.status)
         
     }
     
@@ -158,8 +158,11 @@ class MessagesViewController: UIViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
-    private func compareDates(eventDay: String, eventTime: String) {
+    private func compareDates(eventDay: String, eventTime: String, status: String) {
         
+        if status == "complete" {
+            self.changeDateButton.isHidden = true
+        }
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm a"
         let year = "\(dateFormatter.string(from: Date()))".prefix(10).suffix(4)
         let month = "\(dateFormatter.string(from: Date()))".prefix(2)
@@ -210,13 +213,27 @@ class MessagesViewController: UIViewController {
                         self.changeDateButton.isHidden = false
                     }
                 } else {
+                    if day > day1 {
+                        self.changeDateButton.isHidden = true
+                    } else {
+                        self.changeDateButton.isHidden = false
+                    }
+                }
+            } else {
+                if month > month1 {
+                    self.changeDateButton.isHidden = true
+                } else {
                     self.changeDateButton.isHidden = false
                 }
+               
+            }
+        } else {
+            if year > year1 {
+                self.changeDateButton.isHidden = true
             } else {
                 self.changeDateButton.isHidden = false
             }
-        } else {
-            self.changeDateButton.isHidden = false
+            
         }
     }
     

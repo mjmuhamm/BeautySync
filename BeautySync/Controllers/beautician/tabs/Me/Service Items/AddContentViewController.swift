@@ -115,17 +115,58 @@ class AddContentViewController: UIViewController {
             storageRef.downloadURL(completion: { url, error in
                 
                 if error == nil {
-                    let data: [String: Any] = ["downloadUrl" : url!.absoluteString, "beauticianImageId" : Auth.auth().currentUser!.uid, "beauticianUsername" : self.beauticianUsername, "liked" : [], "views" : 0, "description" : description, "comments" : 0, "shared" : 0]
-                    
-                    self.db.collection("Content").document(self.videoId).setData(data)
-                    self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Content").document(self.videoId).setData(data)
-                    
-                    self.showToastCompletion(message: "Content Uploaded.", font: .systemFont(ofSize: 12))
+                    self.saveVideo(name: "\(self.beauticianUsername)", description: description, videoUrl: url!)
                 }
             })
             
             
         })
+        
+    }
+    
+    private func saveVideo(name: String, description: String, videoUrl: URL) {
+            
+            var description = "no description"
+            if self.contentDescription.text != nil || !self.contentDescription.text!.isEmpty {
+                description = self.contentDescription.text!
+            }
+            let storageRef = storage.reference()
+            let json: [String: Any] = ["name": "\(name)b", "description" : "\(description)", "videoUrl" : "\(videoUrl)"]
+            
+            
+            let jsonData = try? JSONSerialization.data(withJSONObject: json)
+            // MARK: Fetch the Intent client secret, Ephemeral Key secret, Customer ID, and publishable key
+            var request = URLRequest(url: URL(string: "https://beautysync-videoserver.onrender.com/upload-video")!)
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            request.httpBody = jsonData
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+                guard let data = data,
+                      let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+                      let id = json["entry_id"] as? String,
+                      let self = self else {
+                    // Handle error
+                    return
+                }
+                DispatchQueue.main.async {
+                    print("this is id \(id)")
+                    let data: [String: Any] = ["id" : id, "beauticianImageId" : Auth.auth().currentUser!.uid, "beauticianUsername" : self.beauticianUsername, "liked" : [], "views" : 0, "description" : description, "comments" : 0, "shared" : 0]
+                    
+                    self.db.collection("Content").document(id).setData(data)
+                    self.db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Content").document(id).setData(data)
+                    self.showToastCompletion(message: "Content Uploaded.", font: .systemFont(ofSize: 12))
+                    self.activityIndicator.stopAnimating()
+//                                    storageRef.child("chefs/malik@cheftesting.com/Content/\(self.videoId).png").delete { error in
+//                                        if error == nil {
+//                                        }
+//                                    }
+                }
+                
+            })
+            task.resume()
+            
+        
+        
     }
     
     func showToast(message : String, font: UIFont) {

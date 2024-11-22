@@ -20,6 +20,7 @@ class UserItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemRating: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
     
+    @IBOutlet weak var location: UILabel!
     
     var userImageButtonTapped : (() -> ()) = {}
     var itemDetailButtonTapped : (() -> ()) = {}

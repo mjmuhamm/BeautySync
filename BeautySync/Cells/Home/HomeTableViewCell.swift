@@ -19,6 +19,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var itemOrders: UILabel!
     @IBOutlet weak var itemRating: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
+    @IBOutlet weak var location: UILabel!
     
     var orderButtonTapped : (() -> ()) = {}
     var itemDetailButtonTapped : (() -> ()) = {}

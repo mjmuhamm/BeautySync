@@ -165,44 +165,103 @@ class BeauticianMeViewController: UIViewController {
         }
     }
     
+    private var createdAt = 0
     private func loadContent() {
-        db.collection("Beautician").document(Auth.auth().currentUser!.uid).collection("Content").getDocuments { documents, error in
-            if error == nil {
-                if documents != nil {
-                    for doc in documents!.documents {
-                        let data = doc.data()
+        content.removeAll()
+        contentCollectionView.reloadData()
+        
+        if Auth.auth().currentUser != nil {
+            let json: [String: Any] = ["name" : "\(self.userName.text!)b"]
+            
+            
+            let jsonData = try? JSONSerialization.data(withJSONObject: json)
+            // MARK: Fetch the Intent client secret, Ephemeral Key secret, Customer ID, and publishable key
+            var request = URLRequest(url: URL(string: "https://beautysync-videoserver.onrender.com/get-user-videos")!)
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            request.httpBody = jsonData
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+                guard let data = data,
+                      let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+                      let videos = json["videos"] as? [[String:Any]],
+                      
                         
-                        if let beauticianImageId = data["beauticianImageId"] as? String, let beauticianUsername = data["beauticianUsername"] as? String, let description = data["description"] as? String, let downloadUrl = data["downloadUrl"] as? String, let liked = data["liked"] as? [String] {
+                        
+                        let self = self else {
+                    // Handle error
+                    return
+                }
+                
+                if videos.count == 0 {
+                    
+                } else {
+                    for i in 0..<videos.count {
+                        DispatchQueue.main.async {
                             
-                            self.db.collection("Content").document(doc.documentID).getDocument { document, error in
-                                if error == nil {
-                                    if document != nil {
-                                        let data1 = document!.data()
-                                        
-                                        if let views = data1?["views"] as? Int {
-                                         
-                            let x = VideoModel(dataUri: downloadUrl, documentId: doc.documentID, userImageId: beauticianImageId, user: beauticianUsername, description: description, views: views, liked: liked, comments: 0, shared: 0, thumbNailUrl: "")
                             
-                            if self.content.isEmpty {
-                                self.content.append(x)
-                                self.contentCollectionView.reloadData()
-                                
-                            } else {
-                                let index = self.content.firstIndex { $0.documentId == doc.documentID as! String }
-                                if index == nil {
-                                    self.content.append(x)
-                                    self.contentCollectionView.reloadData()
-                                }
+                            let id = videos[i]["id"]!
+                            let createdAtI = videos[i]["createdAt"]!
+                            if i == videos.count - 1 {
+                                self.createdAt = createdAtI as! Int
                             }
-                        }
+                            var views = 0
+                            var liked : [String] = []
+                            var comments = 0
+                            var shared = 0
+                            print("videos count \(videos.count)")
+                            self.db.collection("Content").document("\(id)").getDocument { document, error in
+                                if error == nil {
+                                    
+                                    if document!.exists {
+                                        let data = document!.data()
                                         
+                                        if data!["views"] != nil {
+                                            views = data!["views"] as! Int
+                                        }
+                                        
+                                        if data!["liked"] != nil {
+                                            liked = data!["liked"] as! [String]
+                                        }
+                                        
+                                        if data!["shared"] != nil {
+                                            shared = data!["shared"] as! Int
+                                        }
+                                        
+                                        if data!["comments"] != nil {
+                                            comments = data!["comments"] as! Int
+                                        }
                                     }
                                 }
+                                print("videos \(videos)")
+                                
+                                var description = ""
+                                if videos[i]["description"] as? String != nil {
+                                    description = videos[i]["description"] as! String
+                                }
+                                
+                                
+                                let newVideo = VideoModel(dataUri: videos[i]["dataUrl"]! as! String, documentId: videos[i]["id"]! as! String, userImageId: Auth.auth().currentUser!.uid, user: self.userName.text!, description: description, views: views, liked: liked, comments: comments, shared: shared, thumbNailUrl: videos[i]["thumbnailUrl"]! as! String)
+                                
+                                if self.content.isEmpty {
+                                    self.content.append(newVideo)
+                                    self.contentCollectionView.reloadData()
+                                    
+                                } else {
+                                    let index = self.content.firstIndex { $0.documentId == id as! String }
+                                    if index == nil {
+                                        self.content.append(newVideo)
+                                        self.contentCollectionView.reloadData()
+                                    }
+                                }
+                                
+                                print("done")
+                                
                             }
                         }
                     }
                 }
-            }
+            })
+            task.resume()
         }
     }
     
@@ -325,7 +384,15 @@ extension BeauticianMeViewController: UITableViewDelegate, UITableViewDataSource
         cell.itemPrice.text = "$\(item.itemPrice)"
         cell.itemLikes.text = "\(item.liked.count)"
         cell.itemOrders.text = "\(item.itemOrders)"
-        cell.itemRating.text = "\(item.itemRating)"
+        var rating = 0
+        for i in 0..<item.itemRating.count {
+            rating += item.itemRating[i]
+            
+            if i == item.itemRating.count - 1 {
+                rating = rating / item.itemRating.count
+            }
+        }
+        cell.itemRating.text = "\(rating)"
         
         let storageRef = storage.reference()
         storageRef.child("\(item.itemType)/\(Auth.auth().currentUser!.uid)/\(item.documentId)/\(item.documentId)0.png").downloadURL { itemUrl, error in
