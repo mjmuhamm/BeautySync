@@ -97,22 +97,22 @@ class OrdersViewController: UIViewController {
                         let data = doc.data()
                         
                         
-                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? [Int], let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String], let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let notesToBeautician = data["notesToBeautician"] as? String, let userImageId = data["userImageId"] as? String, let status = data["status"] as? String, let itemId = data["itemId"] as? String, let userName = data["userName"] as? String {
+                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? [Int], let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String], let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let notesToBeautician = data["notesToBeautician"] as? String, let userImageId = data["userImageId"] as? String, let status = data["status"] as? String, let itemId = data["itemId"] as? String, let userName = data["userName"] as? String, let notifications = data["notifications"] as? String {
                             
                             if status == "scheduled" {
                                 self.moveToComplete(eventDay: eventDay, eventTime: eventTime, documentId: doc.documentID, beauticianId: beauticianImageId, userId: Auth.auth().currentUser!.uid)
                             }
                             if status == orderType {
-                                let x = Orders(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID, eventDay: eventDay, eventTime: eventTime, streetAddress: streetAddress, zipCode: zipCode, notesToBeautician: notesToBeautician, userImageId: userImageId, userName: userName, status: status, itemId: itemId)
+                                let x = Orders(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID, eventDay: eventDay, eventTime: eventTime, streetAddress: streetAddress, zipCode: zipCode, notesToBeautician: notesToBeautician, userImageId: userImageId, userName: userName, status: status, notifications: notifications, itemId: itemId)
                                 
                                 if self.orders.isEmpty {
                                     self.orders.append(x)
-                                    self.serviceTableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
+                                    self.serviceTableView.reloadData()
                                 } else {
                                     let index = self.orders.firstIndex { $0.documentId == doc.documentID }
                                     if index == nil {
                                         self.orders.append(x)
-                                        self.serviceTableView.insertRows(at: [IndexPath(item: self.orders.count - 1, section: 0)], with: .fade)
+                                        self.serviceTableView.reloadData()
                                     }
                                 }
                             }
@@ -260,6 +260,54 @@ class OrdersViewController: UIViewController {
         }
     }
     
+//    private func refundOrder(paymentId: String, amount: String, orderId: String, userImageId: String, beauticianImageId: String, chargeForPayout: Double) {
+//        let json: [String: Any] = ["paymentId": paymentId,"amount" : amount]
+//            
+//        
+//            let jsonData = try? JSONSerialization.data(withJSONObject: json)
+//            // MARK: Fetch the Intent client secret, Ephemeral Key secret, Customer ID, and publishable key
+//            var request = URLRequest(url: URL(string: "https://beautysync-stripeserver.onrender.com/refund")!)
+//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//            request.httpMethod = "POST"
+//            request.httpBody = jsonData
+//            let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data,response, error) in
+//                guard let data = data,
+//                    let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+//                    let refundId = json["refund_id"],
+//                    let self = self else {
+//                // Handle error
+//                return
+//                }
+//                
+//                DispatchQueue.main.async {
+//                   
+//                    let data : [String: Any] = ["refundId" : refundId, "paymentIntent" : paymentId, "orderId" : orderId, "date" : self.dateFormatter.string(from: Date()), "userImageId" : userImageId, "beauticianImageId" : beauticianImageId]
+//                    let data1 : [String: Any] = ["status" : "cancelled", "orderUpdate" : "cancelled"]
+//                    let data2 : [String : Any] = ["cancelled" : "refunded"]
+//                    self.db.collection("Refunds").document(orderId).setData(data)
+//                    self.db.collection("Beautician").document(beauticianImageId).collection("Orders").document(orderId).updateData(data2)
+//                    self.db.collection("User").document(userImageId).collection("Orders").document(orderId).updateData(data1)
+//                    self.db.collection("Orders").document(orderId).updateData(data1)
+//                    if self.orderType == "scheduled" {
+//                        self.db.collection("Chef").document(Auth.auth().currentUser!.uid).getDocument { document, error in
+//                            if error == nil {
+//                                if document != nil {
+//                                    let data = document!.data()
+//                                    if let previousChargeForPayout = data!["chargeForPayout"] as? Double {
+//                                        let data3 : [String: Any] = ["chargeForPayout" : chargeForPayout + previousChargeForPayout]
+//                                        self.db.collection("Chef").document(Auth.auth().currentUser!.uid).updateData(data3)
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                    self.showToast(message: "Item Cancelled and Refunded.", font: .systemFont(ofSize: 12))
+//                    }
+//            })
+//            task.resume()
+//            
+//    }
+    
 
         
     
@@ -326,6 +374,13 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
         if orderType == "complete" {
             cell.cancelButton.setTitle("Review", for: .normal)
             cell.cancelButton.isUppercaseTitle = false
+        }
+        
+        if item.notifications == "yes" {
+            cell.messagesRedDot.isHidden = false
+        } else {
+            cell.messageForSchedulingRedDot.isHidden = true
+            cell.messagesRedDot.isHidden = true
         }
         
         cell.messagesForSchedulingButton.isHidden = true

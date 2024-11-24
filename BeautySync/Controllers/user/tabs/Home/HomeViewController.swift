@@ -41,7 +41,7 @@ class HomeViewController: UIViewController {
         itemTableView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeReusableCell")
         itemTableView.delegate = self
         itemTableView.dataSource = self
-        loadItems(itemType: itemType)
+        loadFilter()
         
         loadCart()
     }
@@ -54,7 +54,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func hairCareButtonPressed(_ sender: Any) {
         itemType = "hairCareItems"
-        loadItems(itemType: itemType)
+        loadFilter()
         hairCareButton.setTitleColor(UIColor.white, for: .normal)
         hairCareButton.backgroundColor = UIColor(red: 160/255, green: 162/255, blue: 104/255, alpha: 1)
         skinCareButton.backgroundColor = UIColor.white
@@ -65,7 +65,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func skinCareButtonPressed(_ sender: Any) {
         itemType = "skinCareItems"
-        loadItems(itemType: itemType)
+        loadFilter()
         hairCareButton.backgroundColor = UIColor.white
         hairCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         skinCareButton.setTitleColor(UIColor.white, for: .normal)
@@ -76,7 +76,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func nailCareButtonPressed(_ sender: Any) {
         itemType = "nailCareItems"
-        loadItems(itemType: itemType)
+        loadFilter()
         hairCareButton.backgroundColor = UIColor.white
         hairCareButton.setTitleColor(UIColor(red: 98/255, green: 99/255, blue: 72/255, alpha: 1), for: .normal)
         skinCareButton.backgroundColor = UIColor.white
@@ -98,7 +98,28 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private func loadItems(itemType: String) {
+    private func loadFilter() {
+        db.collection("User").document(Auth.auth().currentUser!.uid).collection("Filter").document(Auth.auth().currentUser!.uid).getDocument { document, error in
+            if error == nil {
+                if document != nil {
+                    let data = document!.data()
+                    
+                    if data != nil {
+                        print("data here")
+                        if let city = data!["city"] as? String, let state = data!["state"] as? String, let nation = data!["nation"] as? Int, let local = data!["local"] as? Int, let region = data!["region"] as? Int {
+                            print("")
+                            self.loadItems(itemType: self.itemType, city: city, state: state, local: local, region: region, nation: nation)
+                        }
+                    } else {
+                        print("data not here")
+                        self.loadItems(itemType: self.itemType, city: "", state: "", local: 0, region: 0, nation: 1)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func loadItems(itemType: String, city: String, state: String, local: Int, region: Int, nation: Int) {
         
         items.removeAll()
         itemTableView.reloadData()
@@ -114,14 +135,42 @@ class HomeViewController: UIViewController {
                             
                             let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID)
                             
-                            if self.items.isEmpty {
-                                self.items.append(x)
-                                self.itemTableView.reloadData()
-                            } else {
-                                let index = self.items.firstIndex { $0.documentId == doc.documentID }
-                                if index == nil {
+                            
+                            if local == 1 && (city != "" && beauticianCity == city) {
+                                print("happening 1")
+                                if self.items.isEmpty {
                                     self.items.append(x)
-                                    self.itemTableView.insertRows(at: [IndexPath(item: self.items.count - 1, section: 0)], with: .fade)
+                                    self.itemTableView.reloadData()
+                                } else {
+                                    let index = self.items.firstIndex { $0.documentId == doc.documentID }
+                                    if index == nil {
+                                        self.items.append(x)
+                                        self.itemTableView.insertRows(at: [IndexPath(item: self.items.count - 1, section: 0)], with: .fade)
+                                    }
+                                }
+                            } else if region == 1 && (state != "" && beauticianState == state) {
+                                print("happening 2")
+                                if self.items.isEmpty {
+                                    self.items.append(x)
+                                    self.itemTableView.reloadData()
+                                } else {
+                                    let index = self.items.firstIndex { $0.documentId == doc.documentID }
+                                    if index == nil {
+                                        self.items.append(x)
+                                        self.itemTableView.insertRows(at: [IndexPath(item: self.items.count - 1, section: 0)], with: .fade)
+                                    }
+                                }
+                            } else if nation == 1 {
+                                print("happening 3")
+                                if self.items.isEmpty {
+                                    self.items.append(x)
+                                    self.itemTableView.reloadData()
+                                } else {
+                                    let index = self.items.firstIndex { $0.documentId == doc.documentID }
+                                    if index == nil {
+                                        self.items.append(x)
+                                        self.itemTableView.insertRows(at: [IndexPath(item: self.items.count - 1, section: 0)], with: .fade)
+                                    }
                                 }
                             }
                         }

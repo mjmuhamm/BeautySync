@@ -129,6 +129,7 @@
 		201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
 		201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTermsViewController.swift; sourceTree = "<group>"; };
 		201911002CD40A4D006BEE4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		204DAB8E2CF35AE400996F41 /* BeautySync.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeautySync.entitlements; sourceTree = "<group>"; };
 		204F45372CEA76BF00E2D449 /* UserItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemTableViewCell.swift; sourceTree = "<group>"; };
 		204F45382CEA76BF00E2D449 /* UserItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserItemTableViewCell.xib; sourceTree = "<group>"; };
 		204F453D2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBeauticiansTableViewCell.swift; sourceTree = "<group>"; };
@@ -240,6 +241,7 @@
 		201910AF2CD28805006BEE4D /* BeautySync */ = {
 			isa = PBXGroup;
 			children = (
+				204DAB8E2CF35AE400996F41 /* BeautySync.entitlements */,
 				201910B62CD28805006BEE4D /* Main.storyboard */,
 				201910BE2CD28807006BEE4D /* Info.plist */,
 				201911002CD40A4D006BEE4D /* GoogleService-Info.plist */,
@@ -1089,6 +1091,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BeautySync/BeautySync.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1118,6 +1121,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BeautySync/BeautySync.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

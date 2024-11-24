@@ -55,13 +55,14 @@ class MessagesViewController: UIViewController {
         
         if beauticianOrUser == "User" {
             changeDateButton.isHidden = true
-            self.userName.text = "Beautician: @\(item!.beauticianUsername)"
+            self.userName.text = "Beautician: \(item!.beauticianUsername)"
         } else {
             self.userName.text = "User: @\(item!.userName)"
         }
         loadEventInfo()
         loadInfo()
         self.compareDates(eventDay: item!.eventDay, eventTime: item!.eventTime, status: item!.status)
+        updateNotifications()
         
     }
     
@@ -128,6 +129,11 @@ class MessagesViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func updateNotifications() {
+        let data1: [String: Any] = ["notifications" : ""]
+        db.collection(beauticianOrUser).document(Auth.auth().currentUser!.uid).collection("Orders").document(item!.documentId).updateData(data1)
     }
     
     private func loadEventInfo() {
@@ -250,12 +256,24 @@ class MessagesViewController: UIViewController {
     }
     
     @IBAction func sendMessageButtonPressed(_ sender: Any) {
+        var beauticianOrUser = ""
+        var imageId = ""
+        if self.beauticianOrUser == "Beautician" {
+            beauticianOrUser = "User"
+            imageId = item!.userImageId
+        } else {
+            beauticianOrUser = "Beautician"
+            imageId = item!.beauticianImageId
+        }
         if messageText.text == "" {
             self.showToast(message: "Please enter a message in the alloted field.", font: .systemFont(ofSize: 12))
         } else {
-            let data: [String: Any] = ["message" : self.messageText.text!, "date" : dateFormatter.string(from: Date()), "beauticianOrUser" : beauticianOrUser]
+            let data: [String: Any] = ["message" : self.messageText.text!, "date" : dateFormatter.string(from: Date()), "beauticianOrUser" : self.beauticianOrUser]
+    
+            let data1: [String: Any] = ["notifications" : "yes"]
             
             db.collection("Orders").document(item!.documentId).collection("Messages").document().setData(data)
+            db.collection(beauticianOrUser).document(imageId).collection("Orders").document(item!.documentId).updateData(data1)
             messageText.text = ""
         }
     }

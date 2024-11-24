@@ -277,6 +277,8 @@ class UserPersonalViewController: UIViewController {
                 self.showToast(message: "Please enter your city and the abbreviation for your state", font: .systemFont(ofSize: 12))
             } else if region == 1 && state.text == "" {
                 self.showToast(message: "Please enter the abbreviation for your state.", font: .systemFont(ofSize: 12))
+            } else if (region == 1  || local == 1) && stateFilter(state: self.state.text!) == "not good" {
+                self.showToast(message: "Please use the correct state abbreviation.", font: .systemFont(ofSize: 12))
             } else if whatDoYouHopeToFind.text == "" {
                 self.showToast(message: "Please enter what you hope to find in a beautician, in the alloted field.", font: .systemFont(ofSize: 12))
             } else {

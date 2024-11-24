@@ -33,6 +33,8 @@ struct Orders {
     let userImageId: String
     let userName: String
     let status: String
+    let notifications: String
     let itemId: String
+    
     
 }

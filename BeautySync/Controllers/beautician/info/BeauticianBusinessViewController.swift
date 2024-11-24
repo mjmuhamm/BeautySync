@@ -121,7 +121,9 @@ class BeauticianBusinessViewController: UIViewController {
             self.showToast(message: "Please enter your education in the alloted field.", font: .systemFont(ofSize: 12))
         } else if streetAddress.text == "" || city.text == "" || state.text == "" || zipCode.text == "" {
             self.showToast(message: "Please enter your complete business address in the alloted fields.", font: .systemFont(ofSize: 12))
-        } else {
+        } else if stateFilter(state: self.state.text!) == "not good" {
+            self.showToast(message: "Please use the correct state abbreviation.", font: .systemFont(ofSize: 12))
+        } else  {
             var x = ""
             if self.passion.text != nil {
                 x = self.passion.text!

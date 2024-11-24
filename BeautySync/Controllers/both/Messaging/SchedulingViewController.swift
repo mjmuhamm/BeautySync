@@ -44,6 +44,9 @@ class SchedulingViewController: UIViewController {
     }
     
     @IBAction func changeDateButtonPressed(_ sender: Any) {
+        var beauticianOrUser = "User"
+        var imageId = item!.userImageId
+       
         
         //Now
         var date1 = dateFormatter.string(from: Date().addingTimeInterval(3550))
@@ -74,14 +77,15 @@ class SchedulingViewController: UIViewController {
             
             let data : [String: Any] = ["date" : dateFormatter.string(from: Date()), "message" : "The beautician has changed the service date to \(date2.prefix(10)) \(c).", "beauticianOrUser" : ""]
             
-            let data1: [String: Any] = ["eventDay" : "\(date2.prefix(10))", "eventTime" : c]
+            let data1: [String: Any] = ["eventDay" : "\(date2.prefix(10))", "eventTime" : c, "notifications" : "yes"]
+            
+            let data2: [String: Any] = ["eventDay" : "\(date2.prefix(10))", "eventTime" : c]
             
             self.db.collection("User").document(item!.userImageId).collection("Orders").document(item!.documentId).updateData(data1)
-            self.db.collection("Beautician").document(item!.beauticianImageId).collection("Orders").document(item!.documentId).updateData(data1)
+            self.db.collection("Beautician").document(item!.beauticianImageId).collection("Orders").document(item!.documentId).updateData(data2)
             self.db.collection("Orders").document(item!.documentId).updateData(data1)
             
             self.db.collection("Orders").document(item!.documentId).collection("Messages").document().setData(data)
-            
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Messages") as? MessagesViewController {
                 vc.item = self.item
                 vc.beauticianOrUser = self.beauticianOrUser
