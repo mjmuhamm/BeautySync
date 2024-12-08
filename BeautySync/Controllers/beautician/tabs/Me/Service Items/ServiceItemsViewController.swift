@@ -286,9 +286,11 @@ class ServiceItemsViewController: UIViewController {
             self.showToast(message: "Please enter an item price like so: 54.51.", font: .systemFont(ofSize: 12))
         } else {
             
-            let data : [String: Any] = ["itemType" :  item, "itemTitle" : self.itemTitle.text!, "itemDescription" : self.itemDescription.text!, "itemPrice" : itemPrice.text!, "imageCount" : self.imgArr.count, "beauticianUsername" : "\(self.beauticianUsername)", "beauticianPassion" : self.beauticianPassion, "beauticianCity" : self.beauticianCity, "beauticianState": self.beauticianState, "beauticianImageId" : Auth.auth().currentUser!.uid, "liked" : [], "itemOrders" : 0, "itemRating" : [], "hashtags" : hashtags]
+           
             
             if newOrEdit == "new" {
+                let data : [String: Any] = ["itemType" :  item, "itemTitle" : self.itemTitle.text!, "itemDescription" : self.itemDescription.text!, "itemPrice" : itemPrice.text!, "imageCount" : self.imgArr.count, "beauticianUsername" : "\(self.beauticianUsername)", "beauticianPassion" : self.beauticianPassion, "beauticianCity" : self.beauticianCity, "beauticianState": self.beauticianState, "beauticianImageId" : Auth.auth().currentUser!.uid, "liked" : [], "itemOrders" : 0, "itemRating" : [], "hashtags" : hashtags]
+                
                 self.db.collection("Beautician").document("\(Auth.auth().currentUser!.uid)").collection(item).document(serviceItemId).setData(data)
                 self.db.collection("\(item)").document("\(serviceItemId)").setData(data)
                 let storageRef = storage.reference()
@@ -303,6 +305,8 @@ class ServiceItemsViewController: UIViewController {
                     }
                 }
             } else {
+                let data : [String: Any] = ["itemType" :  item, "itemTitle" : self.itemTitle.text!, "itemDescription" : self.itemDescription.text!, "itemPrice" : itemPrice.text!, "imageCount" : self.imgArr.count, "beauticianUsername" : "\(self.beauticianUsername)", "beauticianPassion" : self.beauticianPassion, "beauticianCity" : self.beauticianCity, "beauticianState": self.beauticianState, "beauticianImageId" : Auth.auth().currentUser!.uid, "hashtags" : hashtags]
+                
                 self.db.collection("Beautician").document("\(Auth.auth().currentUser!.uid)").collection(item).document(serviceItemId).updateData(data)
                 self.db.collection("\(item)").document("\(serviceItemId)").updateData(data)
                 self.showToastCompletion(message: "Item Updated.", font: .systemFont(ofSize: 12))

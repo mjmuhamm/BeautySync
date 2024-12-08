@@ -120,18 +120,27 @@
                             <constraint firstAttribute="width" constant="16" id="pOY-F4-KHJ"/>
                         </constraints>
                     </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: 2412 Beatties Ford Road, Charlotte NC" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4R-eO-aRG">
+                        <rect key="frame" x="30" y="124.66666666666667" width="333" height="15.666666666666671"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" systemColor="systemRedColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="1b4-nM-94h" secondAttribute="trailing" constant="10" id="3ur-i9-sbv"/>
                     <constraint firstItem="B1b-Em-5aQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="67D-E6-4TW"/>
+                    <constraint firstItem="h4R-eO-aRG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="6da-bf-bLJ"/>
                     <constraint firstAttribute="trailing" secondItem="B1b-Em-5aQ" secondAttribute="trailing" constant="10" id="6fh-Oh-UBk"/>
                     <constraint firstItem="2XL-9r-AzY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="8p9-AU-o1K"/>
                     <constraint firstItem="8OI-6v-ZL4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="BbW-q1-uTw"/>
                     <constraint firstAttribute="trailing" secondItem="Dp9-lv-AbU" secondAttribute="trailing" id="CVc-er-API"/>
                     <constraint firstItem="5Mc-Zp-mSv" firstAttribute="top" secondItem="8OI-6v-ZL4" secondAttribute="bottom" constant="1.6666666666666572" id="H6q-nr-zvx"/>
                     <constraint firstItem="2XL-9r-AzY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="Hxd-JN-iuE"/>
+                    <constraint firstItem="h4R-eO-aRG" firstAttribute="top" secondItem="1b4-nM-94h" secondAttribute="bottom" constant="10.33" id="MjO-Xb-qIb"/>
                     <constraint firstItem="OfC-ab-thU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="MpW-rf-dex"/>
                     <constraint firstAttribute="trailing" secondItem="8OI-6v-ZL4" secondAttribute="trailing" constant="10" id="Nmx-KT-PQt"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="h4R-eO-aRG" secondAttribute="trailing" constant="10" id="Oow-zn-lK2"/>
                     <constraint firstItem="B1b-Em-5aQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="PTy-D4-4kF"/>
                     <constraint firstAttribute="trailing" secondItem="heP-f1-I3Z" secondAttribute="trailing" constant="10" id="T1Q-cc-C6Z"/>
                     <constraint firstItem="4H9-rz-umc" firstAttribute="top" secondItem="Dp9-lv-AbU" secondAttribute="bottom" constant="35.666666666666671" id="T5H-Ra-UYc"/>
@@ -151,12 +160,14 @@
                     <constraint firstItem="x37-Sr-sUc" firstAttribute="top" secondItem="Dp9-lv-AbU" secondAttribute="bottom" constant="10.67" id="vfr-Kr-N2i"/>
                     <constraint firstItem="x37-Sr-sUc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="wgY-hF-s0L"/>
                     <constraint firstAttribute="trailing" secondItem="5Mc-Zp-mSv" secondAttribute="trailing" constant="1" id="xBG-wm-sfy"/>
+                    <constraint firstItem="h4R-eO-aRG" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="xgT-hw-AZU"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cancelButton" destination="OfC-ab-thU" id="xma-r3-4Ik"/>
                 <outlet property="cancelButtonConstraint" destination="lcc-RT-RHY" id="k3U-dp-b0R"/>
+                <outlet property="cancelledText" destination="h4R-eO-aRG" id="fX3-bg-Nbh"/>
                 <outlet property="itemType" destination="B1b-Em-5aQ" id="nU7-DI-aXm"/>
                 <outlet property="location" destination="1b4-nM-94h" id="DOW-9D-8hg"/>
                 <outlet property="messageForSchedulingRedDot" destination="UDb-Y1-Zf7" id="iJL-ch-EFX"/>

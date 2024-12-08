@@ -49,6 +49,13 @@ class UserMeViewController: UIViewController {
         
         userTableView.delegate = self
         userTableView.dataSource = self
+        
+        userImage.layer.borderWidth = 1
+        userImage.layer.masksToBounds = false
+        userImage.layer.borderColor = UIColor.white.cgColor
+        userImage.layer.cornerRadius = userImage.frame.height/2
+        userImage.clipsToBounds = true
+        
         loadInfo()
         loadOrders()
         
@@ -182,7 +189,7 @@ class UserMeViewController: UIViewController {
                                     if document != nil {
                                         let data = document!.data()
                                         
-                                        if let liked = data!["liked"] as? [String], let itemOrders = data!["itemOrders"] as? Int, let itemRating = data!["itemRating"] as? [Int] {
+                                        if let liked = data?["liked"] as? [String], let itemOrders = data?["itemOrders"] as? Int, let itemRating = data?["itemRating"] as? [Int] {
                                             
                                             let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: itemId)
                                             
@@ -263,7 +270,7 @@ class UserMeViewController: UIViewController {
                                     if document != nil {
                                         let data = document!.data()
                                         
-                                        if let liked = data!["liked"] as? [String], let itemOrders = data!["itemOrders"] as? Int, let itemRating = data!["itemRating"] as? [Int] {
+                                        if let liked = data?["liked"] as? [String], let itemOrders = data?["itemOrders"] as? Int, let itemRating = data?["itemRating"] as? [Int] {
                                             
                                             let x = ServiceItems(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID)
                                             

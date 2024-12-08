@@ -24,6 +24,18 @@ class MessagesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        awayUserImage.layer.borderWidth = 1
+        awayUserImage.layer.masksToBounds = false
+        awayUserImage.layer.borderColor = UIColor.white.cgColor
+        awayUserImage.layer.cornerRadius = awayUserImage.frame.height/2
+        awayUserImage.clipsToBounds = true
+        
+        homeUserImage.layer.borderWidth = 1
+        homeUserImage.layer.masksToBounds = false
+        homeUserImage.layer.borderColor = UIColor.white.cgColor
+        homeUserImage.layer.cornerRadius = homeUserImage.frame.height/2
+        homeUserImage.clipsToBounds = true
         // Initialization code
     }
 

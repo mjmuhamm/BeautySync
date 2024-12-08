@@ -77,8 +77,8 @@ class BeauticianMeViewController: UIViewController {
                 if documents != nil {
                         for doc in documents!.documents {
                             let data = doc.data()
-                            if let username = data["username"] as? String {
-                                self.userName.text = username
+                            if let username = data["userName"] as? String {
+                                self.userName.text = "@\(username)"
                             }
                         }
                 }
@@ -103,7 +103,7 @@ class BeauticianMeViewController: UIViewController {
         }
         
         let storageRef = storage.reference()
-        storageRef.child("beauticians/\(Auth.auth().currentUser!.email!)/profilePic/\(Auth.auth().currentUser!.uid).png").downloadURL { url, error in
+        storageRef.child("beauticians/\(Auth.auth().currentUser!.uid)/profilePic/\(Auth.auth().currentUser!.uid).png").downloadURL { url, error in
             if error == nil {
                 if url != nil {
                     URLSession.shared.dataTask(with: url!) { (data, response, error) in

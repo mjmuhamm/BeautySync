@@ -39,6 +39,7 @@ class OrdersTableViewCell: UITableViewCell {
     //13.67
     @IBOutlet weak var messagesRedDotConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var cancelledText: UILabel!
     var messagesForSchedulingButtonTapped : (() -> ()) = {}
     var cancelButtonTapped : (() -> ()) = {}
     var messagesButtonTapped : (() -> ()) = {}

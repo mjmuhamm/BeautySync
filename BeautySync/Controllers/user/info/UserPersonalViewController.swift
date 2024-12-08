@@ -280,7 +280,7 @@ class UserPersonalViewController: UIViewController {
             } else if (region == 1  || local == 1) && stateFilter(state: self.state.text!) == "not good" {
                 self.showToast(message: "Please use the correct state abbreviation.", font: .systemFont(ofSize: 12))
             } else if whatDoYouHopeToFind.text == "" {
-                self.showToast(message: "Please enter what you hope to find in a beautician, in the alloted field.", font: .systemFont(ofSize: 12))
+                self.showToast(message: "Please enter what you hope to find in a beautician, in the allotted field.", font: .systemFont(ofSize: 12))
             } else {
                 
                 if newOrEdit == "new" {
@@ -300,9 +300,9 @@ class UserPersonalViewController: UIViewController {
                                     }
                                     } 
                                         
-                                        let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "local" : self.local, "region" : self.region, "nation" : self.nation, "city": self.city.text!, "state" : self.state.text!, "beauticianOrUser" : "User"]
+                                        let data: [String: Any] = ["fullName" : self.fullName.text!, "userName" : self.userName.text!, "email" : self.email.text!, "local" : self.local, "region" : self.region, "nation" : self.nation, "city": self.city.text!, "state" : self.state.text!, "beauticianOrUser" : "User", "whatDoYouHopeToFind": self.whatDoYouHopeToFind.text!]
                                         let data1: [String: Any] = ["userName" : self.userName.text!, "email": self.email.text!, "beauticianOrUser" : "User", "fullName" : self.fullName.text!]
-                                let data2: [String: Any] = ["beauticianOrUser" : "User", "privatizeData" : "no", "notificationToken" : "", "profilePic" : self.profilePic, "whatDoYouHopeToFind": self.whatDoYouHopeToFind.text!]
+                                let data2: [String: Any] = ["beauticianOrUser" : "User", "privatizeData" : "no", "notificationToken" : "", "profilePic" : self.profilePic, ]
                                         
                                         self.db.collection("User").document(authResult!.user.uid).collection("PersonalInfo").document().setData(data)
                                         self.db.collection("Usernames").document(authResult!.user.uid).setData(data1)

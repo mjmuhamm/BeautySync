@@ -27,8 +27,6 @@ class BeauticianBankingViewController: UIViewController {
     @IBOutlet weak var businessButton: MDCButton!
     
     //Individual
-    @IBOutlet weak var iAcceptButton: UIButton!
-    @IBOutlet weak var iAcceptCircle: UIImageView!
     @IBOutlet weak var iMccCode: UITextField!
     @IBOutlet weak var iBusinessUrl: UITextField!
     @IBOutlet weak var iFirstName: UITextField!
@@ -106,13 +104,7 @@ class BeauticianBankingViewController: UIViewController {
             self.iZipCode.text = self.individualBankingInfo!.zipCode
             self.iLast4Ssn.text = self.individualBankingInfo!.ssn
             
-            if individualBankingInfo!.acceptTermsOfService == "yes" {
-                self.iAcceptButton.isEnabled = true
-                self.iAcceptCircle.image = UIImage(systemName: "circle.fill")
-            } else {
-                self.iAcceptButton.isEnabled = false
-                self.iAcceptCircle.image = UIImage(systemName: "circle")
-            }
+            
             
             if individualBankingInfo!.externalAccount != nil {
                 if individualBankingInfo!.externalAccount!.go == "go" {
@@ -200,29 +192,19 @@ class BeauticianBankingViewController: UIViewController {
     
     //Individual
     @IBAction func iClickToViewButtonPressed(_ sender: Any) {
-        iAcceptButton.isEnabled = true
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "StripesTermsOfService") as? StripeTermsViewController {
             
             self.present(vc, animated: true, completion: nil)
         }
     }
     
-    @IBAction func iAcceptButtonPressed(_ sender: Any) {
-        if iAcceptButton.title(for: .normal) == "I accept" {
-            iAcceptButton.setTitle("Don't accept", for: .normal)
-            self.iAcceptCircle.image = UIImage(systemName: "circle.fill")
-        } else {
-            iAcceptButton.setTitle("I accept", for: .normal)
-            self.iAcceptCircle.image = UIImage(systemName: "circle")
-        }
-    }
+   
     
     
     @IBAction func iExternalAccountButtonPressed(_ sender: Any) {
-        var acceptTermsOfService = ""
         var externalAccount = ExternalAccount(accountType: "Individual", stripeAccountId: "", externalAccountId: "", bankName: "", accountHolder: "", accountNumber: "", routingNumber: "", documentId: "", go: "")
         
-        if iAcceptCircle == UIImage(systemName: "circle.fill") { acceptTermsOfService = "yes" } else { acceptTermsOfService = "no" }
+        
         if individualBankingInfo != nil {
             if self.individualBankingInfo!.externalAccount != nil {
                 externalAccount = self.individualBankingInfo!.externalAccount!
@@ -230,7 +212,7 @@ class BeauticianBankingViewController: UIViewController {
         }
         
         
-        individualBankingInfo = IndividualBankingInfo(acceptTermsOfService: acceptTermsOfService, mccCode: self.iMccCode.text ?? "", ip: getWiFiAddress() ?? "", businessUrl: self.iBusinessUrl.text ?? "", date: "\(Int(Date().timeIntervalSince1970))", firstName: self.iFirstName.text ?? "", lastName: self.iLastName.text ?? "", dobMonth: self.iMonth.text ?? "", dobDay: self.iDay.text ?? "", dobYear: self.iYear.text ?? "", streetAddress: self.iStreetAddress.text ?? "", line2: "", city: self.iCity.text ?? "", state: self.iState.text ?? "", zipCode: self.iZipCode.text ?? "", email: self.iEmail.text ?? "", phone: self.iPhoneNumber.text ?? "", ssn: self.iLast4Ssn.text ?? "", externalAccount: externalAccount)
+        individualBankingInfo = IndividualBankingInfo(acceptTermsOfService: "yes", mccCode: self.iMccCode.text ?? "", ip: getWiFiAddress() ?? "", businessUrl: self.iBusinessUrl.text ?? "", date: "\(Int(Date().timeIntervalSince1970))", firstName: self.iFirstName.text ?? "", lastName: self.iLastName.text ?? "", dobMonth: self.iMonth.text ?? "", dobDay: self.iDay.text ?? "", dobYear: self.iYear.text ?? "", streetAddress: self.iStreetAddress.text ?? "", line2: "", city: self.iCity.text ?? "", state: self.iState.text ?? "", zipCode: self.iZipCode.text ?? "", email: self.iEmail.text ?? "", phone: self.iPhoneNumber.text ?? "", ssn: self.iLast4Ssn.text ?? "", externalAccount: externalAccount)
         
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "AccountInfo") as? AccountInfoViewController {
             
@@ -319,10 +301,8 @@ class BeauticianBankingViewController: UIViewController {
     }
     
     private func saveInfoForTransfer() {
-        var acceptTermsOfService = ""
         var externalAccount = ExternalAccount(accountType: "Business", stripeAccountId: "", externalAccountId: "", bankName: "", accountHolder: "", accountNumber: "", routingNumber: "", documentId: "", go: "")
         
-        if iAcceptCircle == UIImage(systemName: "circle.fill") { acceptTermsOfService = "yes" } else { acceptTermsOfService = "no" }
         if businessBankingInfo != nil {
             if self.businessBankingInfo!.externalAccount != nil {
                 externalAccount = self.businessBankingInfo!.externalAccount!
@@ -341,7 +321,7 @@ class BeauticianBankingViewController: UIViewController {
             }
         }
         
-        businessBankingInfo = BusinessBankingInfo(acceptTermsOfService: acceptTermsOfService, mccCode: bMccCode.text ?? "", ip: getWiFiAddress() ?? "", url: bBusinessUrl.text ?? "", date: "\(Int(Date().timeIntervalSince1970))", companyName: self.bCompanyName.text ?? "", companyStreetAddress: self.bCompanyStreetAddress.text ?? "", companyCity: self.bCompanyCity.text ?? "", companyState: self.bCompanyState.text ?? "", companyZipCode: self.bCompanyZipCode.text ?? "", companyPhone: self.bCompanyPhone.text ?? "", companyTaxId: self.bCompanyTaxId.text ?? "", externalAccount: externalAccount, representative: representative, owners: owners, documentId: "")
+        businessBankingInfo = BusinessBankingInfo(acceptTermsOfService: "yes", mccCode: bMccCode.text ?? "", ip: getWiFiAddress() ?? "", url: bBusinessUrl.text ?? "", date: "\(Int(Date().timeIntervalSince1970))", companyName: self.bCompanyName.text ?? "", companyStreetAddress: self.bCompanyStreetAddress.text ?? "", companyCity: self.bCompanyCity.text ?? "", companyState: self.bCompanyState.text ?? "", companyZipCode: self.bCompanyZipCode.text ?? "", companyPhone: self.bCompanyPhone.text ?? "", companyTaxId: self.bCompanyTaxId.text ?? "", externalAccount: externalAccount, representative: representative, owners: owners, documentId: "")
     }
     
     private func createIndividualAccount() {

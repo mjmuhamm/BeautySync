@@ -35,6 +35,7 @@ struct Orders {
     let status: String
     let notifications: String
     let itemId: String
+    let cancelled: String
     
     
 }

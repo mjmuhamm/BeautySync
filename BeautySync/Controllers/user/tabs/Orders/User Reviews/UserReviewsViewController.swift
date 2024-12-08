@@ -235,11 +235,11 @@ class UserReviewsViewController: UIViewController {
             thoughts = thoughtsText.text!
         }
         if expectationsNum == 0 {
-            self.showToast(message: "Please rate your experience in the alloted area.", font: .systemFont(ofSize: 12))
+            self.showToast(message: "Please rate your experience in the allotted area.", font: .systemFont(ofSize: 12))
         } else if qualityNum == 0 {
-            self.showToast(message: "Please rate the quality of service in the alloted area.", font: .systemFont(ofSize: 12))
+            self.showToast(message: "Please rate the quality of service in the allotted area.", font: .systemFont(ofSize: 12))
         } else if beauticianRatingNum == 0 {
-            self.showToast(message: "Please rate the beautician in the alloted field", font: .systemFont(ofSize: 12))
+            self.showToast(message: "Please rate the beautician in the allotted area.", font: .systemFont(ofSize: 12))
         } else {
             let data1: [String: Any] = ["expectations" : expectationsNum, "quality" : qualityNum, "rating" : beauticianRatingNum, "recommend" : recommend, "thoughts" : thoughts, "itemType" : item!.itemType, "itemId" : item!.itemId, "itemDescription" : item!.itemDescription, "itemTitle" : item!.itemTitle, "date" : dateFormatter.string(from: Date()), "userImageId" : Auth.auth().currentUser!.uid, "liked" : [], "userName" : self.userName, "beauticianUsername" : item!.beauticianUsername, "beauticianImageId" : item!.beauticianImageId, "orderDate" : item!.eventDay]
             

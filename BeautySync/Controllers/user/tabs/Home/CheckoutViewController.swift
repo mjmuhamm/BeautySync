@@ -22,6 +22,7 @@ import MaterialComponents.MaterialTextControls_OutlinedTextFieldsTheming
 class CheckoutViewController: UIViewController {
     
     let db = Firestore.firestore()
+    let storage = Storage.storage()
     
     var paymentSheet: PaymentSheet?
     private var paymentId = ""
@@ -218,9 +219,9 @@ class CheckoutViewController: UIViewController {
         for i in 0..<items.count {
             var documentId = UUID().uuidString
             
-            let data : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId, "userName" : self.userName, "date" : dateFormatter.string(from: Date()), "notifications" : ""]
+            let data : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId, "userName" : self.userName, "date" : dateFormatter.string(from: Date()), "notifications" : "", "cancelled" : ""]
             
-            let data1 : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "paymentId" : self.paymentId, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId, "userName" : self.userName, "date" : dateFormatter.string(from: Date()), "notifications" : ""]
+            let data1 : [String: Any] = ["itemType" :  items[i].itemType, "itemTitle" : items[i].itemTitle, "itemDescription" : items[i].itemDescription, "itemPrice" : items[i].itemPrice, "imageCount" : items[i].imageCount, "beauticianUsername" : items[i].beauticianUsername, "beauticianPassion" : items[i].beauticianPassion, "beauticianCity" : items[i].beauticianCity, "beauticianState": items[i].beauticianState, "beauticianImageId" : items[i].beauticianImageId, "liked" : items[i].liked, "itemOrders" : items[i].itemOrders, "itemRating" : items[i].itemRating, "hashtags" : items[i].hashtags, "eventDay" : items[i].eventDay, "eventTime": items[i].eventTime, "streetAddress" : items[i].streetAddress, "zipCode" : items[i].zipCode, "notesToBeautician" : items[i].noteToBeautician, "paymentId" : self.paymentId, "userImageId" : Auth.auth().currentUser!.uid, "status" : "pending", "itemId" : items[i].itemId, "userName" : self.userName, "date" : dateFormatter.string(from: Date()), "notifications" : "", "cancelled" : ""]
             
             
             
@@ -326,6 +327,22 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
         cell.location.text = "Location: \(item.streetAddress) \(item.beauticianCity), \(item.beauticianState) \(item.zipCode)"
         cell.date.text = "Date of Service: \(item.eventDay) \(item.eventTime)"
         cell.noteToBeautician.text = "Note: \(item.noteToBeautician)"
+        
+        
+        self.storage.reference().child("beauticians/\(item.beauticianImageId)/profileImage/\(item.beauticianImageId).png").downloadURL { url, error in
+            if error == nil {
+                if url != nil {
+                    URLSession.shared.dataTask(with: url!) { (data, response, error) in
+                        // Error handling...
+                        guard let imageData = data else { return }
+                        
+                        DispatchQueue.main.async {
+                            cell.userImage.image = UIImage(data: imageData)!
+                        }
+                    }.resume()
+                }
+            }
+        }
         
         cell.userImageButtonTapped = {
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileAsUser") as? ProfileAsUserViewController {

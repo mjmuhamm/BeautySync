@@ -27,6 +27,7 @@ class OrdersViewController: UIViewController {
     @IBOutlet weak var serviceTableView: UITableView!
     
     let dateFormatter = DateFormatter()
+    let df1 = DateFormatter()
     
     private var orders: [Orders] = []
     private var orderType = "pending"
@@ -35,6 +36,7 @@ class OrdersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm a"
+        df1.dateFormat = "MM-dd-yyyy"
         
         serviceTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersReusableCell")
         serviceTableView.delegate = self
@@ -97,13 +99,15 @@ class OrdersViewController: UIViewController {
                         let data = doc.data()
                         
                         
-                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? [Int], let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String], let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let notesToBeautician = data["notesToBeautician"] as? String, let userImageId = data["userImageId"] as? String, let status = data["status"] as? String, let itemId = data["itemId"] as? String, let userName = data["userName"] as? String, let notifications = data["notifications"] as? String {
+                        if let itemType = data["itemType"] as? String, let itemTitle = data["itemTitle"] as? String, let itemDescription = data["itemDescription"] as? String, let itemPrice = data["itemPrice"] as? String, let imageCount = data["imageCount"] as? Int, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianPassion = data["beauticianPassion"] as? String, let beauticianCity = data["beauticianCity"] as? String, let beauticianState = data["beauticianState"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let itemOrders = data["itemOrders"] as? Int, let itemRating = data["itemRating"] as? [Int], let hashtags = data["hashtags"] as? [String], let liked = data["liked"] as? [String], let streetAddress = data["streetAddress"] as? String, let zipCode = data["zipCode"] as? String, let eventDay = data["eventDay"] as? String, let eventTime = data["eventTime"] as? String, let notesToBeautician = data["notesToBeautician"] as? String, let userImageId = data["userImageId"] as? String, let status = data["status"] as? String, let itemId = data["itemId"] as? String, let userName = data["userName"] as? String, let notifications = data["notifications"] as? String, let cancelled = data["cancelled"] as? String {
                             
                             if status == "scheduled" {
-                                self.moveToComplete(eventDay: eventDay, eventTime: eventTime, documentId: doc.documentID, beauticianId: beauticianImageId, userId: Auth.auth().currentUser!.uid)
+                                if Auth.auth().currentUser != nil {
+                                    self.moveToComplete(eventDay: eventDay, eventTime: eventTime, documentId: doc.documentID, beauticianId: beauticianImageId, userId: Auth.auth().currentUser!.uid)
+                                }
                             }
                             if status == orderType {
-                                let x = Orders(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID, eventDay: eventDay, eventTime: eventTime, streetAddress: streetAddress, zipCode: zipCode, notesToBeautician: notesToBeautician, userImageId: userImageId, userName: userName, status: status, notifications: notifications, itemId: itemId)
+                                let x = Orders(itemType: itemType, itemTitle: itemTitle, itemDescription: itemDescription, itemPrice: itemPrice, imageCount: imageCount, beauticianUsername: beauticianUsername, beauticianPassion: beauticianPassion, beauticianCity: beauticianCity, beauticianState: beauticianState, beauticianImageId: beauticianImageId, liked: liked, itemOrders: itemOrders, itemRating: itemRating, hashtags: hashtags, documentId: doc.documentID, eventDay: eventDay, eventTime: eventTime, streetAddress: streetAddress, zipCode: zipCode, notesToBeautician: notesToBeautician, userImageId: userImageId, userName: userName, status: status, notifications: notifications, itemId: itemId, cancelled: cancelled)
                                 
                                 if self.orders.isEmpty {
                                     self.orders.append(x)
@@ -122,11 +126,36 @@ class OrdersViewController: UIViewController {
             }
         }
     }
-    private func showOptions() {
+    
+    private func showOptions(documentId: String) {
         let alert = UIAlertController(title: "Are you sure you want to cancel this appointment?", message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (handler) in
-            let uid = Auth.auth().currentUser!.uid
+            
+            self.db.collection("Orders").document(documentId).getDocument { document, error in
+                if error == nil {
+                    if document != nil {
+                        let data = document!.data()
+                        
+                        if data != nil {
+                            if let paymentId = data!["paymentId"] as? String, let beauticianImageId = data!["beauticianImageId"] as? String, let userImageId = data!["userImageId"] as? String, let itemPrice = data!["itemPrice"] as? String {
+                                
+                                
+                                self.refund(paymentId: paymentId, amount: itemPrice, beauticianImageId: beauticianImageId, userImageId: userImageId)
+                                
+                                let data1 : [String: Any] = ["cancelled" : "yes"]
+                                let data2 : [String: Any] = ["cancelled" : "yes", "status" : "cancelled"]
+                                
+                                self.db.collection("Orders").document(documentId).updateData(data2)
+                                self.db.collection("User").document(userImageId).collection("Orders").document(documentId).updateData(data2)
+                                self.db.collection("Beautician").document(beauticianImageId).collection("Orders").document(documentId).updateData(data2)
+                                
+
+                            }
+                        }
+                    }
+                }
+            }
             
         }))
         
@@ -136,7 +165,45 @@ class OrdersViewController: UIViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
-    private func compareDates(eventDay: String, eventTime: String, status: String) {
+    
+    
+    private func refund(paymentId: String, amount: String, beauticianImageId: String, userImageId: String) {
+        
+        let d = String(format: "%.0f", Double(amount)! * 100)
+        
+        
+        let json: [String: Any] = ["paymentId": "\(paymentId)", "amount" : d]
+        
+    
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        // MARK: Fetch the Intent client secret, Ephemeral Key secret, Customer ID, and publishable key
+        var request = URLRequest(url: URL(string: "https://beautysync-stripeserver.onrender.com/refund")!)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+            guard let data = data,
+                let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+                let id = json["refund_id"] as? String,
+                let self = self else {
+            // Handle error
+            return
+            }
+            
+            DispatchQueue.main.async {
+                let data : [String : Any] = ["refundId" : id, "amount" : amount, "paymentId" : paymentId, "beauticianImageId" : beauticianImageId, "userImageId" : userImageId, "date" : self.df1.string(from: Date())]
+                    self.db.collection("Refunds").document().setData(data)
+                self.showToast(message: "This event has been cancelled. A refund is on its way.", font: .systemFont(ofSize: 12))
+                    
+                    
+                
+                }
+        })
+        task.resume()
+        
+    }
+    
+    private func compareDates(eventDay: String, eventTime: String, status: String) -> Bool {
         
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm a"
         let year = "\(dateFormatter.string(from: Date()))".prefix(10).suffix(4)
@@ -144,6 +211,12 @@ class OrdersViewController: UIViewController {
         let day = "\(dateFormatter.string(from: Date()))".prefix(5).suffix(2)
         var hour = "\(dateFormatter.string(from: Date()))".prefix(13).suffix(2)
         let min = "\(dateFormatter.string(from: Date()))".prefix(16).suffix(2)
+        let amOrPm = "\(dateFormatter.string(from: Date()))".suffix(2)
+        
+        
+        if amOrPm == "PM" {
+            hour = "\(Int(hour)! + 12)"
+        }
         
         if Int(hour)! < 10 {
             hour = "0\(hour)"
@@ -164,45 +237,51 @@ class OrdersViewController: UIViewController {
         let day1 = "\(eventDay) \(eventTime)".prefix(5).suffix(2)
         var hour1 = "\(eventDay) \(eventTime)".prefix(13).suffix(2)
         let min1 = "\(eventDay) \(eventTime)".prefix(16).suffix(2)
+        let amOrPm1 = "\(eventDay) \(eventTime)".suffix(2)
+        
+        if amOrPm1 == "PM" {
+            hour1 = "\(Int(hour1)! + 12)"
+        }
+        
         
         print("year1 \(year1)")
         print("month1 \(month1)")
         print("day1 \(day1)")
         print("hour1 \(hour1)")
         print("min1 \(min1)")
-        print("hour subtract \(Int(hour)! - Int(hour1)!)")
+//        print("hour subtract \(Int(hour)! - Int(hour1)!)")
         if year == year1 {
             if month == month1 {
                 if day == day1 {
                     if Int(hour1)! - Int(hour)! == 2 {
                         if Int(min)! >= Int(min1)! {
                             if status != "pending" {
-                                self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                                return false
                             } else {
-                                showOptions()
+                                return true
                             }
                         } else {
                             //clear
-                            showOptions()
+                            return true
                         }
                     } else if Int(hour1)! - Int(hour)! < 2 {
                         if status != "pending" {
-                            self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                            return false
                         } else {
-                            showOptions()
+                            return true
                         }
                     } else {
                         //clear
-                        showOptions()
+                        return true
                     }
                 } else {
-                    showOptions()
+                    return true
                 }
             } else {
-                showOptions()
+                return true
             }
         } else {
-            showOptions()
+            return true
         }
     }
     
@@ -356,6 +435,9 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
         } else if item.itemType == "lashItems" {
             serviceType = "Lash Item"
         }
+        
+        
+        
         cell.itemType.text = serviceType
         cell.serviceDate.text = "Service Date: \(item.eventDay) \(item.eventTime)"
         cell.location.text = "Location: \(item.streetAddress) \(item.beauticianCity), \(item.beauticianState) \(item.zipCode)"
@@ -374,6 +456,9 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
         if orderType == "complete" {
             cell.cancelButton.setTitle("Review", for: .normal)
             cell.cancelButton.isUppercaseTitle = false
+        } else {
+            cell.cancelButton.setTitle("Cancel", for: .normal)
+            cell.cancelButton.isUppercaseTitle = false
         }
         
         if item.notifications == "yes" {
@@ -387,17 +472,94 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
         cell.messagesButton.setTitle("Messages For Scheduling", for: .normal)
         cell.messagesButton.isUppercaseTitle = false
         
+        if item.cancelled == "yes" {
+            cell.cancelledText.isHidden = false
+            cell.cancelledText.text = "This event has been cancelled by the beautician. A refund of the item price has been issued to you."
+            cell.notesToBeautician.isHidden = true
+            cell.messagesForSchedulingButton.isHidden = true
+            cell.cancelButton.isHidden = true
+            cell.messagesButton.setTitle("Ok", for: .normal)
+            cell.messagesButton.isUppercaseTitle = false
+        } else {
+            cell.cancelledText.isHidden = true
+            cell.notesToBeautician.isHidden = false
+            cell.cancelButton.isHidden = false
+            cell.messagesButton.setTitle("Messages For Scheduling", for: .normal)
+            cell.messagesButton.isUppercaseTitle = false
+            if orderType == "complete" {
+                cell.cancelButton.setTitle("Review", for: .normal)
+                cell.cancelButton.isUppercaseTitle = false
+            } else {
+                cell.cancelButton.setTitle("Cancel", for: .normal)
+                cell.cancelButton.isUppercaseTitle = false
+            }
+        }
+        
         cell.messagesButtonTapped = {
-            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Messages") as? MessagesViewController {
-                vc.beauticianOrUser = "User"
-                vc.item = item
-                self.present(vc, animated: true, completion: nil)
+            if item.cancelled == "yes" {
+                if let index = self.orders.firstIndex(where: { $0.documentId == item.documentId }) {
+                    let data : [String: Any] = ["status" : "cancelled"]
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Orders").document(item.documentId).updateData(data)
+                    
+                    self.orders.remove(at: index)
+                    self.serviceTableView.reloadData()
+                }
+            } else {
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Messages") as? MessagesViewController {
+                    vc.beauticianOrUser = "User"
+                    vc.item = item
+                    self.present(vc, animated: true, completion: nil)
+                }
             }
         }
         
         cell.cancelButtonTapped = {
             if self.orderType != "complete" {
-                self.compareDates(eventDay: item.eventDay, eventTime: item.eventTime, status: item.status)
+                if !self.compareDates(eventDay: item.eventDay, eventTime: item.eventTime, status: item.status) {
+                    self.showToast(message: "You cannot cancel event with less than two hours till service time.", font: .systemFont(ofSize: 12))
+                } else {
+                    //showOptions
+                    let alert = UIAlertController(title: "Are you sure you want to cancel this appointment?", message: nil, preferredStyle: .actionSheet)
+                    
+                    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (handler) in
+                        
+                        self.db.collection("Orders").document(item.documentId).getDocument { document, error in
+                            if error == nil {
+                                if document != nil {
+                                    let data = document!.data()
+                                    
+                                    if data != nil {
+                                        if let paymentId = data!["paymentId"] as? String, let beauticianImageId = data!["beauticianImageId"] as? String, let userImageId = data!["userImageId"] as? String, let itemPrice = data!["itemPrice"] as? String {
+                                            
+                                            
+                                            self.refund(paymentId: paymentId, amount: itemPrice, beauticianImageId: beauticianImageId, userImageId: userImageId)
+                                            
+                                            let data1 : [String: Any] = ["cancelled" : "yes"]
+                                            let data2 : [String: Any] = ["cancelled" : "yes", "status" : "cancelled"]
+                                            
+                                            self.db.collection("Orders").document(item.documentId).updateData(data2)
+                                            self.db.collection("User").document(userImageId).collection("Orders").document(item.documentId).updateData(data2)
+                                            self.db.collection("Beautician").document(beauticianImageId).collection("Orders").document(item.documentId).updateData(data1)
+                                            
+                                            if let index = self.orders.firstIndex(where: { $0.documentId == item.documentId }) {
+                                                self.orders.remove(at: index)
+                                                self.serviceTableView.deleteRows(at: [IndexPath(item:index, section: 0)], with: .fade)
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }))
+                    
+                    alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (handler) in
+                        alert.dismiss(animated: true, completion: nil)
+                    }))
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
             } else {
                 if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserReview") as? UserReviewsViewController {
                     vc.item = item

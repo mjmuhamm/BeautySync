@@ -27,7 +27,6 @@
 		201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FA2CD4061E006BEE4D /* OwnersViewController.swift */; };
 		201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */; };
 		201910FF2CD40695006BEE4D /* StripeTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */; };
-		201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 201911002CD40A4D006BEE4D /* GoogleService-Info.plist */; };
 		204F45392CEA76BF00E2D449 /* UserItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F45372CEA76BF00E2D449 /* UserItemTableViewCell.swift */; };
 		204F453A2CEA76BF00E2D449 /* UserItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204F45382CEA76BF00E2D449 /* UserItemTableViewCell.xib */; };
 		204F453F2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F453D2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift */; };
@@ -62,6 +61,7 @@
 		2081A27C2CDAEE98001C4D52 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A27B2CDAEE98001C4D52 /* FirebaseFirestore */; };
 		2081A27E2CDAEE98001C4D52 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A27D2CDAEE98001C4D52 /* FirebaseMessaging */; };
 		2081A2802CDAEE98001C4D52 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2081A27F2CDAEE98001C4D52 /* FirebaseStorage */; };
+		2083B9A12CFA10DE00A8B7D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2083B9A02CFA10DE00A8B7D8 /* GoogleService-Info.plist */; };
 		208C3CED2CD69E6800222A37 /* Banking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C3CEC2CD69E6800222A37 /* Banking.swift */; };
 		208EF4ED2CEE22BA00572C73 /* AddContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208EF4EC2CEE22BA00572C73 /* AddContentViewController.swift */; };
 		208EF4F12CEEB33200572C73 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208EF4EF2CEEB33200572C73 /* FeedCollectionViewCell.swift */; };
@@ -128,7 +128,6 @@
 		201910FA2CD4061E006BEE4D /* OwnersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnersViewController.swift; sourceTree = "<group>"; };
 		201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
 		201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTermsViewController.swift; sourceTree = "<group>"; };
-		201911002CD40A4D006BEE4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		204DAB8E2CF35AE400996F41 /* BeautySync.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeautySync.entitlements; sourceTree = "<group>"; };
 		204F45372CEA76BF00E2D449 /* UserItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemTableViewCell.swift; sourceTree = "<group>"; };
 		204F45382CEA76BF00E2D449 /* UserItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserItemTableViewCell.xib; sourceTree = "<group>"; };
@@ -159,6 +158,7 @@
 		207ECAAA2CE41AE5008856D5 /* CheckoutItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutItems.swift; sourceTree = "<group>"; };
 		207ECAAD2CE544C6008856D5 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		207ECAAE2CE544C6008856D5 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
+		2083B9A02CFA10DE00A8B7D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		208C3CEC2CD69E6800222A37 /* Banking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking.swift; sourceTree = "<group>"; };
 		208EF4EC2CEE22BA00572C73 /* AddContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContentViewController.swift; sourceTree = "<group>"; };
 		208EF4EF2CEEB33200572C73 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -241,10 +241,10 @@
 		201910AF2CD28805006BEE4D /* BeautySync */ = {
 			isa = PBXGroup;
 			children = (
+				2083B9A02CFA10DE00A8B7D8 /* GoogleService-Info.plist */,
 				204DAB8E2CF35AE400996F41 /* BeautySync.entitlements */,
 				201910B62CD28805006BEE4D /* Main.storyboard */,
 				201910BE2CD28807006BEE4D /* Info.plist */,
-				201911002CD40A4D006BEE4D /* GoogleService-Info.plist */,
 				201910E02CD28BAE006BEE4D /* Resources */,
 				201910E12CD28BB4006BEE4D /* Cells */,
 				201910E22CD28BB9006BEE4D /* Controllers */,
@@ -779,7 +779,7 @@
 			files = (
 				201910BD2CD28807006BEE4D /* LaunchScreen.storyboard in Resources */,
 				20747AF52CEFD0D100EBD62A /* ReviewsTableViewCell.xib in Resources */,
-				201911012CD40A4D006BEE4D /* GoogleService-Info.plist in Resources */,
+				2083B9A12CFA10DE00A8B7D8 /* GoogleService-Info.plist in Resources */,
 				207ECAB02CE544C6008856D5 /* OrdersTableViewCell.xib in Resources */,
 				207ECAA82CE3CBBC008856D5 /* CheckoutTableViewCell.xib in Resources */,
 				204F45442CEA80CB00E2D449 /* UserReviewsTableViewCell.xib in Resources */,
