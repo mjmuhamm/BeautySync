@@ -1,32 +1,19 @@
 //
-//  UserReviewsTableViewCell.swift
+//  SearchTableViewCell.swift
 //  BeautySync
 //
-//  Created by Malik Muhammad on 11/17/24.
+//  Created by Malik Muhammad on 12/9/24.
 //
 
 import UIKit
 
-class UserReviewsTableViewCell: UITableViewCell {
+class SearchTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var itemTypeAndTitle: UILabel!
-    @IBOutlet weak var beautician: UILabel!
-    @IBOutlet weak var orderDate: UILabel!
     @IBOutlet weak var userImage: UIImageView!
-    
-    @IBOutlet weak var userThoughts: UILabel!
-    @IBOutlet weak var doesTheUserRecommend: UILabel!
-    
-    @IBOutlet weak var expectations: UILabel!
-    @IBOutlet weak var quality: UILabel!
-    @IBOutlet weak var beauticianRating: UILabel!
-    
-    @IBOutlet weak var userLikeImage: UIImageView!
-    @IBOutlet weak var userLikes: UILabel!
-    
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userFullName: UILabel!
     
     var userImageButtonTapped : (() -> ()) = {}
-    var userLikeButtonTapped : (() -> ()) = {}
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,9 +34,4 @@ class UserReviewsTableViewCell: UITableViewCell {
     @IBAction func userImageButtonPressed(_ sender: Any) {
         userImageButtonTapped()
     }
-    
-    @IBAction func userLikeButtonPressed(_ sender: Any) {
-        userLikeButtonTapped()
-    }
-    
 }

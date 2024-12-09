@@ -19,15 +19,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZRt-He-qft">
-                        <rect key="frame" x="5" y="60" width="52" height="51.000000000000014"/>
+                        <rect key="frame" x="5" y="60.000000000000007" width="55" height="53.666666666666664"/>
                         <color key="tintColor" systemColor="systemGray5Color"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="52" id="Qcg-pU-pfg"/>
-                            <constraint firstAttribute="height" constant="52.333333333333329" id="f2X-X7-gMB"/>
+                            <constraint firstAttribute="width" constant="55" id="Qcg-pU-pfg"/>
+                            <constraint firstAttribute="height" constant="55" id="f2X-X7-gMB"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="These are sample thoughts. These are sample thoughts. These are sample thoughts. These are sample thoughts. " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGh-Ba-td0">
-                        <rect key="frame" x="64" y="65" width="282" height="28.666666666666671"/>
+                        <rect key="frame" x="67" y="65" width="279" height="28.666666666666671"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -100,7 +100,7 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mrg-aT-AL5">
-                        <rect key="frame" x="64" y="102.33333333333333" width="173" height="13.333333333333329"/>
+                        <rect key="frame" x="67" y="102.33333333333333" width="173" height="13.333333333333329"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Does the user recommend?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rig-On-qUi">
                                 <rect key="frame" x="0.0" y="0.0" width="149.33333333333334" height="13.333333333333334"/>
@@ -140,7 +140,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hair Item | Cornrows" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eem-Hc-LdA">
-                        <rect key="frame" x="6" y="8" width="219" height="14"/>
+                        <rect key="frame" x="6" y="8" width="219" height="14.333333333333336"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <color key="textColor" red="0.38431372549999998" green="0.38823529410000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>

@@ -63,6 +63,12 @@ class ProfileAsUserViewController: UIViewController {
         contentCollectionView.delegate = self
         contentCollectionView.dataSource = self
         
+        userImage.layer.borderWidth = 1
+        userImage.layer.masksToBounds = false
+        userImage.layer.borderColor = UIColor.white.cgColor
+        userImage.layer.cornerRadius = userImage.frame.height/2
+        userImage.clipsToBounds = true
+        
         if item != nil {
             button1.isHidden = false
             button2.setTitle("Skin Care", for: .normal)
@@ -89,6 +95,7 @@ class ProfileAsUserViewController: UIViewController {
             button4.setTitle("Reviews", for: .normal)
             button4.isUppercaseTitle = false
             loadUserInfo()
+            itemType = "Beauticians"
             loadBeauticians()
         }
 
@@ -482,18 +489,47 @@ class ProfileAsUserViewController: UIViewController {
                         
                         if let date = data["date"] as? String, let expectations = data["expectations"] as? Int, let itemDescription = data["itemDescription"] as? String, let itemId = data["itemId"] as? String, let itemTitle = data["itemTitle"] as? String, let itemType = data["itemType"] as? String, let liked = data["liked"] as? [String], let quality = data["quality"] as? Int, let rating = data["rating"] as? Int, let recommend = data["recommend"] as? Int, let thoughts = data["thoughts"] as? String, let userImageId = data["userImageId"] as? String, let userName = data["userName"] as? String, let beauticianUsername = data["beauticianUsername"] as? String, let beauticianImageId = data["beauticianImageId"] as? String, let orderDate = data["orderDate"] as? String {
                             
-                            let x = UserReview(date: date, expectations: expectations, quality: quality, rating: rating, recommend: recommend, thoughts: thoughts, itemDescription: itemDescription, itemId: itemId, itemTitle: itemTitle, itemType: itemType, userImageId: userImageId, userName: userName, liked: liked, beauticianUsername: beauticianUsername, beauticianImageId: beauticianImageId, orderDate: orderDate, documentId: doc.documentID)
-                            
-                            if self.reviews.isEmpty {
-                                self.reviews.append(x)
-                                self.serviceTableView.reloadData()
-                            } else {
-                                let index = self.reviews.firstIndex { $0.documentId == doc.documentID }
-                                if index == nil {
-                                    self.reviews.append(x)
-                                    self.serviceTableView.insertRows(at: [IndexPath(item: self.reviews.count - 1, section: 0)], with: .fade)
+                            self.db.collection("\(itemType)").document("\(itemId)").collection("Reviews").document("\(doc.documentID)").getDocument { document, error in
+                                if error == nil {
+                                    if document != nil {
+                                        let data = document!.data()
+                                        
+                                        if data != nil {
+                                            if let liked = data!["liked"] as? [String] {
+                                                
+                                                let x = UserReview(date: date, expectations: expectations, quality: quality, rating: rating, recommend: recommend, thoughts: thoughts, itemDescription: itemDescription, itemId: itemId, itemTitle: itemTitle, itemType: itemType, userImageId: userImageId, userName: userName, liked: liked, beauticianUsername: beauticianUsername, beauticianImageId: beauticianImageId, orderDate: orderDate, documentId: doc.documentID)
+                                                
+                                                if self.reviews.isEmpty {
+                                                    self.reviews.append(x)
+                                                    self.serviceTableView.reloadData()
+                                                } else {
+                                                    let index = self.reviews.firstIndex { $0.documentId == doc.documentID }
+                                                    if index == nil {
+                                                        self.reviews.append(x)
+                                                        self.serviceTableView.insertRows(at: [IndexPath(item: self.reviews.count - 1, section: 0)], with: .fade)
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            
+                                            let x = UserReview(date: date, expectations: expectations, quality: quality, rating: rating, recommend: recommend, thoughts: thoughts, itemDescription: itemDescription, itemId: itemId, itemTitle: itemTitle, itemType: itemType, userImageId: userImageId, userName: userName, liked: liked, beauticianUsername: beauticianUsername, beauticianImageId: beauticianImageId, orderDate: orderDate, documentId: doc.documentID)
+                                            
+                                            if self.reviews.isEmpty {
+                                                self.reviews.append(x)
+                                                self.serviceTableView.reloadData()
+                                            } else {
+                                                let index = self.reviews.firstIndex { $0.documentId == doc.documentID }
+                                                if index == nil {
+                                                    self.reviews.append(x)
+                                                    self.serviceTableView.insertRows(at: [IndexPath(item: self.reviews.count - 1, section: 0)], with: .fade)
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
+                            
+                           
                         }
                     }
                 }
@@ -528,6 +564,24 @@ extension ProfileAsUserViewController: UITableViewDelegate, UITableViewDataSourc
             cell.itemTitle.text = item.itemTitle
             cell.itemDescription.text = item.itemDescription
             cell.itemPrice.text = "$\(item.itemPrice)"
+            cell.itemLikes.text = "\(item.liked.count)"
+            cell.itemOrders.text = "\(item.itemOrders)"
+            var rating = 0
+            for i in 0..<item.itemRating.count {
+                rating += item.itemRating[i]
+                
+                if i == item.itemRating.count - 1 {
+                    rating = rating / item.itemRating.count
+                }
+            }
+            cell.itemRating.text = "\(rating)"
+            
+            if item.liked.firstIndex(of: Auth.auth().currentUser!.uid) != nil {
+                cell.itemLikeImage.image = UIImage(systemName: "heart.fill")
+            } else {
+                cell.itemLikeImage.image = UIImage(systemName: "heart")
+            }
+            
             
             let storageRef = storage.reference()
             storageRef.child("\(item.itemType)/\(item.beauticianImageId)/\(item.documentId)/\(item.documentId)0.png").downloadURL { itemUrl, error in
@@ -551,6 +605,63 @@ extension ProfileAsUserViewController: UITableViewDelegate, UITableViewDataSourc
                 }
             }
             
+            cell.itemLikeButtonTapped = {
+                let data : [String: Any] = ["itemType" :  item.itemType, "itemTitle" : item.itemTitle, "itemDescription" : item.itemDescription, "itemPrice" : item.itemPrice, "imageCount" : item.imageCount, "beauticianUsername" : item.beauticianUsername, "beauticianPassion" : item.beauticianPassion, "beauticianCity" : item.beauticianCity, "beauticianState": item.beauticianState, "beauticianImageId" : item.beauticianImageId, "liked" : item.liked, "itemOrders" : item.itemOrders, "itemRating" : item.itemRating, "hashtags" : item.hashtags]
+                
+                
+                if cell.itemLikeImage.image == UIImage(systemName: "heart") {
+                    cell.itemLikeImage.image = UIImage(systemName: "heart.fill")
+                    cell.itemLikes.text = "\(Int(cell.itemLikes.text!)! + 1)"
+                    self.db.collection(item.itemType).document(item.documentId).updateData(["liked" : FieldValue.arrayUnion(["\(Auth.auth().currentUser!.uid)"])])
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Likes").document(item.documentId).setData(data)
+                    
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).getDocument { document, error in
+                        if error == nil {
+                            if document != nil {
+                                let data = document!.data()
+                                
+                                if data != nil {
+                                    
+                                    if let itemCount = data!["itemCount"] as? Int {
+                                        
+                                        let data1: [String : Any] = ["itemCount" : itemCount + 1]
+                                        self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).updateData(data1)
+                                    }
+                                } else {
+                                    let data1: [String : Any] = ["itemCount" : 1, "beauticianImageId" : item.beauticianImageId, "beauticianUsername" : item.beauticianUsername, "beauticianPassion" : item.beauticianPassion, "beauticianCity" : item.beauticianCity, "beauticianState" : item.beauticianState]
+                                    
+                                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).setData(data1)
+                                }
+                            }
+                        }
+                    }
+                    
+                } else {
+                    cell.itemLikeImage.image = UIImage(systemName: "heart")
+                    self.db.collection(item.itemType).document(item.documentId).updateData(["liked" : FieldValue.arrayRemove(["\(Auth.auth().currentUser!.uid)"])])
+                    cell.itemLikes.text = "\(Int(cell.itemLikes.text!)! - 1)"
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Likes").document(item.documentId).delete()
+                    
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).getDocument { document, error in
+                        if error == nil {
+                            if document != nil {
+                                let data = document!.data()
+                                if data != nil {
+                                    if let itemCount = data!["itemCount"] as? Int {
+                                        if itemCount == 1 {
+                                            self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).delete()
+                                        } else {
+                                            let data1: [String : Any] = ["itemCount" : itemCount - 1]
+                                            self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).updateData(data1)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
             return cell
         } else if itemType == "Beauticians" {
             var cell = serviceTableView.dequeueReusableCell(withIdentifier: "UserBeauticiansReusableCell", for: indexPath) as! UserBeauticiansTableViewCell
@@ -558,6 +669,17 @@ extension ProfileAsUserViewController: UITableViewDelegate, UITableViewDataSourc
             serviceTableView.rowHeight = 72
             
             var item = beauticians[indexPath.row]
+            
+            db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).getDocument { document, error in
+                if document != nil {
+                    let data = document!.data()
+                    if (data != nil) {
+                        cell.likeImage.image = UIImage(systemName: "heart.fill")
+                    } else {
+                        cell.likeImage.image = UIImage(systemName: "heart")
+                    }
+                }
+            }
             
             let storageRef = storage.reference()
             storageRef.child("beauticians/\(item.beauticianImageId)/profileImage/\(item.beauticianImageId).png").downloadURL { itemUrl, error in
@@ -588,11 +710,13 @@ extension ProfileAsUserViewController: UITableViewDelegate, UITableViewDataSourc
             
             cell.userLikeButtonTapped = {
                 print("documentId \(item.documentId)")
-                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.documentId).delete()
-                if let index = self.beauticians.firstIndex(where: { $0.documentId == item.documentId }) {
-                    self.beauticians.remove(at: index)
-                    self.serviceTableView.deleteRows(at: [IndexPath(item:index, section: 0)], with: .fade)
-                    
+                if cell.likeImage.image == UIImage(systemName: "heart.fill") {
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).delete()
+                    cell.likeImage.image = UIImage(systemName: "heart")
+                } else {
+                    let data : [String: Any] = ["beauticianCity" : item.beauticianCity, "beauticianState" : item.beauticianState, "beauticianImageId" : item.beauticianImageId, "beauticianPassion" : item.beauticianPassion, "itemCount" : 1]
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).setData(data)
+                    cell.likeImage.image = UIImage(systemName: "heart.fill")
                 }
             }
             return cell
@@ -671,28 +795,52 @@ extension ProfileAsUserViewController: UITableViewDelegate, UITableViewDataSourc
             }
             
             cell.itemLikeButtonTapped = {
-                self.db.collection(item.itemType).document(item.documentId).updateData(["liked" : FieldValue.arrayRemove(["\(Auth.auth().currentUser!.uid)"])])
-                cell.itemLikes.text = "\(Int(cell.itemLikes.text!)! - 1)"
-                
-                if let index = self.items.firstIndex(where: { $0.documentId == item.documentId }) {
-                    self.items.remove(at: index)
-                    self.serviceTableView.deleteRows(at: [IndexPath(item:index, section: 0)], with: .fade)
+                if cell.itemLikeImage.image == UIImage(systemName: "heart") {
+                    cell.itemLikeImage.image = UIImage(systemName: "heart.fill")
+                    cell.itemLikes.text = "\(Int(cell.itemLikes.text!)! + 1)"
+                   
                     
-                }
-                
-                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Likes").document(item.documentId).delete()
-                
-                self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).getDocument { document, error in
-                    if error == nil {
-                        if document != nil {
-                            let data = document!.data()
-                            if data != nil {
-                                if let itemCount = data!["itemCount"] as? Int {
-                                    if itemCount == 1 {
-                                        self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).delete()
-                                    } else {
-                                        let data1: [String : Any] = ["itemCount" : itemCount - 1]
-                                        self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).updateData(data1)
+                    let data : [String: Any] = ["itemType" : item.itemType, "itemTitle" : item.itemTitle, "itemDescription" : item.itemDescription, "itemPrice" : item.itemPrice, "imageCount" : item.imageCount, "beauticianUsername" : item.beauticianUsername, "beauticianPassion" : item.beauticianPassion, "beauticianCity" : item.beauticianCity, "beauticianState" : item.beauticianState, "beauticianImageId" : item.beauticianImageId, "liked" : item.liked, "itemOrders" : item.itemOrders, "itemRating" : item.itemRating, "hashtags" : item.hashtags]
+                    
+                    let data1 : [String: Any] = ["beauticianCity" : item.beauticianCity, "beauticianState" : item.beauticianState, "beauticianImageId" : item.beauticianImageId, "beauticianPassion" : item.beauticianPassion, "itemCount" : 1]
+                    
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Likes").document(item.documentId).setData(data)
+                    
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).getDocument { document, error in
+                        if error == nil {
+                            if document != nil {
+                                let data = document?.data()
+                                if data != nil {
+                                    if let itemCount = data!["itemCount"] as? Int {
+                                            let data1: [String : Any] = ["itemCount" : itemCount + 1]
+                                            self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).updateData(data1)
+                                    }
+                                } else {
+                                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).setData(data1)
+                                }
+                            }
+                        }
+                    }
+                    
+                } else {
+                    self.db.collection(item.itemType).document(item.documentId).updateData(["liked" : FieldValue.arrayRemove(["\(Auth.auth().currentUser!.uid)"])])
+                    cell.itemLikes.text = "\(Int(cell.itemLikes.text!)! - 1)"
+                    cell.itemLikeImage.image = UIImage(systemName: "heart")
+                    
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Likes").document(item.documentId).delete()
+                    
+                    self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).getDocument { document, error in
+                        if error == nil {
+                            if document != nil {
+                                let data = document!.data()
+                                if data != nil {
+                                    if let itemCount = data!["itemCount"] as? Int {
+                                        if itemCount == 1 {
+                                            self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).delete()
+                                        } else {
+                                            let data1: [String : Any] = ["itemCount" : itemCount - 1]
+                                            self.db.collection("User").document(Auth.auth().currentUser!.uid).collection("Beauticians").document(item.beauticianImageId).updateData(data1)
+                                        }
                                     }
                                 }
                             }
@@ -732,7 +880,7 @@ extension ProfileAsUserViewController: UITableViewDelegate, UITableViewDataSourc
             let beauticianRef = storage.reference()
             
             DispatchQueue.main.async {
-                beauticianRef.child("users/\(review.userImageId)/profileImage/\(review.userImageId).png").getData(maxSize: 15 * 1024 * 1024) { data, error in
+                beauticianRef.child("beauticians/\(review.beauticianImageId)/profileImage/\(review.beauticianImageId).png").getData(maxSize: 15 * 1024 * 1024) { data, error in
                     if error == nil {
                         cell.userImage.image = UIImage(data: data!)!
                     }}
@@ -745,8 +893,10 @@ extension ProfileAsUserViewController: UITableViewDelegate, UITableViewDataSourc
                 cell.doesTheUserRecommend.text = "No"
             }
             cell.userLikes.text = "\(review.liked.count)"
-            if let index = review.liked.firstIndex(where: { $0 == Auth.auth().currentUser!.uid }) {
+            if review.liked.firstIndex(of: Auth.auth().currentUser!.uid) != nil {
                 cell.userLikeImage.image = UIImage(systemName: "heart.fill")
+            } else {
+                cell.userLikeImage.image = UIImage(systemName: "heart")
             }
             
             cell.userLikeButtonTapped = {
@@ -755,8 +905,6 @@ extension ProfileAsUserViewController: UITableViewDelegate, UITableViewDataSourc
                     cell.userLikeImage.image = UIImage(systemName: "heart.fill")
                     cell.userLikes.text = "\(Int(cell.userLikes.text!)! + 1)"
                     self.db.collection(review.itemType).document(review.itemId).collection("Reviews").document(review.documentId).updateData(["liked" : FieldValue.arrayUnion(["\(Auth.auth().currentUser!.uid)"])])
-                    
-                    
                     
                 } else {
                     cell.userLikeImage.image = UIImage(systemName: "heart")

@@ -27,6 +27,10 @@
 		201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FA2CD4061E006BEE4D /* OwnersViewController.swift */; };
 		201910FD2CD40635006BEE4D /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */; };
 		201910FF2CD40695006BEE4D /* StripeTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */; };
+		202A21962D0765DC00F361E9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A21952D0765DC00F361E9 /* SearchViewController.swift */; };
+		202A21982D07669200F361E9 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A21972D07669200F361E9 /* Search.swift */; };
+		202A219C2D0766C000F361E9 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A219A2D0766C000F361E9 /* SearchTableViewCell.swift */; };
+		202A219D2D0766C000F361E9 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 202A219B2D0766C000F361E9 /* SearchTableViewCell.xib */; };
 		204F45392CEA76BF00E2D449 /* UserItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F45372CEA76BF00E2D449 /* UserItemTableViewCell.swift */; };
 		204F453A2CEA76BF00E2D449 /* UserItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204F45382CEA76BF00E2D449 /* UserItemTableViewCell.xib */; };
 		204F453F2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F453D2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift */; };
@@ -128,6 +132,10 @@
 		201910FA2CD4061E006BEE4D /* OwnersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnersViewController.swift; sourceTree = "<group>"; };
 		201910FC2CD40635006BEE4D /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
 		201910FE2CD40695006BEE4D /* StripeTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTermsViewController.swift; sourceTree = "<group>"; };
+		202A21952D0765DC00F361E9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		202A21972D07669200F361E9 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		202A219A2D0766C000F361E9 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		202A219B2D0766C000F361E9 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		204DAB8E2CF35AE400996F41 /* BeautySync.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeautySync.entitlements; sourceTree = "<group>"; };
 		204F45372CEA76BF00E2D449 /* UserItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemTableViewCell.swift; sourceTree = "<group>"; };
 		204F45382CEA76BF00E2D449 /* UserItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserItemTableViewCell.xib; sourceTree = "<group>"; };
@@ -283,6 +291,7 @@
 		201910E12CD28BB4006BEE4D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				202A21992D0766A800F361E9 /* Search */,
 				208EF4EE2CEEB31C00572C73 /* Feed */,
 				20B0F5AD2CDEAA6300F3C0D8 /* Home */,
 				20D8D1F92CDD377500117EF4 /* ServiceItem */,
@@ -382,6 +391,15 @@
 			path = info;
 			sourceTree = "<group>";
 		};
+		202A21992D0766A800F361E9 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				202A219A2D0766C000F361E9 /* SearchTableViewCell.swift */,
+				202A219B2D0766C000F361E9 /* SearchTableViewCell.xib */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		204F45362CEA769400E2D449 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +448,7 @@
 			children = (
 				206C62EE2CE9048200159481 /* Messages.swift */,
 				208EF4F32CEEB76300572C73 /* Video.swift */,
+				202A21972D07669200F361E9 /* Search.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -556,6 +575,7 @@
 			isa = PBXGroup;
 			children = (
 				208EF4F62CEEB88000572C73 /* FeedViewController.swift */,
+				202A21952D0765DC00F361E9 /* SearchViewController.swift */,
 			);
 			path = tabs;
 			sourceTree = "<group>";
@@ -778,6 +798,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				201910BD2CD28807006BEE4D /* LaunchScreen.storyboard in Resources */,
+				202A219D2D0766C000F361E9 /* SearchTableViewCell.xib in Resources */,
 				20747AF52CEFD0D100EBD62A /* ReviewsTableViewCell.xib in Resources */,
 				2083B9A12CFA10DE00A8B7D8 /* GoogleService-Info.plist in Resources */,
 				207ECAB02CE544C6008856D5 /* OrdersTableViewCell.xib in Resources */,
@@ -871,6 +892,7 @@
 				201910FB2CD4061E006BEE4D /* OwnersViewController.swift in Sources */,
 				20D8D1F82CDCF84400117EF4 /* ServiceItem.swift in Sources */,
 				20B0F5B02CDEAA7B00F3C0D8 /* HomeTableViewCell.swift in Sources */,
+				202A219C2D0766C000F361E9 /* SearchTableViewCell.swift in Sources */,
 				204F453F2CEA7C1600E2D449 /* UserBeauticiansTableViewCell.swift in Sources */,
 				2062FB7A2CE1551800065BC0 /* OrderDetailsViewController.swift in Sources */,
 				207ECAA72CE3CBBC008856D5 /* CheckoutTableViewCell.swift in Sources */,
@@ -880,6 +902,7 @@
 				207B3F482CE785880063C725 /* Dashboard.swift in Sources */,
 				201910F42CD40523006BEE4D /* BeauticianBankingViewController.swift in Sources */,
 				20B0F5AC2CDE95B100F3C0D8 /* ItemDetailViewController.swift in Sources */,
+				202A21982D07669200F361E9 /* Search.swift in Sources */,
 				201910E92CD29B8D006BEE4D /* UserLoginViewController.swift in Sources */,
 				20B4D3B72CDFCB7700C26EEC /* UserMeViewController.swift in Sources */,
 				201910B12CD28805006BEE4D /* AppDelegate.swift in Sources */,
@@ -888,6 +911,7 @@
 				20B4D3B52CDFC7CA00C26EEC /* UserAccountSettingsViewController.swift in Sources */,
 				201910F72CD40597006BEE4D /* UserPersonalViewController.swift in Sources */,
 				207ECAAB2CE41AE5008856D5 /* CheckoutItems.swift in Sources */,
+				202A21962D0765DC00F361E9 /* SearchViewController.swift in Sources */,
 				208EF4FB2CEF8B8000572C73 /* BeauticianContentCollectionViewCell.swift in Sources */,
 				20D8D1F62CDCEA0100117EF4 /* ServiceItemsViewController.swift in Sources */,
 				206C62E72CE8FAE800159481 /* SchedulingViewController.swift in Sources */,
